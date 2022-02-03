@@ -1,0 +1,3 @@
+.basic-top > tbody > tr:hover td{
+    background-color: lightgray;
+}

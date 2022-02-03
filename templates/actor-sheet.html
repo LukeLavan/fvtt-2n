@@ -1,0 +1,78 @@
+<form class="{{cssClass}}" autocomplete="off">
+    <nav class="sheet-tabs tabs" data-group="primary">
+        <a class="item" data-tab="basic">BASIC</a>
+        <a class="item" data-tab="other">other</a>
+    </nav>
+    <section class="sheet-body">
+        <div class="tab basic" data-group="primary" data-tab="basic">
+            <table class="basic-top">
+                <tr>
+                    <td>Name:</td>
+                    <td>
+                        <input
+                            name="name"
+                            type="text"
+                            value="{{data.name}}"
+                            placeholder="character name"
+                        />
+                    </td>
+                </tr>
+                <tr>
+                    <td>Player:</td>
+                    <td>
+                        <input
+                            name="data.playerName"
+                            type="text"
+                            value="{{data.data.playerName}}"
+                            placeholder="player name"
+                        />
+                    </td>
+                </tr>
+                <tr>
+                    <td>Race:</td>
+                    <td>
+                        <input
+                            name="data.race"
+                            type="text"
+                            value="{{data.data.race}}"
+                            placeholder="race"
+                        />
+                    </td>
+                </tr>
+                <tr>
+                    <td>Speed:</td>
+                    <td>
+                        <input
+                            name="data.speed"
+                            type="number"
+                            value="{{data.data.speed}}"
+                            placeholder="speed"
+                        />
+                    </td>
+                </tr>
+                <tr>
+                    <td>Class:</td>
+                    <td>
+                        <input
+                            name="data.class"
+                            type="text"
+                            value="{{data.data.class}}"
+                            placeholder="class"
+                        />
+                    </td>
+                </tr>
+                <tr>
+                    <td>Alignment:</td>
+                    <td>
+                        <select>
+                            {{selectOptions alignmentChoices selected=data.data.alignment}}
+                        </select>
+                    </td>
+                </tr>
+            </div>
+        </div>
+        <div class="tab other" data-group="primary" data-tab="other">
+            other stuff lol
+        </div>
+    </section>
+</form>

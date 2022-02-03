@@ -1,0 +1,27 @@
+{
+    "name": "fvtt-2neal",
+    "title": "2-neal",
+    "description": "@koibu0 's modifications to the second edition of the world's greatest roleplaying game",
+    "version": "0.0.0",
+    "author": "Luke Lavan <luke.lavan01@gmail.com>",
+    "minimumCoreVersion": "0.8.6",
+    "compatibleCoreVersion": "9",
+    "esmodules": ["system/fvtt-2neal.mjs"],
+    "styles": ["css/fvtt-2neal.css"],
+    "scripts": [],
+    "packs": [],
+    "languages": [
+      {
+        "lang": "en",
+        "name": "English",
+        "path": "lang/en.json"
+      }
+    ],
+    "gridDistance": 5,
+    "gridUnits": "ft",
+    "url": "",
+    "manifest": "",
+    "download": "",
+    "license": "LICENSE"
+  }
+  
