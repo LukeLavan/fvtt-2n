@@ -5,74 +5,485 @@
     </nav>
     <section class="sheet-body">
         <div class="tab basic" data-group="primary" data-tab="basic">
-            <table class="basic-top">
-                <tr>
-                    <td>Name:</td>
-                    <td>
-                        <input
-                            name="name"
-                            type="text"
-                            value="{{data.name}}"
-                            placeholder="character name"
-                        />
-                    </td>
-                </tr>
-                <tr>
-                    <td>Player:</td>
-                    <td>
-                        <input
-                            name="data.playerName"
-                            type="text"
-                            value="{{data.data.playerName}}"
-                            placeholder="player name"
-                        />
-                    </td>
-                </tr>
-                <tr>
-                    <td>Race:</td>
-                    <td>
-                        <input
-                            name="data.race"
-                            type="text"
-                            value="{{data.data.race}}"
-                            placeholder="race"
-                        />
-                    </td>
-                </tr>
-                <tr>
-                    <td>Speed:</td>
-                    <td>
-                        <input
-                            name="data.speed"
-                            type="number"
-                            value="{{data.data.speed}}"
-                            placeholder="speed"
-                        />
-                    </td>
-                </tr>
-                <tr>
-                    <td>Class:</td>
-                    <td>
-                        <input
-                            name="data.class"
-                            type="text"
-                            value="{{data.data.class}}"
-                            placeholder="class"
-                        />
-                    </td>
-                </tr>
-                <tr>
-                    <td>Alignment:</td>
-                    <td>
-                        <select>
-                            {{selectOptions alignmentChoices selected=data.data.alignment}}
-                        </select>
-                    </td>
-                </tr>
+            <div class="basic-top">
+                <table>
+                    <tr>
+                        <td>Player:</td>
+                        <td>
+                            <input
+                                name="data.playerName"
+                                type="text"
+                                value="{{data.data.playerName}}"
+                            />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Name:</td>
+                        <td>
+                            <input
+                                name="name"
+                                type="text"
+                                value="{{data.name}}"
+                            />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Languages:</td>
+                        <td>
+                            <input
+                                name="data.languages"
+                                type="text"
+                                value="{{data.data.languages}}"
+                            />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Alignment:</td>
+                        <td>
+                            <select name="data.alignment" style="width: 100%">
+                                {{selectOptions alignmentChoices selected=data.data.alignment}}
+                            </select>
+                        </td>
+                    </tr>
+                </table>
+                <table>
+                    <tr>
+                        <td>Race:</td>
+                        <td>
+                            <input
+                                name="data.race"
+                                type="text"
+                                value="{{data.data.race}}"
+                            />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Classes:</td>
+                        <td>
+                            <input
+                                name="data.classes"
+                                type="text"
+                                value="{{data.data.classes}}"
+                            />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>XP:</td>
+                        <td>
+                            <input
+                                name="data.xp"
+                                type="text"
+                                value="{{data.data.xp}}"
+                            />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Levels:</td>
+                        <td>
+                            <input
+                                name="data.levels"
+                                type="text"
+                                value="{{data.data.levels}}"
+                            />
+                        </td>
+                    </tr>
+                </table>
+                <table>
+                    <tr>
+                        <td>Body Weight:</td>
+                        <td>
+                            <input
+                                name="data.bodyWeight"
+                                type="number"
+                                value="{{data.data.bodyWeight}}"
+                            />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Height:</td>
+                        <td>
+                            <input
+                                name="data.height"
+                                type="text"
+                                value="{{data.data.height}}"
+                            />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Sex:</td>
+                        <td>
+                            <input
+                                name="data.sex"
+                                type="text"
+                                value="{{data.data.sex}}"
+                            />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Gender:</td>
+                        <td>
+                            <input
+                                name="data.gender"
+                                type="text"
+                                value="{{data.data.gender}}"
+                            />
+                        </td>
+                    </tr>
+                </table>
+                <table>
+                    <tr>
+                        <td>Size:</td>
+                        <td>
+                            <input
+                                name="data.size"
+                                type="text"
+                                value="{{data.data.size}}"
+                            />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Speed:</td>
+                        <td>
+                            <input
+                                name="data.speed"
+                                type="number"
+                                value="{{data.data.speed}}"
+                            />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Age:</td>
+                        <td>
+                            <input
+                                name="data.age"
+                                type="text"
+                                value="{{data.data.age}}"
+                            />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Handed:</td>
+                        <td>
+                            <input
+                                name="data.handed"
+                                type="text"
+                                value="{{data.data.handed}}"
+                            />
+                        </td>
+                    </tr>
+                </table>
             </div>
-        </div>
-        <div class="tab other" data-group="primary" data-tab="other">
-            other stuff lol
-        </div>
+            <div class="basic-mid">
+                <table>
+                    <tr>
+                        <td>STR</td>
+                        <td>
+                            <input
+                                name="data.str"
+                                type="number"
+                                value="{{data.data.str}}"
+                            />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>DEX</td>
+                        <td>
+                            <input
+                                name="data.dex"
+                                type="number"
+                                value="{{data.data.dex}}"
+                            />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>CON</td>
+                        <td>
+                            <input
+                                name="data.con"
+                                type="number"
+                                value="{{data.data.con}}"
+                            />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>INT</td>
+                        <td>
+                            <input
+                                name="data.int"
+                                type="number"
+                                value="{{data.data.int}}"
+                            />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>WIS</td>
+                        <td>
+                            <input
+                                name="data.wis"
+                                type="number"
+                                value="{{data.data.wis}}"
+                            />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>CHA</td>
+                        <td>
+                            <input
+                                name="data.cha"
+                                type="number"
+                                value="{{data.data.cha}}"
+                            />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>PER</td>
+                        <td>
+                            <input
+                                name="data.per"
+                                type="number"
+                                value="{{data.data.per}}"
+                            />
+                        </td>
+                    </tr>
+                </table>
+                <div>
+                    <div class="derived-row" id="derived-str">
+                        <div>
+                            <span class="derived-label">
+                                Melee Attack Adjust
+                            </span>
+                            <br />
+                            <span class="derived-value">
+                                {{data.data.meleeAttackAdjust}}
+                            </span>
+                        </div>
+                        <div>
+                            <span class="derived-label">
+                                Melee Damage Adjust
+                            </span>
+                            <br />
+                            <span class="derived-value">
+                                {{data.data.meleeDamageAdjust}}
+                            </span>
+                        </div>
+                        <div>
+                            <span class="derived-label">
+                                Weight Allowance
+                            </span>
+                            <br />
+                            <span class="derived-value">
+                                {{data.data.weightAllowance}}
+                            </span>
+                        </div>
+                        <div>
+                            <span class="derived-label">
+                                Max Press
+                            </span>
+                            <br />
+                            <span class="derived-value">
+                                {{data.data.maxPress}}
+                            </span>
+                        </div>
+                        <div 
+                            class="derived-str-openDoors rollable"
+                            data-roll="d20cs<={{data.data.openDoors}}"
+                            data-label="Open Doors Check"
+                        >
+                            <span class="derived-label">
+                                Open Doors
+                            </span>
+                            <br />
+                            <span class="derived-value">
+                                {{data.data.openDoors}}
+                            </span>
+                        </div>
+                        <div>
+                            <span class="derived-label">
+                                Bend Bars
+                            </span>
+                            <br />
+                            <span class="derived-value">
+                                {{data.data.bendBars}}
+                            </span>
+                        </div>
+                    </div>
+                    <div class="derived-row" id="derived-dex">
+                        <div>
+                            <span class="derived-label">
+                                Missile Hit Adjustment
+                            </span>
+                            <br />
+                            <span class="derived-value">
+                                {{data.data.missileHitAdjust}}
+                            </span>
+                        </div>
+                        <div>
+                            <span class="derived-label">
+                                Defensive Adjustment
+                            </span>
+                            <br />
+                            <span class="derived-value">
+                                {{data.data.defenseAdjust}}
+                            </span>
+                        </div>
+                    </div>
+                    <div class="derived-row" id="derived-con">
+                        <div>
+                            <span class="derived-label">
+                                HP Adjust
+                            </span>
+                            <br />
+                            <span class="derived-value">
+                                {{data.data.hitPointAdjust}}
+                            </span>
+                        </div>
+                        <div>
+                            <span class="derived-label">
+                                System Shock
+                            </span>
+                            <br />
+                            <span class="derived-value">
+                                {{data.data.systemShock}}
+                            </span>
+                        </div>
+                        <div>
+                            <span class="derived-label">
+                                Poison Save
+                            </span>
+                            <br />
+                            <span class="derived-value">
+                                {{data.data.poisonSave}}
+                            </span>
+                        </div>
+                        <div>
+                            <span class="derived-label">
+                                Regen
+                            </span>
+                            <br />
+                            <span class="derived-value">
+                                {{data.data.regen}}
+                            </span>
+                        </div>
+                    </div>
+                    <div class="derived-row" id="derived-int">
+                        <div>
+                            <span class="derived-label">
+                                Languages
+                            </span>
+                            <br />
+                            <span class="derived-value">
+                                {{data.data.numLanguages}}
+                            </span>
+                        </div>
+                        <div>
+                            <span class="derived-label">
+                                Max Spell Level
+                            </span>
+                            <br />
+                            <span class="derived-value">
+                                {{data.data.maxSpellLevel}}
+                            </span>
+                        </div>
+                        <div>
+                            <span class="derived-label">
+                                Chance to Learn Spell
+                            </span>
+                            <br />
+                            <span class="derived-value">
+                                {{data.data.spellLearnChance}}
+                            </span>
+                        </div>
+                        <div>
+                            <span class="derived-label">
+                                Max Spells per Level
+                            </span>
+                            <br />
+                            <span class="derived-value">
+                                {{data.data.maxSpellPerLevel}}
+                            </span>
+                        </div>
+                    </div>
+                    <div class="derived-row" id="derived-wis">
+                        <div>
+                            <span class="derived-label">
+                                Magical Defense Adjust
+                            </span>
+                            <br />
+                            <span class="derived-value">
+                                {{data.data.magicDefenseAdjust}}
+                            </span>
+                        </div>
+                        <div>
+                            <span class="derived-label">
+                                Bonus Spells
+                            </span>
+                            <br />
+                            <span class="derived-value">
+                                {{data.data.bonusSpells}}
+                            </span>
+                        </div>
+                        <div>
+                            <span class="derived-label">
+                                Spell Failure
+                            </span>
+                            <br />
+                            <span class="derived-value">
+                                {{data.data.chanceSpellFailure}}
+                            </span>
+                        </div>
+                    </div>
+                    <div class="derived-row" id="derived-cha">
+                        <div>
+                            <span class="derived-label">
+                                Henchmen
+                            </span>
+                            <br />
+                            <span class="derived-value">
+                                {{data.data.maxHenchmen}}
+                            </span>
+                        </div>
+                        <div>
+                            <span class="derived-label">
+                                Loyalty Base
+                            </span>
+                            <br />
+                            <span class="derived-value">
+                                {{data.data.loyaltyBase}}
+                            </span>
+                        </div>
+                        <div>
+                            <span class="derived-label">
+                                Reaction Adjustment
+                            </span>
+                            <br />
+                            <span class="derived-value">
+                                {{data.data.reactionAdjust}}
+                            </span>
+                        </div>
+                    </div>
+                    <div class="derived-row" id="derived-per">
+                        <div>
+                            <span class="derived-label">
+                                Surprise Adjustment
+                            </span>
+                            <br />
+                            <span class="derived-value">
+                                {{data.data.surpriseAdjust}}
+                            </span>
+                        </div>
+                        <div>
+                            <span class="derived-label">
+                                Illusion Immunity
+                            </span>
+                            <br />
+                            <span class="derived-value">
+                                {{data.data.illusionImmunity}}
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="tab other" data-group="primary" data-tab="other">
+                other stuff lol
     </section>
 </form>

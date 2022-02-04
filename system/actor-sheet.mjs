@@ -3,8 +3,8 @@ export class TwoDotNealActorSheet extends ActorSheet {
         return mergeObject(super.defaultOptions, {
             classes: ['twodotneal', 'sheet', 'actor'],
             template: 'systems/fvtt-2neal/templates/actor-sheet.html',
-            width: 600,
-            height: 600,
+            width: 900,
+            height: 700,
             tabs: [
                 {
                     navSelector: '.sheet-tabs',
@@ -44,5 +44,25 @@ export class TwoDotNealActorSheet extends ActorSheet {
 
     activateListeners(html) {
         super.activateListeners(html);
+
+        html.find('.derived-str-openDoors').click(
+            this._rollOpenDoors.bind(this)
+        );
+    }
+
+    //TODO: better success/failure roll
+    _rollOpenDoors(event) {
+        event.preventDefault();
+        const element = event.currentTarget;
+        const dataset = element.dataset;
+
+        if (dataset.roll) {
+            let roll = new Roll(dataset.roll, this.actor.data.data);
+            let label = dataset.label ? `Rolling ${dataset.label}` : '';
+            roll.toMessage({
+                speaker: ChatMessage.getSpeaker({actor: this.actor}),
+                flavor: label,
+            });
+        }
     }
 }

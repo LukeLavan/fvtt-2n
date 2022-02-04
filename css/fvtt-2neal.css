@@ -1,3 +1,55 @@
-.basic-top > tbody > tr:hover td{
-    background-color: lightgray;
+.basic-top {
+    display: flex;
+    flex-direction: row;
+}
+
+.basic-top > table > tbody > tr:hover {
+    background-color: #dfc1ff;
+}
+
+.basic-mid {
+    display: flex;
+}
+
+.basic-mid > table {
+    width: fit-content;
+}
+
+.basic-mid > table > tbody > tr {
+    height: 60px;
+}
+
+.basic-mid > table > tbody > tr > td {
+    font-size: x-large;
+}
+
+.basic-mid > table > tbody > tr > td > input {
+    width: 2rem;
+    text-align: center;
+}
+
+.basic-mid > div {
+    flex: 1;
+    margin-top: 0.5em;
+}
+
+.derived-row {
+    display: flex;
+    text-align: center;
+    height: 60px;
+}
+
+.derived-row > div {
+    flex: 1;
+    border: thin solid black;
+    border-radius: 5px;
+    margin-left: 5px;
+}
+
+.derived-label {
+    font-size: small;
+}
+
+.derived-value {
+    font-size: large;
 }

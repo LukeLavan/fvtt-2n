@@ -20,31 +20,26 @@
       "playerName": "",
       "race": "",
       "speed": 0,
+      "size": "",
       "class": "",
       "alignment": "(choose one)",
-      "abilities": {
-        "str": {
-          "value": 10
-        },
-        "dex": {
-          "value": 10
-        },
-        "con": {
-          "value": 10
-        },
-        "int": {
-          "value": 10
-        },
-        "wis": {
-          "value": 10
-        },
-        "cha": {
-          "value": 10
-        },
-        "per": {
-          "value": 10
-        }
-      }
+      "languages": "",
+      "xp": "",
+      "levels": "",
+      "height": "",
+      "bodyWeight": "",
+      "classes": "",
+      "sex": "",
+      "gender": "",
+      "age": "",
+      "handed": "",
+      "str": 0,
+      "dex": 0,
+      "con": 0,
+      "int": 0,
+      "wis": 0,
+      "cha": 0,
+      "per": 0
     },
     "npc": {
       "templates": ["base"],
