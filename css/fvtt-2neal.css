@@ -4,7 +4,7 @@
 }
 
 .basic-top > table > tbody > tr:hover {
-    background-color: #dfc1ff;
+    background-color: #DDDDDD;
 }
 
 .basic-mid {
@@ -39,11 +39,27 @@
     height: 60px;
 }
 
+/* derived entry */
 .derived-row > div {
     flex: 1;
     border: thin solid black;
     border-radius: 5px;
     margin-left: 5px;
+    margin-bottom: 5px;
+    margin-top: 5px;
+}
+
+.derived-row > div:hover:not(.rollable) {
+    background-color: #DDDDDD;
+}
+
+.rollable {
+    background-color: #dfc1ff;
+    cursor: pointer;
+}
+
+.rollable:hover {
+    background-color: #b773ff;
 }
 
 .derived-label {

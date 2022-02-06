@@ -45,13 +45,11 @@ export class TwoDotNealActorSheet extends ActorSheet {
     activateListeners(html) {
         super.activateListeners(html);
 
-        html.find('.derived-str-openDoors').click(
-            this._rollOpenDoors.bind(this)
-        );
+        html.find('.rollable').click(this._rollRollable.bind(this));
     }
 
     //TODO: better success/failure roll
-    _rollOpenDoors(event) {
+    _rollRollable(event) {
         event.preventDefault();
         const element = event.currentTarget;
         const dataset = element.dataset;

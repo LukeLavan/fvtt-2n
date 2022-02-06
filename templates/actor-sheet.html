@@ -285,7 +285,7 @@
                             </span>
                         </div>
                         <div 
-                            class="derived-str-openDoors rollable"
+                            class="rollable"
                             data-roll="d20cs<={{data.data.openDoors}}"
                             data-label="Open Doors Check"
                         >
@@ -297,7 +297,11 @@
                                 {{data.data.openDoors}}
                             </span>
                         </div>
-                        <div>
+                        <div
+                            class="rollable"
+                            data-roll="d100cs<={{data.data.bendBars}}"
+                            data-label="Bend Bars Check"
+                        >
                             <span class="derived-label">
                                 Bend Bars
                             </span>
@@ -384,7 +388,11 @@
                                 {{data.data.maxSpellLevel}}
                             </span>
                         </div>
-                        <div>
+                        <div
+                            class="rollable"
+                            data-roll="d100cs<={{data.data.spellLearnChance}}"
+                            data-label="Chance to Learn Spell"
+                        >
                             <span class="derived-label">
                                 Chance to Learn Spell
                             </span>
@@ -422,7 +430,11 @@
                                 {{data.data.bonusSpells}}
                             </span>
                         </div>
-                        <div>
+                        <div
+                            class="rollable"
+                            data-roll="d100cs<={{data.data.chanceSpellFailure}}"
+                            data-label="Spell Failure"
+                        >
                             <span class="derived-label">
                                 Spell Failure
                             </span>
@@ -451,7 +463,11 @@
                                 {{data.data.loyaltyBase}}
                             </span>
                         </div>
-                        <div>
+                        <div
+                            class="rollable"
+                            data-roll="2d10+{{data.data.reactionAdjust}}"
+                            data-label="Encounter Reaction"
+                        >
                             <span class="derived-label">
                                 Reaction Adjustment
                             </span>
@@ -462,7 +478,11 @@
                         </div>
                     </div>
                     <div class="derived-row" id="derived-per">
-                        <div>
+                        <div
+                            class="rollable"
+                            data-roll="d10cs>(3-{{data.data.surpriseAdjust}})"
+                            data-label="Surprise Check"
+                        >
                             <span class="derived-label">
                                 Surprise Adjustment
                             </span>

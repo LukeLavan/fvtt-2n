@@ -23,3 +23,12 @@ Hooks.once('init', async function () {
     //    makeDefault: true,
     //});
 });
+
+// make rolls show dice automatically
+Hooks.on('renderChatMessage', function (message) {
+    setTimeout(() => {
+        $(
+            `li.chat-message[data-message-id="${message.id}"] div.dice-tooltip`
+        ).css('display', 'block');
+    }, 250);
+});
