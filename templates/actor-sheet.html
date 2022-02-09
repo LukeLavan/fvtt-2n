@@ -604,7 +604,11 @@
                             Paralyzation, Poison, Death
                         </td>
                         <!-- TODO: Constitution modifier for posion -->
-                        <td class="rollable combat-big-text combat-mid-throws-value">
+                        <td
+                            class="rollable combat-big-text combat-mid-throws-value"
+                            data-roll="d20cs>={{data.data.savingThrows.ppd}}"
+                            data-label="Saving Throw against Paralyzation/Poison/Death"
+                        >
                             {{data.data.savingThrows.ppd}}
                         </td>
                     </tr>
@@ -612,7 +616,11 @@
                         <td>
                             Rods, Staves, Wands
                         </td>
-                        <td class="rollable combat-big-text combat-mid-throws-value">
+                        <td
+                            class="rollable combat-big-text combat-mid-throws-value"
+                            data-roll="d20cs>={{data.data.savingThrows.rsw}}"
+                            data-label="Saving Throw against Rods/Staves/Wands"
+                        >
                             {{data.data.savingThrows.rsw}}
                         </td>
                     </tr>
@@ -620,7 +628,11 @@
                         <td>
                             Petrification, Polymorph
                         </td>
-                        <td class="rollable combat-big-text combat-mid-throws-value">
+                        <td
+                            class="rollable combat-big-text combat-mid-throws-value"
+                            data-roll="d20cs>={{data.data.savingThrows.pepo}}"
+                            data-label="Saving Throw against Petrification/Polymorph"
+                        >
                             {{data.data.savingThrows.pepo}}
                         </td>
                     </tr>
@@ -628,7 +640,11 @@
                         <td>
                             Breath Weapon
                         </td>
-                        <td class="rollable combat-big-text combat-mid-throws-value">
+                        <td
+                            class="rollable combat-big-text combat-mid-throws-value"
+                            data-roll="d20cs>={{data.data.savingThrows.brw}}"
+                            data-label="Saving Throw against Breath Weapon"
+                        >
                             {{data.data.savingThrows.brw}}
                         </td>
                     </tr>
@@ -637,7 +653,11 @@
                             Spell
                         </td>
                         <!-- TODO: Wisdom modifier for "mind"-affecting spells -->
-                        <td class="rollable combat-big-text combat-mid-throws-value">
+                        <td
+                            class="rollable combat-big-text combat-mid-throws-value"
+                            data-roll="d20cs>={{data.data.savingThrows.spell}}"
+                            data-label="Saving Throw against Spell"
+                        >
                             {{data.data.savingThrows.spell}}
                         </td>
                     </tr>
