@@ -11,6 +11,7 @@ export class TwoDotNealActor extends Actor {
     _preparePCDerivedData(actorData) {
         const data = actorData.data;
         this._preparePCDerivedDataAbilities(data);
+        data.hitDieRollAdjusted = data.hitDieRoll + ' + ' + data.hitPointAdjust;
         console.log(data);
     }
 

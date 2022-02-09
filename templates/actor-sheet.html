@@ -1,7 +1,7 @@
 <form class="{{cssClass}}" autocomplete="off">
     <nav class="sheet-tabs tabs" data-group="primary">
-        <a class="item" data-tab="basic">BASIC</a>
-        <a class="item" data-tab="other">other</a>
+        <a class="item navbar-item" data-tab="basic">BASIC</a>
+        <a class="item navbar-item" data-tab="combat">COMBAT</a>
     </nav>
     <section class="sheet-body">
         <div class="tab basic" data-group="primary" data-tab="basic">
@@ -503,7 +503,203 @@
                     </div>
                 </div>
             </div>
-            <div class="tab other" data-group="primary" data-tab="other">
-                other stuff lol
+        </div>
+        <div class="tab combat" data-group="primary" data-tab="combat">
+            <div class="combat-top">
+                <div class="combat-top-hp">
+                    <span class="rollable">Hit Points</span>
+                    <hr />
+                    <div>
+                        <div>
+                            <input
+                                name="data.health.value"
+                                type="number"
+                                value="{{data.data.health.value}}"
+                                class="combat-big-text"
+                            />
+                            <br />
+                            <span>Current</span>
+                        </div>
+                        <div>
+                            <input
+                                name="data.health.max"
+                                type="number"
+                                value="{{data.data.health.max}}"
+                                class="combat-big-text"
+                            />
+                            <br />
+                            <span>Maximum</span>
+                        </div>
+                        <div>
+                            <select class="combat-big-text combat-top-select" name="data.hitDieRoll">
+                                {{selectOptions hitDieChoices selected=data.data.hitDieRoll}}
+                            </select>
+                            <br />
+                            <span>Hit Dice</span>
+                        </div>
+                    </div>
+                    <!--
+                    <div 
+                        class="combat-top-hp-button rollable"
+                        data-roll="{{data.data.hitDieRollAdjusted}}"
+                        data-label="Hit Die"
+                    ></div>
+                    -->
+                </div>
+                <div class="combat-top-ac">
+                    <span>Armor Class</span>
+                    <hr />
+                    <div>
+                        <div>
+                            <span class="combat-big-text">21</span>
+                            <br />
+                            <span>Total</span>
+                        </div>
+                        <div>
+                            <span class="combat-big-text">19</span>
+                            <br />
+                            <span>Back</span>
+                        </div>
+                        <div>
+                            <span class="combat-big-text">21</span>
+                            <br />
+                            <span>Touch</span>
+                        </div>
+                        <div>
+                            <span class="combat-big-text">19</span>
+                            <br />
+                            <span>Surprise</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="combat-top-attacks">
+                    <span>Basic Attacks</span>
+                    <hr/>
+                    <div>
+                        <div class="rollable">
+                            <span class="combat-big-text">7</span>
+                            <br />
+                            <span>Melee</span>
+                        </div>
+                        <div class="rollable">
+                            <span class="combat-big-text">9</span>
+                            <br />
+                            <span>Missile</span>
+                        </div>
+                        <div class="rollable">
+                            <span class="combat-big-text">7</span>
+                            <br />
+                            <span>Thrown</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="combat-mid">
+                <table class="combat-mid-throws">
+                    <tr>
+                        <th colspan="2">Saving Throws</th>
+                    </tr>
+                    <tr>
+                        <td>
+                            Paralyzation, Poison, Death
+                        </td>
+                        <!-- TODO: Constitution modifier for posion -->
+                        <td class="rollable combat-big-text combat-mid-throws-value">
+                            13
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            Rods, Staves, Wands
+                        </td>
+                        <td class="rollable combat-big-text combat-mid-throws-value">
+                            14
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            Petrification, Polymorph
+                        </td>
+                        <td class="rollable combat-big-text combat-mid-throws-value">
+                            12
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            Breath Weapon
+                        </td>
+                        <td class="rollable combat-big-text combat-mid-throws-value">
+                            16
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            Spell
+                        </td>
+                        <!-- TODO: Wisdom modifier for "mind"-affecting spells -->
+                        <td class="rollable combat-big-text combat-mid-throws-value">
+                            15
+                        </td>
+                    </tr>
+                </table>
+                <div class="combat-mid-throwMods">
+                    <table class="combat-mid-throwMods-table">
+                        <colgroup>
+                            <col>
+                            <col>
+                            <col>
+                            <col>
+                            <col>
+                            <col>
+                            <col>
+                            <col>
+                        </colgroup>
+                        <tr>
+                            <th colspan="15">Saving Throw Modifiers</th>
+                        </tr>
+                        <tr>
+                            <th>Source</th>
+                            <th>P/P/D</th>
+                            <th>R/S/W</th>
+                            <th>Pe/Po</th>
+                            <th>Br. W</th>
+                            <th>Spell</th>
+                            <th>All</th>
+                            <th>Active?</th>
+                        </tr>
+                        <tr>
+                            <td>
+                                <input type="text" class="combat-mid-throwMods-table-inputText">
+                            </td>
+                            <td>
+                                <input type="number" class="combat-mid-throwMods-table-inputNum">
+                            </td>
+                            <td>
+                                <input type="number" class="combat-mid-throwMods-table-inputNum">
+                            </td>
+                            <td>
+                                <input type="number" class="combat-mid-throwMods-table-inputNum">
+                            </td>
+                            <td>
+                                <input type="number" class="combat-mid-throwMods-table-inputNum">
+                            </td>
+                            <td>
+                                <input type="number" class="combat-mid-throwMods-table-inputNum">
+                            </td>
+                            <td>
+                                <input type="number" class="combat-mid-throwMods-table-inputNum">
+                            </td>
+                            <td>
+                                <input type="checkbox">
+                            </td>
+                        </tr>
+                    </table>
+                    <div class="combat-mid-throwMods-table-buttons">
+                        <a class="item-control item-create" data-type="item"><i class="fas fa-plus"></i> Add item</a>
+                        <a class="item-control item-delete" data-type="item"><i class="fas fa-trash"></i>Delete items</a>
+                    </div>
+                </div>
+            </div>
+        </div>
     </section>
 </form>

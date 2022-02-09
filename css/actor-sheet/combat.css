@@ -1,0 +1,168 @@
+.combat-big-text {
+    display: inline-block;
+    font-size: 24px !important;
+    min-height: 40px !important;
+    line-height: 40px;
+}
+
+.combat-top {
+    display: flex;
+    justify-content: center;
+}
+
+.combat-top > div {
+    border: thin solid black;
+    border-radius: 5px;
+    margin-left: 5px;
+    margin-top: 5px;
+    padding: 5px;
+    position: relative;
+}
+
+.combat-top > div > span {
+    font-size: larger;
+    font-weight: bold;
+    display: table;
+    margin: 0 auto;
+}
+
+.combat-top > div > div:not(.rollable) {
+    display: flex;
+    text-align: center;
+    gap: 10px;
+}
+
+.combat-top > div > hr {
+    border: 1px solid black;
+}
+
+.combat-top > div > div > div > input {
+    width: 2em;
+}
+
+.combat-top-hp {
+    width: 220px;
+}
+
+.combat-top-hp > span {
+    outline: thin solid black;
+    width: 100%;
+    text-align: center;
+}
+
+.combat-top-hp-button {
+    position: absolute;
+    top: 3px;
+    right: 5px;
+    width: 20px;
+    height: 20px;
+    border: thin solid black;
+    border-radius: 10px;
+}
+
+.combat-top-ac > div > div {
+    border: thin solid black;
+    border-radius: 5px;
+    padding: 0px 5px 5px 5px;
+}
+
+.combat-top-attacks > div > div {
+    border: thin solid black;
+    border-radius: 5px;
+    padding: 0px 5px 5px 5px;
+}
+
+.combat-mid {
+    display: flex;
+    justify-content: center;
+}
+
+.combat-mid-throws {
+    width: 0px;
+    border: thin solid black;
+    border-radius: 5px;
+    border-collapse: separate;
+    margin-right: 5px;
+}
+
+.combat-mid-throws > tbody > tr:first-child > th {
+    border-bottom: thin solid black;
+}
+
+.combat-mid-throws-value {
+    border: thin solid black;
+    border-radius: 5px;
+    padding: 2px;
+    margin: 5px;
+}
+
+.combat-mid-throws-value {
+    border: thin solid black;
+    border-radius: 5px;
+    border-collapse: separate;
+}
+
+.combat-mid-throwMods {
+    width: 515px;
+}
+
+.combat-mid-throwMods-table {
+    width: 100%;
+    height: 1px;
+    border-collapse: separate;
+    border-spacing: 0;
+    border-top: none !important;
+    border-bottom: none !important;
+    margin-bottom: 0px;
+}
+
+/* alternating column colors */
+.combat-mid-throwMods-table > colgroup > col:nth-child(odd) {
+    /* */
+}
+
+.combat-mid-throwMods-table > colgroup > col:nth-child(even) {
+    background-color: rgb(255,255,255,0.3);
+}
+
+/* table borders */
+.combat-mid-throwMods-table > tbody > tr:first-child > th {
+    border: thin solid black;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+}
+.combat-mid-throwMods-table > tbody > tr > th:first-child,
+.combat-mid-throwMods-table > tbody > tr > td:first-child {
+    border-left: thin solid black;
+}
+.combat-mid-throwMods-table > tbody > tr > th:last-child,
+.combat-mid-throwMods-table > tbody > tr > td:last-child {
+    border-right: thin solid black;
+}
+
+.combat-mid-throwMods-table > tbody > tr > td {
+    text-align: center;
+}
+
+/* overriding Foundry's default width for inputs */
+.combat-mid-throwMods-table-inputText {
+    text-align: left !important;
+}
+.combat-mid-throwMods-table-inputNum {
+    width: 2em !important;
+}
+
+.combat-mid-throwMods-table-buttons {
+    display: flex;
+    justify-content: flex-end;
+    border-left: thin solid black;
+    border-bottom-left-radius: 5px;
+    border-bottom: thin solid black;
+    border-bottom-right-radius: 5px;
+    border-right: thin solid black;
+    padding-top: 5px;
+    padding-right: 5px;
+}
+.combat-mid-throwMods-table-buttons > a:first-child {
+    padding-right: 10px;
+}

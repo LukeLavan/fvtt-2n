@@ -1,0 +1,74 @@
+.basic-top {
+    display: flex;
+    flex-direction: row;
+}
+
+.basic-top > table > tbody > tr:hover {
+    background-color: #DDDDDD;
+}
+
+.basic-mid {
+    display: flex;
+}
+
+.basic-mid > table {
+    width: fit-content;
+}
+
+.basic-mid > table > tbody > tr {
+    height: 60px;
+}
+
+.basic-mid > table > tbody > tr > td {
+    font-size: x-large;
+}
+
+/* ability score input */
+.basic-mid > table > tbody > tr > td > input {
+    width: 2rem;
+    text-align: center;
+}
+
+.basic-mid > div {
+    flex: 1;
+    margin-top: 0.5em;
+}
+
+.derived-row {
+    display: flex;
+    text-align: center;
+    height: 60px;
+}
+
+/* derived entry */
+.derived-row > div {
+    flex: 1;
+    border: thin solid black;
+    border-radius: 5px;
+    margin-left: 5px;
+    margin-bottom: 5px;
+    margin-top: 5px;
+    position: relative;
+}
+
+.derived-row > div:hover:not(.rollable) {
+    background-color: #DDDDDD;
+}
+
+.derived-label {
+    font-size: small;
+}
+
+.derived-value {
+    font-size: large;
+}
+
+.combat-top-hp-button {
+    position: absolute;
+    top: 3px;
+    right: 5px;
+    width: 20px;
+    height: 20px;
+    border: thin solid black;
+    border-radius: 10px;
+}

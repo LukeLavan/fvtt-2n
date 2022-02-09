@@ -1,58 +1,8 @@
-.basic-top {
-    display: flex;
-    flex-direction: row;
-}
+/* actor-sheet */
+@import url('actor-sheet/basic.css');
+@import url('actor-sheet/combat.css');
 
-.basic-top > table > tbody > tr:hover {
-    background-color: #DDDDDD;
-}
-
-.basic-mid {
-    display: flex;
-}
-
-.basic-mid > table {
-    width: fit-content;
-}
-
-.basic-mid > table > tbody > tr {
-    height: 60px;
-}
-
-.basic-mid > table > tbody > tr > td {
-    font-size: x-large;
-}
-
-.basic-mid > table > tbody > tr > td > input {
-    width: 2rem;
-    text-align: center;
-}
-
-.basic-mid > div {
-    flex: 1;
-    margin-top: 0.5em;
-}
-
-.derived-row {
-    display: flex;
-    text-align: center;
-    height: 60px;
-}
-
-/* derived entry */
-.derived-row > div {
-    flex: 1;
-    border: thin solid black;
-    border-radius: 5px;
-    margin-left: 5px;
-    margin-bottom: 5px;
-    margin-top: 5px;
-}
-
-.derived-row > div:hover:not(.rollable) {
-    background-color: #DDDDDD;
-}
-
+/* globals */
 .rollable {
     background-color: #dfc1ff;
     cursor: pointer;
@@ -62,10 +12,20 @@
     background-color: #b773ff;
 }
 
-.derived-label {
-    font-size: small;
+.navbar-item {
+    font-size: x-large;
 }
 
-.derived-value {
-    font-size: large;
+/* overrides */
+
+a:hover {
+    text-shadow: 0 0 8px #dfc1ff;
+}
+
+.tabs .item.active {
+    text-shadow: 0 0 10px #b773ff;
+}
+
+input {
+    background-color: white !important;
 }
