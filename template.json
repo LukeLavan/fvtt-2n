@@ -40,7 +40,26 @@
       "wis": 0,
       "cha": 0,
       "per": 0,
-      "hitDieRoll": "d6"
+      "hitDieRoll": "d6",
+      "savingThrows": {
+        "ppd": 0,
+        "rsw": 0,
+        "pepo": 0,
+        "brw": 0,
+        "spell": 0
+      },
+      "savingThrowMods": [
+        {
+          "source": "class",
+          "ppd": "",
+          "rsw": "",
+          "pepo": "",
+          "brw": "",
+          "spell": "",
+          "all": "",
+          "active": true
+        }
+      ]
     },
     "npc": {
       "templates": ["base"],

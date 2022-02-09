@@ -12,6 +12,7 @@ export class TwoDotNealActor extends Actor {
         const data = actorData.data;
         this._preparePCDerivedDataAbilities(data);
         data.hitDieRollAdjusted = data.hitDieRoll + ' + ' + data.hitPointAdjust;
+        this._preparePCDerivedDataSavingThrows(data);
         console.log(data);
     }
 
@@ -938,6 +939,26 @@ export class TwoDotNealActor extends Actor {
                 data.surpriseAdjust = 0;
                 data.illusionImmunity = 'None';
                 break;
+        }
+    }
+
+    _preparePCDerivedDataSavingThrows(data) {
+        const throws = data.savingThrows;
+        throws.ppd = 0;
+        throws.rsw = 0;
+        throws.pepo = 0;
+        throws.brw = 0;
+        throws.spell = 0;
+
+        for (let [_, mod] of Object.entries(data.savingThrowMods)) {
+            console.log(mod);
+            if (mod.active) {
+                throws.ppd += mod.ppd + mod.all;
+                throws.rsw += mod.rsw + mod.all;
+                throws.pepo += mod.pepo + mod.all;
+                throws.brw += mod.brw + mod.all;
+                throws.spell += mod.spell + mod.all;
+            }
         }
     }
 }

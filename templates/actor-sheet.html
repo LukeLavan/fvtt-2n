@@ -605,7 +605,7 @@
                         </td>
                         <!-- TODO: Constitution modifier for posion -->
                         <td class="rollable combat-big-text combat-mid-throws-value">
-                            13
+                            {{data.data.savingThrows.ppd}}
                         </td>
                     </tr>
                     <tr>
@@ -613,7 +613,7 @@
                             Rods, Staves, Wands
                         </td>
                         <td class="rollable combat-big-text combat-mid-throws-value">
-                            14
+                            {{data.data.savingThrows.rsw}}
                         </td>
                     </tr>
                     <tr>
@@ -621,7 +621,7 @@
                             Petrification, Polymorph
                         </td>
                         <td class="rollable combat-big-text combat-mid-throws-value">
-                            12
+                            {{data.data.savingThrows.pepo}}
                         </td>
                     </tr>
                     <tr>
@@ -629,7 +629,7 @@
                             Breath Weapon
                         </td>
                         <td class="rollable combat-big-text combat-mid-throws-value">
-                            16
+                            {{data.data.savingThrows.brw}}
                         </td>
                     </tr>
                     <tr>
@@ -638,7 +638,7 @@
                         </td>
                         <!-- TODO: Wisdom modifier for "mind"-affecting spells -->
                         <td class="rollable combat-big-text combat-mid-throws-value">
-                            15
+                            {{data.data.savingThrows.spell}}
                         </td>
                     </tr>
                 </table>
@@ -667,32 +667,73 @@
                             <th>All</th>
                             <th>Active?</th>
                         </tr>
+                        {{#each data.data.savingThrowMods}}
                         <tr>
                             <td>
-                                <input type="text" class="combat-mid-throwMods-table-inputText">
+                                <input
+                                    type="text"
+                                    class="combat-mid-throwMods-table-inputText"
+                                    name="data.savingThrowMods.{{@index}}.source"
+                                    value="{{this.source}}"
+                                >
                             </td>
                             <td>
-                                <input type="number" class="combat-mid-throwMods-table-inputNum">
+                                <input
+                                    type="number"
+                                    class="combat-mid-throwMods-table-inputNum"
+                                    name="data.savingThrowMods.{{@index}}.ppd"
+                                    value="{{this.ppd}}"
+                                >
                             </td>
                             <td>
-                                <input type="number" class="combat-mid-throwMods-table-inputNum">
+                                <input
+                                    type="number"
+                                    class="combat-mid-throwMods-table-inputNum"
+                                    name="data.savingThrowMods.{{@index}}.rsw"
+                                    value="{{this.rsw}}"
+                                >
                             </td>
                             <td>
-                                <input type="number" class="combat-mid-throwMods-table-inputNum">
+                                <input
+                                    type="number"
+                                    class="combat-mid-throwMods-table-inputNum"
+                                    name="data.savingThrowMods.{{@index}}.pepo"
+                                    value="{{this.pepo}}"
+                                >
                             </td>
                             <td>
-                                <input type="number" class="combat-mid-throwMods-table-inputNum">
+                                <input
+                                    type="number"
+                                    class="combat-mid-throwMods-table-inputNum"
+                                    name="data.savingThrowMods.{{@index}}.brw"
+                                    value="{{this.brw}}"
+                                >
                             </td>
                             <td>
-                                <input type="number" class="combat-mid-throwMods-table-inputNum">
+                                <input
+                                    type="number"
+                                    class="combat-mid-throwMods-table-inputNum"
+                                    name="data.savingThrowMods.{{@index}}.spell"
+                                    value="{{this.spell}}"
+                                >
                             </td>
                             <td>
-                                <input type="number" class="combat-mid-throwMods-table-inputNum">
+                                <input
+                                    type="number"
+                                    class="combat-mid-throwMods-table-inputNum"
+                                    name="data.savingThrowMods.{{@index}}.all"
+                                    value="{{this.all}}"
+                                >
                             </td>
                             <td>
-                                <input type="checkbox">
+                                <input
+                                    type="checkbox"
+                                    name="data.savingThrowMods.{{@index}}.active"
+                                    {{checked this.active}}
+                                >
                             </td>
                         </tr>
+                        {{/each}}
                     </table>
                     <div class="combat-mid-throwMods-table-buttons">
                         <a class="item-control item-create" data-type="item"><i class="fas fa-plus"></i> Add item</a>
