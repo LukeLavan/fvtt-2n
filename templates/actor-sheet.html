@@ -523,6 +523,7 @@
                         <div>
                             <input
                                 name="data.health.max"
+                                id="pogfish"
                                 type="number"
                                 value="{{data.data.health.max}}"
                                 class="combat-big-text"
@@ -687,77 +688,89 @@
                             <th>All</th>
                             <th>Active?</th>
                         </tr>
-                        {{#each data.data.savingThrowMods}}
-                        <tr>
+                        {{#each actor.data.items}}
+                        {{#if (eq this.type "throwMod")}}
+                        <tr class="item" data-item-id="{{this.id}}">
                             <td>
                                 <input
                                     type="text"
-                                    class="combat-mid-throwMods-table-inputText"
-                                    name="data.savingThrowMods.{{@index}}.source"
-                                    value="{{this.source}}"
+                                    class="combat-mid-throwMods-table-inputText item-edit"
+                                    id="{{this.id}}.source"
+                                    name="{{this.id}}.source"
+                                    value="{{this.data.data.source}}"
+                                    data-target="data.source"
+                                    data-name=true
                                 >
                             </td>
                             <td>
                                 <input
                                     type="number"
-                                    class="combat-mid-throwMods-table-inputNum"
-                                    name="data.savingThrowMods.{{@index}}.ppd"
-                                    value="{{this.ppd}}"
+                                    class="combat-mid-throwMods-table-inputNum item-edit"
+                                    name="{{this.id}}.ppd"
+                                    value="{{this.data.data.ppd}}"
+                                    data-target="data.ppd"
                                 >
                             </td>
                             <td>
                                 <input
                                     type="number"
-                                    class="combat-mid-throwMods-table-inputNum"
-                                    name="data.savingThrowMods.{{@index}}.rsw"
-                                    value="{{this.rsw}}"
+                                    class="combat-mid-throwMods-table-inputNum item-edit"
+                                    name="{{this.id}}.rsw"
+                                    value="{{this.data.data.rsw}}"
+                                    data-target="data.rsw"
                                 >
                             </td>
                             <td>
                                 <input
                                     type="number"
-                                    class="combat-mid-throwMods-table-inputNum"
-                                    name="data.savingThrowMods.{{@index}}.pepo"
-                                    value="{{this.pepo}}"
+                                    class="combat-mid-throwMods-table-inputNum item-edit"
+                                    name="{{this.id}}.pepo"
+                                    value="{{this.data.data.pepo}}"
+                                    data-target="data.pepo"
                                 >
                             </td>
                             <td>
                                 <input
                                     type="number"
-                                    class="combat-mid-throwMods-table-inputNum"
-                                    name="data.savingThrowMods.{{@index}}.brw"
-                                    value="{{this.brw}}"
+                                    class="combat-mid-throwMods-table-inputNum item-edit"
+                                    name="{{this.id}}.brw"
+                                    value="{{this.data.data.brw}}"
+                                    data-target="data.brw"
                                 >
                             </td>
                             <td>
                                 <input
                                     type="number"
-                                    class="combat-mid-throwMods-table-inputNum"
-                                    name="data.savingThrowMods.{{@index}}.spell"
-                                    value="{{this.spell}}"
+                                    class="combat-mid-throwMods-table-inputNum item-edit"
+                                    name="{{this.id}}.spell"
+                                    value="{{this.data.data.spell}}"
+                                    data-target="data.spell"
                                 >
                             </td>
                             <td>
                                 <input
                                     type="number"
-                                    class="combat-mid-throwMods-table-inputNum"
-                                    name="data.savingThrowMods.{{@index}}.all"
-                                    value="{{this.all}}"
+                                    class="combat-mid-throwMods-table-inputNum item-edit"
+                                    name="{{this.id}}.all"
+                                    value="{{this.data.data.all}}"
+                                    data-target="data.all"
                                 >
                             </td>
                             <td>
                                 <input
                                     type="checkbox"
-                                    name="data.savingThrowMods.{{@index}}.active"
-                                    {{checked this.active}}
+                                    class="item-edit"
+                                    name="{{this.id}}.active"
+                                    data-target="data.active"
+                                    {{checked this.data.data.active}}
                                 >
                             </td>
                         </tr>
+                        {{/if}}
                         {{/each}}
                     </table>
                     <div class="combat-mid-throwMods-table-buttons">
-                        <a class="item-control item-create" data-type="item"><i class="fas fa-plus"></i> Add item</a>
-                        <a class="item-control item-delete" data-type="item"><i class="fas fa-trash"></i>Delete items</a>
+                        <a class="item-create" data-type="throwMod"><i class="fas fa-plus"></i> Add modifier</a>
                     </div>
                 </div>
             </div>

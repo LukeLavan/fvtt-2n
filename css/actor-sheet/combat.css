@@ -94,12 +94,8 @@
     border-radius: 5px;
     padding: 2px;
     margin: 5px;
-}
-
-.combat-mid-throws-value {
-    border: thin solid black;
-    border-radius: 5px;
-    border-collapse: separate;
+    width: 2rem;
+    text-align: center;
 }
 
 .combat-mid-throwMods {

@@ -54,6 +54,27 @@ export class TwoDotNealActorSheet extends ActorSheet {
         super.activateListeners(html);
 
         html.find('.rollable').click(this._rollRollable.bind(this));
+
+        html.find('.item-create').click(this._itemCreate.bind(this));
+
+        html.find('.item-edit').change((ev) => {
+            const currentTarget = $(ev.currentTarget);
+            const id = currentTarget.parents('.item').attr('data-item-id');
+            const target = currentTarget.attr('data-target');
+            let value = currentTarget.val();
+            // blank name marks item for deletion
+            if (currentTarget.attr('data-name') && value === '') {
+                return this.actor.deleteEmbeddedDocuments('Item', [id]);
+            }
+            // ensure checkbox values are booleans
+            if (currentTarget.attr('type') === 'checkbox') {
+                if (currentTarget.is(':checked')) value = true;
+                else value = false;
+            }
+            let itemDifferential = {_id: id};
+            itemDifferential[target] = value;
+            this.actor.updateEmbeddedDocuments('Item', [itemDifferential]);
+        });
     }
 
     //TODO: better success/failure roll
@@ -70,5 +91,23 @@ export class TwoDotNealActorSheet extends ActorSheet {
                 flavor: label,
             });
         }
+    }
+
+    async _itemCreate(event) {
+        event.preventDefault();
+        const header = event.currentTarget;
+        const type = header.dataset.type;
+        const data = duplicate(header.dataset);
+        const itemName = type.capitalize();
+        const itemData = {
+            name: itemName,
+            type: type,
+            data: data,
+        };
+        const item = await Item.create(itemData, {parent: this.actor});
+        const focusbox = document.getElementById(item.id + '.source');
+        focusbox.focus();
+        focusbox.select();
+        return item;
     }
 }

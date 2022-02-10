@@ -12,8 +12,7 @@ export class TwoDotNealActor extends Actor {
         const data = actorData.data;
         this._preparePCDerivedDataAbilities(data);
         data.hitDieRollAdjusted = data.hitDieRoll + ' + ' + data.hitPointAdjust;
-        this._preparePCDerivedDataSavingThrows(data);
-        console.log(data);
+        this._preparePCDerivedDataSavingThrows(actorData);
     }
 
     _preparePCDerivedDataAbilities(data) {
@@ -943,21 +942,30 @@ export class TwoDotNealActor extends Actor {
     }
 
     _preparePCDerivedDataSavingThrows(data) {
-        const throws = data.savingThrows;
+        const throws = data.data.savingThrows;
         throws.ppd = 0;
         throws.rsw = 0;
         throws.pepo = 0;
         throws.brw = 0;
         throws.spell = 0;
-
-        for (let [_, mod] of Object.entries(data.savingThrowMods)) {
-            console.log(mod);
-            if (mod.active) {
-                throws.ppd += mod.ppd + mod.all;
-                throws.rsw += mod.rsw + mod.all;
-                throws.pepo += mod.pepo + mod.all;
-                throws.brw += mod.brw + mod.all;
-                throws.spell += mod.spell + mod.all;
+        for (let i of data.items) {
+            const itemData = i.data.data;
+            if (i.data.type === 'throwMod') {
+                if (itemData.source === '')
+                    this.deleteEmbeddedDocuments('Item', [i.id]);
+                else if (itemData.active) {
+                    const ppd = parseInt(itemData.ppd) || 0;
+                    const rsw = parseInt(itemData.rsw) || 0;
+                    const pepo = parseInt(itemData.pepo) || 0;
+                    const brw = parseInt(itemData.brw) || 0;
+                    const spell = parseInt(itemData.spell) || 0;
+                    const all = parseInt(itemData.all) || 0;
+                    throws.ppd += ppd + all;
+                    throws.rsw += rsw + all;
+                    throws.pepo += pepo + all;
+                    throws.brw += brw + all;
+                    throws.spell += spell + all;
+                }
             }
         }
     }
