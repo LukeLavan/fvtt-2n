@@ -673,6 +673,8 @@
                             <col>
                             <col>
                             <col>
+                            <col>
+                            <col>
                         </colgroup>
                         <tr>
                             <th colspan="15">Saving Throw Modifiers</th>
@@ -685,6 +687,8 @@
                             <th>Br. W</th>
                             <th>Spell</th>
                             <th>All</th>
+                            <th></th>
+                            <th></th>
                             <th>Active?</th>
                         </tr>
                         {{#each actor.data.items}}
@@ -699,6 +703,7 @@
                                     value="{{this.data.data.source}}"
                                     data-target="data.source"
                                     data-name=true
+                                    {{#if this.data.data.locked}}disabled{{/if}}
                                 >
                             </td>
                             <td>
@@ -708,6 +713,7 @@
                                     name="{{this.id}}.ppd"
                                     value="{{this.data.data.ppd}}"
                                     data-target="data.ppd"
+                                    {{#if this.data.data.locked}}disabled{{/if}}
                                 >
                             </td>
                             <td>
@@ -717,6 +723,7 @@
                                     name="{{this.id}}.rsw"
                                     value="{{this.data.data.rsw}}"
                                     data-target="data.rsw"
+                                    {{#if this.data.data.locked}}disabled{{/if}}
                                 >
                             </td>
                             <td>
@@ -726,6 +733,7 @@
                                     name="{{this.id}}.pepo"
                                     value="{{this.data.data.pepo}}"
                                     data-target="data.pepo"
+                                    {{#if this.data.data.locked}}disabled{{/if}}
                                 >
                             </td>
                             <td>
@@ -735,6 +743,7 @@
                                     name="{{this.id}}.brw"
                                     value="{{this.data.data.brw}}"
                                     data-target="data.brw"
+                                    {{#if this.data.data.locked}}disabled{{/if}}
                                 >
                             </td>
                             <td>
@@ -744,6 +753,7 @@
                                     name="{{this.id}}.spell"
                                     value="{{this.data.data.spell}}"
                                     data-target="data.spell"
+                                    {{#if this.data.data.locked}}disabled{{/if}}
                                 >
                             </td>
                             <td>
@@ -753,7 +763,27 @@
                                     name="{{this.id}}.all"
                                     value="{{this.data.data.all}}"
                                     data-target="data.all"
+                                    {{#if this.data.data.locked}}disabled{{/if}}
                                 >
+                            </td>
+                            <td>
+                                <a
+                                    class="item-control item-delete"
+                                    title="Delete Item"
+                                    data-locked={{this.data.data.locked}}
+                                >
+                                    <i class="fas fa-trash {{#if this.data.data.locked}} disabled-color {{/if}}"></i>
+                                </a>
+                            </td>
+                            <td>
+                                <a
+                                    class="item-control item-lock"
+                                    title="Lock Item"
+                                    data-value={{this.data.data.locked}}
+                                    data-target="data.locked"
+                                >
+                                    <i class="fas {{#if this.data.data.locked}} fa-lock {{else}} fa-lock-open {{/if}}"></i>
+                                </a>
                             </td>
                             <td>
                                 <input

@@ -83,6 +83,7 @@
     border-radius: 5px;
     border-collapse: separate;
     margin-right: 5px;
+    margin-bottom: 0;
 }
 
 .combat-mid-throws > tbody > tr:first-child > th {
@@ -99,7 +100,8 @@
 }
 
 .combat-mid-throwMods {
-    width: 515px;
+    width: 100%;
+    max-width: 800px;
 }
 
 .combat-mid-throwMods-table {

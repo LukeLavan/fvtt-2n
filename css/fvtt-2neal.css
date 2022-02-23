@@ -34,3 +34,11 @@ select,
 input {
     background-color: white !important;
 }
+
+.disabled-color {
+    color: darkgray;
+    cursor: default;
+}
+input:disabled {
+    background-color: lightgray !important;
+}

@@ -75,6 +75,28 @@ export class TwoDotNealActorSheet extends ActorSheet {
             itemDifferential[target] = value;
             this.actor.updateEmbeddedDocuments('Item', [itemDifferential]);
         });
+
+        html.find('.item-lock').click((ev) => {
+            const currentTarget = $(ev.currentTarget);
+            const id = currentTarget.parents('.item').attr('data-item-id');
+            const target = currentTarget.attr('data-target');
+            let value = currentTarget.data('value');
+
+            // toggle
+            value = !value;
+
+            let itemDifferential = {_id: id};
+            itemDifferential[target] = value;
+            this.actor.updateEmbeddedDocuments('Item', [itemDifferential]);
+        });
+
+        html.find('.item-delete').click((ev) => {
+            const currentTarget = $(ev.currentTarget);
+            const id = currentTarget.parents('.item').attr('data-item-id');
+            const locked = currentTarget.data('locked');
+            if (locked) return;
+            this.actor.deleteEmbeddedDocuments('Item', [id]);
+        });
     }
 
     //TODO: better success/failure roll

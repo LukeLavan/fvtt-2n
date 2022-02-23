@@ -60,7 +60,8 @@
       "brw": "",
       "spell": "",
       "all": "",
-      "active": true
+      "active": true,
+      "locked": false
     },
     "gear": {
       "name": "",
