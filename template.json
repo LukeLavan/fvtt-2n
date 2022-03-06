@@ -54,6 +54,11 @@
         "back": 10,
         "touch": 10,
         "surprise": 10
+      },
+      "hitAdjust": {
+        "melee": 0,
+        "missile": 0,
+        "thrown": 0
       }
     },
     "npc": {
@@ -62,29 +67,36 @@
     }
   },
   "Item": {
-    "types": ["throwMod", "acMod", "gear"],
+    "types": ["throwMod", "acMod", "hitMod", "gear"],
+    "templates": {
+      "mod": {
+        "source": "New modifier",
+        "active": true,
+        "locked": false
+      }
+    },
     "throwMod": {
-      "templates": [],
-      "source": "New modifier",
+      "templates": ["mod"],
       "ppd": "",
       "rsw": "",
       "pepo": "",
       "brw": "",
       "spell": "",
-      "all": "",
-      "active": true,
-      "locked": false
+      "all": ""
     },
     "acMod": {
-      "templates": [],
-      "source": "New modifier",
+      "templates": ["mod"],
       "natural": "",
       "dexterity": "",
       "armor": "",
       "shield": "",
-      "magic": "",
-      "locked": false,
-      "active": true
+      "magic": ""
+    },
+    "hitMod": {
+      "templates": ["mod"],
+      "melee": "",
+      "missile": "",
+      "thrown": ""
     },
     "gear": {
       "name": "",

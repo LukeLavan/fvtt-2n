@@ -507,7 +507,11 @@
         <div class="tab combat" data-group="primary" data-tab="combat">
             <div class="combat-top">
                 <div class="combat-top-hp">
-                    <span class="rollable">Hit Points</span>
+                    <span
+                        class="rollable"
+                        data-roll="{{data.data.hitDieRoll}}+{{data.data.hitPointAdjust}}"
+                        data-label="Hit Die"
+                    >Hit Points</span>
                     <hr />
                     <div>
                         <div>
@@ -576,18 +580,30 @@
                     <span>Basic Attacks</span>
                     <hr/>
                     <div>
-                        <div class="rollable">
-                            <span class="combat-big-text">7</span>
+                        <div
+                            class="rollable"
+                            data-roll="d20+{{data.data.hitAdjust.melee}}"
+                            data-label="Basic Melee Attack"
+                        >
+                            <span class="combat-big-text">{{data.data.hitAdjust.melee}}</span>
                             <br />
                             <span>Melee</span>
                         </div>
-                        <div class="rollable">
-                            <span class="combat-big-text">9</span>
+                        <div
+                            class="rollable"
+                            data-roll="d20+{{data.data.hitAdjust.missile}}"
+                            data-label="Basic Missile Attack"
+                        >
+                            <span class="combat-big-text">{{data.data.hitAdjust.missile}}</span>
                             <br />
                             <span>Missile</span>
                         </div>
-                        <div class="rollable">
-                            <span class="combat-big-text">7</span>
+                        <div
+                            class="rollable"
+                            data-roll="d20+{{data.data.hitAdjust.thrown}}"
+                            data-label="Basic Thrown Attack"
+                        >
+                            <span class="combat-big-text">{{data.data.hitAdjust.thrown}}</span>
                             <br />
                             <span>Thrown</span>
                         </div>
@@ -960,6 +976,130 @@
                     </table>
                     <div class="combat-mid-throwMods-table-buttons">
                         <a class="item-create" data-type="acMod"><i class="fas fa-plus"></i> Add modifier</a>
+                    </div>
+                </div>
+            </div>
+            <div class="combat-mid">
+                <table class="combat-mid-throws">
+                    <tr>
+                        <th colspan="2">
+                            Hit Adjust
+                        </th>
+                    </tr>
+                    <tr>
+                        <td>Melee</td>
+                        <td class="combat-mid-throws-value combat-big-text">{{data.data.hitAdjust.melee}}</td>
+                    </tr>
+                    <tr>
+                        <td>Missile</td>
+                        <td class="combat-mid-throws-value combat-big-text">{{data.data.hitAdjust.missile}}</td>
+                    </tr>
+                    <tr>
+                        <td>Thrown</td>
+                        <td class="combat-mid-throws-value combat-big-text">{{data.data.hitAdjust.thrown}}</td>
+                    </tr>
+                </table>
+                <div class="combat-mid-throwMods">
+                    <table class="combat-mid-throwMods-table">
+                        <colgroup>
+                            <col>
+                            <col>
+                            <col>
+                        </colgroup>
+                        <tr>
+                            <th colspan="7">To-Hit Modifiers</th>
+                        </tr>
+                        <tr>
+                            <th>Source</th>
+                            <th>Melee</th>
+                            <th>Missile</th>
+                            <th>Thrown</th>
+                            <th></th>
+                            <th></th>
+                            <th>Active?</th>
+                        </tr>
+                        {{#each actor.data.items}}
+                        {{#if (eq this.type "hitMod")}}
+                        <tr class="item" data-item-id="{{this.id}}">
+                            <td>
+                                <input
+                                    type="text"
+                                    class="combat-mid-throwMods-table-inputText item-edit"
+                                    id="{{this.id}}.source"
+                                    name="{{this.id}}.source"
+                                    value="{{this.data.data.source}}"
+                                    data-target="data.source"
+                                    data-name=true
+                                    {{#if this.data.data.locked}}disabled{{/if}}
+                                >
+                            </td>
+                            <td>
+                                <input
+                                    type="number"
+                                    class="combat-mid-throwMods-table-inputNum item-edit"
+                                    id="{{this.id}}.melee"
+                                    name="{{this.id}}.melee"
+                                    value="{{this.data.data.melee}}"
+                                    data-target="data.melee"
+                                    {{#if this.data.data.locked}}disabled{{/if}}
+                                >
+                            </td>
+                            <td>
+                                <input
+                                    type="number"
+                                    class="combat-mid-throwMods-table-inputNum item-edit"
+                                    id="{{this.id}}.missile"
+                                    name="{{this.id}}.missile"
+                                    value="{{this.data.data.missile}}"
+                                    data-target="data.missile"
+                                    {{#if this.data.data.locked}}disabled{{/if}}
+                                >
+                            </td>
+                            <td>
+                                <input
+                                    type="number"
+                                    class="combat-mid-throwMods-table-inputNum item-edit"
+                                    id="{{this.id}}.thrown"
+                                    name="{{this.id}}.thrown"
+                                    value="{{this.data.data.thrown}}"
+                                    data-target="data.thrown"
+                                    {{#if this.data.data.locked}}disabled{{/if}}
+                                >
+                            </td>
+                            <td>
+                                <a
+                                    class="item-control item-delete"
+                                    title="Delete Item"
+                                    data-locked={{this.data.data.locked}}
+                                >
+                                    <i class="fas fa-trash {{#if this.data.data.locked}} disabled-color {{/if}}"></i>
+                                </a>
+                            </td>
+                            <td>
+                                <a
+                                    class="item-control item-lock"
+                                    title="Lock Item"
+                                    data-value={{this.data.data.locked}}
+                                    data-target="data.locked"
+                                >
+                                    <i class="fas {{#if this.data.data.locked}} fa-lock {{else}} fa-lock-open {{/if}}"></i>
+                                </a>
+                            </td>
+                            <td>
+                                <input
+                                    type="checkbox"
+                                    class="item-edit"
+                                    name="{{this.id}}.active"
+                                    data-target="data.active"
+                                    {{checked this.data.data.active}}
+                                >
+                            </td>
+                        </tr>
+                        {{/if}}
+                        {{/each}}
+                    </table>
+                    <div class="combat-mid-throwMods-table-buttons">
+                        <a class="item-create" data-type="hitMod"><i class="fas fa-plus"></i> Add modifier</a>
                     </div>
                 </div>
             </div>

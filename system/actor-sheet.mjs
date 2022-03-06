@@ -130,6 +130,7 @@ export class TwoDotNealActorSheet extends ActorSheet {
         const focusbox = document.getElementById(item.id + '.source');
         focusbox.focus();
         focusbox.select();
+        console.log(item);
         return item;
     }
 }

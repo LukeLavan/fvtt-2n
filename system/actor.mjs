@@ -14,6 +14,7 @@ export class TwoDotNealActor extends Actor {
         data.hitDieRollAdjusted = data.hitDieRoll + ' + ' + data.hitPointAdjust;
         this._preparePCDerivedDataSavingThrows(actorData);
         this._preparePCDerivedDataAC(actorData);
+        this._preparePCDerivedDataHitAdjust(actorData);
     }
 
     _preparePCDerivedDataAbilities(data) {
@@ -1005,5 +1006,25 @@ export class TwoDotNealActor extends Actor {
             ac.natural + ac.dexterity + ac.shield + ac.magic + ac.encumbrance;
         ac.back = ac.natural + ac.armor + ac.magic + ac.encumbrance;
         ac.surprise = ac.total - 2;
+    }
+
+    _preparePCDerivedDataHitAdjust(data) {
+        const hit = data.data.hitAdjust;
+        for (let i of data.items) {
+            const itemData = i.data.data;
+            if (i.data.type === 'hitMod') {
+                console.log(i);
+                if (itemData.source === '')
+                    this.deleteEmbeddedDocuments('Item', [i.id]);
+                else if (itemData.active) {
+                    const melee = parseInt(itemData.melee) || 0;
+                    const missile = parseInt(itemData.missile) || 0;
+                    const thrown = parseInt(itemData.thrown) || 0;
+                    hit.melee += melee;
+                    hit.missile += missile;
+                    hit.thrown += thrown;
+                }
+            }
+        }
     }
 }
