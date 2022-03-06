@@ -42,6 +42,18 @@
         "pepo": 0,
         "brw": 0,
         "spell": 0
+      },
+      "armorClasses": {
+        "natural": 10,
+        "dexterity": 0,
+        "armor": 0,
+        "shield": 0,
+        "magic": 0,
+        "encumbrance": 0,
+        "total": 10,
+        "back": 10,
+        "touch": 10,
+        "surprise": 10
       }
     },
     "npc": {
@@ -50,7 +62,7 @@
     }
   },
   "Item": {
-    "types": ["throwMod", "gear"],
+    "types": ["throwMod", "acMod", "gear"],
     "throwMod": {
       "templates": [],
       "source": "New modifier",
@@ -62,6 +74,17 @@
       "all": "",
       "active": true,
       "locked": false
+    },
+    "acMod": {
+      "templates": [],
+      "source": "New modifier",
+      "natural": "",
+      "dexterity": "",
+      "armor": "",
+      "shield": "",
+      "magic": "",
+      "locked": false,
+      "active": true
     },
     "gear": {
       "name": "",

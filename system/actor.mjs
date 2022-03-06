@@ -13,6 +13,7 @@ export class TwoDotNealActor extends Actor {
         this._preparePCDerivedDataAbilities(data);
         data.hitDieRollAdjusted = data.hitDieRoll + ' + ' + data.hitPointAdjust;
         this._preparePCDerivedDataSavingThrows(actorData);
+        this._preparePCDerivedDataAC(actorData);
     }
 
     _preparePCDerivedDataAbilities(data) {
@@ -968,5 +969,41 @@ export class TwoDotNealActor extends Actor {
                 }
             }
         }
+    }
+
+    _preparePCDerivedDataAC(data) {
+        const ac = data.data.armorClasses;
+        for (let i of data.items) {
+            const itemData = i.data.data;
+            if (i.data.type === 'acMod') {
+                if (itemData.source === '')
+                    this.deleteEmbeddedDocuments('Item', [i.id]);
+                else if (itemData.active) {
+                    const natural = parseInt(itemData.natural) || 0;
+                    const dexterity = parseInt(itemData.dexterity) || 0;
+                    const armor = parseInt(itemData.armor) || 0;
+                    const shield = parseInt(itemData.shield) || 0;
+                    const magic = parseInt(itemData.magic) || 0;
+                    ac.natural += natural;
+                    ac.dexterity += dexterity;
+                    ac.armor += armor;
+                    ac.shield += shield;
+                    ac.magic += magic;
+                }
+            }
+        }
+        ac.encumbrance = 0; // TODO: encumbrance affects AC
+
+        ac.total =
+            ac.natural +
+            ac.dexterity +
+            ac.armor +
+            ac.shield +
+            ac.magic +
+            ac.encumbrance;
+        ac.touch =
+            ac.natural + ac.dexterity + ac.shield + ac.magic + ac.encumbrance;
+        ac.back = ac.natural + ac.armor + ac.magic + ac.encumbrance;
+        ac.surprise = ac.total - 2;
     }
 }

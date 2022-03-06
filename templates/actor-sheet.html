@@ -551,22 +551,22 @@
                     <hr />
                     <div>
                         <div>
-                            <span class="combat-big-text">21</span>
+                            <span class="combat-big-text">{{data.data.armorClasses.total}}</span>
                             <br />
                             <span>Total</span>
                         </div>
                         <div>
-                            <span class="combat-big-text">19</span>
+                            <span class="combat-big-text">{{data.data.armorClasses.back}}</span>
                             <br />
                             <span>Back</span>
                         </div>
                         <div>
-                            <span class="combat-big-text">21</span>
+                            <span class="combat-big-text">{{data.data.armorClasses.touch}}</span>
                             <br />
                             <span>Touch</span>
                         </div>
                         <div>
-                            <span class="combat-big-text">19</span>
+                            <span class="combat-big-text">{{data.data.armorClasses.surprise}}</span>
                             <br />
                             <span>Surprise</span>
                         </div>
@@ -800,6 +800,166 @@
                     </table>
                     <div class="combat-mid-throwMods-table-buttons">
                         <a class="item-create" data-type="throwMod"><i class="fas fa-plus"></i> Add modifier</a>
+                    </div>
+                </div>
+            </div>
+            <div class="combat-mid">
+                <table class="combat-mid-throws">
+                    <tr>
+                        <th colspan="2">
+                            Armor Classes
+                        </th>
+                    </tr>
+                    <tr>
+                        <td>Natural</td>
+                        <td class="combat-mid-throws-value combat-big-text">{{data.data.armorClasses.natural}}</td>
+                    </tr>
+                    <tr>
+                        <td>Dexterity</td>
+                        <td class="combat-mid-throws-value combat-big-text">{{data.data.armorClasses.dexterity}}</td>
+                    </tr>
+                    <tr>
+                        <td>Armor</td>
+                        <td class="combat-mid-throws-value combat-big-text">{{data.data.armorClasses.armor}}</td>
+                    </tr>
+                    <tr>
+                        <td>Shield</td>
+                        <td class="combat-mid-throws-value combat-big-text">{{data.data.armorClasses.shield}}</td>
+                    </tr>
+                    <tr>
+                        <td>Magic</td>
+                        <td class="combat-mid-throws-value combat-big-text">{{data.data.armorClasses.magic}}</td>
+                    </tr>
+                    <tr>
+                        <td>Encumbrance</td>
+                        <td class="combat-mid-throws-value combat-big-text">{{data.data.armorClasses.encumbrance}}</td>
+                    </tr>
+                </table>
+                <div class="combat-mid-throwMods">
+                    <table class="combat-mid-throwMods-table">
+                        <colgroup>
+                            <col>
+                            <col>
+                            <col>
+                        </colgroup>
+                        <tr>
+                            <th colspan="9">AC Modifiers</th>
+                        </tr>
+                        <tr>
+                            <th>Source</th>
+                            <th>Natural</th>
+                            <th>Dexterity</th>
+                            <th>Armor</th>
+                            <th>Shield</th>
+                            <th>Magic</th>
+                            <th></th>
+                            <th></th>
+                            <th>Active?</th>
+                        </tr>
+                        {{#each actor.data.items}}
+                        {{#if (eq this.type "acMod")}}
+                        <tr class="item" data-item-id="{{this.id}}">
+                            <td>
+                                <input
+                                    type="text"
+                                    class="combat-mid-throwMods-table-inputText item-edit"
+                                    id="{{this.id}}.source"
+                                    name="{{this.id}}.source"
+                                    value="{{this.data.data.source}}"
+                                    data-target="data.source"
+                                    data-name=true
+                                    {{#if this.data.data.locked}}disabled{{/if}}
+                                >
+                            </td>
+                            <td>
+                                <input
+                                    type="number"
+                                    class="combat-mid-throwMods-table-inputNum item-edit"
+                                    id="{{this.id}}.natural"
+                                    name="{{this.id}}.natural"
+                                    value="{{this.data.data.natural}}"
+                                    data-target="data.natural"
+                                    {{#if this.data.data.locked}}disabled{{/if}}
+                                >
+                            </td>
+                            <td>
+                                <input
+                                    type="number"
+                                    class="combat-mid-throwMods-table-inputNum item-edit"
+                                    id="{{this.id}}.dexterity"
+                                    name="{{this.id}}.dexterity"
+                                    value="{{this.data.data.dexterity}}"
+                                    data-target="data.dexterity"
+                                    {{#if this.data.data.locked}}disabled{{/if}}
+                                >
+                            </td>
+                            <td>
+                                <input
+                                    type="number"
+                                    class="combat-mid-throwMods-table-inputNum item-edit"
+                                    id="{{this.id}}.armor"
+                                    name="{{this.id}}.armor"
+                                    value="{{this.data.data.armor}}"
+                                    data-target="data.armor"
+                                    {{#if this.data.data.locked}}disabled{{/if}}
+                                >
+                            </td>
+                            <td>
+                                <input
+                                    type="number"
+                                    class="combat-mid-throwMods-table-inputNum item-edit"
+                                    id="{{this.id}}.shield"
+                                    name="{{this.id}}.shield"
+                                    value="{{this.data.data.shield}}"
+                                    data-target="data.shield"
+                                    {{#if this.data.data.locked}}disabled{{/if}}
+                            >
+                        </td>
+                            <td>
+                                <input
+                                    type="number"
+                                    class="combat-mid-throwMods-table-inputNum item-edit"
+                                    id="{{this.id}}.magic"
+                                    name="{{this.id}}.magic"
+                                    value="{{this.data.data.magic}}"
+                                    data-target="data.magic"
+                                    {{#if this.data.data.locked}}disabled{{/if}}
+                                >
+                            </td>
+                            <td>
+                                <a
+                                    class="item-control item-delete"
+                                    title="Delete Item"
+                                    data-locked={{this.data.data.locked}}
+                                >
+                                    <i class="fas fa-trash {{#if this.data.data.locked}} disabled-color {{/if}}"></i>
+                                </a>
+                            </td>
+                            <td>
+                                <a
+                                    class="item-control item-lock"
+                                    title="Lock Item"
+                                    data-value={{this.data.data.locked}}
+                                    data-target="data.locked"
+                                >
+                                    <i class="fas {{#if this.data.data.locked}} fa-lock {{else}} fa-lock-open {{/if}}"></i>
+                                </a>
+                            </td>
+                            <td>
+                                <input
+                                    type="checkbox"
+                                    class="item-edit"
+                                    name="{{this.id}}.active"
+                                    data-target="data.active"
+                                    {{checked this.data.data.active}}
+                                >
+                            </td>
+                        </tr>
+                        {{/if}}
+                        {{/each}}
+                    </table>
+                    <div class="combat-mid-throwMods-table-buttons">
+                        <a class="item-create" data-type="acMod"><i class="fas fa-plus"></i> Add modifier</a>
                     </div>
                 </div>
             </div>

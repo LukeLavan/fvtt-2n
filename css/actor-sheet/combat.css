@@ -78,7 +78,7 @@
 }
 
 .combat-mid-throws {
-    width: 0px;
+    width: 150px;
     border: thin solid black;
     border-radius: 5px;
     border-collapse: separate;
@@ -94,13 +94,14 @@
     border: thin solid black;
     border-radius: 5px;
     padding: 2px;
-    margin: 5px;
+    margin-bottom: 5px;
     width: 2rem;
     text-align: center;
 }
 
 .combat-mid-throwMods {
-    width: 100%;
+    width: calc(100% - 150px);
+    min-width: 450px;
     max-width: 800px;
 }
 
@@ -163,4 +164,8 @@
 }
 .combat-mid-throwMods-table-buttons > a:first-child {
     padding-right: 10px;
+}
+
+.combat-bot-ac {
+    width: 150px;
 }
