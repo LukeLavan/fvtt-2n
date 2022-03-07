@@ -3,6 +3,9 @@
 @import url('actor-sheet/combat.css');
 @import url('actor-sheet/gear.css');
 
+/* tools */
+@import url('tools/itemTable.css');
+
 /* globals */
 .rollable {
     background-color: #dfc1ff;

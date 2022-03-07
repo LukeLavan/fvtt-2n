@@ -105,67 +105,6 @@
     max-width: 800px;
 }
 
-.combat-mid-throwMods-table {
-    width: 100%;
-    height: 1px;
-    border-collapse: separate;
-    border-spacing: 0;
-    border-top: none !important;
-    border-bottom: none !important;
-    margin-bottom: 0px;
-}
-
-/* alternating column colors */
-.combat-mid-throwMods-table > colgroup > col:nth-child(odd) {
-    /* */
-}
-
-.combat-mid-throwMods-table > colgroup > col:nth-child(even) {
-    background-color: rgb(255,255,255,0.3);
-}
-
-/* table borders */
-.combat-mid-throwMods-table > tbody > tr:first-child > th {
-    border: thin solid black;
-    border-top-left-radius: 5px;
-    border-top-right-radius: 5px;
-}
-.combat-mid-throwMods-table > tbody > tr > th:first-child,
-.combat-mid-throwMods-table > tbody > tr > td:first-child {
-    border-left: thin solid black;
-}
-.combat-mid-throwMods-table > tbody > tr > th:last-child,
-.combat-mid-throwMods-table > tbody > tr > td:last-child {
-    border-right: thin solid black;
-}
-
-.combat-mid-throwMods-table > tbody > tr > td {
-    text-align: center;
-}
-
-/* overriding Foundry's default width for inputs */
-.combat-mid-throwMods-table-inputText {
-    text-align: left !important;
-}
-.combat-mid-throwMods-table-inputNum {
-    width: 2em !important;
-}
-
-.combat-mid-throwMods-table-buttons {
-    display: flex;
-    justify-content: flex-end;
-    border-left: thin solid black;
-    border-bottom-left-radius: 5px;
-    border-bottom: thin solid black;
-    border-bottom-right-radius: 5px;
-    border-right: thin solid black;
-    padding-top: 5px;
-    padding-right: 5px;
-}
-.combat-mid-throwMods-table-buttons > a:first-child {
-    padding-right: 10px;
-}
-
 .combat-bot-ac {
     width: 150px;
 }
