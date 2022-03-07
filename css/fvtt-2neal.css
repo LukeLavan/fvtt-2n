@@ -1,6 +1,7 @@
 /* actor-sheet */
 @import url('actor-sheet/basic.css');
 @import url('actor-sheet/combat.css');
+@import url('actor-sheet/gear.css');
 
 /* globals */
 .rollable {

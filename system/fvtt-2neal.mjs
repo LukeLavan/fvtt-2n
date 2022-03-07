@@ -4,6 +4,7 @@ import {TwoDotNealActorSheet} from './actor-sheet.mjs';
 /* console.log Handlebars helper */
 Handlebars.registerHelper('log', (x) => console.log(x));
 
+/* FoundryVTT hooks */
 Hooks.once('init', async function () {
     console.log('Initializing 2.Neal system');
 

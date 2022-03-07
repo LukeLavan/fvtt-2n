@@ -1,0 +1,12 @@
+.gear-top {
+    display: flex;
+    flex-direction: row;
+}
+
+.gear-top-left {
+    margin: 5px;
+}
+
+.gear-top-right {
+    margin: 5px;
+}
