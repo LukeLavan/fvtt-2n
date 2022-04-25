@@ -15,6 +15,7 @@ export class TwoDotNealActor extends Actor {
         this._preparePCDerivedDataSavingThrows(actorData);
         this._preparePCDerivedDataAC(actorData);
         this._preparePCDerivedDataHitAdjust(actorData);
+        this._preparePCDerivedDataItems(actorData);
     }
 
     _preparePCDerivedDataAbilities(data) {
@@ -953,7 +954,7 @@ export class TwoDotNealActor extends Actor {
         for (let i of data.items) {
             const itemData = i.data.data;
             if (i.data.type === 'throwMod') {
-                if (itemData.source === '')
+                if (itemData.name === '')
                     this.deleteEmbeddedDocuments('Item', [i.id]);
                 else if (itemData.active) {
                     const ppd = parseInt(itemData.ppd) || 0;
@@ -977,7 +978,7 @@ export class TwoDotNealActor extends Actor {
         for (let i of data.items) {
             const itemData = i.data.data;
             if (i.data.type === 'acMod') {
-                if (itemData.source === '')
+                if (itemData.name === '')
                     this.deleteEmbeddedDocuments('Item', [i.id]);
                 else if (itemData.active) {
                     const natural = parseInt(itemData.natural) || 0;
@@ -1013,8 +1014,7 @@ export class TwoDotNealActor extends Actor {
         for (let i of data.items) {
             const itemData = i.data.data;
             if (i.data.type === 'hitMod') {
-                console.log(i);
-                if (itemData.source === '')
+                if (itemData.name === '')
                     this.deleteEmbeddedDocuments('Item', [i.id]);
                 else if (itemData.active) {
                     const melee = parseInt(itemData.melee) || 0;
@@ -1026,5 +1026,47 @@ export class TwoDotNealActor extends Actor {
                 }
             }
         }
+    }
+
+    _preparePCDerivedDataItems(data) {
+        const sortedInventory = new Map();
+
+        // find all gearTabs
+        const gearTabs = [];
+        data.items.forEach((item) => {
+            if (item.type === 'gearTab') gearTabs.push(item);
+        });
+
+        // create new array for each gearTab
+        gearTabs.forEach((tab) => sortedInventory.set(tab.id, []));
+
+        // insert gear items into respective gearTab arrays
+        data.items.forEach((item) => {
+            if (item.type === 'gear')
+                sortedInventory.get(item.data.data.tab).push(item);
+        });
+
+        // sort each tab based on index
+        sortedInventory.forEach((tab) => {
+            tab.sort((a, b) => {
+                a.data.data.index - b.data.data.index;
+            });
+        });
+
+        // update all indices
+        sortedInventory.forEach((tab) => {
+            let i = 0;
+            tab.forEach((item) => {
+                item.data.data.index = i++;
+            });
+        });
+
+        // update lengths of gearTabs
+        gearTabs.forEach((tab) => {
+            tab.data.data.length = sortedInventory.get(tab.id).length;
+        });
+
+        data.data.sortedInventory = sortedInventory;
+        data.data.gearTabs = gearTabs;
     }
 }

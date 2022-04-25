@@ -67,16 +67,18 @@
     }
   },
   "Item": {
-    "types": ["throwMod", "acMod", "hitMod", "gear"],
+    "types": ["throwMod", "acMod", "hitMod", "gearTab", "gear"],
     "templates": {
-      "mod": {
-        "source": "New modifier",
-        "active": true,
+      "base": {
+        "name": "",
         "locked": false
+      },
+      "mod": {
+        "active": true
       }
     },
     "throwMod": {
-      "templates": ["mod"],
+      "templates": ["base", "mod"],
       "ppd": "",
       "rsw": "",
       "pepo": "",
@@ -85,7 +87,7 @@
       "all": ""
     },
     "acMod": {
-      "templates": ["mod"],
+      "templates": ["base", "mod"],
       "natural": "",
       "dexterity": "",
       "armor": "",
@@ -93,15 +95,23 @@
       "magic": ""
     },
     "hitMod": {
-      "templates": ["mod"],
+      "templates": ["base", "mod"],
       "melee": "",
       "missile": "",
       "thrown": ""
     },
-    "gear": {
+    "gearTab": {
       "name": "",
+      "length": 0
+    },
+    "gear": {
+      "templates": ["base"],
       "description": "",
-      "weight": 0
+      "weight": 0,
+      "value": 0,
+      "quantity": 1,
+      "tab": "",
+      "index": 0
     }
   }
 }

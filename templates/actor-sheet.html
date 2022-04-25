@@ -1,10 +1,10 @@
 <form class="{{cssClass}}" autocomplete="off">
-    <nav class="sheet-tabs tabs" data-group="primary">
-        <a class="item navbar-item" data-tab="basic">BASIC</a>
-        <a class="item navbar-item" data-tab="combat">COMBAT</a>
-        <a class="item navbar-item" data-tab="gear">GEAR</a>
+    <nav class="primary-tabs tabs" data-group="primary">
+        <a class="item navbar-item" data-tab="basic" data-group="primary">BASIC</a>
+        <a class="item navbar-item" data-tab="combat" data-group="primary">COMBAT</a>
+        <a class="item navbar-item" data-tab="gear" data-group="primary">GEAR</a>
     </nav>
-    <section class="sheet-body">
+    <section class="primary-content">
         <div class="tab basic" data-group="primary" data-tab="basic">
             <div class="basic-top">
                 <table>
@@ -715,10 +715,10 @@
                                 <input
                                     type="text"
                                     class="itemTable-inputText item-edit"
-                                    id="{{this.id}}.source"
-                                    name="{{this.id}}.source"
-                                    value="{{this.data.data.source}}"
-                                    data-target="data.source"
+                                    id="{{this.id}}.name"
+                                    name="{{this.id}}.name"
+                                    value="{{this.data.data.name}}"
+                                    data-target="data.name"
                                     data-name=true
                                     {{#if this.data.data.locked}}disabled{{/if}}
                                 >
@@ -880,10 +880,10 @@
                                 <input
                                     type="text"
                                     class="itemTable-inputText item-edit"
-                                    id="{{this.id}}.source"
-                                    name="{{this.id}}.source"
-                                    value="{{this.data.data.source}}"
-                                    data-target="data.source"
+                                    id="{{this.id}}.name"
+                                    name="{{this.id}}.name"
+                                    value="{{this.data.data.name}}"
+                                    data-target="data.name"
                                     data-name=true
                                     {{#if this.data.data.locked}}disabled{{/if}}
                                 >
@@ -1026,10 +1026,10 @@
                                 <input
                                     type="text"
                                     class="itemTable-inputText item-edit"
-                                    id="{{this.id}}.source"
-                                    name="{{this.id}}.source"
-                                    value="{{this.data.data.source}}"
-                                    data-target="data.source"
+                                    id="{{this.id}}.name"
+                                    name="{{this.id}}.name"
+                                    value="{{this.data.data.name}}"
+                                    data-target="data.name"
                                     data-name=true
                                     {{#if this.data.data.locked}}disabled{{/if}}
                                 >
@@ -1137,11 +1137,122 @@
                     </tr>
                 </table>
             </div>
-            <nav class="sheet-tabs tabs" data-group="gear">
-                <a class="item navbar-item" data-tab="equipment">EQUIPMENT</a>
-                <a class="item navbar-item" data-tab="backpack">BACKPACK</a>
-                <a class="item navbar-item" data-tab="equipment">+</a>
+            <nav class="gear-tabs tabs" data-group="gear">
+                {{#each actor.data.data.gearTabs}}
+                <a class="item navbar-item" data-tab="{{this.id}}" data-group="gear">{{this.name}}</a>
+                {{/each}}
+                <a class="item navbar-item" data-tab="+" id="gearTabAdd">+</a>
             </nav>
+            <section class="gear-content">
+                {{#each actor.data.data.sortedInventory}}
+                <div class="tab" data-tab="{{this.[0]}}" data-group="gear">
+                    <a
+                        class="item-create"
+                        data-type="gear"
+                        data-tab="{{this.[0]}}"
+                    >
+                        <i class="fas fa-plus"></i> Add item
+                    </a>
+                    <div>
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Name</th>
+                                    <th>Wgt</th>
+                                    <th>Val</th>
+                                    <th>Qty</th>
+                                    <th>Notes</th>
+                                    <th>Delete</th>
+                                    <th>Lock</th>
+                                </tr>
+                            </thead>
+                            <tbody class="item-list">
+                                {{#each this.[1]}}
+                                <tr class="item" data-item-id="{{this.id}}">
+                                    <td>
+                                        <input
+                                            type="text"
+                                            class="itemTable-inputText item-edit"
+                                            id="{{this.id}}.name"
+                                            name="{{this.id}}.name"
+                                            value="{{this.data.data.name}}"
+                                            data-target="data.name"
+                                            data-name=true
+                                            {{#if this.data.data.locked}}disabled{{/if}}
+                                        >
+                                    </td>
+                                    <td>
+                                        <input
+                                            type="number"
+                                            class="itemTable-inputNum item-edit"
+                                            id="{{this.id}}.weight"
+                                            name="{{this.id}}.weight"
+                                            value="{{this.data.data.weight}}"
+                                            data-target="data.weight"
+                                            {{#if this.data.data.locked}}disabled{{/if}}
+                                        >
+                                    </td>
+                                    <td>
+                                        <input
+                                            type="number"
+                                            class="itemTable-inputNum item-edit"
+                                            id="{{this.id}}.value"
+                                            name="{{this.id}}.value"
+                                            value="{{this.data.data.value}}"
+                                            data-target="data.value"
+                                            {{#if this.data.data.locked}}disabled{{/if}}
+                                        >
+                                    </td>
+                                    <td>
+                                        <input
+                                            type="number"
+                                            class="itemTable-inputNum item-edit"
+                                            id="{{this.id}}.quantity"
+                                            name="{{this.id}}.quantity"
+                                            value="{{this.data.data.quantity}}"
+                                            data-target="data.quantity"
+                                            {{#if this.data.data.locked}}disabled{{/if}}
+                                        >
+                                    </td>
+                                    <td>
+                                        <a
+                                            class="item-control item-notes"
+                                            title="View Item Notes"
+                                            data-locked="{{this.data.data.locked}}"
+                                        >
+                                            <i class="fas fa-book"></i>
+                                        </a>
+                                    </td>
+                                    <td>
+                                        <a
+                                            class="item-control item-delete"
+                                            title="Delete Item"
+                                            data-locked={{this.data.data.locked}}
+                                        >
+                                            <i class="fas fa-trash {{#if this.data.data.locked}} disabled-color {{/if}}"></i>
+                                        </a>
+                                    </td>
+                                    <td>
+                                        <a
+                                            class="item-control item-lock"
+                                            title="Lock Item"
+                                            data-value={{this.data.data.locked}}
+                                            data-target="data.locked"
+                                        >
+                                            <i class="fas {{#if this.data.data.locked}} fa-lock {{else}} fa-lock-open {{/if}}"></i>
+                                        </a>
+                                    </td>
+                                </tr>
+                                {{/each}}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                {{/each}}
+                <div class="tab" data-tab="+" data-group="gear">
+                    click the '+' to add tabs
+                </div>
+            </section>
         </div>
     </section>
 </form>

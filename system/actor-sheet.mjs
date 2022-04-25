@@ -7,9 +7,14 @@ export class TwoDotNealActorSheet extends ActorSheet {
             height: 700,
             tabs: [
                 {
-                    navSelector: '.sheet-tabs',
-                    contentSelector: '.sheet-body',
+                    navSelector: '.primary-tabs',
+                    contentSelector: '.primary-content',
                     initial: 'basic',
+                },
+                {
+                    navSelector: '.gear-tabs',
+                    contentSelector: '.gear-content',
+                    initial: '+',
                 },
             ],
         });
@@ -97,6 +102,8 @@ export class TwoDotNealActorSheet extends ActorSheet {
             if (locked) return;
             this.actor.deleteEmbeddedDocuments('Item', [id]);
         });
+
+        html.find('#gearTabAdd').click(this._gearTabAdd.bind(this));
     }
 
     //TODO: better success/failure roll
@@ -127,10 +134,39 @@ export class TwoDotNealActorSheet extends ActorSheet {
             data: data,
         };
         const item = await Item.create(itemData, {parent: this.actor});
-        const focusbox = document.getElementById(item.id + '.source');
+        const focusbox = document.getElementById(item.id + '.name');
         focusbox.focus();
         focusbox.select();
-        console.log(item);
         return item;
+    }
+
+    _gearTabAdd() {
+        const appendTab = async (html) => {
+            const tabName = html.find('input#identifier')[0].value;
+            const itemData = {
+                name: tabName,
+                type: 'gearTab',
+                data: {name: tabName},
+            };
+            await Item.create(itemData, {parent: this.actor});
+        };
+        new Dialog({
+            title: 'Enter tab identifier',
+            content: `
+                <form>
+                    <div class="form-group">
+                        <label>Enter tab identifer</label>
+                        <input id='identifier' type='text' value='new tab' />
+                    </div>
+                </form>
+            `,
+            buttons: {
+                yes: {
+                    icon: "<i class='fas fa-check'></i>",
+                    label: 'Apply',
+                    callback: (html) => appendTab(html),
+                },
+            },
+        }).render(true);
     }
 }
