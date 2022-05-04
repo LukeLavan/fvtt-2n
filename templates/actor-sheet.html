@@ -794,7 +794,7 @@
                             </td>
                             <td>
                                 <a
-                                    class="item-control item-lock"
+                                    class="item-control item-toggle"
                                     title="Lock Item"
                                     data-value={{this.data.data.locked}}
                                     data-target="data.locked"
@@ -954,7 +954,7 @@
                             </td>
                             <td>
                                 <a
-                                    class="item-control item-lock"
+                                    class="item-control item-toggle"
                                     title="Lock Item"
                                     data-value={{this.data.data.locked}}
                                     data-target="data.locked"
@@ -1078,7 +1078,7 @@
                             </td>
                             <td>
                                 <a
-                                    class="item-control item-lock"
+                                    class="item-control item-toggle"
                                     title="Lock Item"
                                     data-value={{this.data.data.locked}}
                                     data-target="data.locked"
@@ -1109,16 +1109,21 @@
             <div class="gear-top">
                 <table class="gear-top-left">
                     <tr>
-                        <th></th>
+                        <th>Equipped?</th>
+                        <th>Gear Tab</th>
                         <th>Weight</th>
                     </tr>
-                    <tr>
-                        <td>Purse</td>
-                        <td>0</td>
+                    {{#each actor.data.data.gearTabs}}
+                    <tr class="item" data-item-id="{{this.[0]}}">
+                        <td><input type="checkbox" class="item-toggle" data-value={{this.[1].tab.data.data.equipped}}
+                            data-target="data.equipped" {{#if this.[1].tab.data.data.equipped}}checked{{/if}}/></td>
+                        <td>{{this.[1].tab.name}}</td>
+                        <td>{{this.[1].tab.data.data.weight}}</td>
                     </tr>
+                    {{/each}}
                     <tr>
-                        <td>Equipped</td>
-                        <td>53</td>
+                        <td colspan="2">Equipped weight</td>
+                        <td>{{actor.data.data.equippedWeight}}</td>
                     </tr>
                 </table>
                 <table class="gear-top-right">
@@ -1139,13 +1144,17 @@
             </div>
             <nav class="gear-tabs tabs" data-group="gear">
                 {{#each actor.data.data.gearTabs}}
-                <a class="item navbar-item" data-tab="{{this.id}}" data-group="gear">{{this.name}}</a>
+                <a class="item navbar-item" data-tab="{{this.[0]}}" data-group="gear">{{this.[1].tab.data.data.name}}</a>
                 {{/each}}
                 <a class="item navbar-item" data-tab="+" id="gearTabAdd">+</a>
             </nav>
             <section class="gear-content">
-                {{#each actor.data.data.sortedInventory}}
-                <div class="tab" data-tab="{{this.[0]}}" data-group="gear">
+                {{#each actor.data.data.gearTabs}}
+                <div class="tab item" data-tab="{{this.[0]}}" data-item-id="{{this.[0]}}" data-group="gear">
+                    Count tab towards encumbrance?
+                    <input type="checkbox" class="item-toggle" data-value={{this.[1].tab.data.data.equipped}}
+                    data-target="data.equipped" {{#if this.[1].tab.data.data.equipped}}checked{{/if}}/>
+                    <br />
                     <a
                         class="item-create"
                         data-type="gear"
@@ -1157,18 +1166,29 @@
                         <table>
                             <thead>
                                 <tr>
+                                    <th>Qty</th>
                                     <th>Name</th>
                                     <th>Wgt</th>
                                     <th>Val</th>
-                                    <th>Qty</th>
                                     <th>Notes</th>
                                     <th>Delete</th>
                                     <th>Lock</th>
                                 </tr>
                             </thead>
                             <tbody class="item-list">
-                                {{#each this.[1]}}
+                                {{#each this.[1].items}}
                                 <tr class="item" data-item-id="{{this.id}}">
+                                    <td>
+                                        <input
+                                            type="number"
+                                            class="itemTable-inputNum item-edit"
+                                            id="{{this.id}}.quantity"
+                                            name="{{this.id}}.quantity"
+                                            value="{{this.data.data.quantity}}"
+                                            data-target="data.quantity"
+                                            {{#if this.data.data.locked}}disabled{{/if}}
+                                        >
+                                    </td>
                                     <td>
                                         <input
                                             type="text"
@@ -1204,17 +1224,6 @@
                                         >
                                     </td>
                                     <td>
-                                        <input
-                                            type="number"
-                                            class="itemTable-inputNum item-edit"
-                                            id="{{this.id}}.quantity"
-                                            name="{{this.id}}.quantity"
-                                            value="{{this.data.data.quantity}}"
-                                            data-target="data.quantity"
-                                            {{#if this.data.data.locked}}disabled{{/if}}
-                                        >
-                                    </td>
-                                    <td>
                                         <a
                                             class="item-control item-notes"
                                             title="View Item Notes"
@@ -1234,7 +1243,7 @@
                                     </td>
                                     <td>
                                         <a
-                                            class="item-control item-lock"
+                                            class="item-control item-toggle"
                                             title="Lock Item"
                                             data-value={{this.data.data.locked}}
                                             data-target="data.locked"

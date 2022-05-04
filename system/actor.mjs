@@ -16,6 +16,7 @@ export class TwoDotNealActor extends Actor {
         this._preparePCDerivedDataAC(actorData);
         this._preparePCDerivedDataHitAdjust(actorData);
         this._preparePCDerivedDataItems(actorData);
+        this._preparePCDerivedDataEncumbrance(actorData);
     }
 
     _preparePCDerivedDataAbilities(data) {
@@ -1029,44 +1030,34 @@ export class TwoDotNealActor extends Actor {
     }
 
     _preparePCDerivedDataItems(data) {
-        const sortedInventory = new Map();
+        const gearTabs = new Map();
 
-        // find all gearTabs
-        const gearTabs = [];
         data.items.forEach((item) => {
-            if (item.type === 'gearTab') gearTabs.push(item);
+            if (item.type === 'gearTab') {
+                gearTabs.set(item.id, {
+                    tab: item,
+                    items: [],
+                });
+                item.data.data.length = 0;
+                item.data.data.weight = 0;
+            } else if (item.type === 'gear')
+                if (gearTabs.has(item.data.data.tab)) {
+                    const tab = gearTabs.get(item.data.data.tab);
+                    tab.items.push(item);
+                    tab.tab.data.data.length += 1;
+                    tab.tab.data.data.weight += Number(item.data.data.weight);
+                }
         });
 
-        // create new array for each gearTab
-        gearTabs.forEach((tab) => sortedInventory.set(tab.id, []));
-
-        // insert gear items into respective gearTab arrays
-        data.items.forEach((item) => {
-            if (item.type === 'gear')
-                sortedInventory.get(item.data.data.tab).push(item);
-        });
-
-        // sort each tab based on index
-        sortedInventory.forEach((tab) => {
-            tab.sort((a, b) => {
-                a.data.data.index - b.data.data.index;
-            });
-        });
-
-        // update all indices
-        sortedInventory.forEach((tab) => {
-            let i = 0;
-            tab.forEach((item) => {
-                item.data.data.index = i++;
-            });
-        });
-
-        // update lengths of gearTabs
-        gearTabs.forEach((tab) => {
-            tab.data.data.length = sortedInventory.get(tab.id).length;
-        });
-
-        data.data.sortedInventory = sortedInventory;
         data.data.gearTabs = gearTabs;
+    }
+
+    _preparePCDerivedDataEncumbrance(data) {
+        let equippedWeight = 0;
+        data.data.gearTabs.forEach((tab) => {
+            const tabData = tab.tab.data.data;
+            if (tabData.equipped) equippedWeight += tabData.weight;
+        });
+        data.data.equippedWeight = equippedWeight;
     }
 }

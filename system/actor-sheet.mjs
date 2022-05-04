@@ -81,7 +81,7 @@ export class TwoDotNealActorSheet extends ActorSheet {
             this.actor.updateEmbeddedDocuments('Item', [itemDifferential]);
         });
 
-        html.find('.item-lock').click((ev) => {
+        html.find('.item-toggle').click((ev) => {
             const currentTarget = $(ev.currentTarget);
             const id = currentTarget.parents('.item').attr('data-item-id');
             const target = currentTarget.attr('data-target');

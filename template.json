@@ -102,7 +102,9 @@
     },
     "gearTab": {
       "name": "",
-      "length": 0
+      "length": 0,
+      "weight": 0,
+      "equipped": false
     },
     "gear": {
       "templates": ["base"],
