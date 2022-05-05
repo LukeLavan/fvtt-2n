@@ -1135,10 +1135,30 @@
                         <th>Weight</th>
                         <th>Speed Mod</th>
                     </tr>
-                    <tr>
+                    <tr id="encumbrance-base">
                         <td>Base</td>
-                        <td>45</td>
-                        <td>12</td>
+                        <td>{{actor.data.data.weightLimits.base}}</td>
+                        <td>{{actor.data.data.speedLevels.base}}</td>
+                    </tr>
+                    <tr id="encumbrance-light">
+                        <td>Light</td>
+                        <td>{{actor.data.data.weightLimits.light}}</td>
+                        <td>{{actor.data.data.speedLevels.light}}</td>
+                    </tr>
+                    <tr id="encumbrance-medium">
+                        <td>Medium</td>
+                        <td>{{actor.data.data.weightLimits.medium}}</td>
+                        <td>{{actor.data.data.speedLevels.medium}}</td>
+                    </tr>
+                    <tr id="encumbrance-heavy">
+                        <td>Heavy</td>
+                        <td>{{actor.data.data.weightLimits.heavy}}</td>
+                        <td>{{actor.data.data.speedLevels.heavy}}</td>
+                    </tr>
+                    <tr id="encumbrance-severe">
+                        <td>Severe</td>
+                        <td>{{actor.data.data.weightLimits.severe}}</td>
+                        <td>{{actor.data.data.speedLevels.severe}}</td>
                     </tr>
                 </table>
             </div>

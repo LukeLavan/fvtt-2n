@@ -47,6 +47,13 @@ export class TwoDotNealActor extends Actor {
                 data.maxPress = 5;
                 data.openDoors = 1;
                 data.bendBars = 0;
+                data.weightLimits = {
+                    base: 1,
+                    light: 2,
+                    medium: 3,
+                    heavy: 4,
+                    severe: 6,
+                };
                 break;
             case 3:
                 data.meleeAttackAdjust = -3;
@@ -55,6 +62,13 @@ export class TwoDotNealActor extends Actor {
                 data.maxPress = 10;
                 data.openDoors = 2;
                 data.bendBars = 0;
+                data.weightLimits = {
+                    base: 5,
+                    light: 6,
+                    medium: 7,
+                    heavy: 9,
+                    severe: 10,
+                };
                 break;
             case 4:
             case 5:
@@ -64,6 +78,13 @@ export class TwoDotNealActor extends Actor {
                 data.maxPress = 25;
                 data.openDoors = 3;
                 data.bendBars = 0;
+                data.weightLimits = {
+                    base: 10,
+                    light: 13,
+                    medium: 16,
+                    heavy: 19,
+                    severe: 25,
+                };
                 break;
             case 6:
             case 7:
@@ -73,6 +94,13 @@ export class TwoDotNealActor extends Actor {
                 data.maxPress = 55;
                 data.openDoors = 4;
                 data.bendBars = 0;
+                data.weightLimits = {
+                    base: 20,
+                    light: 29,
+                    medium: 38,
+                    heavy: 46,
+                    severe: 55,
+                };
                 break;
             case 8:
             case 9:
@@ -82,6 +110,13 @@ export class TwoDotNealActor extends Actor {
                 data.maxPress = 90;
                 data.openDoors = 5;
                 data.bendBars = 1;
+                data.weightLimits = {
+                    base: 35,
+                    light: 50,
+                    medium: 65,
+                    heavy: 80,
+                    severe: 90,
+                };
                 break;
             case 10:
             case 11:
@@ -91,6 +126,13 @@ export class TwoDotNealActor extends Actor {
                 data.maxPress = 115;
                 data.openDoors = 6;
                 data.bendBars = 2;
+                data.weightLimits = {
+                    base: 40,
+                    light: 58,
+                    medium: 76,
+                    heavy: 96,
+                    severe: 110,
+                };
                 break;
             case 12:
             case 13:
@@ -100,6 +142,13 @@ export class TwoDotNealActor extends Actor {
                 data.maxPress = 140;
                 data.openDoors = 7;
                 data.bendBars = 4;
+                data.weightLimits = {
+                    base: 45,
+                    light: 69,
+                    medium: 93,
+                    heavy: 117,
+                    severe: 140,
+                };
                 break;
             case 14:
             case 15:
@@ -109,6 +158,13 @@ export class TwoDotNealActor extends Actor {
                 data.maxPress = 170;
                 data.openDoors = 8;
                 data.bendBars = 7;
+                data.weightLimits = {
+                    base: 55,
+                    light: 85,
+                    medium: 115,
+                    heavy: 145,
+                    severe: 170,
+                };
                 break;
             case 16:
                 data.meleeAttackAdjust = 0;
@@ -117,6 +173,13 @@ export class TwoDotNealActor extends Actor {
                 data.maxPress = 195;
                 data.openDoors = 9;
                 data.bendBars = 10;
+                data.weightLimits = {
+                    base: 70,
+                    light: 100,
+                    medium: 130,
+                    heavy: 160,
+                    severe: 195,
+                };
                 break;
             case 17:
                 data.meleeAttackAdjust = 1;
@@ -125,6 +188,13 @@ export class TwoDotNealActor extends Actor {
                 data.maxPress = 220;
                 data.openDoors = 10;
                 data.bendBars = 13;
+                data.weightLimits = {
+                    base: 85,
+                    light: 121,
+                    medium: 157,
+                    heavy: 193,
+                    severe: 220,
+                };
                 break;
             case 18:
                 //TODO: percentile strength
@@ -134,6 +204,13 @@ export class TwoDotNealActor extends Actor {
                 data.maxPress = 255;
                 data.openDoors = 11;
                 data.bendBars = 16;
+                data.weightLimits = {
+                    base: 110,
+                    light: 149,
+                    medium: 188,
+                    heavy: 227,
+                    severe: 255,
+                };
                 break;
             case 19:
                 data.meleeAttackAdjust = 3;
@@ -1053,11 +1130,37 @@ export class TwoDotNealActor extends Actor {
     }
 
     _preparePCDerivedDataEncumbrance(data) {
+        // calculate equipped weight
         let equippedWeight = 0;
         data.data.gearTabs.forEach((tab) => {
             const tabData = tab.tab.data.data;
             if (tabData.equipped) equippedWeight += tabData.weight;
         });
         data.data.equippedWeight = equippedWeight;
+
+        // calculate movement modifiers
+        const baseSpeed = data.data.speed;
+        const speedLevels = {
+            base: baseSpeed,
+            light: Math.floor(baseSpeed * (2 / 3)),
+            medium: Math.floor(baseSpeed * (1 / 2)),
+            heavy: Math.floor(baseSpeed * (1 / 3)),
+            severe: 1,
+        };
+        data.data.speedLevels = speedLevels;
+
+        // determine which encumbrance category currently applies
+        let currentEncumbrance = '';
+        const weightLimits = data.data.weightLimits;
+        if (equippedWeight < weightLimits.base) currentEncumbrance = 'base';
+        else if (equippedWeight < weightLimits.light)
+            currentEncumbrance = 'light';
+        else if (equippedWeight < weightLimits.medium)
+            currentEncumbrance = 'medium';
+        else if (equippedWeight < weightLimits.heavy)
+            currentEncumbrance = 'heavy';
+        else if (equippedWeight < weightLimits.severe)
+            currentEncumbrance = 'severe';
+        data.data.currentEncumbrance = currentEncumbrance;
     }
 }
