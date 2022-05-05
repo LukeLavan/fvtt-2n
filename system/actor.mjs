@@ -1031,22 +1031,18 @@ export class TwoDotNealActor extends Actor {
         throws.spell = 0;
         for (let i of data.items) {
             const itemData = i.data.data;
-            if (i.data.type === 'throwMod') {
-                if (itemData.name === '')
-                    this.deleteEmbeddedDocuments('Item', [i.id]);
-                else if (itemData.active) {
-                    const ppd = parseInt(itemData.ppd) || 0;
-                    const rsw = parseInt(itemData.rsw) || 0;
-                    const pepo = parseInt(itemData.pepo) || 0;
-                    const brw = parseInt(itemData.brw) || 0;
-                    const spell = parseInt(itemData.spell) || 0;
-                    const all = parseInt(itemData.all) || 0;
-                    throws.ppd += ppd + all;
-                    throws.rsw += rsw + all;
-                    throws.pepo += pepo + all;
-                    throws.brw += brw + all;
-                    throws.spell += spell + all;
-                }
+            if (i.data.type === 'throwMod' && itemData.active) {
+                const ppd = parseInt(itemData.ppd) || 0;
+                const rsw = parseInt(itemData.rsw) || 0;
+                const pepo = parseInt(itemData.pepo) || 0;
+                const brw = parseInt(itemData.brw) || 0;
+                const spell = parseInt(itemData.spell) || 0;
+                const all = parseInt(itemData.all) || 0;
+                throws.ppd += ppd + all;
+                throws.rsw += rsw + all;
+                throws.pepo += pepo + all;
+                throws.brw += brw + all;
+                throws.spell += spell + all;
             }
         }
     }
@@ -1055,21 +1051,17 @@ export class TwoDotNealActor extends Actor {
         const ac = data.data.armorClasses;
         for (let i of data.items) {
             const itemData = i.data.data;
-            if (i.data.type === 'acMod') {
-                if (itemData.name === '')
-                    this.deleteEmbeddedDocuments('Item', [i.id]);
-                else if (itemData.active) {
-                    const natural = parseInt(itemData.natural) || 0;
-                    const dexterity = parseInt(itemData.dexterity) || 0;
-                    const armor = parseInt(itemData.armor) || 0;
-                    const shield = parseInt(itemData.shield) || 0;
-                    const magic = parseInt(itemData.magic) || 0;
-                    ac.natural += natural;
-                    ac.dexterity += dexterity;
-                    ac.armor += armor;
-                    ac.shield += shield;
-                    ac.magic += magic;
-                }
+            if (i.data.type === 'acMod' && itemData.active) {
+                const natural = parseInt(itemData.natural) || 0;
+                const dexterity = parseInt(itemData.dexterity) || 0;
+                const armor = parseInt(itemData.armor) || 0;
+                const shield = parseInt(itemData.shield) || 0;
+                const magic = parseInt(itemData.magic) || 0;
+                ac.natural += natural;
+                ac.dexterity += dexterity;
+                ac.armor += armor;
+                ac.shield += shield;
+                ac.magic += magic;
             }
         }
         ac.encumbrance = 0; // TODO: encumbrance affects AC
@@ -1091,17 +1083,13 @@ export class TwoDotNealActor extends Actor {
         const hit = data.data.hitAdjust;
         for (let i of data.items) {
             const itemData = i.data.data;
-            if (i.data.type === 'hitMod') {
-                if (itemData.name === '')
-                    this.deleteEmbeddedDocuments('Item', [i.id]);
-                else if (itemData.active) {
-                    const melee = parseInt(itemData.melee) || 0;
-                    const missile = parseInt(itemData.missile) || 0;
-                    const thrown = parseInt(itemData.thrown) || 0;
-                    hit.melee += melee;
-                    hit.missile += missile;
-                    hit.thrown += thrown;
-                }
+            if (i.data.type === 'hitMod' && itemData.active) {
+                const melee = parseInt(itemData.melee) || 0;
+                const missile = parseInt(itemData.missile) || 0;
+                const thrown = parseInt(itemData.thrown) || 0;
+                hit.melee += melee;
+                hit.missile += missile;
+                hit.thrown += thrown;
             }
         }
     }
@@ -1152,15 +1140,18 @@ export class TwoDotNealActor extends Actor {
         // determine which encumbrance category currently applies
         let currentEncumbrance = '';
         const weightLimits = data.data.weightLimits;
-        if (equippedWeight <= weightLimits.base) currentEncumbrance = 'base';
-        else if (equippedWeight <= weightLimits.light)
-            currentEncumbrance = 'light';
-        else if (equippedWeight <= weightLimits.medium)
-            currentEncumbrance = 'medium';
-        else if (equippedWeight <= weightLimits.heavy)
-            currentEncumbrance = 'heavy';
-        else if (equippedWeight <= weightLimits.severe)
-            currentEncumbrance = 'severe';
+        if (weightLimits) {
+            if (equippedWeight <= weightLimits.base)
+                currentEncumbrance = 'base';
+            else if (equippedWeight <= weightLimits.light)
+                currentEncumbrance = 'light';
+            else if (equippedWeight <= weightLimits.medium)
+                currentEncumbrance = 'medium';
+            else if (equippedWeight <= weightLimits.heavy)
+                currentEncumbrance = 'heavy';
+            else if (equippedWeight <= weightLimits.severe)
+                currentEncumbrance = 'severe';
+        }
         data.data.currentEncumbrance = currentEncumbrance;
         console.log(currentEncumbrance);
     }

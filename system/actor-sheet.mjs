@@ -67,10 +67,6 @@ export class TwoDotNealActorSheet extends ActorSheet {
             const id = currentTarget.parents('.item').attr('data-item-id');
             const target = currentTarget.attr('data-target');
             let value = currentTarget.val();
-            // blank name marks item for deletion
-            if (currentTarget.attr('data-name') && value === '') {
-                return this.actor.deleteEmbeddedDocuments('Item', [id]);
-            }
             // ensure checkbox values are booleans
             if (currentTarget.attr('type') === 'checkbox') {
                 if (currentTarget.is(':checked')) value = true;
@@ -106,9 +102,11 @@ export class TwoDotNealActorSheet extends ActorSheet {
         html.find('#gearTabAdd').click(this._gearTabAdd.bind(this));
 
         // highlight active encumbrance
-        html.find(
+        const activeEncumbranceRow = html.find(
             '#encumbrance-' + this.actor.data.data.currentEncumbrance
-        )[0].className = 'encumbranceHighlight';
+        );
+        if (activeEncumbranceRow[0])
+            activeEncumbranceRow[0].className = 'encumbranceHighlight';
     }
 
     //TODO: better success/failure roll
