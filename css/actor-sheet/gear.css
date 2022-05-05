@@ -5,10 +5,25 @@
 
 .gear-top-left {
     margin: 5px;
+    width: 50%;
 }
 
 .gear-top-right {
     margin: 5px;
+    width: 50%;
+}
+
+#gear-top-left-equipped {
+    width: 24px;
+}
+#gear-top-left-weight {
+    width: 64px;
+}
+#gear-top-left-delete {
+    width: 16px;
+}
+#gear-top-left-lock {
+    width: 16px;
 }
 
 .encumbranceHighlight{

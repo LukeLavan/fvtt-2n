@@ -99,7 +99,19 @@ export class TwoDotNealActorSheet extends ActorSheet {
             this.actor.deleteEmbeddedDocuments('Item', [id]);
         });
 
-        html.find('#gearTabAdd').click(this._gearTabAdd.bind(this));
+        html.find('.tab-delete').click((ev) => {
+            const currentTarget = $(ev.currentTarget);
+            const id = currentTarget.parents('.item').attr('data-item-id');
+            const locked = currentTarget.data('locked');
+            if (locked) return;
+            const itemsToDelete = [id];
+            // also delete items in tab
+            this.actor.items.forEach((item) => {
+                if (item.type === 'gear' && item.data.data.tab === id)
+                    itemsToDelete.push(item.id);
+            });
+            this.actor.deleteEmbeddedDocuments('Item', itemsToDelete);
+        });
 
         // highlight active encumbrance
         const activeEncumbranceRow = html.find(
@@ -141,35 +153,5 @@ export class TwoDotNealActorSheet extends ActorSheet {
         focusbox.focus();
         focusbox.select();
         return item;
-    }
-
-    _gearTabAdd() {
-        const appendTab = async (html) => {
-            const tabName = html.find('input#identifier')[0].value;
-            const itemData = {
-                name: tabName,
-                type: 'gearTab',
-                data: {name: tabName},
-            };
-            await Item.create(itemData, {parent: this.actor});
-        };
-        new Dialog({
-            title: 'Enter tab identifier',
-            content: `
-                <form>
-                    <div class="form-group">
-                        <label>Enter tab identifer</label>
-                        <input id='identifier' type='text' value='new tab' />
-                    </div>
-                </form>
-            `,
-            buttons: {
-                yes: {
-                    icon: "<i class='fas fa-check'></i>",
-                    label: 'Apply',
-                    callback: (html) => appendTab(html),
-                },
-            },
-        }).render(true);
     }
 }

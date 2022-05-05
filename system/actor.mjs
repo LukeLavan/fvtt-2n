@@ -1153,6 +1153,5 @@ export class TwoDotNealActor extends Actor {
                 currentEncumbrance = 'severe';
         }
         data.data.currentEncumbrance = currentEncumbrance;
-        console.log(currentEncumbrance);
     }
 }

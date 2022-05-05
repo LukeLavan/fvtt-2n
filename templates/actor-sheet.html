@@ -1107,25 +1107,78 @@
         </div>
         <div class="tab gear" data-group="primary" data-tab="gear">
             <div class="gear-top">
-                <table class="gear-top-left">
-                    <tr>
-                        <th>Equipped?</th>
-                        <th>Gear Tab</th>
-                        <th>Weight</th>
-                    </tr>
-                    {{#each actor.data.data.gearTabs}}
-                    <tr class="item" data-item-id="{{this.[0]}}">
-                        <td><input type="checkbox" class="item-toggle" data-value={{this.[1].tab.data.data.equipped}}
-                            data-target="data.equipped" {{#if this.[1].tab.data.data.equipped}}checked{{/if}}/></td>
-                        <td>{{this.[1].tab.name}}</td>
-                        <td>{{this.[1].tab.data.data.weight}}</td>
-                    </tr>
-                    {{/each}}
-                    <tr>
-                        <td colspan="2">Equipped weight</td>
-                        <td>{{actor.data.data.equippedWeight}}</td>
-                    </tr>
-                </table>
+                <div class="gear-top-left">
+                    <table class="itemTable">
+                        <colgroup>
+                            <col>
+                            <col>
+                            <col>
+                            <col>
+                            <col>
+                        </colgroup>
+                        <tr>
+                            <th colspan="5">Gear Tabs</th>
+                        </tr>
+                        <tr>
+                            <th id="gear-top-left-equipped">Equipped?</th>
+                            <th id="gear-top-left-tab">Tab</th>
+                            <th id="gear-top-left-weight">Weight</th>
+                            <th id="gear-top-left-delete"></th>
+                            <th id="gear-top-left-lock"></th>
+                        </tr>
+                        {{#each actor.data.data.gearTabs}}
+                        <tr class="item" data-item-id="{{this.[0]}}">
+                            <td><input type="checkbox" class="item-toggle" data-value={{this.[1].tab.data.data.equipped}}
+                                data-target="data.equipped" {{#if this.[1].tab.data.data.equipped}}checked{{/if}}/></td>
+                            <td>
+                                {{#if this.[1].tab.data.data.locked}}
+                                    {{this.[1].tab.name}}
+                                {{else}}
+                                <input
+                                    type="text"
+                                    class="itemTable-inputText item-edit"
+                                    id="{{this.[0]}}.name"
+                                    name="{{this.[0]}}.name"
+                                    value="{{this.[1].tab.name}}"
+                                    data-target="name"
+                                    data-name=true
+                                >
+                                {{/if}}
+                            </td>
+                            <td>{{this.[1].tab.data.data.weight}}</td>
+                            <td>
+                                <a
+                                    class="item-control tab-delete"
+                                    title="Delete Tab"
+                                    data-locked={{this.[1].tab.data.data.locked}}
+                                >
+                                    <i class="fas fa-trash {{#if this.[1].tab.data.data.locked}} disabled-color {{/if}}"></i>
+                                </a>
+                            </td>
+                            <td>
+                                <a
+                                    class="item-control item-toggle"
+                                    title="Lock Item"
+                                    data-value="{{this.[1].tab.data.data.locked}}"
+                                    data-target="data.locked"
+                                >
+                                    <i class="fas {{#if this.[1].tab.data.data.locked}} fa-lock {{else}} fa-lock-open {{/if}}"></i>
+                                </a>
+                            </td>
+                        </tr>
+                        {{/each}}
+                        <tr>
+                            <td></td>
+                            <td><b>Equipped weight</b></td>
+                            <td><b>{{actor.data.data.equippedWeight}}</b></td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                    </table>
+                    <div class="itemTable-buttons">
+                        <a class="item-create" data-type="gearTab">Add tab <i class="fas fa-plus"></i></a>
+                    </div>
+                </div>
                 <table class="gear-top-right">
                     <tr>
                         <th>Encumbrance</th>
@@ -1164,9 +1217,8 @@
             </div>
             <nav class="gear-tabs tabs" data-group="gear">
                 {{#each actor.data.data.gearTabs}}
-                <a class="item navbar-item" data-tab="{{this.[0]}}" data-group="gear">{{this.[1].tab.data.data.name}}</a>
+                <a class="item navbar-item" data-tab="{{this.[0]}}" data-group="gear">{{this.[1].tab.name}}</a>
                 {{/each}}
-                <a class="item navbar-item" data-tab="+" id="gearTabAdd">+</a>
             </nav>
             <section class="gear-content">
                 {{#each actor.data.data.gearTabs}}
