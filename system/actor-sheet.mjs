@@ -106,11 +106,9 @@ export class TwoDotNealActorSheet extends ActorSheet {
         html.find('#gearTabAdd').click(this._gearTabAdd.bind(this));
 
         // highlight active encumbrance
-        console.log(
-            (html.find(
-                '#encumbrance-' + this.actor.data.data.currentEncumbrance
-            )[0].className = 'encumbranceHighlight')
-        );
+        html.find(
+            '#encumbrance-' + this.actor.data.data.currentEncumbrance
+        )[0].className = 'encumbranceHighlight';
     }
 
     //TODO: better success/failure roll
