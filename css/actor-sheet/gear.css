@@ -8,24 +8,59 @@
     width: 50%;
 }
 
+#gear-top-left-equipped {
+    width: 64px;
+}
+#gear-top-left-weight {
+    width: 64px;
+}
+#gear-top-left-buttons {
+    width: 40px;
+}
+
 .gear-top-right {
     margin: 5px;
     width: 50%;
 }
 
-#gear-top-left-equipped {
-    width: 24px;
-}
-#gear-top-left-weight {
-    width: 64px;
-}
-#gear-top-left-delete {
-    width: 16px;
-}
-#gear-top-left-lock {
-    width: 16px;
+.gear-top-right > table > tbody > tr:last-child > td {
+    border-bottom: thin solid black;
+    border-radius: 5px;
 }
 
 .encumbranceHighlight{
     background-color: #b773ff !important;
+    font-weight: bold;
+}
+
+.gear-tabs {
+    justify-content: center;
+    border-bottom: thin solid black;
+}
+
+.gear-tabs > a {
+    padding-left: 32px;
+    padding-right: 32px;
+    padding-top: 8px;
+
+    margin-bottom: -1px;
+
+    border: thin solid black;
+    border-bottom: none;
+}
+
+.gear-tabs > a.active {
+    border-bottom: none;
+
+    background: url(../../../../ui/parchment.jpg) repeat;
+}
+
+.gearTableVal,
+.gearTableWgt,
+.gearTableQty {
+    width: 32px;
+}
+
+.gearTableButtons{
+    width: 64px;
 }

@@ -1110,7 +1110,9 @@ export class TwoDotNealActor extends Actor {
                     const tab = gearTabs.get(item.data.data.tab);
                     tab.items.push(item);
                     tab.tab.data.data.length += 1;
-                    tab.tab.data.data.weight += Number(item.data.data.weight);
+                    tab.tab.data.data.weight +=
+                        Number(item.data.data.weight) *
+                        Number(item.data.data.quantity);
                 }
         });
 

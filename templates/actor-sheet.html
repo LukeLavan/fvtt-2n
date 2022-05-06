@@ -1114,17 +1114,15 @@
                             <col>
                             <col>
                             <col>
-                            <col>
                         </colgroup>
                         <tr>
                             <th colspan="5">Gear Tabs</th>
                         </tr>
                         <tr>
-                            <th id="gear-top-left-equipped">Equipped?</th>
+                            <th id="gear-top-left-equipped">Equip?</th>
                             <th id="gear-top-left-tab">Tab</th>
                             <th id="gear-top-left-weight">Weight</th>
-                            <th id="gear-top-left-delete"></th>
-                            <th id="gear-top-left-lock"></th>
+                            <th id="gear-top-left-buttons"></th>
                         </tr>
                         {{#each actor.data.data.gearTabs}}
                         <tr class="item" data-item-id="{{this.[0]}}">
@@ -1154,8 +1152,6 @@
                                 >
                                     <i class="fas fa-trash {{#if this.[1].tab.data.data.locked}} disabled-color {{/if}}"></i>
                                 </a>
-                            </td>
-                            <td>
                                 <a
                                     class="item-control item-toggle"
                                     title="Lock Item"
@@ -1172,48 +1168,49 @@
                             <td><b>Equipped weight</b></td>
                             <td><b>{{actor.data.data.equippedWeight}}</b></td>
                             <td></td>
-                            <td></td>
                         </tr>
                     </table>
                     <div class="itemTable-buttons">
                         <a class="item-create" data-type="gearTab">Add tab <i class="fas fa-plus"></i></a>
                     </div>
                 </div>
-                <table class="gear-top-right">
-                    <tr>
-                        <th>Encumbrance</th>
-                    </tr>
-                    <tr>
-                        <th></th>
-                        <th>Weight</th>
-                        <th>Speed Mod</th>
-                    </tr>
-                    <tr id="encumbrance-base">
-                        <td>Base</td>
-                        <td>{{actor.data.data.weightLimits.base}}</td>
-                        <td>{{actor.data.data.speedLevels.base}}</td>
-                    </tr>
-                    <tr id="encumbrance-light">
-                        <td>Light</td>
-                        <td>{{actor.data.data.weightLimits.light}}</td>
-                        <td>{{actor.data.data.speedLevels.light}}</td>
-                    </tr>
-                    <tr id="encumbrance-medium">
-                        <td>Medium</td>
-                        <td>{{actor.data.data.weightLimits.medium}}</td>
-                        <td>{{actor.data.data.speedLevels.medium}}</td>
-                    </tr>
-                    <tr id="encumbrance-heavy">
-                        <td>Heavy</td>
-                        <td>{{actor.data.data.weightLimits.heavy}}</td>
-                        <td>{{actor.data.data.speedLevels.heavy}}</td>
-                    </tr>
-                    <tr id="encumbrance-severe">
-                        <td>Severe</td>
-                        <td>{{actor.data.data.weightLimits.severe}}</td>
-                        <td>{{actor.data.data.speedLevels.severe}}</td>
-                    </tr>
-                </table>
+                <div class="gear-top-right">
+                    <table class="itemTable">
+                        <tr>
+                            <th colspan="3">Encumbrance</th>
+                        </tr>
+                        <tr>
+                            <th></th>
+                            <th>Weight</th>
+                            <th>Speed Mod</th>
+                        </tr>
+                        <tr id="encumbrance-base">
+                            <td>Base</td>
+                            <td>{{actor.data.data.weightLimits.base}}</td>
+                            <td>{{actor.data.data.speedLevels.base}}</td>
+                        </tr>
+                        <tr id="encumbrance-light">
+                            <td>Light</td>
+                            <td>{{actor.data.data.weightLimits.light}}</td>
+                            <td>{{actor.data.data.speedLevels.light}}</td>
+                        </tr>
+                        <tr id="encumbrance-medium">
+                            <td>Medium</td>
+                            <td>{{actor.data.data.weightLimits.medium}}</td>
+                            <td>{{actor.data.data.speedLevels.medium}}</td>
+                        </tr>
+                        <tr id="encumbrance-heavy">
+                            <td>Heavy</td>
+                            <td>{{actor.data.data.weightLimits.heavy}}</td>
+                            <td>{{actor.data.data.speedLevels.heavy}}</td>
+                        </tr>
+                        <tr id="encumbrance-severe">
+                            <td>Severe</td>
+                            <td>{{actor.data.data.weightLimits.severe}}</td>
+                            <td>{{actor.data.data.speedLevels.severe}}</td>
+                        </tr>
+                    </table>
+                </div>
             </div>
             <nav class="gear-tabs tabs" data-group="gear">
                 {{#each actor.data.data.gearTabs}}
@@ -1227,24 +1224,15 @@
                     <input type="checkbox" class="item-toggle" data-value={{this.[1].tab.data.data.equipped}}
                     data-target="data.equipped" {{#if this.[1].tab.data.data.equipped}}checked{{/if}}/>
                     <br />
-                    <a
-                        class="item-create"
-                        data-type="gear"
-                        data-tab="{{this.[0]}}"
-                    >
-                        <i class="fas fa-plus"></i> Add item
-                    </a>
-                    <div>
-                        <table>
+                    <div class="gearTable">
+                        <table class="itemTable">
                             <thead>
                                 <tr>
-                                    <th>Qty</th>
-                                    <th>Name</th>
-                                    <th>Wgt</th>
-                                    <th>Val</th>
-                                    <th>Notes</th>
-                                    <th>Delete</th>
-                                    <th>Lock</th>
+                                    <th class="gearTableQty">Qty</th>
+                                    <th class="gearTableName">Name</th>
+                                    <th class="gearTableWgt">Wgt</th>
+                                    <th class="gearTableVal">Val</th>
+                                    <th class="gearTableButtons"></th>
                                 </tr>
                             </thead>
                             <tbody class="item-list">
@@ -1303,8 +1291,6 @@
                                         >
                                             <i class="fas fa-book"></i>
                                         </a>
-                                    </td>
-                                    <td>
                                         <a
                                             class="item-control item-delete"
                                             title="Delete Item"
@@ -1312,8 +1298,6 @@
                                         >
                                             <i class="fas fa-trash {{#if this.data.data.locked}} disabled-color {{/if}}"></i>
                                         </a>
-                                    </td>
-                                    <td>
                                         <a
                                             class="item-control item-toggle"
                                             title="Lock Item"
@@ -1327,6 +1311,15 @@
                                 {{/each}}
                             </tbody>
                         </table>
+                        <div class="itemTable-buttons">
+                            <a
+                                class="item-create"
+                                data-type="gear"
+                                data-tab="{{this.[0]}}"
+                            >
+                                <i class="fas fa-plus"></i> Add item
+                            </a>
+                        </div>
                     </div>
                 </div>
                 {{/each}}
