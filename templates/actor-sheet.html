@@ -3,6 +3,7 @@
         <a class="item navbar-item" data-tab="basic" data-group="primary">BASIC</a>
         <a class="item navbar-item" data-tab="combat" data-group="primary">COMBAT</a>
         <a class="item navbar-item" data-tab="gear" data-group="primary">GEAR</a>
+        <a class="item navbar-item" data-tab="skills" data-group="primary">SKILLS</a>
     </nav>
     <section class="primary-content">
         <div class="tab basic" data-group="primary" data-tab="basic">
@@ -1327,6 +1328,161 @@
                     click the '+' to add tabs
                 </div>
             </section>
+        </div>
+        <div class="tab skills" data-group="primary" data-tab="skills">
+            <div class="skills-top">
+                <table class="itemTable">
+                    <tr>
+                        <th colspan="6">Non-Weapon Proficiencies</th>
+                    </tr>
+                    <tr>
+                        <th>Name</th>
+                        <th>Stat</th>
+                        <th>Base</th>
+                        <th>Adjust</th>
+                        <th>Total</th>
+                        <th></th>
+                    </tr>
+                    {{#each actor.data.items}}
+                    {{#if (eq this.type "nonWeaponProficiency")}}
+                    <tr class="item" data-item-id={{this.id}}>
+                        <td>
+                            <input
+                                type="text"
+                                class="itemTable-inputText item-edit"
+                                id="{{this.id}}.name"
+                                name="{{this.id}}.name"
+                                value="{{this.name}}"
+                                data-target="name"
+                                data-name=true
+                                {{#if this.data.data.locked}}disabled{{/if}}
+                            >
+                        </td>
+                        <td>
+                            <select
+                                class="item-edit"
+                                data-target="data.stat"
+                                {{#if this.data.data.locked}}disabled{{/if}}
+                            >
+                                {{selectOptions @root.statChoices selected=this.data.data.stat}}
+                            </select>
+                        </td>
+                        <td>
+                            <input
+                                type="number"
+                                class="itemTable-inputNum item-edit"
+                                id="{{this.id}}.base"
+                                name="{{this.id}}.base"
+                                value="{{this.data.data.base}}"
+                                data-target="data.base"
+                                {{#if this.data.data.locked}}disabled{{/if}}
+                            >
+                        </td>
+                        <td>
+                            <input
+                                type="number"
+                                class="itemTable-inputNum item-edit"
+                                id="{{this.id}}.adjust"
+                                name="{{this.id}}.adjust"
+                                value="{{this.data.data.adjust}}"
+                                data-target="data.adjust"
+                                {{#if this.data.data.locked}}disabled{{/if}}
+                            >
+                        </td>
+                        <td>
+                            <span
+                                class="rollable rollSpan"
+                                data-roll="d20cs>=(20-{{this.data.data.total}})"
+                                data-label="{{this.name}} Check"
+                            >
+                                {{this.data.data.total}}
+                            </span>
+                        </td>
+                        <td>
+                            <a
+                                class="item-control item-delete"
+                                title="Delete Item"
+                                data-locked={{this.data.data.locked}}
+                            >
+                                <i class="fas fa-trash {{#if this.data.data.locked}} disabled-color {{/if}}"></i>
+                            </a>
+                            <a
+                                class="item-control item-toggle"
+                                title="Lock Item"
+                                data-value={{this.data.data.locked}}
+                                data-target="data.locked"
+                            >
+                                <i class="fas {{#if this.data.data.locked}} fa-lock {{else}} fa-lock-open {{/if}}"></i>
+                            </a>
+                        </td>
+                    </tr>
+                    {{/if}}
+                    {{/each}}
+                </table>
+                <div class="itemTable-buttons">
+                    <a class="item-create" data-type="nonWeaponProficiency"><i class="fas fa-plus"></i> Add non-weapon proficiency</a>
+                </div>
+            </div>
+            <div class="skills-mid">
+                <table class="itemTable">
+                    <tr>
+                        <th colspan="3">Weapon Proficiencies</th>
+                    </tr>
+                    <tr>
+                        <th>Name</th>
+                        <th>Slots</th>
+                        <th></th>
+                    </tr>
+                    {{#each actor.data.items}}
+                    {{#if (eq this.type "weaponProficiency")}}
+                    <tr class="item" data-item-id="{{this.id}}">
+                        <td>
+                            <input
+                                type="text"
+                                class="itemTable-inputText item-edit"
+                                id="{{this.id}}.name"
+                                name="{{this.id}}.name"
+                                value="{{this.data.data.name}}"
+                                data-target="data.name"
+                                data-name=true
+                                {{#if this.data.data.locked}}disabled{{/if}}
+                            />
+                        </td>
+                        <td>
+                            <input
+                                type="number"
+                                class="itemTable-inputNum item-edit"
+                                name="{{this.id}}.base"
+                                value="{{this.data.data.base}}"
+                                data-target="data.base"
+                                {{#if this.data.data.locked}}disabled{{/if}}
+                            >
+                        </td>
+                        <td>
+                            <a
+                                class="item-control item-delete"
+                                title="Delete Item"
+                                data-locked={{this.data.data.locked}}
+                            >
+                                <i class="fas fa-trash {{#if this.data.data.locked}} disabled-color {{/if}}"></i>
+                            </a>
+                            <a
+                                class="item-control item-toggle"
+                                title="Lock Item"
+                                data-value={{this.data.data.locked}}
+                                data-target="data.locked"
+                            >
+                                <i class="fas {{#if this.data.data.locked}} fa-lock {{else}} fa-lock-open {{/if}}"></i>
+                            </a>
+                        </td>
+                    </tr>
+                    {{/if}}
+                    {{/each}}
+                </table>
+                <div class="itemTable-buttons">
+                    <a class="item-create" data-type="weaponProficiency"><i class="fas fa-plus"></i> Add weapon proficiency</a>
+                </div>
+            </div>
         </div>
     </section>
 </form>

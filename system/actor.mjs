@@ -1105,7 +1105,7 @@ export class TwoDotNealActor extends Actor {
                 });
                 item.data.data.length = 0;
                 item.data.data.weight = 0;
-            } else if (item.type === 'gear')
+            } else if (item.type === 'gear') {
                 if (gearTabs.has(item.data.data.tab)) {
                     const tab = gearTabs.get(item.data.data.tab);
                     tab.items.push(item);
@@ -1114,6 +1114,9 @@ export class TwoDotNealActor extends Actor {
                         Number(item.data.data.weight) *
                         Number(item.data.data.quantity);
                 }
+            } else if (item.type === 'nonWeaponProficiency')
+                item.data.data.total =
+                    Number(item.data.data.base) + Number(item.data.data.adjust);
         });
 
         data.data.gearTabs = gearTabs;

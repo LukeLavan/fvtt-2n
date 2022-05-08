@@ -1,0 +1,9 @@
+.rollSpan {
+    display: inline-flex;
+    width: 2em;
+    height: var(--form-field-height);
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+    border: thin solid black;
+}

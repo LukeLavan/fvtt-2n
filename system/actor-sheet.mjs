@@ -53,6 +53,17 @@ export class TwoDotNealActorSheet extends ActorSheet {
             d10: 'd10',
             d12: 'd12',
         };
+
+        context.statChoices = {
+            None: 'None',
+            STR: 'STR',
+            DEX: 'DEX',
+            CON: 'CON',
+            INT: 'INT',
+            WIS: 'WIS',
+            CHA: 'CHA',
+            PER: 'PER',
+        };
     }
 
     activateListeners(html) {

@@ -67,7 +67,7 @@
     }
   },
   "Item": {
-    "types": ["throwMod", "acMod", "hitMod", "gearTab", "gear"],
+    "types": ["throwMod", "acMod", "hitMod", "gearTab", "gear", "nonWeaponProficiency", "weaponProficiency"],
     "templates": {
       "base": {
         "name": "",
@@ -108,12 +108,22 @@
     },
     "gear": {
       "templates": ["base"],
-      "description": "",
       "weight": 0,
       "value": 0,
       "quantity": 1,
       "tab": "",
       "index": 0
+    },
+    "nonWeaponProficiency": {
+      "templates": ["base"],
+      "stat": "None",
+      "base": 0,
+      "adjust": 0,
+      "total": 0
+    },
+    "weaponProficiency": {
+      "templates": ["base"],
+      "slots": 0
     }
   }
 }
