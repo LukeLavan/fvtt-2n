@@ -110,6 +110,12 @@ export class TwoDotNealActorSheet extends ActorSheet {
             this.actor.deleteEmbeddedDocuments('Item', [id]);
         });
 
+        html.find('.item-open').click((ev) => {
+            const currentTarget = $(ev.currentTarget);
+            const id = currentTarget.parents('.item').attr('data-item-id');
+            this.actor.data.items.get(id).sheet.render(true);
+        });
+
         html.find('.tab-delete').click((ev) => {
             const currentTarget = $(ev.currentTarget);
             const id = currentTarget.parents('.item').attr('data-item-id');
