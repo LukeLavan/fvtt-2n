@@ -3,28 +3,33 @@
     flex-direction: row;
 }
 
-.basic-top > table > tbody > tr:hover {
-    background-color: #DDDDDD;
+.basic-top > table {
+    border: none;
+}
+
+.basic-top-alignment {
+    width: 100%;
 }
 
 .basic-mid {
     display: flex;
 }
 
-.basic-mid > table {
+.basic-mid-stats {
     width: fit-content;
+    border: none;
 }
 
-.basic-mid > table > tbody > tr {
+.basic-mid-stats > tbody > tr {
     height: 60px;
 }
 
-.basic-mid > table > tbody > tr > td {
+.basic-mid-stats > tbody > tr > td {
     font-size: x-large;
 }
 
 /* ability score input */
-.basic-mid > table > tbody > tr > td > input {
+.basic-mid-stats > tbody > tr > td > input {
     width: 2rem;
     text-align: center;
 }
@@ -34,14 +39,18 @@
     margin-top: 0.5em;
 }
 
-.derived-row {
+.basic-derivedRow {
     display: flex;
     text-align: center;
     height: 60px;
 }
 
+.basic-derivedRow-altColor {
+    background-color: rgba(0,0,0,0.05);
+}
+
 /* derived entry */
-.derived-row > div {
+.basic-derivedRow > div {
     flex: 1;
     border: thin solid black;
     border-radius: 5px;
@@ -49,10 +58,6 @@
     margin-bottom: 5px;
     margin-top: 5px;
     position: relative;
-}
-
-.derived-row > div:hover:not(.rollable) {
-    background-color: #DDDDDD;
 }
 
 .derived-label {

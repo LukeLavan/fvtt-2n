@@ -5,7 +5,7 @@
 
 .gear-top-left {
     margin: 5px;
-    width: 50%;
+    width: 70%;
 }
 
 #gear-top-left-equipped {
@@ -20,7 +20,7 @@
 
 .gear-top-right {
     margin: 5px;
-    width: 50%;
+    width: 30%;
 }
 
 .gear-top-right > table > tbody > tr:last-child > td {
@@ -29,7 +29,7 @@
 }
 
 .encumbranceHighlight{
-    background-color: #b773ff !important;
+    background-color: #73c5ff !important;
     font-weight: bold;
 }
 

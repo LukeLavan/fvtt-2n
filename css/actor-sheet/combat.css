@@ -7,7 +7,7 @@
 
 .combat-top {
     display: flex;
-    justify-content: center;
+    justify-content: space-evenly;
 }
 
 .combat-top > div {
@@ -109,6 +109,10 @@
 
 .combat-mid-throws > tbody > tr:first-child > th {
     border-bottom: thin solid black;
+}
+
+.combat-mid-throws > tbody > tr > td:first-child {
+    width: 100px;
 }
 
 .combat-mid-throws-value {
