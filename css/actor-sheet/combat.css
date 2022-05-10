@@ -72,6 +72,26 @@
     padding: 0px 5px 5px 5px;
 }
 
+.weapon-damage {
+    width: 64px;
+}
+
+.weapon-range {
+    width: 128px;
+}
+
+.weapon-roll-td {
+    width: 32px;
+}
+
+.weapon-roll {
+    display: inline-block;
+    width: 16px;
+    height: 16px;
+    border: thin solid black;
+    border-radius: 8px;
+}
+
 .combat-mid {
     display: flex;
     justify-content: center;
@@ -79,6 +99,7 @@
 
 .combat-mid-throws {
     width: 150px;
+    height: 200px;
     border: thin solid black;
     border-radius: 5px;
     border-collapse: separate;

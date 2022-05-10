@@ -67,7 +67,7 @@
     }
   },
   "Item": {
-    "types": ["throwMod", "acMod", "hitMod", "gearTab", "gear", "nonWeaponProficiency", "weaponProficiency"],
+    "types": ["throwMod", "acMod", "hitMod", "gearTab", "gear", "nonWeaponProficiency", "weaponProficiency", "weapon"],
     "templates": {
       "base": {
         "name": "",
@@ -124,6 +124,17 @@
     "weaponProficiency": {
       "templates": ["base"],
       "slots": 0
+    },
+    "weapon": {
+      "templates": ["base"],
+      "numAttacks": 1,
+      "toHit": 0,
+      "damageDie": "d6",
+      "toDamage": 0,
+      "range": "",
+      "attackType": "",
+      "damageType": "",
+      "speed": 0
     }
   }
 }

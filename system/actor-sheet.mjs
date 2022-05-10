@@ -64,6 +64,19 @@ export class TwoDotNealActorSheet extends ActorSheet {
             CHA: 'CHA',
             PER: 'PER',
         };
+
+        context.attackTypeChoices = {
+            '': '',
+            Melee: 'Melee',
+            Missile: 'Missile',
+            Thrown: 'Thrown',
+        };
+
+        context.damageTypeChoices = {
+            Bludgeoning: 'Bludgeoning',
+            Slashing: 'Slashing',
+            Piercing: 'Piercing',
+        };
     }
 
     activateListeners(html) {
