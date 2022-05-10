@@ -70,7 +70,6 @@
     "types": ["throwMod", "acMod", "hitMod", "gearTab", "gear", "nonWeaponProficiency", "weaponProficiency", "weapon"],
     "templates": {
       "base": {
-        "name": "",
         "locked": false
       },
       "mod": {
