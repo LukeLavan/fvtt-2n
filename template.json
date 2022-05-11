@@ -59,6 +59,15 @@
         "melee": 0,
         "missile": 0,
         "thrown": 0
+      },
+      "settings": {
+        "sheetToggle": {
+          "basic": true,
+          "combat": true,
+          "gear": true,
+          "skills": true,
+          "spells": false
+        }
       }
     },
     "npc": {

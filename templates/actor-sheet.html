@@ -1,9 +1,21 @@
 <form class="{{cssClass}}" autocomplete="off">
     <nav class="primary-tabs tabs" data-group="primary">
+        {{#if this.data.data.settings.sheetToggle.basic}}
         <a class="item navbar-item" data-tab="basic" data-group="primary">BASIC</a>
+        {{/if}}
+        {{#if this.data.data.settings.sheetToggle.combat}}
         <a class="item navbar-item" data-tab="combat" data-group="primary">COMBAT</a>
+        {{/if}}
+        {{#if this.data.data.settings.sheetToggle.gear}}
         <a class="item navbar-item" data-tab="gear" data-group="primary">GEAR</a>
+        {{/if}}
+        {{#if this.data.data.settings.sheetToggle.skills}}
         <a class="item navbar-item" data-tab="skills" data-group="primary">SKILLS</a>
+        {{/if}}
+        {{#if this.data.data.settings.sheetToggle.spells}}
+        <a class="item navbar-item" data-tab="spells" data-group="primary">SPELLS</a>
+        {{/if}}
+        <a class="item navbar-item" data-tab="settings" data-group="primary">SETTINGS</a>
     </nav>
     <section class="primary-content">
         <div class="tab basic" data-group="primary" data-tab="basic">
@@ -1657,6 +1669,62 @@
                 </table>
                 <div class="itemTable-buttons">
                     <a class="item-create" data-type="weaponProficiency"><i class="fas fa-plus"></i> Add weapon proficiency</a>
+                </div>
+            </div>
+        </div>
+        <div class="tab spells" data-group="primary" data-tab="spells">
+            todo
+        </div>
+        <div class="tab settings settings-list" data-group="primary" data-tab="settings">
+            <h2 class="module-header">Character Sheet Settings</h2>
+            <div class="form-group">
+                <label>Show Basic Tab</label>
+                <div class="form-fields">
+                    <input
+                        type="checkbox"
+                        name="data.settings.sheetToggle.basic"
+                        {{checked this.data.data.settings.sheetToggle.basic}}
+                    >
+                </div>
+            </div>
+            <div class="form-group">
+                <label>Show Combat Tab</label>
+                <div class="form-fields">
+                    <input
+                        type="checkbox"
+                        name="data.settings.sheetToggle.combat"
+                        {{checked this.data.data.settings.sheetToggle.combat}}
+                    >
+                </div>
+            </div>
+            <div class="form-group">
+                <label>Show Gear Tab</label>
+                <div class="form-fields">
+                    <input
+                        type="checkbox"
+                        name="data.settings.sheetToggle.gear"
+                        {{checked this.data.data.settings.sheetToggle.gear}}
+                    >
+                </div>
+            </div>
+            <div class="form-group">
+                <label>Show Skills Tab</label>
+                <div class="form-fields">
+                    <input
+                        type="checkbox"
+                        name="data.settings.sheetToggle.skills"
+                        {{checked this.data.data.settings.sheetToggle.skills}}
+                    >
+                </div>
+            </div>
+            <div class="form-group">
+                <label>Show Spells Tab</label>
+                <div class="form-fields">
+                    <input
+                        type="checkbox"
+                        name="data.settings.sheetToggle.spells"
+                        {{checked this.data.data.settings.sheetToggle.spells}}
+                    >
                 </div>
             </div>
         </div>
