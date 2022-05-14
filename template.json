@@ -168,7 +168,16 @@
       "name": "",
       "length": 0,
       "weight": 0,
-      "equipped": false
+      "equipped": false,
+      "wealth": {
+        "weight": 0,
+        "copper": 0,
+        "silver": 0,
+        "gold": 0,
+        "platinum": 0,
+        "mithril": 0,
+        "iron": 0
+      }
     },
     "gear": {
       "templates": ["base"],

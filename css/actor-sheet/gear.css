@@ -55,6 +55,60 @@
     background: url(../../../../ui/parchment.jpg) repeat;
 }
 
+.gear-tab-wrap {
+    display: flex;
+    flex-direction: row;
+}
+
+.gear-tab-items {
+    width: 80%;
+    margin-left: 5%;
+    margin-right: 2%;
+}
+
+.gear-tab-wealth {
+    margin-left: 2%;
+    margin-right: 5%;
+}
+
+.gear-tab-wealth-table {
+    border-collapse: separate;
+    border-spacing: 0;
+    border-top: none !important;
+    border-bottom: none !important;
+}
+
+.gear-tab-wealth-table-top {
+    border-top: thin solid black;
+    border-left: thin solid black;
+    border-right: thin solid black;
+    border-radius: 5px 5px 0 0;
+}
+
+.gear-tab-wealth-table-left {
+    border-left: thin solid black;
+}
+
+.gear-tab-wealth-table-right {
+    border-right: thin solid black;
+}
+
+.gear-tab-wealth-table-bottomLeft {
+    border-bottom: thin solid black;
+    border-left: thin solid black;
+    border-radius: 0 0 0 5px;
+}
+
+.gear-tab-wealth-table-bottomRight {
+    border-bottom: thin solid black;
+    border-right: thin solid black;
+    border-radius: 0 0 5px 0;
+}
+
+.gear-wealth-inputNum {
+    width: 4em !important;
+}
+
 .gearTableVal,
 .gearTableWgt,
 .gearTableQty {

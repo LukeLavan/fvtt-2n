@@ -1104,8 +1104,20 @@ export class TwoDotNealActor extends Actor {
                     tab: item,
                     items: [],
                 });
+
+                // TODO: configurable coin weight(s)
+                const wealth = item.data.data.wealth;
+                wealth.weight =
+                    (2 * wealth.copper +
+                        2 * wealth.silver +
+                        2 * wealth.gold +
+                        2 * wealth.platinum +
+                        2 * wealth.mithril +
+                        2 * wealth.iron) /
+                    100;
+
                 item.data.data.length = 0;
-                item.data.data.weight = 0;
+                item.data.data.weight = wealth.weight;
             } else if (item.type === 'gear') {
                 if (gearTabs.has(item.data.data.tab)) {
                     const tab = gearTabs.get(item.data.data.tab);
