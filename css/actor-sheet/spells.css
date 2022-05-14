@@ -1,0 +1,18 @@
+.spells-tables {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
+.spells-tables > div {
+    width: 45%;
+    margin: 2.5%;
+}
+
+.spells-component {
+    color: lightgray;
+}
+
+.spells-component.enabled {
+    color: black;
+}

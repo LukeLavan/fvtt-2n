@@ -1673,7 +1673,88 @@
             </div>
         </div>
         <div class="tab spells" data-group="primary" data-tab="spells">
-            todo
+            <div class="spells-tables">
+                {{#each data.data.spellTabs}}
+                <div class="spells-{{this.level}}">
+                    <table class="itemTable">
+                        <tr>
+                            <th colspan="4">{{this.level}}{{this.suffix}} level spells</th>
+                        </tr>
+                        <tr>
+                            <th>Casts</th>
+                            <th colspan="2">
+                                Spell Slots
+                                <input
+                                    type="number"
+                                    class="itemTable-inputNum"
+                                    value="{{this.slots}}"
+                                    name="data.spellTabs.{{@key}}.slots"
+                                >
+                            </th>
+                            <th></th>
+                        </tr>
+                        {{#each this.spells}}
+                        <tr class="item" data-item-id="{{this.id}}">
+                            <td>
+                                <input
+                                    type="number"
+                                    class="itemTable-inputNum item-edit"
+                                    name="{{this.id}}.casts"
+                                    value="{{this.data.data.casts}}"
+                                    data-target="data.casts"
+                                    {{#if this.data.data.locked}}disabled{{/if}}
+                                >
+                            </td>
+                            <td>
+                                <input
+                                    type="text"
+                                    class="itemTable-inputText item-edit"
+                                    id="{{this.id}}.name"
+                                    name="{{this.id}}.name"
+                                    value="{{this.name}}"
+                                    data-target="name"
+                                    data-name=true
+                                    {{#if this.data.data.locked}}disabled{{/if}}
+                                />
+                            </td>
+                            <td>
+                                <i title="Verbal" class="spells-component {{#if this.data.data.verbal}}enabled{{/if}}">V</i>
+                                <i title="Somatic" class="spells-component {{#if this.data.data.somatic}}enabled{{/if}}">S</i>
+                                <i title="Material" class="spells-component {{#if this.data.data.material}}enabled{{/if}}">M</i>
+                            </td>
+                            <td>
+                                <a
+                                    class="item-delete"
+                                    title="Delete Item"
+                                    data-locked={{this.data.data.locked}}
+                                >
+                                    <i class="fas fa-trash {{#if this.data.data.locked}} disabled-color {{/if}}"></i>
+                                </a>
+                                <a
+                                    class="item-toggle"
+                                    title="Lock Item"
+                                    data-value={{this.data.data.locked}}
+                                    data-target="data.locked"
+                                >
+                                    <i class="fas {{#if this.data.data.locked}} fa-lock {{else}} fa-lock-open {{/if}}"></i>
+                                </a>
+                                <a
+                                    class="item-open"
+                                    title="View Item Notes"
+                                    data-locked="{{this.data.data.locked}}"
+                                >
+                                    <i class="fas fa-book"></i>
+                                </a>
+                            </td>
+                        </tr>
+                        {{/each}}
+                    </table>
+                    <div class="itemTable-buttons">
+                        <a class="item-create" data-type="spell" data-level="{{this.level}}"><i class="fas fa-plus"></i> Add {{this.level}}{{this.suffix}} level spell</a>
+                    </div>
+                </div>
+                {{/each}}
+            </div>
         </div>
         <div class="tab settings settings-list" data-group="primary" data-tab="settings">
             <h2 class="module-header">Character Sheet Settings</h2>

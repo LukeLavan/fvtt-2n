@@ -68,6 +68,62 @@
           "skills": true,
           "spells": false
         }
+      },
+      "spellTabs": {
+        "1": {
+          "level": 1,
+          "suffix": "st",
+          "slots": 0,
+          "spells": []
+        },
+        "2": {
+          "level": 2,
+          "suffix": "nd",
+          "slots": 0,
+          "spells": []
+        },
+        "3": {
+          "level": 3,
+          "suffix": "rd",
+          "slots": 0,
+          "spells": []
+        },
+        "4": {
+          "level": 4,
+          "suffix": "th",
+          "slots": 0,
+          "spells": []
+        },
+        "5": {
+          "level": 5,
+          "suffix": "th",
+          "slots": 0,
+          "spells": []
+        },
+        "6": {
+          "level": 6,
+          "suffix": "th",
+          "slots": 0,
+          "spells": []
+        },
+        "7": {
+          "level": 7,
+          "suffix": "th",
+          "slots": 0,
+          "spells": []
+        },
+        "8": {
+          "level": 8,
+          "suffix": "th",
+          "slots": 0,
+          "spells": []
+        },
+        "9": {
+          "level": 9,
+          "suffix": "th",
+          "slots": 0,
+          "spells": []
+        }
       }
     },
     "npc": {
@@ -76,7 +132,7 @@
     }
   },
   "Item": {
-    "types": ["throwMod", "acMod", "hitMod", "gearTab", "gear", "nonWeaponProficiency", "weaponProficiency", "weapon"],
+    "types": ["throwMod", "acMod", "hitMod", "gearTab", "gear", "nonWeaponProficiency", "weaponProficiency", "weapon", "spell"],
     "templates": {
       "base": {
         "locked": false
@@ -143,6 +199,14 @@
       "attackType": "",
       "damageType": "",
       "speed": 0
+    },
+    "spell": {
+      "templates": ["base"],
+      "level": 1,
+      "casts": "",
+      "verbal": true,
+      "somatic": true,
+      "material": false
     }
   }
 }

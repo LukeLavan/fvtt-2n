@@ -3,6 +3,7 @@
 @import url('actor-sheet/combat.css');
 @import url('actor-sheet/gear.css');
 @import url('actor-sheet/skills.css');
+@import url('actor-sheet/spells.css');
 
 /* tools */
 @import url('tools/itemTable.css');

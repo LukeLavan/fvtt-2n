@@ -1096,6 +1096,7 @@ export class TwoDotNealActor extends Actor {
 
     _preparePCDerivedDataItems(data) {
         const gearTabs = new Map();
+        const spellTabs = data.data.spellTabs;
 
         data.items.forEach((item) => {
             if (item.type === 'gearTab') {
@@ -1117,6 +1118,8 @@ export class TwoDotNealActor extends Actor {
             } else if (item.type === 'nonWeaponProficiency')
                 item.data.data.total =
                     Number(item.data.data.base) + Number(item.data.data.adjust);
+            else if (item.type === 'spell')
+                spellTabs[item.data.data.level].spells.push(item);
         });
 
         data.data.gearTabs = gearTabs;
