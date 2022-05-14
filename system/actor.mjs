@@ -1158,20 +1158,28 @@ export class TwoDotNealActor extends Actor {
         data.data.speedLevels = speedLevels;
 
         // determine which encumbrance category currently applies
-        let currentEncumbrance = '';
+        let currentEncumbrance;
+        let speedMod;
         const weightLimits = data.data.weightLimits;
         if (weightLimits) {
-            if (equippedWeight <= weightLimits.base)
+            if (equippedWeight <= weightLimits.base) {
                 currentEncumbrance = 'base';
-            else if (equippedWeight <= weightLimits.light)
+                speedMod = speedLevels.base;
+            } else if (equippedWeight <= weightLimits.light) {
                 currentEncumbrance = 'light';
-            else if (equippedWeight <= weightLimits.medium)
+                speedMod = speedLevels.light;
+            } else if (equippedWeight <= weightLimits.medium) {
                 currentEncumbrance = 'medium';
-            else if (equippedWeight <= weightLimits.heavy)
+                speedMod = speedLevels.medium;
+            } else if (equippedWeight <= weightLimits.heavy) {
                 currentEncumbrance = 'heavy';
-            else if (equippedWeight <= weightLimits.severe)
+                speedMod = speedLevels.heavy;
+            } else if (equippedWeight <= weightLimits.severe) {
                 currentEncumbrance = 'severe';
+                speedMod = speedLevels.severe;
+            }
         }
         data.data.currentEncumbrance = currentEncumbrance;
+        data.data.speedMod = speedMod;
     }
 }

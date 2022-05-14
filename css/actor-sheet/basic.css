@@ -11,6 +11,20 @@
     width: 100%;
 }
 
+.basic-top-speedMod {
+    display: inline-block;
+    width: 2em;
+    line-height: var(--form-field-height);
+    text-align: center;
+
+    border: thin solid black;
+    border-radius: 5px;
+
+    background-color: #73c5ff;
+
+    margin-left: 1em;
+}
+
 .basic-mid {
     display: flex;
 }
