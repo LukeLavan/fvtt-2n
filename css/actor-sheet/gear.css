@@ -66,6 +66,10 @@
     margin-right: 2%;
 }
 
+.gear-tab-items-value {
+    width: 6em !important;
+}
+
 .gear-tab-wealth {
     margin-left: 2%;
     margin-right: 5%;
