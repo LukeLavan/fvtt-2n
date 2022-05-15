@@ -16,6 +16,10 @@ This FoundryVTT system is my humble attempt to bring 2.Neal into Foundry. Please
 - compendium with 2.Neal items and spells
 - other useful things
 
+# installation
+
+manifest url: https://github.com/LukeLavan/fvtt-2neal/releases/latest/download/system.json
+
 # contributing
 
 Please open issues with suggestions, bug reports, etc!
