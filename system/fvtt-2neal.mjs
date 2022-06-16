@@ -1,6 +1,9 @@
 import {TwoDotNealActor} from './actor.mjs';
 import {TwoDotNealActorSheet} from './actor-sheet.mjs';
 
+import {TwoDotNealItem} from './item.mjs';
+import {TwoDotNealItemSheet} from './item-sheet.mjs';
+
 /* console.log Handlebars helper */
 Handlebars.registerHelper('log', (x) => console.log(x));
 
@@ -14,7 +17,7 @@ Hooks.once('init', async function () {
     };
 
     CONFIG.Actor.documentClass = TwoDotNealActor;
-    //CONFIG.Item.documentClass = TwoDotNealItem;
+    CONFIG.Item.documentClass = TwoDotNealItem;
     //CONFIG.Token.documentClass = TwoDotNealTokenDocument;
     //CONFIG.Token.objectClass = TwoDotNealToken;
 
@@ -22,14 +25,14 @@ Hooks.once('init', async function () {
     Actors.registerSheet('fvtt-2neal', TwoDotNealActorSheet, {
         makeDefault: true,
     });
-    //Actors.unregisterSheet('core', ItemSheet);
-    //Actors.registerSheet('fvtt-2neal', TwoDotNealItemSheet, {
-    //    makeDefault: true,
-    //});
+    Items.unregisterSheet('core', ItemSheet);
+    Items.registerSheet('fvtt-2neal', TwoDotNealItemSheet, {
+        makeDefault: true,
+    });
 
     game.settings.register('fvtt-2neal', 'createItemTypesHidden', {
         name: 'Hidden Item Types',
-        hint: 'Hides items in create item dialog',
+        hint: 'Hides items in create item dialog (comma separated list)',
         scope: 'client',
         config: true,
         type: String,
@@ -53,23 +56,17 @@ Hooks.on('renderChatMessage', function (message) {
 // restrict types of 'create new item' dialog
 Hooks.on('renderDialog', function (dialog, html) {
     if (dialog.data.title === 'Create New Item') {
-        let content = html[0].innerHTML;
         const types = game.settings
             .get('fvtt-2neal', 'createItemTypesHidden')
+            .replaceAll(' ', '')
             .split(',');
-
-        // remove selected attribute
-        content = content.replace(' selected=""', '');
-
-        // remove options
-        types.map((type) => {
-            type = type.trim();
-            content = content.replace(
-                '<option value="' + type + '">' + type + '</option>',
-                ''
-            );
-        });
-
-        html[0].innerHTML = content;
+        const select = html.find('select')[0];
+        for (let i = 0; i < select.length; ++i) {
+            const option = select[i];
+            if (types.includes(option.label)) {
+                option.remove();
+                --i;
+            }
+        }
     }
 });
