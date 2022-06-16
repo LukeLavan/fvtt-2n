@@ -4,8 +4,9 @@ import {TwoDotNealActorSheet} from './actor-sheet.mjs';
 import {TwoDotNealItem} from './item.mjs';
 import {TwoDotNealItemSheet} from './item-sheet.mjs';
 
-/* console.log Handlebars helper */
+/* Handlebars helpers */
 Handlebars.registerHelper('log', (x) => console.log(x));
+Handlebars.registerHelper('or', (a, b) => a || b);
 
 /* FoundryVTT hooks */
 Hooks.once('init', async function () {
@@ -69,4 +70,23 @@ Hooks.on('renderDialog', function (dialog, html) {
             }
         }
     }
+});
+
+// add items to new actors
+Hooks.on('createActor', async function (actor) {
+    const actorData = actor.data;
+    const gearTab = await Item.create(
+        {
+            name: 'Equipment',
+            type: 'gearTab',
+            data: {
+                equipped: true,
+                default: true,
+                locked: true,
+            },
+        },
+        {parent: actor}
+    );
+    actorData.data.defaultGearTab = gearTab.data._id;
+    actorData.data.equipmentGearTab = gearTab.data._id;
 });

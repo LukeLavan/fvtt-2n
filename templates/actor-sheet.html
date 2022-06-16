@@ -1312,18 +1312,36 @@
                             <col>
                         </colgroup>
                         <tr>
-                            <th colspan="5">Gear Tabs</th>
+                            <th colspan="6">Gear Tabs</th>
                         </tr>
                         <tr>
                             <th id="gear-top-left-equipped">Equip?</th>
+                            <th id="gear-top-left-default">Default?</th>
                             <th id="gear-top-left-tab">Tab</th>
                             <th id="gear-top-left-weight">Weight</th>
                             <th id="gear-top-left-buttons"></th>
                         </tr>
                         {{#each actor.data.data.gearTabs}}
                         <tr class="item" data-item-id="{{this.[0]}}">
-                            <td><input type="checkbox" class="item-toggle" data-value={{this.[1].tab.data.data.equipped}}
-                                data-target="data.equipped" {{#if this.[1].tab.data.data.equipped}}checked{{/if}}/></td>
+                            <td>
+                                <input
+                                    type="checkbox"
+                                    class="item-toggle"
+                                    data-value={{this.[1].tab.data.data.equipped}}
+                                    data-target="data.equipped"
+                                    {{#if this.[1].tab.data.data.equipped}}checked{{/if}}
+                                >
+                            </td>
+                            <td>
+                                <input
+                                    type="checkbox"
+                                    class="item-toggle"
+                                    data-value={{this.[1].tab.data.data.default}}
+                                    data-target="data.default"
+                                    data-default="true"
+                                    {{#if this.[1].tab.data.data.default}}checked disabled{{/if}}
+                                >
+                            </td>
                             <td>
                                 {{#if this.[1].tab.data.data.locked}}
                                     {{this.[1].tab.name}}
@@ -1344,9 +1362,9 @@
                                 <a
                                     class="tab-delete"
                                     title="Delete Tab"
-                                    data-locked={{this.[1].tab.data.data.locked}}
+                                    data-locked={{or this.[1].tab.data.data.default this.[1].tab.data.data.locked}}
                                 >
-                                    <i class="fas fa-trash {{#if this.[1].tab.data.data.locked}} disabled-color {{/if}}"></i>
+                                    <i class="fas fa-trash {{#if (or this.[1].tab.data.data.default this.[1].tab.data.data.locked)}} disabled-color {{/if}}"></i>
                                 </a>
                                 <a
                                     class="item-toggle"
@@ -1360,6 +1378,7 @@
                         </tr>
                         {{/each}}
                         <tr>
+                            <td></td>
                             <td></td>
                             <td><b>Equipped weight</b></td>
                             <td><b>{{actor.data.data.equippedWeight}}</b></td>
@@ -1423,7 +1442,16 @@
                             class="item-toggle"
                             data-value={{this.[1].tab.data.data.equipped}}
                             data-target="data.equipped"
-                            {{#if this.[1].tab.data.data.equipped}}checked{{/if}}/
+                            {{#if this.[1].tab.data.data.equipped}}checked{{/if}}
+                        >
+                        Set tab as default for new items?
+                        <input
+                            type="checkbox"
+                            class="item-toggle"
+                            data-value="{{this.[1].tab.data.data.default}}"
+                            data-default="true"
+                            data-target="data.default"
+                            {{#if this.[1].tab.data.data.default}}checked disabled{{/if}}
                         >
                     </div>
                     <div class="gear-tab-wrap">

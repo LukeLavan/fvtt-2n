@@ -51,6 +51,8 @@
         "missile": 0,
         "thrown": 0
       },
+      "defaultGearTab": "",
+      "equipmentGearTab": "",
       "settings": {
         "sheetToggle": {
           "basic": true,
@@ -156,6 +158,8 @@
       "length": 0,
       "weight": 0,
       "equipped": false,
+      "default": false,
+      "locked": false,
       "wealth": {
         "weight": 0,
         "copper": 0,

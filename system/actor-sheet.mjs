@@ -112,7 +112,22 @@ export class TwoDotNealActorSheet extends ActorSheet {
 
             let itemDifferential = {_id: id};
             itemDifferential[target] = value;
-            this.actor.updateEmbeddedDocuments('Item', [itemDifferential]);
+            let itemDifferentials = [itemDifferential];
+
+            // toggling gearTab default on clears all tabs' default status first
+            const defaultToggle = currentTarget.data('default');
+            if (defaultToggle && value) {
+                const actorData = this.object.data;
+                actorData.data.gearTabs.forEach((_, key) => {
+                    itemDifferentials.push({
+                        _id: key,
+                        'data.default': false,
+                    });
+                });
+                // also set actor's defaultGearTab
+                actorData.data.defaultGearTab = id;
+            }
+            this.actor.updateEmbeddedDocuments('Item', itemDifferentials);
         });
 
         html.find('.item-delete').click((ev) => {
