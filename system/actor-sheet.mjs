@@ -208,18 +208,17 @@ export class TwoDotNealActorSheet extends ActorSheet {
     }
 
     async _onDropItem(dragEvent, data) {
-        const items = await super._onDropItem(dragEvent, data);
+        const item = await super._onDropItem(dragEvent, data);
         const actorData = this.object.data;
-        let targetTab = actorData.data.defaultGearTab;
-        // determine if dragtarget is a gearTab
-        const path = dragEvent.path;
-        for (let i = 0; i < path.length; ++i)
-            if (path[i].classList?.contains('dragover')) {
-                targetTab = path[i].dataset.tab;
-                break;
-            }
-        for (let i = 0; i < items.length; ++i) {
-            const item = items[i];
+        if (item.type === 'gear') {
+            let targetTab = actorData.data.defaultGearTab;
+            // determine if dragtarget is a gearTab
+            const path = dragEvent.path;
+            for (let i = 0; i < path.length; ++i)
+                if (path[i].classList?.contains('dragover')) {
+                    targetTab = path[i].dataset.tab;
+                    break;
+                }
             item.update({'data.tab': targetTab});
         }
     }

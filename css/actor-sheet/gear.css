@@ -59,7 +59,7 @@
 }
 
 .dragover {
-    background: #b773ff;
+    background: #b773ff !important;
 }
 
 .gear-tab-wrap {
