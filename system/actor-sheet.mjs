@@ -125,7 +125,7 @@ export class TwoDotNealActorSheet extends ActorSheet {
                     });
                 });
                 // also set actor's defaultGearTab
-                actorData.data.defaultGearTab = id;
+                this.object.update({'data.defaultGearTab': id});
             }
             this.actor.updateEmbeddedDocuments('Item', itemDifferentials);
         });
@@ -156,6 +156,13 @@ export class TwoDotNealActorSheet extends ActorSheet {
                     itemsToDelete.push(item.id);
             });
             this.actor.deleteEmbeddedDocuments('Item', itemsToDelete);
+        });
+
+        html.find('.droppable').on('dragover', (element) => {
+            element.currentTarget.classList.add('dragover');
+        });
+        html.find('.droppable').on('dragleave', (element) => {
+            element.currentTarget.classList.remove('dragover');
         });
 
         // highlight active encumbrance
@@ -198,5 +205,22 @@ export class TwoDotNealActorSheet extends ActorSheet {
         focusbox.focus();
         focusbox.select();
         return item;
+    }
+
+    async _onDropItem(dragEvent, data) {
+        const items = await super._onDropItem(dragEvent, data);
+        const actorData = this.object.data;
+        let targetTab = actorData.data.defaultGearTab;
+        // determine if dragtarget is a gearTab
+        const path = dragEvent.path;
+        for (let i = 0; i < path.length; ++i)
+            if (path[i].classList?.contains('dragover')) {
+                targetTab = path[i].dataset.tab;
+                break;
+            }
+        for (let i = 0; i < items.length; ++i) {
+            const item = items[i];
+            item.update({'data.tab': targetTab});
+        }
     }
 }

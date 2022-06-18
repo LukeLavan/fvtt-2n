@@ -39,9 +39,6 @@ Hooks.once('init', async function () {
         type: String,
         default:
             'throwMod, acMod, hitMod, gearTab, nonWeaponProficiency, weaponProficiency',
-        onChange: (value) => {
-            console.log(value);
-        },
     });
 });
 
@@ -87,6 +84,9 @@ Hooks.on('createActor', async function (actor) {
         },
         {parent: actor}
     );
+
+    actor.update({'data.defaultGearTab': gearTab.data._id});
+    actor.update({'data.equipmentGearTab': gearTab.data._id});
     actorData.data.defaultGearTab = gearTab.data._id;
     actorData.data.equipmentGearTab = gearTab.data._id;
 });
