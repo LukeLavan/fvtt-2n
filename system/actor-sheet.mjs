@@ -84,80 +84,20 @@ export class TwoDotNealActorSheet extends ActorSheet {
 
         html.find('.rollable').click(this._rollRollable.bind(this));
 
+        // item controls
         html.find('.item-create').click(this._itemCreate.bind(this));
+        html.find('.item-edit').change(this._itemEdit.bind(this));
+        html.find('.item-toggle').click(this._itemToggle.bind(this));
+        html.find('.item-delete').click(this._itemDelete.bind(this));
+        html.find('.item-open').click(this._itemOpen.bind(this));
 
-        html.find('.item-edit').change((ev) => {
-            const currentTarget = $(ev.currentTarget);
-            const id = currentTarget.parents('.item').attr('data-item-id');
-            const target = currentTarget.attr('data-target');
-            let value = currentTarget.val();
-            // ensure checkbox values are booleans
-            if (currentTarget.attr('type') === 'checkbox') {
-                if (currentTarget.is(':checked')) value = true;
-                else value = false;
-            }
-            let itemDifferential = {_id: id};
-            itemDifferential[target] = value;
-            this.actor.updateEmbeddedDocuments('Item', [itemDifferential]);
-        });
+        // gearTab controls
+        html.find('.gearTab-delete').click(this._gearTabDelete.bind(this));
+        html.find('.gearTab-defaultToggle').click(
+            this._gearTabDefaultToggle.bind(this)
+        );
 
-        html.find('.item-toggle').click((ev) => {
-            const currentTarget = $(ev.currentTarget);
-            const id = currentTarget.parents('.item').attr('data-item-id');
-            const target = currentTarget.attr('data-target');
-            let value = currentTarget.data('value');
-
-            // toggle
-            value = !value;
-
-            let itemDifferential = {_id: id};
-            itemDifferential[target] = value;
-            let itemDifferentials = [itemDifferential];
-
-            // toggling gearTab default on clears all tabs' default status first
-            const defaultToggle = currentTarget.data('default');
-            if (defaultToggle && value) {
-                const actorData = this.object.data;
-                actorData.data.gearTabs.forEach((_, key) => {
-                    itemDifferentials.push({
-                        _id: key,
-                        'data.default': false,
-                    });
-                });
-                // also set actor's defaultGearTab
-                this.object.update({'data.defaultGearTab': id});
-            }
-            this.actor.updateEmbeddedDocuments('Item', itemDifferentials);
-        });
-
-        html.find('.item-delete').click((ev) => {
-            const currentTarget = $(ev.currentTarget);
-            const id = currentTarget.parents('.item').attr('data-item-id');
-            const locked = currentTarget.data('locked');
-            if (locked) return;
-            this.actor.deleteEmbeddedDocuments('Item', [id]);
-        });
-
-        html.find('.item-open').click((ev) => {
-            const currentTarget = $(ev.currentTarget);
-            const id = currentTarget.parents('.item').attr('data-item-id');
-            this.actor.data.items.get(id).sheet.render(true);
-        });
-
-        html.find('.tab-delete').click((ev) => {
-            const currentTarget = $(ev.currentTarget);
-            const id = currentTarget.parents('.item').attr('data-item-id');
-            const locked = currentTarget.data('locked');
-            if (locked) return;
-            const itemsToDelete = [id];
-            // also delete items in tab
-            this.actor.items.forEach((item) => {
-                if (item.type === 'gear' && item.data.data.tab === id)
-                    itemsToDelete.push(item.id);
-            });
-            this.actor.deleteEmbeddedDocuments('Item', itemsToDelete);
-        });
-
+        // drag and drop item creation class (see _onDropItem for logic)
         html.find('.droppable').on('dragover', (element) => {
             element.currentTarget.classList.add('dragover');
         });
@@ -189,6 +129,7 @@ export class TwoDotNealActorSheet extends ActorSheet {
         }
     }
 
+    // create item with this ActorSheet's actor as parent
     async _itemCreate(event) {
         event.preventDefault();
         const header = event.currentTarget;
@@ -207,8 +148,96 @@ export class TwoDotNealActorSheet extends ActorSheet {
         return item;
     }
 
+    // edit an item's datum via an <input>
+    async _itemEdit(event) {
+        const currentTarget = $(event.currentTarget);
+        const id = currentTarget.parents('.item').attr('data-item-id');
+        const target = currentTarget.attr('data-target');
+        let value = currentTarget.val();
+        // ensure checkbox values are booleans
+        if (currentTarget.attr('type') === 'checkbox') {
+            if (currentTarget.is(':checked')) value = true;
+            else value = false;
+        }
+        let itemDifferential = {_id: id};
+        itemDifferential[target] = value;
+        this.actor.updateEmbeddedDocuments('Item', [itemDifferential]);
+    }
+
+    // updates all gearTabs' default status and updates actor's defaultGearTab
+    async _gearTabDefaultToggle(event) {
+        const currentTarget = $(event.currentTarget);
+        const id = currentTarget.parents('.item').attr('data-item-id');
+        const itemDifferentials = [];
+        const actorData = this.object.data;
+        actorData.data.gearTabs.forEach((_, key) => {
+            if (key === id)
+                itemDifferentials.push({
+                    _id: key,
+                    'data.default': true,
+                });
+            else
+                itemDifferentials.push({
+                    _id: key,
+                    'data.default': false,
+                });
+        });
+
+        this.object.update({'data.defaultGearTab': id});
+        this.actor.updateEmbeddedDocuments('Item', itemDifferentials);
+    }
+
+    // toggles an item's boolean datum
+    async _itemToggle(event) {
+        const currentTarget = $(event.currentTarget);
+        const id = currentTarget.parents('.item').attr('data-item-id');
+        const target = currentTarget.attr('data-target');
+        let value = currentTarget.data('value');
+
+        // toggle
+        value = !value;
+
+        let itemDifferential = {_id: id};
+        itemDifferential[target] = value;
+        let itemDifferentials = [itemDifferential];
+
+        this.actor.updateEmbeddedDocuments('Item', itemDifferentials);
+    }
+
+    // deletes a single item
+    async _itemDelete(event) {
+        const currentTarget = $(event.currentTarget);
+        const id = currentTarget.parents('.item').attr('data-item-id');
+        const locked = currentTarget.data('locked');
+        if (locked) return;
+        this.actor.deleteEmbeddedDocuments('Item', [id]);
+    }
+
+    // deletes a gear tab and all items within
+    async _gearTabDelete(event) {
+        const currentTarget = $(event.currentTarget);
+        const id = currentTarget.parents('.item').attr('data-item-id');
+        const locked = currentTarget.data('locked');
+        if (locked) return;
+        const itemsToDelete = [id];
+        // also delete items in tab
+        this.actor.items.forEach((item) => {
+            if (item.type === 'gear' && item.data.data.tab === id)
+                itemsToDelete.push(item.id);
+        });
+        this.actor.deleteEmbeddedDocuments('Item', itemsToDelete);
+    }
+
+    // opens item's ItemSheet
+    async _itemOpen(event) {
+        const currentTarget = $(event.currentTarget);
+        const id = currentTarget.parents('.item').attr('data-item-id');
+        this.actor.data.items.get(id).sheet.render(true);
+    }
+
+    // handles adding items to sheet via drag/drop
     async _onDropItem(dragEvent, data) {
-        const item = await super._onDropItem(dragEvent, data);
+        const item = (await super._onDropItem(dragEvent, data))[0];
         const actorData = this.object.data;
         if (item.type === 'gear') {
             let targetTab = actorData.data.defaultGearTab;

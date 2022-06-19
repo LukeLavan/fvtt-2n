@@ -1326,20 +1326,17 @@
                             <td>
                                 <input
                                     type="checkbox"
-                                    class="item-toggle"
-                                    data-value={{this.[1].tab.data.data.equipped}}
+                                    class="item-edit"
                                     data-target="data.equipped"
-                                    {{#if this.[1].tab.data.data.equipped}}checked{{/if}}
+                                    {{checked this.[1].tab.data.data.equipped}}
                                 >
                             </td>
                             <td>
                                 <input
                                     type="checkbox"
-                                    class="item-toggle"
-                                    data-value={{this.[1].tab.data.data.default}}
-                                    data-target="data.default"
-                                    data-default="true"
-                                    {{#if this.[1].tab.data.data.default}}checked disabled{{/if}}
+                                    class="gearTab-defaultToggle"
+                                    {{checked this.[1].tab.data.data.default}}
+                                    {{#if this.[1].tab.data.data.default}}disabled{{/if}}
                                 >
                             </td>
                             <td>
@@ -1360,7 +1357,7 @@
                             <td>{{this.[1].tab.data.data.weight}}</td>
                             <td>
                                 <a
-                                    class="tab-delete"
+                                    class="gearTab-delete"
                                     title="Delete Tab"
                                     data-locked={{or this.[1].tab.data.data.default this.[1].tab.data.data.locked}}
                                 >
@@ -1439,19 +1436,16 @@
                         Count tab towards encumbrance?
                         <input
                             type="checkbox"
-                            class="item-toggle"
-                            data-value={{this.[1].tab.data.data.equipped}}
+                            class="item-edit"
                             data-target="data.equipped"
-                            {{#if this.[1].tab.data.data.equipped}}checked{{/if}}
+                            {{checked this.[1].tab.data.data.equipped}}
                         >
                         Set tab as default for new items?
                         <input
                             type="checkbox"
-                            class="item-toggle"
-                            data-value="{{this.[1].tab.data.data.default}}"
-                            data-default="true"
-                            data-target="data.default"
-                            {{#if this.[1].tab.data.data.default}}checked disabled{{/if}}
+                            class="gearTab-defaultToggle"
+                            {{checked this.[1].tab.data.data.default}}
+                            {{#if this.[1].tab.data.data.default}}disabled{{/if}}
                         >
                     </div>
                     <div class="gear-tab-wrap">
