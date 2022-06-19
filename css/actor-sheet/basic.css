@@ -35,7 +35,7 @@
 }
 
 .basic-mid-stats > tbody > tr {
-    height: 60px;
+    height: 64px;
 }
 
 .basic-mid-stats > tbody > tr > td {
@@ -56,7 +56,7 @@
 .basic-derivedRow {
     display: flex;
     text-align: center;
-    height: 60px;
+    height: 64px;
 }
 
 .basic-derivedRow-altColor {
@@ -72,14 +72,17 @@
     margin-bottom: 5px;
     margin-top: 5px;
     position: relative;
+    display: table;
 }
 
 .derived-label {
     font-size: small;
+    display: table-row;
 }
 
 .derived-value {
     font-size: large;
+    display: table-row;
 }
 
 .combat-top-hp-button {

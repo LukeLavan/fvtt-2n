@@ -28,7 +28,13 @@
 
 .gear-top-right > table > tbody > tr:last-child > td {
     border-bottom: thin solid black;
-    border-radius: 5px;
+}
+.gear-top-right > table > tbody > tr:last-child > td:first-child {
+    border-bottom: thin solid black;
+    border-bottom-left-radius: 5px;
+}
+.gear-top-right > table > tbody > tr:last-child > td:last-child {
+    border-bottom-right-radius: 5px;
 }
 
 .encumbranceHighlight{
@@ -37,25 +43,30 @@
 }
 
 .gear-tabs {
-    justify-content: center;
+    justify-content: flex-start;
+    overflow-x: auto;
+    overflow-y: hidden;
+}
+.gear-tabs-fake {
+    width: 100%;
     border-bottom: thin solid black;
+}
+.gear-tabs > a:first-child{
+    margin-left: auto;
+}
+.gear-tabs > a:last-child{
+    margin-right: auto;
 }
 
 .gear-tabs > a {
-    padding-left: 32px;
-    padding-right: 32px;
-    padding-top: 8px;
-
-    margin-bottom: -1px;
+    padding-left: 16px;
+    padding-right: 16px;
+    padding-top: 4px;
 
     border: thin solid black;
-    border-bottom: none;
 }
-
 .gear-tabs > a.active {
     border-bottom: none;
-
-    background: url(../../../../ui/parchment.jpg) repeat;
 }
 
 .dragover {

@@ -3,8 +3,8 @@ export class TwoDotNealActorSheet extends ActorSheet {
         return mergeObject(super.defaultOptions, {
             classes: ['twodotneal', 'sheet', 'actor'],
             template: 'systems/fvtt-2neal/templates/actor-sheet.html',
-            width: 900,
-            height: 700,
+            width: 640,
+            height: 480,
             tabs: [
                 {
                     navSelector: '.primary-tabs',
@@ -14,7 +14,6 @@ export class TwoDotNealActorSheet extends ActorSheet {
                 {
                     navSelector: '.gear-tabs',
                     contentSelector: '.gear-content',
-                    initial: '+',
                 },
             ],
         });
@@ -73,9 +72,9 @@ export class TwoDotNealActorSheet extends ActorSheet {
         };
 
         context.damageTypeChoices = {
-            Bludgeoning: 'Bludgeoning',
-            Slashing: 'Slashing',
-            Piercing: 'Piercing',
+            Bludgeoning: 'Bludg.',
+            Slashing: 'Slash.',
+            Piercing: 'Pierc.',
         };
     }
 

@@ -2,7 +2,6 @@
     display: inline-block;
     font-size: 24px !important;
     min-height: 40px !important;
-    line-height: 40px;
 }
 
 .combat-top {
@@ -34,6 +33,7 @@
 
 .combat-top > div > hr {
     border: 1px solid black;
+    background: black;
 }
 
 .combat-top > div > div > div > input {
@@ -64,6 +64,10 @@
     border: thin solid black;
     border-radius: 5px;
     padding: 0px 5px 5px 5px;
+    display: table;
+}
+.combat-top-ac > div > div > span {
+    display: table-row;
 }
 
 .combat-top-attacks > div > div {
@@ -73,11 +77,14 @@
 }
 
 .weapon-damage {
-    width: 64px;
+    width: 48px;
 }
 
 .weapon-range {
-    width: 128px;
+    width: 96px;
+}
+.weapon-range > input {
+    text-align: center !important;
 }
 
 .weapon-roll-td {
@@ -99,7 +106,6 @@
 
 .combat-mid-throws {
     width: 150px;
-    height: 200px;
     border: thin solid black;
     border-radius: 5px;
     border-collapse: separate;
