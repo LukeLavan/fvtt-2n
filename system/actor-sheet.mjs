@@ -102,6 +102,7 @@ export class TwoDotNealActorSheet extends ActorSheet {
             // eslint-disable-next-line no-undef
             Sortable.create(el, {
                 setData: this._onStartDrag.bind(this),
+                onUpdate: this._onUpdateDrag.bind(this),
                 handle: '.itemTable-handle',
                 filter: '[data-locked="true"]',
             });
@@ -235,6 +236,7 @@ export class TwoDotNealActorSheet extends ActorSheet {
         this.actor.data.items.get(id).sheet.render(true);
     }
 
+    // pack data into dragTransfer for drop
     _onStartDrag(dataTransfer, dragEl) {
         const dragData = {
             actorId: this.actor.id,
@@ -250,9 +252,20 @@ export class TwoDotNealActorSheet extends ActorSheet {
         dataTransfer.setData('text/plain', JSON.stringify(dragData));
     }
 
+    // update indices of newly sorted items
+    _onUpdateDrag(event) {
+        const children = event.to.children;
+        const itemDifferentials = [];
+        for (let i = 0; i < children.length; ++i)
+            itemDifferentials.push({
+                _id: children[i].dataset.itemId,
+                'data.index': i,
+            });
+        this.actor.updateEmbeddedDocuments('Item', itemDifferentials);
+    }
+
     // handles adding items to sheet via drag/drop
     _onDropItem(dragEvent, data) {
-        console.log('dropItem', dragEvent, data);
         const actorData = this.actor.data;
         const path = dragEvent.path;
         let target;
@@ -263,8 +276,10 @@ export class TwoDotNealActorSheet extends ActorSheet {
             // moving item within its parent actor
             if (target) {
                 const itemDifferential = {_id: data.data._id};
-                if (data.data.type === 'gear')
+                if (data.data.type === 'gear') {
                     itemDifferential['data.tab'] = target.dataset.tab;
+                    itemDifferential['data.index'] = -1;
+                }
                 this.actor.updateEmbeddedDocuments('Item', [itemDifferential]);
             }
         } else {
@@ -274,6 +289,7 @@ export class TwoDotNealActorSheet extends ActorSheet {
                 // item belongs to a different actor
                 const srcActor = game.actors.get(data.actorId);
                 item = srcActor.data.items.get(data.data._id);
+                item.data.data.index = -1;
             }
             // item does not belong to an actor
             else item = game.items.get(data.id);
@@ -281,6 +297,7 @@ export class TwoDotNealActorSheet extends ActorSheet {
                 let targetTab = actorData.data.defaultGearTab;
                 if (target) targetTab = target.dataset.tab;
                 item.data.data.tab = targetTab;
+                item.data.data.index = -1;
             }
             Item.create(
                 {

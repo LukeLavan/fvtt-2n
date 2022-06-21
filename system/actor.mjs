@@ -1134,6 +1134,17 @@ export class TwoDotNealActor extends Actor {
                 spellTabs[item.data.data.level].spells.push(item);
         });
 
+        // sort each gearTab by item index
+        gearTabs.forEach((tab) => {
+            tab.items.sort((a, b) =>
+                a.data.data.index > b.data.data.index ? 1 : -1
+            );
+        });
+        // normalize indices after sort
+        gearTabs.forEach((tab) => {
+            const items = tab.items;
+            for (let i = 0; i < items.length; ++i) items[i].data.data.index = i;
+        });
         data.data.gearTabs = gearTabs;
     }
 
