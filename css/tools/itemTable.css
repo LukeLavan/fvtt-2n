@@ -35,6 +35,15 @@
     width: 2em !important;
 }
 
+.itemTable-handle[data-locked="true"] {
+    color: darkgray;
+    cursor: default;
+}
+
+.itemTable-handle[data-locked="false"] {
+    cursor: move;
+}
+
 .itemTable-buttons {
     display: flex;
     justify-content: flex-end;

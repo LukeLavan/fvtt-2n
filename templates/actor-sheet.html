@@ -1410,6 +1410,7 @@
                             <table class="itemTable">
                                 <thead>
                                     <tr>
+                                        <th></th>
                                         <th class="gearTableQty">Qty</th>
                                         <th class="gearTableName">Name</th>
                                         <th class="gearTableWgt">Wgt</th>
@@ -1417,13 +1418,21 @@
                                         <th class="gearTableButtons"></th>
                                     </tr>
                                 </thead>
-                                <tbody>
+                                <tbody class="itemTable-sort">
                                     {{#each this.[1].items}}
                                     <tr
                                         class="item itemTable-draggable-row"
                                         data-item-id="{{this.id}}"
-                                        {{#unless this.data.data.locked}}draggable="true"{{/unless}}
+                                        data-locked="{{this.data.data.locked}}"
                                     >
+                                        <td>
+                                            <a
+                                                class="itemTable-handle"
+                                                data-locked="{{this.data.data.locked}}"
+                                            >
+                                                <i class="fas fa-bars"></i>
+                                            </a>
+                                        </td>
                                         <td>
                                             <input
                                                 type="number"

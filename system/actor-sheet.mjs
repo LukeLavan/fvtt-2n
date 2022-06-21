@@ -98,6 +98,15 @@ export class TwoDotNealActorSheet extends ActorSheet {
 
         this._addItemTableListeners(html);
 
+        html.find('.itemTable-sort').map((i, el) => {
+            // eslint-disable-next-line no-undef
+            Sortable.create(el, {
+                setData: this._onStartDrag.bind(this),
+                handle: '.itemTable-handle',
+                filter: '[data-locked="true"]',
+            });
+        });
+
         // highlight active encumbrance
         const activeEncumbranceRow = html.find(
             '#encumbrance-' + this.actor.data.data.currentEncumbrance
@@ -226,8 +235,24 @@ export class TwoDotNealActorSheet extends ActorSheet {
         this.actor.data.items.get(id).sheet.render(true);
     }
 
+    _onStartDrag(dataTransfer, dragEl) {
+        const dragData = {
+            actorId: this.actor.id,
+            sceneId: this.actor.isToken ? canvas.scene?.id : null,
+            tokenId: this.actor.isToken ? this.actor.token.id : null,
+            pack: this.actor.pack,
+        };
+        if (dragEl.dataset.itemId) {
+            const item = this.actor.items.get(dragEl.dataset.itemId);
+            dragData.type = 'Item';
+            dragData.data = item.data;
+        }
+        dataTransfer.setData('text/plain', JSON.stringify(dragData));
+    }
+
     // handles adding items to sheet via drag/drop
     _onDropItem(dragEvent, data) {
+        console.log('dropItem', dragEvent, data);
         const actorData = this.actor.data;
         const path = dragEvent.path;
         let target;
@@ -272,12 +297,7 @@ export class TwoDotNealActorSheet extends ActorSheet {
 
     // attaches listeners for itemTable drag/drop
     _addItemTableListeners(html) {
-        // draggable rows
         const draggableRows = html.find('.itemTable-draggable-row');
-        // packs event.dataTransfer data for _onDropItem
-        draggableRows.on('dragstart', (event) => {
-            super._onDragStart.bind(this)(event.originalEvent);
-        });
         // prevent moving item to its current tab by removing droppable class from div and label
         draggableRows.on('dragstart', (event) => {
             const currentTarget = $(event.currentTarget);
@@ -286,6 +306,7 @@ export class TwoDotNealActorSheet extends ActorSheet {
             currentTarget.parents('.tab.item').removeClass('droppable');
             tabLabel.removeClass('droppable');
         });
+
         // restore droppable class to current tab div + label
         draggableRows.on('dragend', (event) => {
             const currentTarget = $(event.currentTarget);
