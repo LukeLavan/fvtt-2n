@@ -205,6 +205,7 @@
     "spell": {
       "templates": ["base"],
       "level": 1,
+      "index": 0,
       "casts": "",
       "verbal": true,
       "somatic": true,

@@ -1189,6 +1189,11 @@ export class TwoDotNealActor extends Actor {
         normalizeIndicies(proficiencies.nonweapon);
         normalizeIndicies(proficiencies.weapon);
 
+        for (let tab in spellTabs) {
+            spellTabs[tab].spells.sort(sortByIndex);
+            normalizeIndicies(spellTabs[tab].spells);
+        }
+
         data.data.gearTabs = gearTabs;
         data.data.spellTabs = spellTabs;
         data.data.weapons = weapons;
