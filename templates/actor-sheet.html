@@ -1638,9 +1638,10 @@
             <div class="skills-top">
                 <table class="itemTable">
                     <tr>
-                        <th colspan="6">Non-Weapon Proficiencies</th>
+                        <th colspan="7">Non-Weapon Proficiencies</th>
                     </tr>
                     <tr>
+                        <th></th>
                         <th>Name</th>
                         <th>Stat</th>
                         <th>Base</th>
@@ -1648,81 +1649,89 @@
                         <th>Total</th>
                         <th></th>
                     </tr>
-                    {{#each actor.data.items}}
-                    {{#if (eq this.type "nonWeaponProficiency")}}
-                    <tr class="item" data-item-id={{this.id}}>
-                        <td>
-                            <input
-                                type="text"
-                                class="itemTable-inputText item-edit"
-                                id="{{this.id}}.name"
-                                name="{{this.id}}.name"
-                                value="{{this.name}}"
-                                data-target="name"
-                                data-name=true
-                                {{#if this.data.data.locked}}disabled{{/if}}
-                            >
-                        </td>
-                        <td>
-                            <select
-                                class="item-edit"
-                                data-target="data.stat"
-                                {{#if this.data.data.locked}}disabled{{/if}}
-                            >
-                                {{selectOptions @root.statChoices selected=this.data.data.stat}}
-                            </select>
-                        </td>
-                        <td>
-                            <input
-                                type="number"
-                                class="itemTable-inputNum item-edit"
-                                id="{{this.id}}.base"
-                                name="{{this.id}}.base"
-                                value="{{this.data.data.base}}"
-                                data-target="data.base"
-                                {{#if this.data.data.locked}}disabled{{/if}}
-                            >
-                        </td>
-                        <td>
-                            <input
-                                type="number"
-                                class="itemTable-inputNum item-edit"
-                                id="{{this.id}}.adjust"
-                                name="{{this.id}}.adjust"
-                                value="{{this.data.data.adjust}}"
-                                data-target="data.adjust"
-                                {{#if this.data.data.locked}}disabled{{/if}}
-                            >
-                        </td>
-                        <td>
-                            <span
-                                class="rollable skills-rollSpan"
-                                data-roll="d20cs>=(20-{{this.data.data.total}})"
-                                data-label="{{this.name}} Check"
-                            >
-                                {{this.data.data.total}}
-                            </span>
-                        </td>
-                        <td>
-                            <a
-                                class="item-delete"
-                                title="Delete Item"
-                                data-locked={{this.data.data.locked}}
-                            >
-                                <i class="fas fa-trash {{#if this.data.data.locked}} disabled-color {{/if}}"></i>
-                            </a>
-                            <a
-                                class="item-toggle"
-                                title="Lock Item"
-                                data-value={{this.data.data.locked}}
-                                data-target="data.locked"
-                            >
-                                <i class="fas {{#if this.data.data.locked}} fa-lock {{else}} fa-lock-open {{/if}}"></i>
-                            </a>
-                        </td>
-                    </tr>
-                    {{/if}}
-                    {{/each}}
+                    <tbody class="itemTable-sort">
+                        {{#each actor.data.data.proficiencies.nonweapon}}
+                        <tr class="item" data-item-id={{this.id}} data-locked="{{this.data.data.locked}}">
+                            <td>
+                                <a
+                                    class="itemTable-handle"
+                                    data-locked="{{this.data.data.locked}}"
+                                >
+                                    <i class="fas fa-bars"></i>
+                                </a>
+                            </td>
+                            <td>
+                                <input
+                                    type="text"
+                                    class="itemTable-inputText item-edit"
+                                    id="{{this.id}}.name"
+                                    name="{{this.id}}.name"
+                                    value="{{this.name}}"
+                                    data-target="name"
+                                    data-name=true
+                                    {{#if this.data.data.locked}}disabled{{/if}}
+                                >
+                            </td>
+                            <td>
+                                <select
+                                    class="item-edit"
+                                    data-target="data.stat"
+                                    {{#if this.data.data.locked}}disabled{{/if}}
+                                >
+                                    {{selectOptions @root.statChoices selected=this.data.data.stat}}
+                                </select>
+                            </td>
+                            <td>
+                                <input
+                                    type="number"
+                                    class="itemTable-inputNum item-edit"
+                                    id="{{this.id}}.base"
+                                    name="{{this.id}}.base"
+                                    value="{{this.data.data.base}}"
+                                    data-target="data.base"
+                                    {{#if this.data.data.locked}}disabled{{/if}}
+                                >
+                            </td>
+                            <td>
+                                <input
+                                    type="number"
+                                    class="itemTable-inputNum item-edit"
+                                    id="{{this.id}}.adjust"
+                                    name="{{this.id}}.adjust"
+                                    value="{{this.data.data.adjust}}"
+                                    data-target="data.adjust"
+                                    {{#if this.data.data.locked}}disabled{{/if}}
+                                >
+                            </td>
+                            <td>
+                                <span
+                                    class="rollable skills-rollSpan"
+                                    data-roll="d20cs>=(20-{{this.data.data.total}})"
+                                    data-label="{{this.name}} Check"
+                                >
+                                    {{this.data.data.total}}
+                                </span>
+                            </td>
+                            <td>
+                                <a
+                                    class="item-delete"
+                                    title="Delete Item"
+                                    data-locked={{this.data.data.locked}}
+                                >
+                                    <i class="fas fa-trash {{#if this.data.data.locked}} disabled-color {{/if}}"></i>
+                                </a>
+                                <a
+                                    class="item-toggle"
+                                    title="Lock Item"
+                                    data-value={{this.data.data.locked}}
+                                    data-target="data.locked"
+                                >
+                                    <i class="fas {{#if this.data.data.locked}} fa-lock {{else}} fa-lock-open {{/if}}"></i>
+                                </a>
+                            </td>
+                        </tr>
+                        {{/each}}
+                    </tbody>
                 </table>
                 <div class="itemTable-buttons">
                     <a class="item-create" data-type="nonWeaponProficiency"><i class="fas fa-plus"></i> Add non-weapon proficiency</a>
@@ -1731,58 +1740,67 @@
             <div class="skills-mid">
                 <table class="itemTable">
                     <tr>
-                        <th colspan="3">Weapon Proficiencies</th>
+                        <th colspan="4">Weapon Proficiencies</th>
                     </tr>
                     <tr>
+                        <th></th>
                         <th>Name</th>
                         <th>Slots</th>
                         <th></th>
                     </tr>
-                    {{#each actor.data.items}}
-                    {{#if (eq this.type "weaponProficiency")}}
-                    <tr class="item" data-item-id="{{this.id}}">
-                        <td>
-                            <input
-                                type="text"
-                                class="itemTable-inputText item-edit"
-                                id="{{this.id}}.name"
-                                name="{{this.id}}.name"
-                                value="{{this.name}}"
-                                data-target="name"
-                                data-name=true
-                                {{#if this.data.data.locked}}disabled{{/if}}
-                            />
-                        </td>
-                        <td>
-                            <input
-                                type="number"
-                                class="itemTable-inputNum item-edit"
-                                name="{{this.id}}.base"
-                                value="{{this.data.data.base}}"
-                                data-target="data.base"
-                                {{#if this.data.data.locked}}disabled{{/if}}
-                            >
-                        </td>
-                        <td>
-                            <a
-                                class="item-delete"
-                                title="Delete Item"
-                                data-locked={{this.data.data.locked}}
-                            >
-                                <i class="fas fa-trash {{#if this.data.data.locked}} disabled-color {{/if}}"></i>
-                            </a>
-                            <a
-                                class="item-toggle"
-                                title="Lock Item"
-                                data-value={{this.data.data.locked}}
-                                data-target="data.locked"
-                            >
-                                <i class="fas {{#if this.data.data.locked}} fa-lock {{else}} fa-lock-open {{/if}}"></i>
-                            </a>
-                        </td>
-                    </tr>
-                    {{/if}}
-                    {{/each}}
+                    <tbody class="itemTable-sort">
+                        {{#each actor.data.data.proficiencies.weapon}}
+                        <tr class="item" data-item-id="{{this.id}}" data-locked="{{this.data.data.locked}}">
+                            <td>
+                                <a
+                                    class="itemTable-handle"
+                                    data-locked="{{this.data.data.locked}}"
+                                >
+                                    <i class="fas fa-bars"></i>
+                                </a>
+                            </td>
+                            <td>
+                                <input
+                                    type="text"
+                                    class="itemTable-inputText item-edit"
+                                    id="{{this.id}}.name"
+                                    name="{{this.id}}.name"
+                                    value="{{this.name}}"
+                                    data-target="name"
+                                    data-name=true
+                                    {{#if this.data.data.locked}}disabled{{/if}}
+                                />
+                            </td>
+                            <td>
+                                <input
+                                    type="number"
+                                    class="itemTable-inputNum item-edit"
+                                    name="{{this.id}}.base"
+                                    value="{{this.data.data.base}}"
+                                    data-target="data.base"
+                                    {{#if this.data.data.locked}}disabled{{/if}}
+                                >
+                            </td>
+                            <td>
+                                <a
+                                    class="item-delete"
+                                    title="Delete Item"
+                                    data-locked={{this.data.data.locked}}
+                                >
+                                    <i class="fas fa-trash {{#if this.data.data.locked}} disabled-color {{/if}}"></i>
+                                </a>
+                                <a
+                                    class="item-toggle"
+                                    title="Lock Item"
+                                    data-value={{this.data.data.locked}}
+                                    data-target="data.locked"
+                                >
+                                    <i class="fas {{#if this.data.data.locked}} fa-lock {{else}} fa-lock-open {{/if}}"></i>
+                                </a>
+                            </td>
+                        </tr>
+                        {{/each}}
+                    </tbody>
                 </table>
                 <div class="itemTable-buttons">
                     <a class="item-create" data-type="weaponProficiency"><i class="fas fa-plus"></i> Add weapon proficiency</a>
