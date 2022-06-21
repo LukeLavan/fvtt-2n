@@ -1095,7 +1095,7 @@ export class TwoDotNealActor extends Actor {
     }
 
     _preparePCDerivedDataItems(data) {
-        const gearTabs = new Map();
+        let gearTabs = new Map();
         const spellTabs = data.data.spellTabs;
 
         data.items.forEach((item) => {
@@ -1134,11 +1134,16 @@ export class TwoDotNealActor extends Actor {
                 spellTabs[item.data.data.level].spells.push(item);
         });
 
-        // sort each gearTab by item index
+        // sort gearTabs by their index
+        gearTabs = new Map(
+            [...gearTabs.entries()].sort(
+                (a, b) => a[1].tab.data.data.index - b[1].tab.data.data.index
+            )
+        );
+
+        // sort gearTab internal items by item index
         gearTabs.forEach((tab) => {
-            tab.items.sort((a, b) =>
-                a.data.data.index > b.data.data.index ? 1 : -1
-            );
+            tab.items.sort((a, b) => a.data.data.index - b.data.data.index);
         });
         // normalize indices after sort
         gearTabs.forEach((tab) => {

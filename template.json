@@ -156,6 +156,7 @@
     "gearTab": {
       "length": 0,
       "weight": 0,
+      "index": 0,
       "equipped": false,
       "default": false,
       "locked": false,
