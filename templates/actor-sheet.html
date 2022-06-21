@@ -573,9 +573,10 @@
             <div class="combat-weapons">
                 <table class="itemTable">
                     <tr>
-                        <th colspan="12">Weapons</th>
+                        <th colspan="13">Weapons</th>
                     </tr>
                     <tr>
+                        <th></th>
                         <th>Name</th>
                         <th># Atks</th>
                         <th>To Hit</th>
@@ -590,155 +591,163 @@
                         <th>Atk</th>
                         <th>Dmg</th>
                     </tr>
-                    {{#each actor.data.items}}
-                    {{#if (eq this.type "weapon")}}
-                    <tr class="item" data-item-id="{{this.id}}">
-                        <td>
-                            <input
-                                type="text"
-                                class="itemTable-inputText item-edit"
-                                id="{{this.id}}.name"
-                                name="{{this.id}}.name"
-                                value="{{this.name}}"
-                                data-target="name"
-                                data-name=true
-                                {{#if this.data.data.locked}}disabled{{/if}}
-                            >
-                        </td>
-                        <td>
-                            <input
-                                type="number"
-                                class="itemTable-inputNum item-edit"
-                                id="{{this.id}}.numAttacks"
-                                name="{{this.id}}.numAttacks"
-                                value="{{this.data.data.numAttacks}}"
-                                data-target="data.numAttacks"
-                                {{#if this.data.data.locked}}disabled{{/if}}
-                            >
-                        </td>
-                        <td>
-                            <input
-                                type="number"
-                                class="itemTable-inputNum item-edit"
-                                id="{{this.id}}.toHit"
-                                name="{{this.id}}.toHit"
-                                value="{{this.data.data.toHit}}"
-                                data-target="data.toHit"
-                                {{#if this.data.data.locked}}disabled{{/if}}
-                            >
-                        </td>
-                        <td class="weapon-damage">
-                            <input
-                                type="text"
-                                class="itemTable-inputText item-edit"
-                                id="{{this.id}}.damageDie"
-                                name="{{this.id}}.damageDie"
-                                value="{{this.data.data.damageDie}}"
-                                data-target="data.damageDie"
-                                {{#if this.data.data.locked}}disabled{{/if}}
-                            />
-                        </td>
-                        <td>
-                            <input
-                                type="number"
-                                class="itemTable-inputNum item-edit"
-                                id="{{this.id}}.toDamage"
-                                name="{{this.id}}.toDamage"
-                                value="{{this.data.data.toDamage}}"
-                                data-target="data.toDamage"
-                                {{#if this.data.data.locked}}disabled{{/if}}
-                            >
-                        </td>
-                        <td class="weapon-range">
-                            <input
-                                type="text"
-                                class="itemTable-inputText item-edit"
-                                id="{{this.id}}.range"
-                                name="{{this.id}}.range"
-                                value="{{this.data.data.range}}"
-                                data-target="data.range"
-                                {{#if this.data.data.locked}}disabled{{/if}}
-                            >
-                        </td>
-                        <td>
-                            <select
-                                class="item-edit"
-                                data-target="data.attackType"
-                                {{#if this.data.data.locked}}disabled{{/if}}
-                            >
-                                {{selectOptions @root.attackTypeChoices selected=this.data.data.attackType}}
-                            </select>
-                        </td>
-                        <td>
-                            <select
-                                class="item-edit"
-                                data-target="data.damageType"
-                                {{#if this.data.data.locked}}disabled{{/if}}
-                            >
-                                {{selectOptions @root.damageTypeChoices selected=this.data.data.damageType}}
-                            </select>
-                        </td>
-                        <td>
-                            <input
-                                type="number"
-                                class="itemTable-inputNum item-edit"
-                                id="{{this.id}}.speed"
-                                name="{{this.id}}.speed"
-                                value="{{this.data.data.speed}}"
-                                data-target="data.speed"
-                                {{#if this.data.data.locked}}disabled{{/if}}
-                            >
-                        </td>
-                        <td>
-                            <a
-                                class="item-delete"
-                                title="Delete Item"
-                                data-locked={{this.data.data.locked}}
-                            >
-                                <i class="fas fa-trash {{#if this.data.data.locked}} disabled-color {{/if}}"></i>
-                            </a>
-                            <a
-                                class="item-toggle"
-                                title="Lock Item"
-                                data-value={{this.data.data.locked}}
-                                data-target="data.locked"
-                            >
-                                <i class="fas {{#if this.data.data.locked}} fa-lock {{else}} fa-lock-open {{/if}}"></i>
-                            </a>
-                        </td>
-                        <!--td class="weapon-roll-td">
-                            <a class="rollable weapon-roll"></a>
-                            TODO: initiative roll
-                        </td-->
-                        <td class="weapon-roll-td">
-                            <a
-                                class="rollable weapon-roll"
-                                data-roll="
-                                    1d20
-                                    +{{this.data.data.toHit}}
-                                    {{#if (eq this.data.data.attackType 'Melee')}}
-                                        +{{this.actor.data.data.hitAdjust.melee}}
-                                    {{/if}}
-                                    {{#if (eq this.data.data.attackType 'Missile')}}
-                                        +{{this.actor.data.data.hitAdjust.missile}}
-                                    {{/if}}
-                                    {{#if (eq this.data.data.attackType 'Thrown')}}
-                                        +{{this.actor.data.data.hitAdjust.thrown}}
-                                    {{/if}}
-                                "
-                                data-label="to hit with {{this.name}}"
-                            ></a>
-                        </td>
-                        <td class="weapon-roll-td">
-                            <a
-                                class="rollable weapon-roll"
-                                data-roll="{{this.data.data.damageDie}}+{{this.data.data.toDamage}}"
-                                data-label="damage with {{this.name}}"
-                            ></a>
-                        </td>
-                    </tr>
-                    {{/if}}
-                    {{/each}}
+                    <tbody class="itemTable-sort">
+                        {{#each actor.data.data.weapons}}
+                        <tr class="item" data-item-id="{{this.id}}" data-locked="{{this.data.data.locked}}">
+                            <td>
+                                <a
+                                    class="itemTable-handle"
+                                    data-locked="{{this.data.data.locked}}"
+                                >
+                                    <i class="fas fa-bars"></i>
+                                </a>
+                            </td>
+                            <td>
+                                <input
+                                    type="text"
+                                    class="itemTable-inputText item-edit"
+                                    id="{{this.id}}.name"
+                                    name="{{this.id}}.name"
+                                    value="{{this.name}}"
+                                    data-target="name"
+                                    data-name=true
+                                    {{#if this.data.data.locked}}disabled{{/if}}
+                                >
+                            </td>
+                            <td>
+                                <input
+                                    type="number"
+                                    class="itemTable-inputNum item-edit"
+                                    id="{{this.id}}.numAttacks"
+                                    name="{{this.id}}.numAttacks"
+                                    value="{{this.data.data.numAttacks}}"
+                                    data-target="data.numAttacks"
+                                    {{#if this.data.data.locked}}disabled{{/if}}
+                                >
+                            </td>
+                            <td>
+                                <input
+                                    type="number"
+                                    class="itemTable-inputNum item-edit"
+                                    id="{{this.id}}.toHit"
+                                    name="{{this.id}}.toHit"
+                                    value="{{this.data.data.toHit}}"
+                                    data-target="data.toHit"
+                                    {{#if this.data.data.locked}}disabled{{/if}}
+                                >
+                            </td>
+                            <td class="weapon-damage">
+                                <input
+                                    type="text"
+                                    class="itemTable-inputText item-edit"
+                                    id="{{this.id}}.damageDie"
+                                    name="{{this.id}}.damageDie"
+                                    value="{{this.data.data.damageDie}}"
+                                    data-target="data.damageDie"
+                                    {{#if this.data.data.locked}}disabled{{/if}}
+                                />
+                            </td>
+                            <td>
+                                <input
+                                    type="number"
+                                    class="itemTable-inputNum item-edit"
+                                    id="{{this.id}}.toDamage"
+                                    name="{{this.id}}.toDamage"
+                                    value="{{this.data.data.toDamage}}"
+                                    data-target="data.toDamage"
+                                    {{#if this.data.data.locked}}disabled{{/if}}
+                                >
+                            </td>
+                            <td class="weapon-range">
+                                <input
+                                    type="text"
+                                    class="itemTable-inputText item-edit"
+                                    id="{{this.id}}.range"
+                                    name="{{this.id}}.range"
+                                    value="{{this.data.data.range}}"
+                                    data-target="data.range"
+                                    {{#if this.data.data.locked}}disabled{{/if}}
+                                >
+                            </td>
+                            <td>
+                                <select
+                                    class="item-edit"
+                                    data-target="data.attackType"
+                                    {{#if this.data.data.locked}}disabled{{/if}}
+                                >
+                                    {{selectOptions @root.attackTypeChoices selected=this.data.data.attackType}}
+                                </select>
+                            </td>
+                            <td>
+                                <select
+                                    class="item-edit"
+                                    data-target="data.damageType"
+                                    {{#if this.data.data.locked}}disabled{{/if}}
+                                >
+                                    {{selectOptions @root.damageTypeChoices selected=this.data.data.damageType}}
+                                </select>
+                            </td>
+                            <td>
+                                <input
+                                    type="number"
+                                    class="itemTable-inputNum item-edit"
+                                    id="{{this.id}}.speed"
+                                    name="{{this.id}}.speed"
+                                    value="{{this.data.data.speed}}"
+                                    data-target="data.speed"
+                                    {{#if this.data.data.locked}}disabled{{/if}}
+                                >
+                            </td>
+                            <td>
+                                <a
+                                    class="item-delete"
+                                    title="Delete Item"
+                                    data-locked={{this.data.data.locked}}
+                                >
+                                    <i class="fas fa-trash {{#if this.data.data.locked}} disabled-color {{/if}}"></i>
+                                </a>
+                                <a
+                                    class="item-toggle"
+                                    title="Lock Item"
+                                    data-value={{this.data.data.locked}}
+                                    data-target="data.locked"
+                                >
+                                    <i class="fas {{#if this.data.data.locked}} fa-lock {{else}} fa-lock-open {{/if}}"></i>
+                                </a>
+                            </td>
+                            <!--td class="weapon-roll-td">
+                                <a class="rollable weapon-roll"></a>
+                                TODO: initiative roll
+                            </td-->
+                            <td class="weapon-roll-td">
+                                <a
+                                    class="rollable weapon-roll"
+                                    data-roll="
+                                        1d20
+                                        +{{this.data.data.toHit}}
+                                        {{#if (eq this.data.data.attackType 'Melee')}}
+                                            +{{this.actor.data.data.hitAdjust.melee}}
+                                        {{/if}}
+                                        {{#if (eq this.data.data.attackType 'Missile')}}
+                                            +{{this.actor.data.data.hitAdjust.missile}}
+                                        {{/if}}
+                                        {{#if (eq this.data.data.attackType 'Thrown')}}
+                                            +{{this.actor.data.data.hitAdjust.thrown}}
+                                        {{/if}}
+                                    "
+                                    data-label="to hit with {{this.name}}"
+                                ></a>
+                            </td>
+                            <td class="weapon-roll-td">
+                                <a
+                                    class="rollable weapon-roll"
+                                    data-roll="{{this.data.data.damageDie}}+{{this.data.data.toDamage}}"
+                                    data-label="damage with {{this.name}}"
+                                ></a>
+                            </td>
+                        </tr>
+                        {{/each}}
+                    </tbody>
                 </table>
                 <div class="itemTable-buttons">
                     <a class="item-create" data-type="weapon"><i class="fas fa-plus"></i> Add weapon</a>

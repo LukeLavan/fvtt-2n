@@ -191,6 +191,7 @@
     },
     "weapon": {
       "templates": ["base"],
+      "index": 0,
       "numAttacks": 1,
       "toHit": 0,
       "damageDie": "d6",

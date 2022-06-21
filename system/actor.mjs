@@ -1097,6 +1097,7 @@ export class TwoDotNealActor extends Actor {
     _preparePCDerivedDataItems(data) {
         let gearTabs = new Map();
         const spellTabs = data.data.spellTabs;
+        const weapons = [];
 
         data.items.forEach((item) => {
             if (item.type === 'gearTab') {
@@ -1132,6 +1133,7 @@ export class TwoDotNealActor extends Actor {
                     Number(item.data.data.base) + Number(item.data.data.adjust);
             else if (item.type === 'spell')
                 spellTabs[item.data.data.level].spells.push(item);
+            else if (item.type === 'weapon') weapons.push(item);
         });
 
         // sort gearTabs by their index
@@ -1150,7 +1152,13 @@ export class TwoDotNealActor extends Actor {
             const items = tab.items;
             for (let i = 0; i < items.length; ++i) items[i].data.data.index = i;
         });
+
+        // sort weapons by index
+        weapons.sort((a, b) => a.data.data.index - b.data.data.index);
+
         data.data.gearTabs = gearTabs;
+        data.data.spellTabs = spellTabs;
+        data.data.weapons = weapons;
     }
 
     _preparePCDerivedDataEncumbrance(data) {

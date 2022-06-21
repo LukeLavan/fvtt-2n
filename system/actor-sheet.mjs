@@ -262,7 +262,6 @@ export class TwoDotNealActorSheet extends ActorSheet {
                 'data.index': i,
             });
         this.actor.updateEmbeddedDocuments('Item', itemDifferentials);
-        console.log(itemDifferentials);
     }
 
     // handles adding items to sheet via drag/drop
