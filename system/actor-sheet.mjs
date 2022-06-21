@@ -96,13 +96,7 @@ export class TwoDotNealActorSheet extends ActorSheet {
             this._gearTabDefaultToggle.bind(this)
         );
 
-        // drag and drop item creation class (see _onDropItem for logic)
-        html.find('.droppable').on('dragover', (element) => {
-            element.currentTarget.classList.add('dragover');
-        });
-        html.find('.droppable').on('dragleave', (element) => {
-            element.currentTarget.classList.remove('dragover');
-        });
+        this._addItemTableListeners(html);
 
         // highlight active encumbrance
         const activeEncumbranceRow = html.find(
@@ -131,9 +125,9 @@ export class TwoDotNealActorSheet extends ActorSheet {
     // create item with this ActorSheet's actor as parent
     async _itemCreate(event) {
         event.preventDefault();
-        const header = event.currentTarget;
-        const type = header.dataset.type;
-        const data = duplicate(header.dataset);
+        const currentTarget = event.currentTarget;
+        const type = currentTarget.dataset.type;
+        const data = duplicate(currentTarget.dataset);
         const itemName = type.capitalize();
         const itemData = {
             name: itemName,
@@ -144,14 +138,13 @@ export class TwoDotNealActorSheet extends ActorSheet {
         const focusbox = document.getElementById(item.id + '.name');
         focusbox.focus();
         focusbox.select();
-        return item;
     }
 
     // edit an item's datum via an <input>
-    async _itemEdit(event) {
+    _itemEdit(event) {
         const currentTarget = $(event.currentTarget);
-        const id = currentTarget.parents('.item').attr('data-item-id');
-        const target = currentTarget.attr('data-target');
+        const id = currentTarget.parents('.item').data('item-id');
+        const target = currentTarget.data('target');
         let value = currentTarget.val();
         // ensure checkbox values are booleans
         if (currentTarget.attr('type') === 'checkbox') {
@@ -164,9 +157,9 @@ export class TwoDotNealActorSheet extends ActorSheet {
     }
 
     // updates all gearTabs' default status and updates actor's defaultGearTab
-    async _gearTabDefaultToggle(event) {
+    _gearTabDefaultToggle(event) {
         const currentTarget = $(event.currentTarget);
-        const id = currentTarget.parents('.item').attr('data-item-id');
+        const id = currentTarget.parents('.item').data('item-id');
         const itemDifferentials = [];
         const actorData = this.object.data;
         actorData.data.gearTabs.forEach((_, key) => {
@@ -187,10 +180,10 @@ export class TwoDotNealActorSheet extends ActorSheet {
     }
 
     // toggles an item's boolean datum
-    async _itemToggle(event) {
+    _itemToggle(event) {
         const currentTarget = $(event.currentTarget);
-        const id = currentTarget.parents('.item').attr('data-item-id');
-        const target = currentTarget.attr('data-target');
+        const id = currentTarget.parents('.item').data('item-id');
+        const target = currentTarget.data('target');
         let value = currentTarget.data('value');
 
         // toggle
@@ -198,24 +191,23 @@ export class TwoDotNealActorSheet extends ActorSheet {
 
         let itemDifferential = {_id: id};
         itemDifferential[target] = value;
-        let itemDifferentials = [itemDifferential];
 
-        this.actor.updateEmbeddedDocuments('Item', itemDifferentials);
+        this.actor.updateEmbeddedDocuments('Item', [itemDifferential]);
     }
 
     // deletes a single item
-    async _itemDelete(event) {
+    _itemDelete(event) {
         const currentTarget = $(event.currentTarget);
-        const id = currentTarget.parents('.item').attr('data-item-id');
+        const id = currentTarget.parents('.item').data('item-id');
         const locked = currentTarget.data('locked');
         if (locked) return;
         this.actor.deleteEmbeddedDocuments('Item', [id]);
     }
 
     // deletes a gear tab and all items within
-    async _gearTabDelete(event) {
+    _gearTabDelete(event) {
         const currentTarget = $(event.currentTarget);
-        const id = currentTarget.parents('.item').attr('data-item-id');
+        const id = currentTarget.parents('.item').data('item-id');
         const locked = currentTarget.data('locked');
         if (locked) return;
         const itemsToDelete = [id];
@@ -228,26 +220,92 @@ export class TwoDotNealActorSheet extends ActorSheet {
     }
 
     // opens item's ItemSheet
-    async _itemOpen(event) {
+    _itemOpen(event) {
         const currentTarget = $(event.currentTarget);
-        const id = currentTarget.parents('.item').attr('data-item-id');
+        const id = currentTarget.parents('.item').data('item-id');
         this.actor.data.items.get(id).sheet.render(true);
     }
 
     // handles adding items to sheet via drag/drop
-    async _onDropItem(dragEvent, data) {
-        const item = (await super._onDropItem(dragEvent, data))[0];
-        const actorData = this.object.data;
-        if (item.type === 'gear') {
-            let targetTab = actorData.data.defaultGearTab;
-            // determine if dragtarget is a gearTab
-            const path = dragEvent.path;
-            for (let i = 0; i < path.length; ++i)
-                if (path[i].classList?.contains('dragover')) {
-                    targetTab = path[i].dataset.tab;
-                    break;
+    _onDropItem(dragEvent, data) {
+        const actorData = this.actor.data;
+        const path = dragEvent.path;
+        let target;
+        for (let i = 0; i < path.length; ++i)
+            if (path[i].classList?.contains('dragover')) target = path[i];
+        const actorId = data.actorId;
+        if (actorId === actorData._id) {
+            // moving item within its parent actor
+            if (target) {
+                const itemDifferential = {_id: data.data._id};
+                if (data.data.type === 'gear')
+                    itemDifferential['data.tab'] = target.dataset.tab;
+                this.actor.updateEmbeddedDocuments('Item', [itemDifferential]);
+            }
+        } else {
+            // cloning item from outside parent actor
+            let item;
+            if (actorId) {
+                // item belongs to a different actor
+                const srcActor = game.actors.get(data.actorId);
+                item = srcActor.data.items.get(data.data._id);
+            }
+            // item does not belong to an actor
+            else item = game.items.get(data.id);
+            if (item.type === 'gear') {
+                let targetTab = actorData.data.defaultGearTab;
+                if (target) targetTab = target.dataset.tab;
+                item.data.data.tab = targetTab;
+            }
+            Item.create(
+                {
+                    name: item.name,
+                    type: item.type,
+                    data: item.data.data,
+                },
+                {
+                    parent: this.actor,
                 }
-            item.update({'data.tab': targetTab});
+            );
         }
+    }
+
+    // attaches listeners for itemTable drag/drop
+    _addItemTableListeners(html) {
+        // draggable rows
+        const draggableRows = html.find('.itemTable-draggable-row');
+        // packs event.dataTransfer data for _onDropItem
+        draggableRows.on('dragstart', (event) => {
+            super._onDragStart.bind(this)(event.originalEvent);
+        });
+        // prevent moving item to its current tab by removing droppable class from div and label
+        draggableRows.on('dragstart', (event) => {
+            const currentTarget = $(event.currentTarget);
+            const tabID = currentTarget.parents('.tab').data('item-id');
+            const tabLabel = $('a.item.navbar-item[data-tab=' + tabID + ']');
+            currentTarget.parents('.tab.item').removeClass('droppable');
+            tabLabel.removeClass('droppable');
+        });
+        // restore droppable class to current tab div + label
+        draggableRows.on('dragend', (event) => {
+            const currentTarget = $(event.currentTarget);
+            const tabID = currentTarget.parents('.tab').data('item-id');
+            const tabLabel = $('a.item.navbar-item[data-tab=' + tabID + ']');
+            currentTarget.parents('.tab.item').addClass('droppable');
+            tabLabel.addClass('droppable');
+        });
+
+        const droppables = html.find('.droppable');
+        // add dragover class for valid drop targets
+        droppables.on('dragover', (event) => {
+            const currentTarget = $(event.currentTarget);
+            if (currentTarget.hasClass('droppable'))
+                currentTarget.addClass('dragover');
+        });
+        // remove dragover class
+        droppables.on('dragleave', (event) => {
+            event.currentTarget.classList.remove('dragover');
+        });
+        // no need to remove class on drop event, since successful drop re-renders sheet
     }
 }

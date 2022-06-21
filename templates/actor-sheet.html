@@ -1382,15 +1382,13 @@
                 </div>
             </div>
             <nav class="gear-tabs tabs" data-group="gear">
-                <div class="gear-tabs-fake"></div>
                 {{#each actor.data.data.gearTabs}}
                 <a class="item navbar-item droppable" data-tab="{{this.[0]}}" data-group="gear">{{this.[1].tab.name}}</a>
                 {{/each}}
-                <div class="gear-tabs-fake"></div>
             </nav>
             <section class="gear-content">
                 {{#each actor.data.data.gearTabs}}
-                <div class="tab item droppable" data-tab="{{this.[0]}}" data-item-id="{{this.[0]}}" data-group="gear" tabindex="-1">
+                <div class="tab item droppable" data-tab="{{this.[0]}}" data-item-id="{{this.[0]}}" data-group="gear">
                     <div class="gear-tab-options">
                         Count tab towards encumbrance?
                         <input
@@ -1419,9 +1417,13 @@
                                         <th class="gearTableButtons"></th>
                                     </tr>
                                 </thead>
-                                <tbody class="item-list">
+                                <tbody>
                                     {{#each this.[1].items}}
-                                    <tr class="item" data-item-id="{{this.id}}">
+                                    <tr
+                                        class="item itemTable-draggable-row"
+                                        data-item-id="{{this.id}}"
+                                        {{#unless this.data.data.locked}}draggable="true"{{/unless}}
+                                    >
                                         <td>
                                             <input
                                                 type="number"

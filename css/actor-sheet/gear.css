@@ -1,10 +1,10 @@
 .gear-top {
     display: flex;
     flex-direction: row;
+    margin-bottom: 8px;
 }
 
 .gear-top-left {
-    margin: 5px;
     width: 70%;
 }
 
@@ -22,7 +22,7 @@
 }
 
 .gear-top-right {
-    margin: 5px;
+    margin-left: 4px;
     width: 30%;
 }
 
@@ -47,10 +47,7 @@
     overflow-x: auto;
     overflow-y: hidden;
 }
-.gear-tabs-fake {
-    width: 100%;
-    border-bottom: thin solid black;
-}
+
 .gear-tabs > a:first-child{
     margin-left: auto;
 }
@@ -76,6 +73,16 @@
 .gear-tab-wrap {
     display: flex;
     flex-direction: row;
+    border-left: thin solid black;
+    border-right: thin solid black;
+    border-bottom: thin solid black;
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+}
+
+.gear-tab-options {
+    border-left: thin solid black;
+    border-right: thin solid black;
 }
 
 .gear-tab-items {

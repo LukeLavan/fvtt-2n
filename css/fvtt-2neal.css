@@ -27,6 +27,14 @@
 
 /* overrides */
 
+section.window-content {
+    padding: 0 !important;
+}
+
+section.primary-content {
+    padding: 4px;
+}
+
 a:hover {
     text-shadow: 0 0 8px #dfc1ff;
 }
