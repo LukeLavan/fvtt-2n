@@ -127,7 +127,8 @@
         "locked": false
       },
       "mod": {
-        "active": true
+        "active": true,
+        "index": 0
       }
     },
     "throwMod": {

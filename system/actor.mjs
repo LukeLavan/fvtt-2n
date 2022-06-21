@@ -1098,6 +1098,11 @@ export class TwoDotNealActor extends Actor {
         let gearTabs = new Map();
         const spellTabs = data.data.spellTabs;
         const weapons = [];
+        const combatMods = {
+            acMods: [],
+            hitMods: [],
+            throwMods: [],
+        };
 
         data.items.forEach((item) => {
             if (item.type === 'gearTab') {
@@ -1134,6 +1139,9 @@ export class TwoDotNealActor extends Actor {
             else if (item.type === 'spell')
                 spellTabs[item.data.data.level].spells.push(item);
             else if (item.type === 'weapon') weapons.push(item);
+            else if (item.type === 'acMod') combatMods.acMods.push(item);
+            else if (item.type === 'hitMod') combatMods.hitMods.push(item);
+            else if (item.type === 'throwMod') combatMods.throwMods.push(item);
         });
 
         // sort gearTabs by their index
@@ -1143,22 +1151,32 @@ export class TwoDotNealActor extends Actor {
             )
         );
 
-        // sort gearTab internal items by item index
-        gearTabs.forEach((tab) => {
-            tab.items.sort((a, b) => a.data.data.index - b.data.data.index);
-        });
-        // normalize indices after sort
-        gearTabs.forEach((tab) => {
-            const items = tab.items;
+        const sortByIndex = (a, b) => a.data.data.index - b.data.data.index;
+        const normalizeIndicies = (items) => {
             for (let i = 0; i < items.length; ++i) items[i].data.data.index = i;
-        });
+        };
 
-        // sort weapons by index
-        weapons.sort((a, b) => a.data.data.index - b.data.data.index);
+        gearTabs.forEach((tab) => tab.items.sort(sortByIndex));
+        gearTabs.forEach((tab) => normalizeIndicies(tab.items));
+
+        weapons.sort(sortByIndex);
+        normalizeIndicies(weapons);
+
+        combatMods.acMods.sort((a, b) => a.data.data.index - b.data.data.index);
+        normalizeIndicies(combatMods.acMods);
+        combatMods.hitMods.sort(
+            (a, b) => a.data.data.index - b.data.data.index
+        );
+        normalizeIndicies(combatMods.hitMods);
+        combatMods.throwMods.sort(
+            (a, b) => a.data.data.index - b.data.data.index
+        );
+        normalizeIndicies(combatMods.throwMods);
 
         data.data.gearTabs = gearTabs;
         data.data.spellTabs = spellTabs;
         data.data.weapons = weapons;
+        data.data.combatMods = combatMods;
     }
 
     _preparePCDerivedDataEncumbrance(data) {

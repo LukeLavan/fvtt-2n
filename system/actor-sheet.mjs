@@ -145,6 +145,7 @@ export class TwoDotNealActorSheet extends ActorSheet {
             data: data,
         };
         const item = await Item.create(itemData, {parent: this.actor});
+        console.log(itemData, item);
         const focusbox = document.getElementById(item.id + '.name');
         focusbox.focus();
         focusbox.select();
