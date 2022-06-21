@@ -7,7 +7,7 @@
   "license": "MPL-2.0",
   "private": false,
   "scripts": {
-    "zip": "bestzip system.zip ./system.json ./template.json ./LICENSE ./css/* ./system/* ./templates/*"
+    "zip": "bestzip system.zip ./system.json ./template.json ./LICENSE ./css/* ./system/* ./templates/* ./lib/*"
   },
   "devDependencies": {
     "@typhonjs-fvtt/eslint-config-foundry.js": "^0.8.0",
