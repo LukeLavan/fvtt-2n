@@ -41,7 +41,7 @@ Hooks.once('init', async function () {
             'throwMod, acMod, hitMod, gearTab, nonWeaponProficiency, weaponProficiency',
     });
 
-    import('https://cdn.jsdelivr.net/npm/sortablejs@latest/Sortable.min.js');
+    import('../lib/Sortable.min.js');
 });
 
 // make rolls show dice automatically
