@@ -1,7 +1,7 @@
-export class TwoDotNealItemSheet extends ItemSheet {
+export class TwoNItemSheet extends ItemSheet {
     static get defaultOptions() {
         return mergeObject(super.defaultOptions, {
-            classes: ['twodotneal', 'sheet', 'item'],
+            classes: ['TwoN', 'sheet', 'item'],
             width: 520,
             height: 480,
             tabs: [],
@@ -9,6 +9,6 @@ export class TwoDotNealItemSheet extends ItemSheet {
     }
 
     get template() {
-        return `systems/fvtt-2neal/templates/${this.item.data.type}-sheet.html`;
+        return `systems/fvtt-2n/templates/${this.item.data.type}-sheet.html`;
     }
 }

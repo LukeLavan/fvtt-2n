@@ -1,8 +1,8 @@
 {
-  "name": "fvtt-2neal",
+  "name": "fvtt-2n",
   "version": "1.0.0",
   "description": "Recreating @koibu0 's modifications to the second edition of the world's greatest roleplaying game as a FoundryVTT system",
-  "repository": "https://github.com/LukeLavan/2-Neal",
+  "repository": "https://github.com/LukeLavan/fvtt-2n",
   "author": "Luke Lavan <luke.lavan01@gmail.com>",
   "license": "MPL-2.0",
   "private": false,

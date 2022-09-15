@@ -1,8 +1,8 @@
-import {TwoDotNealActor} from './actor.mjs';
-import {TwoDotNealActorSheet} from './actor-sheet.mjs';
+import {TwoNActor} from './actor.mjs';
+import {TwoNActorSheet} from './actor-sheet.mjs';
 
-import {TwoDotNealItem} from './item.mjs';
-import {TwoDotNealItemSheet} from './item-sheet.mjs';
+import {TwoNItem} from './item.mjs';
+import {TwoNItemSheet} from './item-sheet.mjs';
 
 /* Handlebars helpers */
 Handlebars.registerHelper('log', (x) => console.log(x));
@@ -10,28 +10,28 @@ Handlebars.registerHelper('or', (a, b) => a || b);
 
 /* FoundryVTT hooks */
 Hooks.once('init', async function () {
-    console.log('Initializing 2.Neal system');
+    console.log('Initializing 2n system');
 
     CONFIG.Combat.initiative = {
         formula: '1d10',
         decimals: 0,
     };
 
-    CONFIG.Actor.documentClass = TwoDotNealActor;
-    CONFIG.Item.documentClass = TwoDotNealItem;
-    //CONFIG.Token.documentClass = TwoDotNealTokenDocument;
-    //CONFIG.Token.objectClass = TwoDotNealToken;
+    CONFIG.Actor.documentClass = TwoNActor;
+    CONFIG.Item.documentClass = TwoNItem;
+    //CONFIG.Token.documentClass = TwoNTokenDocument;
+    //CONFIG.Token.objectClass = TwoNToken;
 
     Actors.unregisterSheet('core', ActorSheet);
-    Actors.registerSheet('fvtt-2neal', TwoDotNealActorSheet, {
+    Actors.registerSheet('fvtt-2n', TwoNActorSheet, {
         makeDefault: true,
     });
     Items.unregisterSheet('core', ItemSheet);
-    Items.registerSheet('fvtt-2neal', TwoDotNealItemSheet, {
+    Items.registerSheet('fvtt-2n', TwoNItemSheet, {
         makeDefault: true,
     });
 
-    game.settings.register('fvtt-2neal', 'createItemTypesHidden', {
+    game.settings.register('fvtt-2n', 'createItemTypesHidden', {
         name: 'Hidden Item Types',
         hint: 'Hides items in create item dialog (comma separated list)',
         scope: 'client',
@@ -57,7 +57,7 @@ Hooks.on('renderChatMessage', function (message) {
 Hooks.on('renderDialog', function (dialog, html) {
     if (dialog.data.title === 'Create New Item') {
         const types = game.settings
-            .get('fvtt-2neal', 'createItemTypesHidden')
+            .get('fvtt-2n', 'createItemTypesHidden')
             .replaceAll(' ', '')
             .split(',');
         const select = html.find('select')[0];

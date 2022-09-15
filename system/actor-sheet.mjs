@@ -1,8 +1,8 @@
-export class TwoDotNealActorSheet extends ActorSheet {
+export class TwoNActorSheet extends ActorSheet {
     static get defaultOptions() {
         return mergeObject(super.defaultOptions, {
-            classes: ['twodotneal', 'sheet', 'actor'],
-            template: 'systems/fvtt-2neal/templates/actor-sheet.html',
+            classes: ['TwoN', 'sheet', 'actor'],
+            template: 'systems/fvtt-2n/templates/actor-sheet.html',
             width: 640,
             height: 480,
             tabs: [

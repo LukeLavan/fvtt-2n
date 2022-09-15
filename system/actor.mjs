@@ -1,4 +1,4 @@
-export class TwoDotNealActor extends Actor {
+export class TwoNActor extends Actor {
     prepareDerivedData() {
         const actorData = this.data;
         switch (actorData.type) {
