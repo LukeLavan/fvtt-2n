@@ -20,19 +20,17 @@ export class TwoNActorSheet extends ActorSheet {
     }
 
     getData() {
-        const context = super.getData();
-        const actorData = context.actor.data;
-        switch (actorData.type) {
+        const data = super.getData();
+        switch (data.data.type) {
             case 'pc':
-                this._preparePCData(context);
+                this._preparePCData(data.data.system);
                 break;
         }
-        context.rollData = context.actor.getRollData();
-        return context;
+        return data;
     }
 
-    _preparePCData(context) {
-        context.alignmentChoices = {
+    _preparePCData(data) {
+        data.alignmentChoices = {
             '(choose one)': '(choose one)',
             'Lawful Good': 'Lawful Good',
             'Lawful Neutral': 'Lawful Neutral',
@@ -45,7 +43,7 @@ export class TwoNActorSheet extends ActorSheet {
             'Chaotic Evil': 'Chaotic Evil',
         };
 
-        context.hitDieChoices = {
+        data.hitDieChoices = {
             d4: 'd4',
             d6: 'd6',
             d8: 'd8',
@@ -53,7 +51,7 @@ export class TwoNActorSheet extends ActorSheet {
             d12: 'd12',
         };
 
-        context.statChoices = {
+        data.statChoices = {
             None: 'None',
             STR: 'STR',
             DEX: 'DEX',
@@ -64,14 +62,14 @@ export class TwoNActorSheet extends ActorSheet {
             PER: 'PER',
         };
 
-        context.attackTypeChoices = {
+        data.attackTypeChoices = {
             '': '',
             Melee: 'Melee',
             Missile: 'Missile',
             Thrown: 'Thrown',
         };
 
-        context.damageTypeChoices = {
+        data.damageTypeChoices = {
             Bludgeoning: 'Bludg.',
             Slashing: 'Slash.',
             Piercing: 'Pierc.',
@@ -110,7 +108,7 @@ export class TwoNActorSheet extends ActorSheet {
 
         // highlight active encumbrance
         const activeEncumbranceRow = html.find(
-            '#encumbrance-' + this.actor.data.data.currentEncumbrance
+            '#encumbrance-' + this.actor.system.currentEncumbrance
         );
         if (activeEncumbranceRow[0])
             activeEncumbranceRow[0].className = 'encumbranceHighlight';
@@ -123,7 +121,7 @@ export class TwoNActorSheet extends ActorSheet {
         const dataset = element.dataset;
 
         if (dataset.roll) {
-            let roll = new Roll(dataset.roll, this.actor.data.data);
+            let roll = new Roll(dataset.roll, this.actor.system);
             let label = dataset.label ? `Rolling ${dataset.label}` : '';
             roll.toMessage({
                 speaker: ChatMessage.getSpeaker({actor: this.actor}),
@@ -172,7 +170,7 @@ export class TwoNActorSheet extends ActorSheet {
         const id = currentTarget.parents('.item').data('item-id');
         const itemDifferentials = [];
         const actorData = this.object.data;
-        actorData.data.gearTabs.forEach((_, key) => {
+        actorData.system.gearTabs.forEach((_, key) => {
             if (key === id)
                 itemDifferentials.push({
                     _id: key,
@@ -223,7 +221,7 @@ export class TwoNActorSheet extends ActorSheet {
         const itemsToDelete = [id];
         // also delete items in tab
         this.actor.items.forEach((item) => {
-            if (item.type === 'gear' && item.data.data.tab === id)
+            if (item.type === 'gear' && item.data.system.tab === id)
                 itemsToDelete.push(item.id);
         });
         this.actor.deleteEmbeddedDocuments('Item', itemsToDelete);
@@ -233,7 +231,7 @@ export class TwoNActorSheet extends ActorSheet {
     _itemOpen(event) {
         const currentTarget = $(event.currentTarget);
         const id = currentTarget.parents('.item').data('item-id');
-        this.actor.data.items.get(id).sheet.render(true);
+        this.actor.items.get(id).sheet.render(true);
     }
 
     // pack data into dragTransfer for drop
@@ -247,7 +245,7 @@ export class TwoNActorSheet extends ActorSheet {
         if (dragEl.dataset.itemId) {
             const item = this.actor.items.get(dragEl.dataset.itemId);
             dragData.type = 'Item';
-            dragData.data = item.data;
+            dragData.system = item.data;
         }
         dataTransfer.setData('text/plain', JSON.stringify(dragData));
     }
@@ -275,8 +273,8 @@ export class TwoNActorSheet extends ActorSheet {
         if (actorId === actorData._id) {
             // moving item within its parent actor
             if (target) {
-                const itemDifferential = {_id: data.data._id};
-                if (data.data.type === 'gear') {
+                const itemDifferential = {_id: data.system._id};
+                if (data.system.type === 'gear') {
                     itemDifferential['data.tab'] = target.dataset.tab;
                     itemDifferential['data.index'] = -1;
                 }
@@ -288,22 +286,22 @@ export class TwoNActorSheet extends ActorSheet {
             if (actorId) {
                 // item belongs to a different actor
                 const srcActor = game.actors.get(data.actorId);
-                item = srcActor.data.items.get(data.data._id);
-                item.data.data.index = -1;
+                item = srcActor.data.items.get(data.system._id);
+                item.data.system.index = -1;
             }
             // item does not belong to an actor
             else item = game.items.get(data.id);
             if (item.type === 'gear') {
-                let targetTab = actorData.data.defaultGearTab;
+                let targetTab = actorData.system.defaultGearTab;
                 if (target) targetTab = target.dataset.tab;
-                item.data.data.tab = targetTab;
-                item.data.data.index = -1;
+                item.data.system.tab = targetTab;
+                item.data.system.index = -1;
             }
             Item.create(
                 {
                     name: item.name,
                     type: item.type,
-                    data: item.data.data,
+                    data: item.data.system,
                 },
                 {
                     parent: this.actor,

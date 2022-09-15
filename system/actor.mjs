@@ -1,22 +1,20 @@
 export class TwoNActor extends Actor {
     prepareDerivedData() {
-        const actorData = this.data;
-        switch (actorData.type) {
+        switch (this.type) {
             case 'pc':
-                this._preparePCDerivedData(actorData);
+                this._preparePCDerivedData(this.system);
                 break;
         }
     }
 
-    _preparePCDerivedData(actorData) {
-        const data = actorData.data;
+    _preparePCDerivedData(data) {
         this._preparePCDerivedDataAbilities(data);
         data.hitDieRollAdjusted = data.hitDieRoll + ' + ' + data.hitPointAdjust;
-        this._preparePCDerivedDataSavingThrows(actorData);
-        this._preparePCDerivedDataAC(actorData);
-        this._preparePCDerivedDataHitAdjust(actorData);
-        this._preparePCDerivedDataItems(actorData);
-        this._preparePCDerivedDataEncumbrance(actorData);
+        this._preparePCDerivedDataSavingThrows(data);
+        this._preparePCDerivedDataAC(data);
+        this._preparePCDerivedDataHitAdjust(data);
+        this._preparePCDerivedDataItems(data);
+        this._preparePCDerivedDataEncumbrance(data);
     }
 
     _preparePCDerivedDataAbilities(data) {
@@ -1023,15 +1021,15 @@ export class TwoNActor extends Actor {
     }
 
     _preparePCDerivedDataSavingThrows(data) {
-        const throws = data.data.savingThrows;
+        const throws = data.savingThrows;
         throws.ppd = 0;
         throws.rsw = 0;
         throws.pepo = 0;
         throws.brw = 0;
         throws.spell = 0;
-        for (let i of data.items) {
-            const itemData = i.data.data;
-            if (i.data.type === 'throwMod' && itemData.active) {
+        for (let i of this.items) {
+            const itemData = i.system;
+            if (i.type === 'throwMod' && itemData.active) {
                 const ppd = parseInt(itemData.ppd) || 0;
                 const rsw = parseInt(itemData.rsw) || 0;
                 const pepo = parseInt(itemData.pepo) || 0;
@@ -1048,10 +1046,10 @@ export class TwoNActor extends Actor {
     }
 
     _preparePCDerivedDataAC(data) {
-        const ac = data.data.armorClasses;
-        for (let i of data.items) {
-            const itemData = i.data.data;
-            if (i.data.type === 'acMod' && itemData.active) {
+        const ac = data.armorClasses;
+        for (let i of this.items) {
+            const itemData = i.system;
+            if (i.type === 'acMod' && itemData.active) {
                 const natural = parseInt(itemData.natural) || 0;
                 const dexterity = parseInt(itemData.dexterity) || 0;
                 const armor = parseInt(itemData.armor) || 0;
@@ -1080,10 +1078,10 @@ export class TwoNActor extends Actor {
     }
 
     _preparePCDerivedDataHitAdjust(data) {
-        const hit = data.data.hitAdjust;
-        for (let i of data.items) {
-            const itemData = i.data.data;
-            if (i.data.type === 'hitMod' && itemData.active) {
+        const hit = data.hitAdjust;
+        for (let i of this.items) {
+            const itemData = i.system;
+            if (i.type === 'hitMod' && itemData.active) {
                 const melee = parseInt(itemData.melee) || 0;
                 const missile = parseInt(itemData.missile) || 0;
                 const thrown = parseInt(itemData.thrown) || 0;
@@ -1096,7 +1094,7 @@ export class TwoNActor extends Actor {
 
     _preparePCDerivedDataItems(data) {
         let gearTabs = new Map();
-        const spellTabs = data.data.spellTabs;
+        const spellTabs = data.spellTabs;
         const weapons = [];
         const combatMods = {
             acMods: [],
@@ -1108,7 +1106,7 @@ export class TwoNActor extends Actor {
             weapon: [],
         };
 
-        data.items.forEach((item) => {
+        this.items.forEach((item) => {
             if (item.type === 'gearTab') {
                 gearTabs.set(item.id, {
                     tab: item,
@@ -1116,7 +1114,7 @@ export class TwoNActor extends Actor {
                 });
 
                 // TODO: configurable coin weight(s)
-                const wealth = item.data.data.wealth;
+                const wealth = item.system.wealth;
                 wealth.weight =
                     (2 * wealth.copper +
                         2 * wealth.silver +
@@ -1126,23 +1124,23 @@ export class TwoNActor extends Actor {
                         2 * wealth.iron) /
                     100;
 
-                item.data.data.length = 0;
-                item.data.data.weight = wealth.weight;
+                item.system.length = 0;
+                item.system.weight = wealth.weight;
             } else if (item.type === 'gear') {
-                if (gearTabs.has(item.data.data.tab)) {
-                    const tab = gearTabs.get(item.data.data.tab);
+                if (gearTabs.has(item.system.tab)) {
+                    const tab = gearTabs.get(item.system.tab);
                     tab.items.push(item);
-                    tab.tab.data.data.length += 1;
-                    tab.tab.data.data.weight +=
-                        Number(item.data.data.weight) *
-                        Number(item.data.data.quantity);
+                    tab.tab.system.length += 1;
+                    tab.tab.system.weight +=
+                        Number(item.system.weight) *
+                        Number(item.system.quantity);
                 }
             } else if (item.type === 'nonWeaponProficiency') {
-                item.data.data.total =
-                    Number(item.data.data.base) + Number(item.data.data.adjust);
+                item.system.total =
+                    Number(item.system.base) + Number(item.system.adjust);
                 proficiencies.nonweapon.push(item);
             } else if (item.type === 'spell')
-                spellTabs[item.data.data.level].spells.push(item);
+                spellTabs[item.system.level].spells.push(item);
             else if (item.type === 'weapon') weapons.push(item);
             else if (item.type === 'acMod') combatMods.acMods.push(item);
             else if (item.type === 'hitMod') combatMods.hitMods.push(item);
@@ -1154,18 +1152,18 @@ export class TwoNActor extends Actor {
         // sort gearTabs by their index
         gearTabs = new Map(
             [...gearTabs.entries()].sort(
-                (a, b) => a[1].tab.data.data.index - b[1].tab.data.data.index
+                (a, b) => a[1].tab.system.index - b[1].tab.system.index
             )
         );
 
-        const sortByIndex = (a, b) => a.data.data.index - b.data.data.index;
+        const sortByIndex = (a, b) => a.system.index - b.system.index;
         const normalizeIndicies = (items) => {
-            for (let i = 0; i < items.length; ++i) items[i].data.data.index = i;
+            for (let i = 0; i < items.length; ++i) items[i].system.index = i;
         };
 
         let tabindex = 0;
         gearTabs.forEach((tab) => {
-            tab.tab.data.data.index = tabindex++;
+            tab.tab.system.index = tabindex++;
             tab.items.sort(sortByIndex);
             normalizeIndicies(tab.items);
         });
@@ -1173,13 +1171,9 @@ export class TwoNActor extends Actor {
         weapons.sort(sortByIndex);
         normalizeIndicies(weapons);
 
-        combatMods.acMods.sort((a, b) => a.data.data.index - b.data.data.index);
-        combatMods.hitMods.sort(
-            (a, b) => a.data.data.index - b.data.data.index
-        );
-        combatMods.throwMods.sort(
-            (a, b) => a.data.data.index - b.data.data.index
-        );
+        combatMods.acMods.sort((a, b) => a.system.index - b.system.index);
+        combatMods.hitMods.sort((a, b) => a.system.index - b.system.index);
+        combatMods.throwMods.sort((a, b) => a.system.index - b.system.index);
         normalizeIndicies(combatMods.acMods);
         normalizeIndicies(combatMods.hitMods);
         normalizeIndicies(combatMods.throwMods);
@@ -1194,24 +1188,24 @@ export class TwoNActor extends Actor {
             normalizeIndicies(spellTabs[tab].spells);
         }
 
-        data.data.gearTabs = gearTabs;
-        data.data.spellTabs = spellTabs;
-        data.data.weapons = weapons;
-        data.data.combatMods = combatMods;
-        data.data.proficiencies = proficiencies;
+        data.gearTabs = gearTabs;
+        data.spellTabs = spellTabs;
+        data.weapons = weapons;
+        data.combatMods = combatMods;
+        data.proficiencies = proficiencies;
     }
 
     _preparePCDerivedDataEncumbrance(data) {
         // calculate equipped weight
         let equippedWeight = 0;
-        data.data.gearTabs.forEach((tab) => {
-            const tabData = tab.tab.data.data;
+        data.gearTabs.forEach((tab) => {
+            const tabData = tab.tab.system;
             if (tabData.equipped) equippedWeight += tabData.weight;
         });
-        data.data.equippedWeight = equippedWeight;
+        data.equippedWeight = equippedWeight;
 
         // calculate movement modifiers
-        const baseSpeed = data.data.speed;
+        const baseSpeed = data.speed;
         const speedLevels = {
             base: baseSpeed,
             light: Math.floor(baseSpeed * (2 / 3)),
@@ -1219,12 +1213,12 @@ export class TwoNActor extends Actor {
             heavy: Math.floor(baseSpeed * (1 / 3)),
             severe: 1,
         };
-        data.data.speedLevels = speedLevels;
+        data.speedLevels = speedLevels;
 
         // determine which encumbrance category currently applies
         let currentEncumbrance;
         let speedMod;
-        const weightLimits = data.data.weightLimits;
+        const weightLimits = data.weightLimits;
         if (weightLimits) {
             if (equippedWeight <= weightLimits.base) {
                 currentEncumbrance = 'base';
@@ -1239,11 +1233,12 @@ export class TwoNActor extends Actor {
                 currentEncumbrance = 'heavy';
                 speedMod = speedLevels.heavy;
             } else if (equippedWeight <= weightLimits.severe) {
+                // TODO: no logic for being over severe category
                 currentEncumbrance = 'severe';
                 speedMod = speedLevels.severe;
             }
         }
-        data.data.currentEncumbrance = currentEncumbrance;
-        data.data.speedMod = speedMod;
+        data.currentEncumbrance = currentEncumbrance;
+        data.speedMod = speedMod;
     }
 }

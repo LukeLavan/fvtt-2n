@@ -1,18 +1,18 @@
 <form class="{{cssClass}}" autocomplete="off">
     <nav class="primary-tabs tabs" data-group="primary">
-        {{#if this.data.data.settings.sheetToggle.basic}}
+        {{#if data.system.settings.sheetToggle.basic}}
         <a class="item navbar-item" data-tab="basic" data-group="primary">BASIC</a>
         {{/if}}
-        {{#if this.data.data.settings.sheetToggle.combat}}
+        {{#if data.system.settings.sheetToggle.combat}}
         <a class="item navbar-item" data-tab="combat" data-group="primary">COMBAT</a>
         {{/if}}
-        {{#if this.data.data.settings.sheetToggle.gear}}
+        {{#if data.system.settings.sheetToggle.gear}}
         <a class="item navbar-item" data-tab="gear" data-group="primary">GEAR</a>
         {{/if}}
-        {{#if this.data.data.settings.sheetToggle.skills}}
+        {{#if data.system.settings.sheetToggle.skills}}
         <a class="item navbar-item" data-tab="skills" data-group="primary">SKILLS</a>
         {{/if}}
-        {{#if this.data.data.settings.sheetToggle.spells}}
+        {{#if data.system.settings.sheetToggle.spells}}
         <a class="item navbar-item" data-tab="spells" data-group="primary">SPELLS</a>
         {{/if}}
         <a class="item navbar-item" data-tab="settings" data-group="primary">SETTINGS</a>
@@ -25,9 +25,9 @@
                         <td>Player:</td>
                         <td>
                             <input
-                                name="data.playerName"
+                                name="system.playerName"
                                 type="text"
-                                value="{{data.data.playerName}}"
+                                value="{{data.system.playerName}}"
                             />
                         </td>
                     </tr>
@@ -45,18 +45,18 @@
                         <td>Languages:</td>
                         <td>
                             <input
-                                name="data.languages"
+                                name="system.languages"
                                 type="text"
-                                value="{{data.data.languages}}"
-                                title="{{data.data.languages}}"
+                                value="{{data.system.languages}}"
+                                title="{{data.system.languages}}"
                             />
                         </td>
                     </tr>
                     <tr>
                         <td>Alignment:</td>
                         <td>
-                            <select name="data.alignment" class="basic-top-alignment">
-                                {{selectOptions alignmentChoices selected=data.data.alignment}}
+                            <select name="system.alignment" class="basic-top-alignment">
+                                {{selectOptions data.system.alignmentChoices selected=data.system.alignment}}
                             </select>
                         </td>
                     </tr>
@@ -66,9 +66,9 @@
                         <td>Race:</td>
                         <td>
                             <input
-                                name="data.race"
+                                name="system.race"
                                 type="text"
-                                value="{{data.data.race}}"
+                                value="{{data.system.race}}"
                             />
                         </td>
                     </tr>
@@ -76,9 +76,9 @@
                         <td>Classes:</td>
                         <td>
                             <input
-                                name="data.classes"
+                                name="system.classes"
                                 type="text"
-                                value="{{data.data.classes}}"
+                                value="{{data.system.classes}}"
                             />
                         </td>
                     </tr>
@@ -86,9 +86,9 @@
                         <td>XP:</td>
                         <td>
                             <input
-                                name="data.xp"
+                                name="system.xp"
                                 type="text"
-                                value="{{data.data.xp}}"
+                                value="{{data.system.xp}}"
                             />
                         </td>
                     </tr>
@@ -96,9 +96,9 @@
                         <td>Levels:</td>
                         <td>
                             <input
-                                name="data.levels"
+                                name="system.levels"
                                 type="text"
-                                value="{{data.data.levels}}"
+                                value="{{data.system.levels}}"
                             />
                         </td>
                     </tr>
@@ -108,9 +108,9 @@
                         <td>Body Weight:</td>
                         <td>
                             <input
-                                name="data.bodyWeight"
+                                name="system.bodyWeight"
                                 type="number"
-                                value="{{data.data.bodyWeight}}"
+                                value="{{data.system.bodyWeight}}"
                             />
                         </td>
                     </tr>
@@ -118,9 +118,9 @@
                         <td>Height:</td>
                         <td>
                             <input
-                                name="data.height"
+                                name="system.height"
                                 type="text"
-                                value="{{data.data.height}}"
+                                value="{{data.system.height}}"
                             />
                         </td>
                     </tr>
@@ -128,9 +128,9 @@
                         <td>Sex:</td>
                         <td>
                             <input
-                                name="data.sex"
+                                name="system.sex"
                                 type="text"
-                                value="{{data.data.sex}}"
+                                value="{{data.system.sex}}"
                             />
                         </td>
                     </tr>
@@ -138,9 +138,9 @@
                         <td>Gender:</td>
                         <td>
                             <input
-                                name="data.gender"
+                                name="system.gender"
                                 type="text"
-                                value="{{data.data.gender}}"
+                                value="{{data.system.gender}}"
                             />
                         </td>
                     </tr>
@@ -150,9 +150,9 @@
                         <td>Size:</td>
                         <td colspan="3">
                             <input
-                                name="data.size"
+                                name="system.size"
                                 type="text"
-                                value="{{data.data.size}}"
+                                value="{{data.system.size}}"
                             />
                         </td>
                     </tr>
@@ -163,22 +163,22 @@
                         <td>
                             <input
                                 type="number"
-                                name="data.speed"
-                                value="{{data.data.speed}}"
+                                name="system.speed"
+                                value="{{data.system.speed}}"
                             />
                         </td>
                         <td>Mod:</td>
                         <td>
-                            <span class="basic-top-speedMod"><b>{{data.data.speedMod}}</b></span>
+                            <span class="basic-top-speedMod"><b>{{data.system.speedMod}}</b></span>
                         </td>
                     </tr>
                     <tr>
                         <td>Age:</td>
                         <td colspan="3">
                             <input
-                                name="data.age"
+                                name="system.age"
                                 type="text"
-                                value="{{data.data.age}}"
+                                value="{{data.system.age}}"
                             />
                         </td>
                     </tr>
@@ -186,9 +186,9 @@
                         <td>Handed:</td>
                         <td colspan="3">
                             <input
-                                name="data.handed"
+                                name="system.handed"
                                 type="text"
-                                value="{{data.data.handed}}"
+                                value="{{data.system.handed}}"
                             />
                         </td>
                     </tr>
@@ -200,9 +200,9 @@
                         <td>STR</td>
                         <td>
                             <input
-                                name="data.str"
+                                name="system.str"
                                 type="number"
-                                value="{{data.data.str}}"
+                                value="{{data.system.str}}"
                             />
                         </td>
                     </tr>
@@ -210,9 +210,9 @@
                         <td>DEX</td>
                         <td>
                             <input
-                                name="data.dex"
+                                name="system.dex"
                                 type="number"
-                                value="{{data.data.dex}}"
+                                value="{{data.system.dex}}"
                             />
                         </td>
                     </tr>
@@ -220,9 +220,9 @@
                         <td>CON</td>
                         <td>
                             <input
-                                name="data.con"
+                                name="system.con"
                                 type="number"
-                                value="{{data.data.con}}"
+                                value="{{data.system.con}}"
                             />
                         </td>
                     </tr>
@@ -230,9 +230,9 @@
                         <td>INT</td>
                         <td>
                             <input
-                                name="data.int"
+                                name="system.int"
                                 type="number"
-                                value="{{data.data.int}}"
+                                value="{{data.system.int}}"
                             />
                         </td>
                     </tr>
@@ -240,9 +240,9 @@
                         <td>WIS</td>
                         <td>
                             <input
-                                name="data.wis"
+                                name="system.wis"
                                 type="number"
-                                value="{{data.data.wis}}"
+                                value="{{data.system.wis}}"
                             />
                         </td>
                     </tr>
@@ -250,9 +250,9 @@
                         <td>CHA</td>
                         <td>
                             <input
-                                name="data.cha"
+                                name="system.cha"
                                 type="number"
-                                value="{{data.data.cha}}"
+                                value="{{data.system.cha}}"
                             />
                         </td>
                     </tr>
@@ -260,9 +260,9 @@
                         <td>PER</td>
                         <td>
                             <input
-                                name="data.per"
+                                name="system.per"
                                 type="number"
-                                value="{{data.data.per}}"
+                                value="{{data.system.per}}"
                             />
                         </td>
                     </tr>
@@ -274,7 +274,7 @@
                                 Melee Attack Adjust
                             </span>
                             <span class="derived-value">
-                                {{data.data.meleeAttackAdjust}}
+                                {{data.system.meleeAttackAdjust}}
                             </span>
                         </div>
                         <div>
@@ -282,7 +282,7 @@
                                 Melee Damage Adjust
                             </span>
                             <span class="derived-value">
-                                {{data.data.meleeDamageAdjust}}
+                                {{data.system.meleeDamageAdjust}}
                             </span>
                         </div>
                         <div>
@@ -290,7 +290,7 @@
                                 Weight Allowance
                             </span>
                             <span class="derived-value">
-                                {{data.data.weightAllowance}}
+                                {{data.system.weightAllowance}}
                             </span>
                         </div>
                         <div>
@@ -298,31 +298,31 @@
                                 Max Press
                             </span>
                             <span class="derived-value">
-                                {{data.data.maxPress}}
+                                {{data.system.maxPress}}
                             </span>
                         </div>
                         <div 
                             class="rollable"
-                            data-roll="d20cs<={{data.data.openDoors}}"
+                            data-roll="d20cs<={{data.system.openDoors}}"
                             data-label="Open Doors Check"
                         >
                             <span class="derived-label">
                                 Open Doors
                             </span>
                             <span class="derived-value">
-                                {{data.data.openDoors}}
+                                {{data.system.openDoors}}
                             </span>
                         </div>
                         <div
                             class="rollable"
-                            data-roll="d100cs<={{data.data.bendBars}}"
+                            data-roll="d100cs<={{data.system.bendBars}}"
                             data-label="Bend Bars Check"
                         >
                             <span class="derived-label">
                                 Bend Bars
                             </span>
                             <span class="derived-value">
-                                {{data.data.bendBars}}
+                                {{data.system.bendBars}}
                             </span>
                         </div>
                     </div>
@@ -332,7 +332,7 @@
                                 Missile Hit Adjustment
                             </span>
                             <span class="derived-value">
-                                {{data.data.missileHitAdjust}}
+                                {{data.system.missileHitAdjust}}
                             </span>
                         </div>
                         <div>
@@ -340,7 +340,7 @@
                                 Defensive Adjustment
                             </span>
                             <span class="derived-value">
-                                {{data.data.defenseAdjust}}
+                                {{data.system.defenseAdjust}}
                             </span>
                         </div>
                     </div>
@@ -350,7 +350,7 @@
                                 HP Adjust
                             </span>
                             <span class="derived-value">
-                                {{data.data.hitPointAdjust}}
+                                {{data.system.hitPointAdjust}}
                             </span>
                         </div>
                         <div>
@@ -358,7 +358,7 @@
                                 System Shock
                             </span>
                             <span class="derived-value">
-                                {{data.data.systemShock}}
+                                {{data.system.systemShock}}
                             </span>
                         </div>
                         <div>
@@ -366,7 +366,7 @@
                                 Poison Save
                             </span>
                             <span class="derived-value">
-                                {{data.data.poisonSave}}
+                                {{data.system.poisonSave}}
                             </span>
                         </div>
                         <div>
@@ -374,7 +374,7 @@
                                 Regen
                             </span>
                             <span class="derived-value">
-                                {{data.data.regen}}
+                                {{data.system.regen}}
                             </span>
                         </div>
                     </div>
@@ -384,7 +384,7 @@
                                 Languages
                             </span>
                             <span class="derived-value">
-                                {{data.data.numLanguages}}
+                                {{data.system.numLanguages}}
                             </span>
                         </div>
                         <div>
@@ -392,19 +392,19 @@
                                 Max Spell Level
                             </span>
                             <span class="derived-value">
-                                {{data.data.maxSpellLevel}}
+                                {{data.system.maxSpellLevel}}
                             </span>
                         </div>
                         <div
                             class="rollable"
-                            data-roll="d100cs<={{data.data.spellLearnChance}}"
+                            data-roll="d100cs<={{data.system.spellLearnChance}}"
                             data-label="Chance to Learn Spell"
                         >
                             <span class="derived-label">
                                 Chance to Learn Spell
                             </span>
                             <span class="derived-value">
-                                {{data.data.spellLearnChance}}
+                                {{data.system.spellLearnChance}}
                             </span>
                         </div>
                         <div>
@@ -412,7 +412,7 @@
                                 Max Spells per Level
                             </span>
                             <span class="derived-value">
-                                {{data.data.maxSpellPerLevel}}
+                                {{data.system.maxSpellPerLevel}}
                             </span>
                         </div>
                     </div>
@@ -422,7 +422,7 @@
                                 Magical Defense Adjust
                             </span>
                             <span class="derived-value">
-                                {{data.data.magicDefenseAdjust}}
+                                {{data.system.magicDefenseAdjust}}
                             </span>
                         </div>
                         <div>
@@ -430,19 +430,19 @@
                                 Bonus Spells
                             </span>
                             <span class="derived-value">
-                                {{data.data.bonusSpells}}
+                                {{data.system.bonusSpells}}
                             </span>
                         </div>
                         <div
                             class="rollable"
-                            data-roll="d100cs<={{data.data.chanceSpellFailure}}"
+                            data-roll="d100cs<={{data.system.chanceSpellFailure}}"
                             data-label="Spell Failure"
                         >
                             <span class="derived-label">
                                 Spell Failure
                             </span>
                             <span class="derived-value">
-                                {{data.data.chanceSpellFailure}}
+                                {{data.system.chanceSpellFailure}}
                             </span>
                         </div>
                     </div>
@@ -452,7 +452,7 @@
                                 Henchmen
                             </span>
                             <span class="derived-value">
-                                {{data.data.maxHenchmen}}
+                                {{data.system.maxHenchmen}}
                             </span>
                         </div>
                         <div>
@@ -460,33 +460,33 @@
                                 Loyalty Base
                             </span>
                             <span class="derived-value">
-                                {{data.data.loyaltyBase}}
+                                {{data.system.loyaltyBase}}
                             </span>
                         </div>
                         <div
                             class="rollable"
-                            data-roll="2d10+{{data.data.reactionAdjust}}"
+                            data-roll="2d10+{{data.system.reactionAdjust}}"
                             data-label="Encounter Reaction"
                         >
                             <span class="derived-label">
                                 Reaction Adjustment
                             </span>
                             <span class="derived-value">
-                                {{data.data.reactionAdjust}}
+                                {{data.system.reactionAdjust}}
                             </span>
                         </div>
                     </div>
                     <div class="basic-derivedRow basic-derivedRow-altColor" id="derived-per">
                         <div
                             class="rollable"
-                            data-roll="d10cs>(3-{{data.data.surpriseAdjust}})"
+                            data-roll="d10cs>(3-{{data.system.surpriseAdjust}})"
                             data-label="Surprise Check"
                         >
                             <span class="derived-label">
                                 Surprise Adjustment
                             </span>
                             <span class="derived-value">
-                                {{data.data.surpriseAdjust}}
+                                {{data.system.surpriseAdjust}}
                             </span>
                         </div>
                         <div>
@@ -494,7 +494,7 @@
                                 Illusion Immunity
                             </span>
                             <span class="derived-value">
-                                {{data.data.illusionImmunity}}
+                                {{data.system.illusionImmunity}}
                             </span>
                         </div>
                     </div>
@@ -506,16 +506,16 @@
                 <div class="combat-top-hp">
                     <span
                         class="rollable"
-                        data-roll="{{data.data.hitDieRoll}}+{{data.data.hitPointAdjust}}"
+                        data-roll="{{data.system.hitDieRoll}}+{{data.system.hitPointAdjust}}"
                         data-label="Hit Die"
                     >Hit Points</span>
                     <hr />
                     <div>
                         <div>
                             <input
-                                name="data.health.value"
+                                name="system.health.value"
                                 type="number"
-                                value="{{data.data.health.value}}"
+                                value="{{data.system.health.value}}"
                                 class="combat-big-text"
                             />
                             <br />
@@ -523,17 +523,17 @@
                         </div>
                         <div>
                             <input
-                                name="data.health.max"
+                                name="system.health.max"
                                 type="number"
-                                value="{{data.data.health.max}}"
+                                value="{{data.system.health.max}}"
                                 class="combat-big-text"
                             />
                             <br />
                             <span>Maximum</span>
                         </div>
                         <div>
-                            <select class="combat-big-text combat-top-select" name="data.hitDieRoll">
-                                {{selectOptions hitDieChoices selected=data.data.hitDieRoll}}
+                            <select class="combat-big-text combat-top-select" name="system.hitDieRoll">
+                                {{selectOptions data.system.hitDieChoices selected=data.system.hitDieRoll}}
                             </select>
                             <br />
                             <span>Hit Dice</span>
@@ -542,7 +542,7 @@
                     <!--
                     <div 
                         class="combat-top-hp-button rollable"
-                        data-roll="{{data.data.hitDieRollAdjusted}}"
+                        data-roll="{{data.system.hitDieRollAdjusted}}"
                         data-label="Hit Die"
                     ></div>
                     -->
@@ -552,19 +552,19 @@
                     <hr />
                     <div>
                         <div>
-                            <span class="combat-big-text">{{data.data.armorClasses.total}}</span>
+                            <span class="combat-big-text">{{data.system.armorClasses.total}}</span>
                             <span>Total</span>
                         </div>
                         <div>
-                            <span class="combat-big-text">{{data.data.armorClasses.back}}</span>
+                            <span class="combat-big-text">{{data.system.armorClasses.back}}</span>
                             <span>Back</span>
                         </div>
                         <div>
-                            <span class="combat-big-text">{{data.data.armorClasses.touch}}</span>
+                            <span class="combat-big-text">{{data.system.armorClasses.touch}}</span>
                             <span>Touch</span>
                         </div>
                         <div>
-                            <span class="combat-big-text">{{data.data.armorClasses.surprise}}</span>
+                            <span class="combat-big-text">{{data.system.armorClasses.surprise}}</span>
                             <span>Surprise</span>
                         </div>
                     </div>
@@ -573,15 +573,14 @@
             <div class="combat-weapons">
                 <table class="itemTable">
                     <tr>
-                        <th colspan="13">Weapons</th>
+                        <th colspan="12">Weapons</th>
                     </tr>
                     <tr>
                         <th></th>
                         <th>Name</th>
                         <th># Atks</th>
                         <th>To Hit</th>
-                        <th>Dmg Die</th>
-                        <th>To Dmg</th>
+                        <th>Dmg Roll</th>
                         <th>Range</th>
                         <th>Atk Type</th>
                         <th>Dmg Type</th>
@@ -592,12 +591,12 @@
                         <th>Dmg</th>
                     </tr>
                     <tbody class="itemTable-sort">
-                        {{#each actor.data.data.weapons}}
-                        <tr class="item" data-item-id="{{this.id}}" data-locked="{{this.data.data.locked}}">
+                        {{#each data.system.weapons}}
+                        <tr class="item" data-item-id="{{this.id}}" data-locked="{{this.system.locked}}">
                             <td>
                                 <a
                                     class="itemTable-handle"
-                                    data-locked="{{this.data.data.locked}}"
+                                    data-locked="{{this.system.locked}}"
                                 >
                                     <i class="fas fa-bars"></i>
                                 </a>
@@ -611,7 +610,7 @@
                                     value="{{this.name}}"
                                     data-target="name"
                                     data-name=true
-                                    {{#if this.data.data.locked}}disabled{{/if}}
+                                    {{#if this.system.locked}}disabled{{/if}}
                                 >
                             </td>
                             <td>
@@ -620,9 +619,9 @@
                                     class="itemTable-inputNum item-edit"
                                     id="{{this.id}}.numAttacks"
                                     name="{{this.id}}.numAttacks"
-                                    value="{{this.data.data.numAttacks}}"
-                                    data-target="data.numAttacks"
-                                    {{#if this.data.data.locked}}disabled{{/if}}
+                                    value="{{this.system.numAttacks}}"
+                                    data-target="system.numAttacks"
+                                    {{#if this.system.locked}}disabled{{/if}}
                                 >
                             </td>
                             <td>
@@ -631,32 +630,21 @@
                                     class="itemTable-inputNum item-edit"
                                     id="{{this.id}}.toHit"
                                     name="{{this.id}}.toHit"
-                                    value="{{this.data.data.toHit}}"
-                                    data-target="data.toHit"
-                                    {{#if this.data.data.locked}}disabled{{/if}}
+                                    value="{{this.system.toHit}}"
+                                    data-target="system.toHit"
+                                    {{#if this.system.locked}}disabled{{/if}}
                                 >
                             </td>
                             <td class="weapon-damage">
                                 <input
                                     type="text"
                                     class="itemTable-inputText item-edit"
-                                    id="{{this.id}}.damageDie"
-                                    name="{{this.id}}.damageDie"
-                                    value="{{this.data.data.damageDie}}"
-                                    data-target="data.damageDie"
-                                    {{#if this.data.data.locked}}disabled{{/if}}
+                                    id="{{this.id}}.damageRoll"
+                                    name="{{this.id}}.damageRoll"
+                                    value="{{this.system.damageRoll}}"
+                                    data-target="system.damageRoll"
+                                    {{#if this.system.locked}}disabled{{/if}}
                                 />
-                            </td>
-                            <td>
-                                <input
-                                    type="number"
-                                    class="itemTable-inputNum item-edit"
-                                    id="{{this.id}}.toDamage"
-                                    name="{{this.id}}.toDamage"
-                                    value="{{this.data.data.toDamage}}"
-                                    data-target="data.toDamage"
-                                    {{#if this.data.data.locked}}disabled{{/if}}
-                                >
                             </td>
                             <td class="weapon-range">
                                 <input
@@ -664,27 +652,27 @@
                                     class="itemTable-inputText item-edit"
                                     id="{{this.id}}.range"
                                     name="{{this.id}}.range"
-                                    value="{{this.data.data.range}}"
-                                    data-target="data.range"
-                                    {{#if this.data.data.locked}}disabled{{/if}}
+                                    value="{{this.system.range}}"
+                                    data-target="system.range"
+                                    {{#if this.system.locked}}disabled{{/if}}
                                 >
                             </td>
                             <td>
                                 <select
                                     class="item-edit"
-                                    data-target="data.attackType"
-                                    {{#if this.data.data.locked}}disabled{{/if}}
+                                    data-target="system.attackType"
+                                    {{#if this.system.locked}}disabled{{/if}}
                                 >
-                                    {{selectOptions @root.attackTypeChoices selected=this.data.data.attackType}}
+                                    {{selectOptions @root.data.system.attackTypeChoices selected=this.system.attackType}}
                                 </select>
                             </td>
                             <td>
                                 <select
                                     class="item-edit"
-                                    data-target="data.damageType"
-                                    {{#if this.data.data.locked}}disabled{{/if}}
+                                    data-target="system.damageType"
+                                    {{#if this.system.locked}}disabled{{/if}}
                                 >
-                                    {{selectOptions @root.damageTypeChoices selected=this.data.data.damageType}}
+                                    {{selectOptions @root.data.system.damageTypeChoices selected=this.system.damageType}}
                                 </select>
                             </td>
                             <td>
@@ -693,26 +681,26 @@
                                     class="itemTable-inputNum item-edit"
                                     id="{{this.id}}.speed"
                                     name="{{this.id}}.speed"
-                                    value="{{this.data.data.speed}}"
-                                    data-target="data.speed"
-                                    {{#if this.data.data.locked}}disabled{{/if}}
+                                    value="{{this.system.speed}}"
+                                    data-target="system.speed"
+                                    {{#if this.system.locked}}disabled{{/if}}
                                 >
                             </td>
                             <td>
                                 <a
                                     class="item-delete"
                                     title="Delete Item"
-                                    data-locked={{this.data.data.locked}}
+                                    data-locked={{this.system.locked}}
                                 >
-                                    <i class="fas fa-trash {{#if this.data.data.locked}} disabled-color {{/if}}"></i>
+                                    <i class="fas fa-trash {{#if this.system.locked}} disabled-color {{/if}}"></i>
                                 </a>
                                 <a
                                     class="item-toggle"
                                     title="Lock Item"
-                                    data-value={{this.data.data.locked}}
-                                    data-target="data.locked"
+                                    data-value={{this.system.locked}}
+                                    data-target="system.locked"
                                 >
-                                    <i class="fas {{#if this.data.data.locked}} fa-lock {{else}} fa-lock-open {{/if}}"></i>
+                                    <i class="fas {{#if this.system.locked}} fa-lock {{else}} fa-lock-open {{/if}}"></i>
                                 </a>
                             </td>
                             <!--td class="weapon-roll-td">
@@ -724,15 +712,15 @@
                                     class="rollable weapon-roll"
                                     data-roll="
                                         1d20
-                                        +{{this.data.data.toHit}}
-                                        {{#if (eq this.data.data.attackType 'Melee')}}
-                                            +{{this.actor.data.data.hitAdjust.melee}}
+                                        +{{this.system.toHit}}
+                                        {{#if (eq this.system.attackType 'Melee')}}
+                                            +{{this.system.hitAdjust.melee}}
                                         {{/if}}
-                                        {{#if (eq this.data.data.attackType 'Missile')}}
-                                            +{{this.actor.data.data.hitAdjust.missile}}
+                                        {{#if (eq this.system.attackType 'Missile')}}
+                                            +{{this.system.hitAdjust.missile}}
                                         {{/if}}
-                                        {{#if (eq this.data.data.attackType 'Thrown')}}
-                                            +{{this.actor.data.data.hitAdjust.thrown}}
+                                        {{#if (eq this.system.attackType 'Thrown')}}
+                                            +{{this.system.hitAdjust.thrown}}
                                         {{/if}}
                                     "
                                     data-label="to hit with {{this.name}}"
@@ -741,7 +729,7 @@
                             <td class="weapon-roll-td">
                                 <a
                                     class="rollable weapon-roll"
-                                    data-roll="{{this.data.data.damageDie}}+{{this.data.data.toDamage}}"
+                                    data-roll="{{this.system.damageRoll}}"
                                     data-label="damage with {{this.name}}"
                                 ></a>
                             </td>
@@ -765,30 +753,30 @@
                             <td>Melee</td>
                             <td
                                 class="rollable combat-mid-throws-value combat-big-text"
-                                data-roll="d20+{{data.data.hitAdjust.melee}}"
+                                data-roll="d20+{{data.system.hitAdjust.melee}}"
                                 data-label="Basic Melee Attack"
                             >
-                                {{#if (gte data.data.hitAdjust.melee 0)}}+{{/if}}{{data.data.hitAdjust.melee}}
+                                {{#if (gte data.system.hitAdjust.melee 0)}}+{{/if}}{{data.system.hitAdjust.melee}}
                             </td>
                         </tr>
                         <tr>
                             <td>Missile</td>
                             <td
                                 class="rollable combat-mid-throws-value combat-big-text"
-                                data-roll="d20+{{data.data.hitAdjust.missile}}"
+                                data-roll="d20+{{data.system.hitAdjust.missile}}"
                                 data-label="Basic Missile Attack"
                             >
-                                {{#if (gte data.data.hitAdjust.missile 0)}}+{{/if}}{{data.data.hitAdjust.missile}}
+                                {{#if (gte data.system.hitAdjust.missile 0)}}+{{/if}}{{data.system.hitAdjust.missile}}
                             </td>
                         </tr>
                         <tr>
                             <td>Thrown</td>
                             <td
                                 class="rollable combat-mid-throws-value combat-big-text"
-                                data-roll="d20+{{data.data.hitAdjust.thrown}}"
+                                data-roll="d20+{{data.system.hitAdjust.thrown}}"
                                 data-label="Basic Thrown Attack"
                             >
-                                {{#if (gte data.data.hitAdjust.thrown 0)}}+{{/if}}{{data.data.hitAdjust.thrown}}
+                                {{#if (gte data.system.hitAdjust.thrown 0)}}+{{/if}}{{data.system.hitAdjust.thrown}}
                             </td>
                         </tr>
                     </table>
@@ -808,12 +796,12 @@
                                 <th>Active?</th>
                             </tr>
                             <tbody class="itemTable-sort">
-                                {{#each actor.data.data.combatMods.hitMods}}
-                                <tr class="item" data-item-id="{{this.id}}" data-locked="{{this.data.data.locked}}">
+                                {{#each data.system.combatMods.hitMods}}
+                                <tr class="item" data-item-id="{{this.id}}" data-locked="{{this.system.locked}}">
                                     <td>
                                         <a
                                             class="itemTable-handle"
-                                            data-locked="{{this.data.data.locked}}"
+                                            data-locked="{{this.system.locked}}"
                                         >
                                             <i class="fas fa-bars"></i>
                                         </a>
@@ -827,7 +815,7 @@
                                             value="{{this.name}}"
                                             data-target="name"
                                             data-name=true
-                                            {{#if this.data.data.locked}}disabled{{/if}}
+                                            {{#if this.system.locked}}disabled{{/if}}
                                         >
                                     </td>
                                     <td>
@@ -836,9 +824,9 @@
                                             class="itemTable-inputNum item-edit"
                                             id="{{this.id}}.melee"
                                             name="{{this.id}}.melee"
-                                            value="{{this.data.data.melee}}"
-                                            data-target="data.melee"
-                                            {{#if this.data.data.locked}}disabled{{/if}}
+                                            value="{{this.system.melee}}"
+                                            data-target="system.melee"
+                                            {{#if this.system.locked}}disabled{{/if}}
                                         >
                                     </td>
                                     <td>
@@ -847,9 +835,9 @@
                                             class="itemTable-inputNum item-edit"
                                             id="{{this.id}}.missile"
                                             name="{{this.id}}.missile"
-                                            value="{{this.data.data.missile}}"
-                                            data-target="data.missile"
-                                            {{#if this.data.data.locked}}disabled{{/if}}
+                                            value="{{this.system.missile}}"
+                                            data-target="system.missile"
+                                            {{#if this.system.locked}}disabled{{/if}}
                                         >
                                     </td>
                                     <td>
@@ -858,28 +846,28 @@
                                             class="itemTable-inputNum item-edit"
                                             id="{{this.id}}.thrown"
                                             name="{{this.id}}.thrown"
-                                            value="{{this.data.data.thrown}}"
-                                            data-target="data.thrown"
-                                            {{#if this.data.data.locked}}disabled{{/if}}
+                                            value="{{this.system.thrown}}"
+                                            data-target="system.thrown"
+                                            {{#if this.system.locked}}disabled{{/if}}
                                         >
                                     </td>
                                     <td>
                                         <a
                                             class="item-delete"
                                             title="Delete Item"
-                                            data-locked={{this.data.data.locked}}
+                                            data-locked={{this.system.locked}}
                                         >
-                                            <i class="fas fa-trash {{#if this.data.data.locked}} disabled-color {{/if}}"></i>
+                                            <i class="fas fa-trash {{#if this.system.locked}} disabled-color {{/if}}"></i>
                                         </a>
                                     </td>
                                     <td>
                                         <a
                                             class="item-toggle"
                                             title="Lock Item"
-                                            data-value={{this.data.data.locked}}
-                                            data-target="data.locked"
+                                            data-value={{this.system.locked}}
+                                            data-target="system.locked"
                                         >
-                                            <i class="fas {{#if this.data.data.locked}} fa-lock {{else}} fa-lock-open {{/if}}"></i>
+                                            <i class="fas {{#if this.system.locked}} fa-lock {{else}} fa-lock-open {{/if}}"></i>
                                         </a>
                                     </td>
                                     <td>
@@ -887,8 +875,8 @@
                                             type="checkbox"
                                             class="item-edit"
                                             name="{{this.id}}.active"
-                                            data-target="data.active"
-                                            {{checked this.data.data.active}}
+                                            data-target="system.active"
+                                            {{checked this.system.active}}
                                         >
                                     </td>
                                 </tr>
@@ -909,27 +897,27 @@
                         </tr>
                         <tr>
                             <td>Natural</td>
-                            <td class="combat-mid-throws-value combat-big-text">{{data.data.armorClasses.natural}}</td>
+                            <td class="combat-mid-throws-value combat-big-text">{{data.system.armorClasses.natural}}</td>
                         </tr>
                         <tr>
                             <td>Dexterity</td>
-                            <td class="combat-mid-throws-value combat-big-text">{{data.data.armorClasses.dexterity}}</td>
+                            <td class="combat-mid-throws-value combat-big-text">{{data.system.armorClasses.dexterity}}</td>
                         </tr>
                         <tr>
                             <td>Armor</td>
-                            <td class="combat-mid-throws-value combat-big-text">{{data.data.armorClasses.armor}}</td>
+                            <td class="combat-mid-throws-value combat-big-text">{{data.system.armorClasses.armor}}</td>
                         </tr>
                         <tr>
                             <td>Shield</td>
-                            <td class="combat-mid-throws-value combat-big-text">{{data.data.armorClasses.shield}}</td>
+                            <td class="combat-mid-throws-value combat-big-text">{{data.system.armorClasses.shield}}</td>
                         </tr>
                         <tr>
                             <td>Magic</td>
-                            <td class="combat-mid-throws-value combat-big-text">{{data.data.armorClasses.magic}}</td>
+                            <td class="combat-mid-throws-value combat-big-text">{{data.system.armorClasses.magic}}</td>
                         </tr>
                         <tr>
                             <td>Encumbrance</td>
-                            <td class="combat-mid-throws-value combat-big-text">{{data.data.armorClasses.encumbrance}}</td>
+                            <td class="combat-mid-throws-value combat-big-text">{{data.system.armorClasses.encumbrance}}</td>
                         </tr>
                     </table>
                     <div class="combat-mid-throwMods">
@@ -951,12 +939,12 @@
                                 <th>Active?</th>
                             </tr>
                             <tbody class="itemTable-sort">
-                                {{#each actor.data.data.combatMods.acMods}}
-                                <tr class="item" data-item-id="{{this.id}}" data-locked="{{this.data.data.locked}}">
+                                {{#each data.system.combatMods.acMods}}
+                                <tr class="item" data-item-id="{{this.id}}" data-locked="{{this.system.locked}}">
                                     <td>
                                         <a
                                             class="itemTable-handle"
-                                            data-locked="{{this.data.data.locked}}"
+                                            data-locked="{{this.system.locked}}"
                                         >
                                             <i class="fas fa-bars"></i>
                                         </a>
@@ -970,7 +958,7 @@
                                             value="{{this.name}}"
                                             data-target="name"
                                             data-name=true
-                                            {{#if this.data.data.locked}}disabled{{/if}}
+                                            {{#if this.system.locked}}disabled{{/if}}
                                         >
                                     </td>
                                     <td>
@@ -979,9 +967,9 @@
                                             class="itemTable-inputNum item-edit"
                                             id="{{this.id}}.natural"
                                             name="{{this.id}}.natural"
-                                            value="{{this.data.data.natural}}"
-                                            data-target="data.natural"
-                                            {{#if this.data.data.locked}}disabled{{/if}}
+                                            value="{{this.system.natural}}"
+                                            data-target="system.natural"
+                                            {{#if this.system.locked}}disabled{{/if}}
                                         >
                                     </td>
                                     <td>
@@ -990,9 +978,9 @@
                                             class="itemTable-inputNum item-edit"
                                             id="{{this.id}}.dexterity"
                                             name="{{this.id}}.dexterity"
-                                            value="{{this.data.data.dexterity}}"
-                                            data-target="data.dexterity"
-                                            {{#if this.data.data.locked}}disabled{{/if}}
+                                            value="{{this.system.dexterity}}"
+                                            data-target="system.dexterity"
+                                            {{#if this.system.locked}}disabled{{/if}}
                                         >
                                     </td>
                                     <td>
@@ -1001,9 +989,9 @@
                                             class="itemTable-inputNum item-edit"
                                             id="{{this.id}}.armor"
                                             name="{{this.id}}.armor"
-                                            value="{{this.data.data.armor}}"
-                                            data-target="data.armor"
-                                            {{#if this.data.data.locked}}disabled{{/if}}
+                                            value="{{this.system.armor}}"
+                                            data-target="system.armor"
+                                            {{#if this.system.locked}}disabled{{/if}}
                                         >
                                     </td>
                                     <td>
@@ -1012,9 +1000,9 @@
                                             class="itemTable-inputNum item-edit"
                                             id="{{this.id}}.shield"
                                             name="{{this.id}}.shield"
-                                            value="{{this.data.data.shield}}"
-                                            data-target="data.shield"
-                                            {{#if this.data.data.locked}}disabled{{/if}}
+                                            value="{{this.system.shield}}"
+                                            data-target="system.shield"
+                                            {{#if this.system.locked}}disabled{{/if}}
                                     >
                                 </td>
                                     <td>
@@ -1023,28 +1011,28 @@
                                             class="itemTable-inputNum item-edit"
                                             id="{{this.id}}.magic"
                                             name="{{this.id}}.magic"
-                                            value="{{this.data.data.magic}}"
-                                            data-target="data.magic"
-                                            {{#if this.data.data.locked}}disabled{{/if}}
+                                            value="{{this.system.magic}}"
+                                            data-target="system.magic"
+                                            {{#if this.system.locked}}disabled{{/if}}
                                         >
                                     </td>
                                     <td>
                                         <a
                                             class="item-delete"
                                             title="Delete Item"
-                                            data-locked={{this.data.data.locked}}
+                                            data-locked={{this.system.locked}}
                                         >
-                                            <i class="fas fa-trash {{#if this.data.data.locked}} disabled-color {{/if}}"></i>
+                                            <i class="fas fa-trash {{#if this.system.locked}} disabled-color {{/if}}"></i>
                                         </a>
                                     </td>
                                     <td>
                                         <a
                                             class="item-toggle"
                                             title="Lock Item"
-                                            data-value={{this.data.data.locked}}
-                                            data-target="data.locked"
+                                            data-value={{this.system.locked}}
+                                            data-target="system.locked"
                                         >
-                                            <i class="fas {{#if this.data.data.locked}} fa-lock {{else}} fa-lock-open {{/if}}"></i>
+                                            <i class="fas {{#if this.system.locked}} fa-lock {{else}} fa-lock-open {{/if}}"></i>
                                         </a>
                                     </td>
                                     <td>
@@ -1052,8 +1040,8 @@
                                             type="checkbox"
                                             class="item-edit"
                                             name="{{this.id}}.active"
-                                            data-target="data.active"
-                                            {{checked this.data.data.active}}
+                                            data-target="system.active"
+                                            {{checked this.system.active}}
                                         >
                                     </td>
                                 </tr>
@@ -1077,10 +1065,10 @@
                             <!-- TODO: Constitution modifier for posion -->
                             <td
                                 class="rollable combat-big-text combat-mid-throws-value"
-                                data-roll="d20cs>={{data.data.savingThrows.ppd}}"
+                                data-roll="d20cs>={{data.system.savingThrows.ppd}}"
                                 data-label="Saving Throw against Paralyzation/Poison/Death"
                             >
-                                {{data.data.savingThrows.ppd}}
+                                {{data.system.savingThrows.ppd}}
                             </td>
                         </tr>
                         <tr>
@@ -1089,10 +1077,10 @@
                             </td>
                             <td
                                 class="rollable combat-big-text combat-mid-throws-value"
-                                data-roll="d20cs>={{data.data.savingThrows.rsw}}"
+                                data-roll="d20cs>={{data.system.savingThrows.rsw}}"
                                 data-label="Saving Throw against Rods/Staves/Wands"
                             >
-                                {{data.data.savingThrows.rsw}}
+                                {{data.system.savingThrows.rsw}}
                             </td>
                         </tr>
                         <tr>
@@ -1101,10 +1089,10 @@
                             </td>
                             <td
                                 class="rollable combat-big-text combat-mid-throws-value"
-                                data-roll="d20cs>={{data.data.savingThrows.pepo}}"
+                                data-roll="d20cs>={{data.system.savingThrows.pepo}}"
                                 data-label="Saving Throw against Petrification/Polymorph"
                             >
-                                {{data.data.savingThrows.pepo}}
+                                {{data.system.savingThrows.pepo}}
                             </td>
                         </tr>
                         <tr>
@@ -1113,10 +1101,10 @@
                             </td>
                             <td
                                 class="rollable combat-big-text combat-mid-throws-value"
-                                data-roll="d20cs>={{data.data.savingThrows.brw}}"
+                                data-roll="d20cs>={{data.system.savingThrows.brw}}"
                                 data-label="Saving Throw against Breath Weapon"
                             >
-                                {{data.data.savingThrows.brw}}
+                                {{data.system.savingThrows.brw}}
                             </td>
                         </tr>
                         <tr>
@@ -1126,10 +1114,10 @@
                             <!-- TODO: Wisdom modifier for "mind"-affecting spells -->
                             <td
                                 class="rollable combat-big-text combat-mid-throws-value"
-                                data-roll="d20cs>={{data.data.savingThrows.spell}}"
+                                data-roll="d20cs>={{data.system.savingThrows.spell}}"
                                 data-label="Saving Throw against Spell"
                             >
-                                {{data.data.savingThrows.spell}}
+                                {{data.system.savingThrows.spell}}
                             </td>
                         </tr>
                     </table>
@@ -1152,12 +1140,12 @@
                                 <th>Active?</th>
                             </tr>
                             <tbody class="itemTable-sort">
-                                {{#each actor.data.data.combatMods.throwMods}}
-                                <tr class="item" data-item-id="{{this.id}}" data-locked="{{this.data.data.locked}}">
+                                {{#each data.system.combatMods.throwMods}}
+                                <tr class="item" data-item-id="{{this.id}}" data-locked="{{this.system.locked}}">
                                     <td>
                                         <a
                                             class="itemTable-handle"
-                                            data-locked="{{this.[1].tab.data.data.locked}}"
+                                            data-locked="{{this.[1].tab.system.locked}}"
                                         >
                                             <i class="fas fa-bars"></i>
                                         </a>
@@ -1171,7 +1159,7 @@
                                             value="{{this.name}}"
                                             data-target="name"
                                             data-name=true
-                                            {{#if this.data.data.locked}}disabled{{/if}}
+                                            {{#if this.system.locked}}disabled{{/if}}
                                         >
                                     </td>
                                     <td>
@@ -1179,9 +1167,9 @@
                                             type="number"
                                             class="itemTable-inputNum item-edit"
                                             name="{{this.id}}.ppd"
-                                            value="{{this.data.data.ppd}}"
-                                            data-target="data.ppd"
-                                            {{#if this.data.data.locked}}disabled{{/if}}
+                                            value="{{this.system.ppd}}"
+                                            data-target="system.ppd"
+                                            {{#if this.system.locked}}disabled{{/if}}
                                         >
                                     </td>
                                     <td>
@@ -1189,9 +1177,9 @@
                                             type="number"
                                             class="itemTable-inputNum item-edit"
                                             name="{{this.id}}.rsw"
-                                            value="{{this.data.data.rsw}}"
-                                            data-target="data.rsw"
-                                            {{#if this.data.data.locked}}disabled{{/if}}
+                                            value="{{this.system.rsw}}"
+                                            data-target="system.rsw"
+                                            {{#if this.system.locked}}disabled{{/if}}
                                         >
                                     </td>
                                     <td>
@@ -1199,9 +1187,9 @@
                                             type="number"
                                             class="itemTable-inputNum item-edit"
                                             name="{{this.id}}.pepo"
-                                            value="{{this.data.data.pepo}}"
-                                            data-target="data.pepo"
-                                            {{#if this.data.data.locked}}disabled{{/if}}
+                                            value="{{this.system.pepo}}"
+                                            data-target="system.pepo"
+                                            {{#if this.system.locked}}disabled{{/if}}
                                         >
                                     </td>
                                     <td>
@@ -1209,9 +1197,9 @@
                                             type="number"
                                             class="itemTable-inputNum item-edit"
                                             name="{{this.id}}.brw"
-                                            value="{{this.data.data.brw}}"
-                                            data-target="data.brw"
-                                            {{#if this.data.data.locked}}disabled{{/if}}
+                                            value="{{this.system.brw}}"
+                                            data-target="system.brw"
+                                            {{#if this.system.locked}}disabled{{/if}}
                                         >
                                     </td>
                                     <td>
@@ -1219,9 +1207,9 @@
                                             type="number"
                                             class="itemTable-inputNum item-edit"
                                             name="{{this.id}}.spell"
-                                            value="{{this.data.data.spell}}"
-                                            data-target="data.spell"
-                                            {{#if this.data.data.locked}}disabled{{/if}}
+                                            value="{{this.system.spell}}"
+                                            data-target="system.spell"
+                                            {{#if this.system.locked}}disabled{{/if}}
                                         >
                                     </td>
                                     <td>
@@ -1229,28 +1217,28 @@
                                             type="number"
                                             class="itemTable-inputNum item-edit"
                                             name="{{this.id}}.all"
-                                            value="{{this.data.data.all}}"
-                                            data-target="data.all"
-                                            {{#if this.data.data.locked}}disabled{{/if}}
+                                            value="{{this.system.all}}"
+                                            data-target="system.all"
+                                            {{#if this.system.locked}}disabled{{/if}}
                                         >
                                     </td>
                                     <td>
                                         <a
                                             class="item-delete"
                                             title="Delete Item"
-                                            data-locked={{this.data.data.locked}}
+                                            data-locked={{this.system.locked}}
                                         >
-                                            <i class="fas fa-trash {{#if this.data.data.locked}} disabled-color {{/if}}"></i>
+                                            <i class="fas fa-trash {{#if this.system.locked}} disabled-color {{/if}}"></i>
                                         </a>
                                     </td>
                                     <td>
                                         <a
                                             class="item-toggle"
                                             title="Lock Item"
-                                            data-value={{this.data.data.locked}}
-                                            data-target="data.locked"
+                                            data-value={{this.system.locked}}
+                                            data-target="system.locked"
                                         >
-                                            <i class="fas {{#if this.data.data.locked}} fa-lock {{else}} fa-lock-open {{/if}}"></i>
+                                            <i class="fas {{#if this.system.locked}} fa-lock {{else}} fa-lock-open {{/if}}"></i>
                                         </a>
                                     </td>
                                     <td>
@@ -1258,8 +1246,8 @@
                                             type="checkbox"
                                             class="item-edit"
                                             name="{{this.id}}.active"
-                                            data-target="data.active"
-                                            {{checked this.data.data.active}}
+                                            data-target="system.active"
+                                            {{checked this.system.active}}
                                         >
                                     </td>
                                 </tr>
@@ -1289,16 +1277,16 @@
                             <th id="gear-top-left-buttons"></th>
                         </tr>
                         <tbody class="itemTable-sort">
-                            {{#each actor.data.data.gearTabs}}
+                            {{#each data.system.gearTabs}}
                             <tr
                                 class="item"
                                 data-item-id="{{this.[0]}}"
-                                data-locked="{{this.[1].tab.data.data.locked}}"
+                                data-locked="{{this.[1].tab.system.locked}}"
                             >
                                 <td>
                                     <a
                                         class="itemTable-handle"
-                                        data-locked="{{this.[1].tab.data.data.locked}}"
+                                        data-locked="{{this.[1].tab.system.locked}}"
                                     >
                                         <i class="fas fa-bars"></i>
                                     </a>
@@ -1307,20 +1295,20 @@
                                     <input
                                         type="checkbox"
                                         class="item-edit"
-                                        data-target="data.equipped"
-                                        {{checked this.[1].tab.data.data.equipped}}
+                                        data-target="system.equipped"
+                                        {{checked this.[1].tab.system.equipped}}
                                     >
                                 </td>
                                 <td>
                                     <input
                                         type="checkbox"
                                         class="gearTab-defaultToggle"
-                                        {{checked this.[1].tab.data.data.default}}
-                                        {{#if this.[1].tab.data.data.default}}disabled{{/if}}
+                                        {{checked this.[1].tab.system.default}}
+                                        {{#if this.[1].tab.system.default}}disabled{{/if}}
                                     >
                                 </td>
                                 <td>
-                                    {{#if this.[1].tab.data.data.locked}}
+                                    {{#if this.[1].tab.system.locked}}
                                         {{this.[1].tab.name}}
                                     {{else}}
                                     <input
@@ -1334,22 +1322,22 @@
                                     >
                                     {{/if}}
                                 </td>
-                                <td>{{this.[1].tab.data.data.weight}}</td>
+                                <td>{{this.[1].tab.system.weight}}</td>
                                 <td>
                                     <a
                                         class="gearTab-delete"
                                         title="Delete Tab"
-                                        data-locked={{or this.[1].tab.data.data.default this.[1].tab.data.data.locked}}
+                                        data-locked={{or this.[1].tab.system.default this.[1].tab.system.locked}}
                                     >
-                                        <i class="fas fa-trash {{#if (or this.[1].tab.data.data.default this.[1].tab.data.data.locked)}} disabled-color {{/if}}"></i>
+                                        <i class="fas fa-trash {{#if (or this.[1].tab.system.default this.[1].tab.system.locked)}} disabled-color {{/if}}"></i>
                                     </a>
                                     <a
                                         class="item-toggle"
                                         title="Lock Item"
-                                        data-value="{{this.[1].tab.data.data.locked}}"
-                                        data-target="data.locked"
+                                        data-value="{{this.[1].tab.system.locked}}"
+                                        data-target="system.locked"
                                     >
-                                        <i class="fas {{#if this.[1].tab.data.data.locked}} fa-lock {{else}} fa-lock-open {{/if}}"></i>
+                                        <i class="fas {{#if this.[1].tab.system.locked}} fa-lock {{else}} fa-lock-open {{/if}}"></i>
                                     </a>
                                 </td>
                             </tr>
@@ -1360,7 +1348,7 @@
                             <td></td>
                             <td></td>
                             <td><b>Equipped weight</b></td>
-                            <td><b>{{actor.data.data.equippedWeight}}</b></td>
+                            <td><b>{{data.system.equippedWeight}}</b></td>
                             <td></td>
                         </tr>
                     </table>
@@ -1380,54 +1368,54 @@
                         </tr>
                         <tr id="encumbrance-base">
                             <td>Base</td>
-                            <td>{{actor.data.data.weightLimits.base}}</td>
-                            <td>{{actor.data.data.speedLevels.base}}</td>
+                            <td>{{data.system.weightLimits.base}}</td>
+                            <td>{{data.system.speedLevels.base}}</td>
                         </tr>
                         <tr id="encumbrance-light">
                             <td>Light</td>
-                            <td>{{actor.data.data.weightLimits.light}}</td>
-                            <td>{{actor.data.data.speedLevels.light}}</td>
+                            <td>{{data.system.weightLimits.light}}</td>
+                            <td>{{data.system.speedLevels.light}}</td>
                         </tr>
                         <tr id="encumbrance-medium">
                             <td>Medium</td>
-                            <td>{{actor.data.data.weightLimits.medium}}</td>
-                            <td>{{actor.data.data.speedLevels.medium}}</td>
+                            <td>{{data.system.weightLimits.medium}}</td>
+                            <td>{{data.system.speedLevels.medium}}</td>
                         </tr>
                         <tr id="encumbrance-heavy">
                             <td>Heavy</td>
-                            <td>{{actor.data.data.weightLimits.heavy}}</td>
-                            <td>{{actor.data.data.speedLevels.heavy}}</td>
+                            <td>{{data.system.weightLimits.heavy}}</td>
+                            <td>{{data.system.speedLevels.heavy}}</td>
                         </tr>
                         <tr id="encumbrance-severe">
                             <td>Severe</td>
-                            <td>{{actor.data.data.weightLimits.severe}}</td>
-                            <td>{{actor.data.data.speedLevels.severe}}</td>
+                            <td>{{data.system.weightLimits.severe}}</td>
+                            <td>{{data.system.speedLevels.severe}}</td>
                         </tr>
                     </table>
                 </div>
             </div>
             <nav class="gear-tabs tabs" data-group="gear">
-                {{#each actor.data.data.gearTabs}}
+                {{#each data.system.gearTabs}}
                 <a class="item navbar-item droppable" data-tab="{{this.[0]}}" data-group="gear">{{this.[1].tab.name}}</a>
                 {{/each}}
             </nav>
             <section class="gear-content">
-                {{#each actor.data.data.gearTabs}}
+                {{#each data.system.gearTabs}}
                 <div class="tab item droppable" data-tab="{{this.[0]}}" data-item-id="{{this.[0]}}" data-group="gear">
                     <div class="gear-tab-options">
                         Count tab towards encumbrance?
                         <input
                             type="checkbox"
                             class="item-edit"
-                            data-target="data.equipped"
-                            {{checked this.[1].tab.data.data.equipped}}
+                            data-target="system.equipped"
+                            {{checked this.[1].tab.system.equipped}}
                         >
                         Set tab as default for new items?
                         <input
                             type="checkbox"
                             class="gearTab-defaultToggle"
-                            {{checked this.[1].tab.data.data.default}}
-                            {{#if this.[1].tab.data.data.default}}disabled{{/if}}
+                            {{checked this.[1].tab.system.default}}
+                            {{#if this.[1].tab.system.default}}disabled{{/if}}
                         >
                     </div>
                     <div class="gear-tab-wrap">
@@ -1448,12 +1436,12 @@
                                     <tr
                                         class="item itemTable-draggable-row"
                                         data-item-id="{{this.id}}"
-                                        data-locked="{{this.data.data.locked}}"
+                                        data-locked="{{this.system.locked}}"
                                     >
                                         <td>
                                             <a
                                                 class="itemTable-handle"
-                                                data-locked="{{this.data.data.locked}}"
+                                                data-locked="{{this.system.locked}}"
                                             >
                                                 <i class="fas fa-bars"></i>
                                             </a>
@@ -1464,9 +1452,9 @@
                                                 class="itemTable-inputNum item-edit"
                                                 id="{{this.id}}.quantity"
                                                 name="{{this.id}}.quantity"
-                                                value="{{this.data.data.quantity}}"
-                                                data-target="data.quantity"
-                                                {{#if this.data.data.locked}}disabled{{/if}}
+                                                value="{{this.system.quantity}}"
+                                                data-target="system.quantity"
+                                                {{#if this.system.locked}}disabled{{/if}}
                                             >
                                         </td>
                                         <td>
@@ -1478,7 +1466,7 @@
                                                 value="{{this.name}}"
                                                 data-target="name"
                                                 data-name=true
-                                                {{#if this.data.data.locked}}disabled{{/if}}
+                                                {{#if this.system.locked}}disabled{{/if}}
                                             >
                                         </td>
                                         <td>
@@ -1487,9 +1475,9 @@
                                                 class="itemTable-inputNum item-edit"
                                                 id="{{this.id}}.weight"
                                                 name="{{this.id}}.weight"
-                                                value="{{this.data.data.weight}}"
-                                                data-target="data.weight"
-                                                {{#if this.data.data.locked}}disabled{{/if}}
+                                                value="{{this.system.weight}}"
+                                                data-target="system.weight"
+                                                {{#if this.system.locked}}disabled{{/if}}
                                             >
                                         </td>
                                         <td>
@@ -1498,33 +1486,33 @@
                                                 class="itemTable-inputText item-edit gear-tab-items-value"
                                                 id="{{this.id}}.value"
                                                 name="{{this.id}}.value"
-                                                value="{{this.data.data.value}}"
-                                                data-target="data.value"
-                                                {{#if this.data.data.locked}}disabled{{/if}}
+                                                value="{{this.system.value}}"
+                                                data-target="system.value"
+                                                {{#if this.system.locked}}disabled{{/if}}
                                             >
                                         </td>
                                         <td>
                                             <a
                                                 class="item-open"
                                                 title="View Item Notes"
-                                                data-locked="{{this.data.data.locked}}"
+                                                data-locked="{{this.system.locked}}"
                                             >
                                                 <i class="fas fa-book"></i>
                                             </a>
                                             <a
                                                 class="item-delete"
                                                 title="Delete Item"
-                                                data-locked={{this.data.data.locked}}
+                                                data-locked={{this.system.locked}}
                                             >
-                                                <i class="fas fa-trash {{#if this.data.data.locked}} disabled-color {{/if}}"></i>
+                                                <i class="fas fa-trash {{#if this.system.locked}} disabled-color {{/if}}"></i>
                                             </a>
                                             <a
                                                 class="item-toggle"
                                                 title="Lock Item"
-                                                data-value={{this.data.data.locked}}
-                                                data-target="data.locked"
+                                                data-value={{this.system.locked}}
+                                                data-target="system.locked"
                                             >
-                                                <i class="fas {{#if this.data.data.locked}} fa-lock {{else}} fa-lock-open {{/if}}"></i>
+                                                <i class="fas {{#if this.system.locked}} fa-lock {{else}} fa-lock-open {{/if}}"></i>
                                             </a>
                                         </td>
                                     </tr>
@@ -1551,7 +1539,7 @@
                                     </tr>
                                     <tr>
                                         <th colspan="2" class="gear-tab-wealth-table-left gear-tab-wealth-table-right">
-                                            Weight: <span>{{this.[1].tab.data.data.wealth.weight}}</span>
+                                            Weight: <span>{{this.[1].tab.system.wealth.weight}}</span>
                                         </th>
                                     </tr>
                                 </thead>
@@ -1562,8 +1550,8 @@
                                             <input
                                                 type="number"
                                                 class="item-edit gear-wealth-inputNum"
-                                                data-target="data.wealth.copper"
-                                                value="{{this.[1].tab.data.data.wealth.copper}}"
+                                                data-target="system.wealth.copper"
+                                                value="{{this.[1].tab.system.wealth.copper}}"
                                             />
                                         </td>
                                     </tr>
@@ -1573,8 +1561,8 @@
                                             <input
                                                 type="number"
                                                 class="item-edit gear-wealth-inputNum"
-                                                data-target="data.wealth.silver"
-                                                value="{{this.[1].tab.data.data.wealth.silver}}"
+                                                data-target="system.wealth.silver"
+                                                value="{{this.[1].tab.system.wealth.silver}}"
                                             />
                                         </td>
                                     </tr>
@@ -1584,8 +1572,8 @@
                                             <input
                                                 type="number"
                                                 class="item-edit gear-wealth-inputNum"
-                                                data-target="data.wealth.gold"
-                                                value="{{this.[1].tab.data.data.wealth.gold}}"
+                                                data-target="system.wealth.gold"
+                                                value="{{this.[1].tab.system.wealth.gold}}"
                                             />
                                         </td>
                                     </tr>
@@ -1595,8 +1583,8 @@
                                             <input
                                                 type="number"
                                                 class="item-edit gear-wealth-inputNum"
-                                                data-target="data.wealth.platinum"
-                                                value="{{this.[1].tab.data.data.wealth.platinum}}"
+                                                data-target="system.wealth.platinum"
+                                                value="{{this.[1].tab.system.wealth.platinum}}"
                                             />
                                         </td>
                                     </tr>
@@ -1606,8 +1594,8 @@
                                             <input
                                                 type="number"
                                                 class="item-edit gear-wealth-inputNum"
-                                                data-target="data.wealth.mithril"
-                                                value="{{this.[1].tab.data.data.wealth.mithril}}"
+                                                data-target="system.wealth.mithril"
+                                                value="{{this.[1].tab.system.wealth.mithril}}"
                                             />
                                         </td>
                                     </tr>
@@ -1617,8 +1605,8 @@
                                             <input
                                                 type="number"
                                                 class="item-edit gear-wealth-inputNum"
-                                                data-target="data.wealth.iron"
-                                                value="{{this.[1].tab.data.data.wealth.iron}}"
+                                                data-target="system.wealth.iron"
+                                                value="{{this.[1].tab.system.wealth.iron}}"
                                             />
                                         </td>
                                     </tr>
@@ -1650,12 +1638,12 @@
                         <th></th>
                     </tr>
                     <tbody class="itemTable-sort">
-                        {{#each actor.data.data.proficiencies.nonweapon}}
-                        <tr class="item" data-item-id={{this.id}} data-locked="{{this.data.data.locked}}">
+                        {{#each data.system.proficiencies.nonweapon}}
+                        <tr class="item" data-item-id={{this.id}} data-locked="{{this.system.locked}}">
                             <td>
                                 <a
                                     class="itemTable-handle"
-                                    data-locked="{{this.data.data.locked}}"
+                                    data-locked="{{this.system.locked}}"
                                 >
                                     <i class="fas fa-bars"></i>
                                 </a>
@@ -1669,16 +1657,16 @@
                                     value="{{this.name}}"
                                     data-target="name"
                                     data-name=true
-                                    {{#if this.data.data.locked}}disabled{{/if}}
+                                    {{#if this.system.locked}}disabled{{/if}}
                                 >
                             </td>
                             <td>
                                 <select
                                     class="item-edit"
-                                    data-target="data.stat"
-                                    {{#if this.data.data.locked}}disabled{{/if}}
+                                    data-target="system.stat"
+                                    {{#if this.system.locked}}disabled{{/if}}
                                 >
-                                    {{selectOptions @root.statChoices selected=this.data.data.stat}}
+                                    {{selectOptions @root.data.system.statChoices selected=this.system.stat}}
                                 </select>
                             </td>
                             <td>
@@ -1687,9 +1675,9 @@
                                     class="itemTable-inputNum item-edit"
                                     id="{{this.id}}.base"
                                     name="{{this.id}}.base"
-                                    value="{{this.data.data.base}}"
-                                    data-target="data.base"
-                                    {{#if this.data.data.locked}}disabled{{/if}}
+                                    value="{{this.system.base}}"
+                                    data-target="system.base"
+                                    {{#if this.system.locked}}disabled{{/if}}
                                 >
                             </td>
                             <td>
@@ -1698,35 +1686,35 @@
                                     class="itemTable-inputNum item-edit"
                                     id="{{this.id}}.adjust"
                                     name="{{this.id}}.adjust"
-                                    value="{{this.data.data.adjust}}"
-                                    data-target="data.adjust"
-                                    {{#if this.data.data.locked}}disabled{{/if}}
+                                    value="{{this.system.adjust}}"
+                                    data-target="system.adjust"
+                                    {{#if this.system.locked}}disabled{{/if}}
                                 >
                             </td>
                             <td>
                                 <span
                                     class="rollable skills-rollSpan"
-                                    data-roll="d20cs>=(20-{{this.data.data.total}})"
+                                    data-roll="d20cs>=(20-{{this.system.total}})"
                                     data-label="{{this.name}} Check"
                                 >
-                                    {{this.data.data.total}}
+                                    {{this.system.total}}
                                 </span>
                             </td>
                             <td>
                                 <a
                                     class="item-delete"
                                     title="Delete Item"
-                                    data-locked={{this.data.data.locked}}
+                                    data-locked={{this.system.locked}}
                                 >
-                                    <i class="fas fa-trash {{#if this.data.data.locked}} disabled-color {{/if}}"></i>
+                                    <i class="fas fa-trash {{#if this.system.locked}} disabled-color {{/if}}"></i>
                                 </a>
                                 <a
                                     class="item-toggle"
                                     title="Lock Item"
-                                    data-value={{this.data.data.locked}}
-                                    data-target="data.locked"
+                                    data-value={{this.system.locked}}
+                                    data-target="system.locked"
                                 >
-                                    <i class="fas {{#if this.data.data.locked}} fa-lock {{else}} fa-lock-open {{/if}}"></i>
+                                    <i class="fas {{#if this.system.locked}} fa-lock {{else}} fa-lock-open {{/if}}"></i>
                                 </a>
                             </td>
                         </tr>
@@ -1749,12 +1737,12 @@
                         <th></th>
                     </tr>
                     <tbody class="itemTable-sort">
-                        {{#each actor.data.data.proficiencies.weapon}}
-                        <tr class="item" data-item-id="{{this.id}}" data-locked="{{this.data.data.locked}}">
+                        {{#each data.system.proficiencies.weapon}}
+                        <tr class="item" data-item-id="{{this.id}}" data-locked="{{this.system.locked}}">
                             <td>
                                 <a
                                     class="itemTable-handle"
-                                    data-locked="{{this.data.data.locked}}"
+                                    data-locked="{{this.system.locked}}"
                                 >
                                     <i class="fas fa-bars"></i>
                                 </a>
@@ -1768,7 +1756,7 @@
                                     value="{{this.name}}"
                                     data-target="name"
                                     data-name=true
-                                    {{#if this.data.data.locked}}disabled{{/if}}
+                                    {{#if this.system.locked}}disabled{{/if}}
                                 />
                             </td>
                             <td>
@@ -1776,26 +1764,26 @@
                                     type="number"
                                     class="itemTable-inputNum item-edit"
                                     name="{{this.id}}.base"
-                                    value="{{this.data.data.base}}"
-                                    data-target="data.base"
-                                    {{#if this.data.data.locked}}disabled{{/if}}
+                                    value="{{this.system.base}}"
+                                    data-target="system.base"
+                                    {{#if this.system.locked}}disabled{{/if}}
                                 >
                             </td>
                             <td>
                                 <a
                                     class="item-delete"
                                     title="Delete Item"
-                                    data-locked={{this.data.data.locked}}
+                                    data-locked={{this.system.locked}}
                                 >
-                                    <i class="fas fa-trash {{#if this.data.data.locked}} disabled-color {{/if}}"></i>
+                                    <i class="fas fa-trash {{#if this.system.locked}} disabled-color {{/if}}"></i>
                                 </a>
                                 <a
                                     class="item-toggle"
                                     title="Lock Item"
-                                    data-value={{this.data.data.locked}}
-                                    data-target="data.locked"
+                                    data-value={{this.system.locked}}
+                                    data-target="system.locked"
                                 >
-                                    <i class="fas {{#if this.data.data.locked}} fa-lock {{else}} fa-lock-open {{/if}}"></i>
+                                    <i class="fas {{#if this.system.locked}} fa-lock {{else}} fa-lock-open {{/if}}"></i>
                                 </a>
                             </td>
                         </tr>
@@ -1809,7 +1797,7 @@
         </div>
         <div class="tab spells" data-group="primary" data-tab="spells">
             <div class="spells-tables">
-                {{#each data.data.spellTabs}}
+                {{#each data.system.spellTabs}}
                 <div class="spells-{{this.level}}">
                     <table class="itemTable">
                         <tr>
@@ -1824,17 +1812,17 @@
                                     type="number"
                                     class="itemTable-inputNum"
                                     value="{{this.slots}}"
-                                    name="data.spellTabs.{{@key}}.slots"
+                                    name="system.spellTabs.{{@key}}.slots"
                                 >
                             </th>
                         </tr>
                         <tbody class="itemTable-sort">
                             {{#each this.spells}}
-                            <tr class="item" data-item-id="{{this.id}}" data-locked="{{this.data.data.locked}}">
+                            <tr class="item" data-item-id="{{this.id}}" data-locked="{{this.system.locked}}">
                                 <td>
                                     <a
                                         class="itemTable-handle"
-                                        data-locked="{{this.data.data.locked}}"
+                                        data-locked="{{this.system.locked}}"
                                     >
                                         <i class="fas fa-bars"></i>
                                     </a>
@@ -1844,9 +1832,9 @@
                                         type="number"
                                         class="itemTable-inputNum item-edit"
                                         name="{{this.id}}.casts"
-                                        value="{{this.data.data.casts}}"
-                                        data-target="data.casts"
-                                        {{#if this.data.data.locked}}disabled{{/if}}
+                                        value="{{this.system.casts}}"
+                                        data-target="system.casts"
+                                        {{#if this.system.locked}}disabled{{/if}}
                                     >
                                 </td>
                                 <td>
@@ -1858,34 +1846,34 @@
                                         value="{{this.name}}"
                                         data-target="name"
                                         data-name=true
-                                        {{#if this.data.data.locked}}disabled{{/if}}
+                                        {{#if this.system.locked}}disabled{{/if}}
                                     />
                                 </td>
                                 <td>
-                                    <i title="Verbal" class="spells-component {{#if this.data.data.verbal}}enabled{{/if}}">V</i>
-                                    <i title="Somatic" class="spells-component {{#if this.data.data.somatic}}enabled{{/if}}">S</i>
-                                    <i title="Material" class="spells-component {{#if this.data.data.material}}enabled{{/if}}">M</i>
+                                    <i title="Verbal" class="spells-component {{#if this.system.verbal}}enabled{{/if}}">V</i>
+                                    <i title="Somatic" class="spells-component {{#if this.system.somatic}}enabled{{/if}}">S</i>
+                                    <i title="Material" class="spells-component {{#if this.system.material}}enabled{{/if}}">M</i>
                                 </td>
                                 <td>
                                     <a
                                         class="item-delete"
                                         title="Delete Item"
-                                        data-locked={{this.data.data.locked}}
+                                        data-locked={{this.system.locked}}
                                     >
-                                        <i class="fas fa-trash {{#if this.data.data.locked}} disabled-color {{/if}}"></i>
+                                        <i class="fas fa-trash {{#if this.system.locked}} disabled-color {{/if}}"></i>
                                     </a>
                                     <a
                                         class="item-toggle"
                                         title="Lock Item"
-                                        data-value={{this.data.data.locked}}
-                                        data-target="data.locked"
+                                        data-value={{this.system.locked}}
+                                        data-target="system.locked"
                                     >
-                                        <i class="fas {{#if this.data.data.locked}} fa-lock {{else}} fa-lock-open {{/if}}"></i>
+                                        <i class="fas {{#if this.system.locked}} fa-lock {{else}} fa-lock-open {{/if}}"></i>
                                     </a>
                                     <a
                                         class="item-open"
                                         title="View Item Notes"
-                                        data-locked="{{this.data.data.locked}}"
+                                        data-locked="{{this.system.locked}}"
                                     >
                                         <i class="fas fa-book"></i>
                                     </a>
@@ -1908,8 +1896,8 @@
                 <div class="form-fields">
                     <input
                         type="checkbox"
-                        name="data.settings.sheetToggle.basic"
-                        {{checked this.data.data.settings.sheetToggle.basic}}
+                        name="system.settings.sheetToggle.basic"
+                        {{checked data.system.settings.sheetToggle.basic}}
                     >
                 </div>
             </div>
@@ -1918,8 +1906,8 @@
                 <div class="form-fields">
                     <input
                         type="checkbox"
-                        name="data.settings.sheetToggle.combat"
-                        {{checked this.data.data.settings.sheetToggle.combat}}
+                        name="system.settings.sheetToggle.combat"
+                        {{checked data.system.settings.sheetToggle.combat}}
                     >
                 </div>
             </div>
@@ -1928,8 +1916,8 @@
                 <div class="form-fields">
                     <input
                         type="checkbox"
-                        name="data.settings.sheetToggle.gear"
-                        {{checked this.data.data.settings.sheetToggle.gear}}
+                        name="system.settings.sheetToggle.gear"
+                        {{checked data.system.settings.sheetToggle.gear}}
                     >
                 </div>
             </div>
@@ -1938,8 +1926,8 @@
                 <div class="form-fields">
                     <input
                         type="checkbox"
-                        name="data.settings.sheetToggle.skills"
-                        {{checked this.data.data.settings.sheetToggle.skills}}
+                        name="system.settings.sheetToggle.skills"
+                        {{checked data.system.settings.sheetToggle.skills}}
                     >
                 </div>
             </div>
@@ -1948,8 +1936,8 @@
                 <div class="form-fields">
                     <input
                         type="checkbox"
-                        name="data.settings.sheetToggle.spells"
-                        {{checked this.data.data.settings.sheetToggle.spells}}
+                        name="system.settings.sheetToggle.spells"
+                        {{checked data.system.settings.sheetToggle.spells}}
                     >
                 </div>
             </div>

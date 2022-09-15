@@ -177,7 +177,8 @@
       "value": 0,
       "quantity": 1,
       "tab": "",
-      "index": 0
+      "index": 0,
+      "description": "<h1>Description</h1><p>This section is editable</p>"
     },
     "nonWeaponProficiency": {
       "templates": ["base"],
@@ -195,12 +196,12 @@
       "index": 0,
       "numAttacks": 1,
       "toHit": 0,
-      "damageDie": "d6",
-      "toDamage": 0,
+      "damageRoll": "d6+1",
       "range": "",
       "attackType": "",
       "damageType": "",
-      "speed": 0
+      "speed": 0,
+      "description": "<h1>Description</h1><p>This section is editable</p>"
     },
     "spell": {
       "templates": ["base"],

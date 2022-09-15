@@ -1,0 +1,16 @@
+.gear-editor {
+    min-height: 256px;
+    margin: 4px;
+}
+
+.gear-editor > .editor {
+    min-height: 256px;
+}
+
+.gear-editor > .editor > .editor-content {
+    min-height: 256px;
+}
+
+.gear-editor > .editor > a.editor-edit {
+    display: block;
+}

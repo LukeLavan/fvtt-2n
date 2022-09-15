@@ -9,6 +9,15 @@ export class TwoNItemSheet extends ItemSheet {
     }
 
     get template() {
-        return `systems/fvtt-2n/templates/${this.item.data.type}-sheet.html`;
+        return `systems/fvtt-2n/templates/${this.item.type}-sheet.html`;
+    }
+
+    async getData(options) {
+        const data = await super.getData(options);
+        data.enrichedHTML = await TextEditor.enrichHTML(
+            this.object.system.description,
+            {async: true}
+        );
+        return data;
     }
 }

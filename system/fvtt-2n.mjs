@@ -89,6 +89,6 @@ Hooks.on('createActor', async function (actor) {
 
     actor.update({'data.defaultGearTab': gearTab.data._id});
     actor.update({'data.equipmentGearTab': gearTab.data._id});
-    actorData.data.defaultGearTab = gearTab.data._id;
-    actorData.data.equipmentGearTab = gearTab.data._id;
+    actordata.system.defaultGearTab = gearTab.data._id;
+    actordata.system.equipmentGearTab = gearTab.data._id;
 });
