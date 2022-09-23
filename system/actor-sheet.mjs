@@ -169,8 +169,7 @@ export class TwoNActorSheet extends ActorSheet {
         const currentTarget = $(event.currentTarget);
         const id = currentTarget.parents('.item').data('item-id');
         const itemDifferentials = [];
-        const actorData = this.object.data;
-        actorData.system.gearTabs.forEach((_, key) => {
+        this.object.system.gearTabs.forEach((_, key) => {
             if (key === id)
                 itemDifferentials.push({
                     _id: key,
@@ -245,7 +244,7 @@ export class TwoNActorSheet extends ActorSheet {
         if (dragEl.dataset.itemId) {
             const item = this.actor.items.get(dragEl.dataset.itemId);
             dragData.type = 'Item';
-            dragData.system = item.data;
+            dragData.item = item;
         }
         dataTransfer.setData('text/plain', JSON.stringify(dragData));
     }
@@ -264,7 +263,7 @@ export class TwoNActorSheet extends ActorSheet {
 
     // handles adding items to sheet via drag/drop
     _onDropItem(dragEvent, data) {
-        const actorData = this.actor.data;
+        const actorData = this.actor;
         const path = dragEvent.path;
         let target;
         for (let i = 0; i < path.length; ++i)
@@ -273,8 +272,8 @@ export class TwoNActorSheet extends ActorSheet {
         if (actorId === actorData._id) {
             // moving item within its parent actor
             if (target) {
-                const itemDifferential = {_id: data.system._id};
-                if (data.system.type === 'gear') {
+                const itemDifferential = {_id: data.item._id};
+                if (data.item.type === 'gear') {
                     itemDifferential['data.tab'] = target.dataset.tab;
                     itemDifferential['data.index'] = -1;
                 }
@@ -286,22 +285,22 @@ export class TwoNActorSheet extends ActorSheet {
             if (actorId) {
                 // item belongs to a different actor
                 const srcActor = game.actors.get(data.actorId);
-                item = srcActor.data.items.get(data.system._id);
-                item.data.system.index = -1;
+                item = srcActor.items.get(data.item._id);
+                item.system.index = -1;
             }
             // item does not belong to an actor
-            else item = game.items.get(data.id);
+            else item = game.items.get(data.uuid.substring(5)); // remove 'Item.' from uuid
             if (item.type === 'gear') {
                 let targetTab = actorData.system.defaultGearTab;
                 if (target) targetTab = target.dataset.tab;
-                item.data.system.tab = targetTab;
-                item.data.system.index = -1;
+                item.system.tab = targetTab;
+                item.system.index = -1;
             }
             Item.create(
                 {
                     name: item.name,
                     type: item.type,
-                    data: item.data.system,
+                    data: item.system,
                 },
                 {
                     parent: this.actor,
