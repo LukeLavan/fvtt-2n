@@ -4,6 +4,8 @@ import {TwoNActorSheet} from './actor-sheet.mjs';
 import {TwoNItem} from './item.mjs';
 import {TwoNItemSheet} from './item-sheet.mjs';
 
+import {registerAllPartials} from '../templates/partials/registerAllPartials.js';
+
 /* Handlebars helpers */
 Handlebars.registerHelper('log', (x) => console.log(x));
 Handlebars.registerHelper('or', (a, b) => a || b);
@@ -11,6 +13,8 @@ Handlebars.registerHelper('or', (a, b) => a || b);
 /* FoundryVTT hooks */
 Hooks.once('init', async function () {
     console.log('Initializing 2n system');
+
+    registerAllPartials();
 
     CONFIG.Combat.initiative = {
         formula: '1d10',
@@ -89,6 +93,6 @@ Hooks.on('createActor', async function (actor) {
 
     actor.update({'data.defaultGearTab': gearTab.data._id});
     actor.update({'data.equipmentGearTab': gearTab.data._id});
-    actordata.system.defaultGearTab = gearTab.data._id;
-    actordata.system.equipmentGearTab = gearTab.data._id;
+    actorData.system.defaultGearTab = gearTab.data._id;
+    actorData.system.equipmentGearTab = gearTab.data._id;
 });

@@ -1,0 +1,92 @@
+<div class="spells-tables">
+    {{#each data.system.spellTabs}}
+    <div class="spells-{{this.level}}">
+        <table class="itemTable">
+            <tr>
+                <th colspan="5">{{this.level}}{{this.suffix}} level spells</th>
+            </tr>
+            <tr>
+                <th></th>
+                <th>Casts</th>
+                <th colspan="3">
+                    Spell Slots
+                    <input
+                        type="number"
+                        class="itemTable-inputNum"
+                        value="{{this.slots}}"
+                        name="system.spellTabs.{{@key}}.slots"
+                    >
+                </th>
+            </tr>
+            <tbody class="itemTable-sort">
+                {{#each this.spells}}
+                <tr class="item" data-item-id="{{this.id}}" data-locked="{{this.system.locked}}">
+                    <td>
+                        <a
+                            class="itemTable-handle"
+                            data-locked="{{this.system.locked}}"
+                        >
+                            <i class="fas fa-bars"></i>
+                        </a>
+                    </td>
+                    <td>
+                        <input
+                            type="number"
+                            class="itemTable-inputNum item-edit"
+                            name="{{this.id}}.casts"
+                            value="{{this.system.casts}}"
+                            data-target="system.casts"
+                            {{#if this.system.locked}}disabled{{/if}}
+                        >
+                    </td>
+                    <td>
+                        <input
+                            type="text"
+                            class="itemTable-inputText item-edit"
+                            id="{{this.id}}.name"
+                            name="{{this.id}}.name"
+                            value="{{this.name}}"
+                            data-target="name"
+                            data-name=true
+                            {{#if this.system.locked}}disabled{{/if}}
+                        />
+                    </td>
+                    <td>
+                        <i title="Verbal" class="spells-component {{#if this.system.verbal}}enabled{{/if}}">V</i>
+                        <i title="Somatic" class="spells-component {{#if this.system.somatic}}enabled{{/if}}">S</i>
+                        <i title="Material" class="spells-component {{#if this.system.material}}enabled{{/if}}">M</i>
+                    </td>
+                    <td>
+                        <a
+                            class="item-delete"
+                            title="Delete Item"
+                            data-locked={{this.system.locked}}
+                        >
+                            <i class="fas fa-trash {{#if this.system.locked}} disabled-color {{/if}}"></i>
+                        </a>
+                        <a
+                            class="item-toggle"
+                            title="Lock Item"
+                            data-value={{this.system.locked}}
+                            data-target="system.locked"
+                        >
+                            <i class="fas {{#if this.system.locked}} fa-lock {{else}} fa-lock-open {{/if}}"></i>
+                        </a>
+                        <a
+                            class="item-open"
+                            title="View Item Notes"
+                            data-locked="{{this.system.locked}}"
+                        >
+                            <i class="fas fa-book"></i>
+                        </a>
+                    </td>
+                </tr>
+                {{/each}}
+            </tbody>
+        </table>
+        <div class="itemTable-buttons">
+            <a class="item-create" data-type="spell" data-level="{{this.level}}"><i class="fas fa-plus"></i> Add {{this.level}}{{this.suffix}} level spell</a>
+        </div>
+    </div>
+    {{/each}}
+</div>

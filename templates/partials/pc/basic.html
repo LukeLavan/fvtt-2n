@@ -1,0 +1,481 @@
+<div class="basic-top">
+    <table>
+        <tr>
+            <td>Player:</td>
+            <td>
+                <input
+                    name="system.playerName"
+                    type="text"
+                    value="{{data.system.playerName}}"
+                />
+            </td>
+        </tr>
+        <tr>
+            <td>Name:</td>
+            <td>
+                <input
+                    name="name"
+                    type="text"
+                    value="{{data.name}}"
+                />
+            </td>
+        </tr>
+        <tr>
+            <td>Languages:</td>
+            <td>
+                <input
+                    name="system.languages"
+                    type="text"
+                    value="{{data.system.languages}}"
+                    title="{{data.system.languages}}"
+                />
+            </td>
+        </tr>
+        <tr>
+            <td>Alignment:</td>
+            <td>
+                <select name="system.alignment" class="basic-top-alignment">
+                    {{selectOptions data.system.alignmentChoices selected=data.system.alignment}}
+                </select>
+            </td>
+        </tr>
+    </table>
+    <table>
+        <tr>
+            <td>Race:</td>
+            <td>
+                <input
+                    name="system.race"
+                    type="text"
+                    value="{{data.system.race}}"
+                />
+            </td>
+        </tr>
+        <tr>
+            <td>Classes:</td>
+            <td>
+                <input
+                    name="system.classes"
+                    type="text"
+                    value="{{data.system.classes}}"
+                />
+            </td>
+        </tr>
+        <tr>
+            <td>XP:</td>
+            <td>
+                <input
+                    name="system.xp"
+                    type="text"
+                    value="{{data.system.xp}}"
+                />
+            </td>
+        </tr>
+        <tr>
+            <td>Levels:</td>
+            <td>
+                <input
+                    name="system.levels"
+                    type="text"
+                    value="{{data.system.levels}}"
+                />
+            </td>
+        </tr>
+    </table>
+    <table>
+        <tr>
+            <td>Body Weight:</td>
+            <td>
+                <input
+                    name="system.bodyWeight"
+                    type="number"
+                    value="{{data.system.bodyWeight}}"
+                />
+            </td>
+        </tr>
+        <tr>
+            <td>Height:</td>
+            <td>
+                <input
+                    name="system.height"
+                    type="text"
+                    value="{{data.system.height}}"
+                />
+            </td>
+        </tr>
+        <tr>
+            <td>Sex:</td>
+            <td>
+                <input
+                    name="system.sex"
+                    type="text"
+                    value="{{data.system.sex}}"
+                />
+            </td>
+        </tr>
+        <tr>
+            <td>Gender:</td>
+            <td>
+                <input
+                    name="system.gender"
+                    type="text"
+                    value="{{data.system.gender}}"
+                />
+            </td>
+        </tr>
+    </table>
+    <table>
+        <tr>
+            <td>Size:</td>
+            <td colspan="3">
+                <input
+                    name="system.size"
+                    type="text"
+                    value="{{data.system.size}}"
+                />
+            </td>
+        </tr>
+        <tr>
+            <td>
+                Speed:
+            </td>
+            <td>
+                <input
+                    type="number"
+                    name="system.speed"
+                    value="{{data.system.speed}}"
+                />
+            </td>
+            <td>Mod:</td>
+            <td>
+                <span class="basic-top-speedMod"><b>{{data.system.speedMod}}</b></span>
+            </td>
+        </tr>
+        <tr>
+            <td>Age:</td>
+            <td colspan="3">
+                <input
+                    name="system.age"
+                    type="text"
+                    value="{{data.system.age}}"
+                />
+            </td>
+        </tr>
+        <tr>
+            <td>Handed:</td>
+            <td colspan="3">
+                <input
+                    name="system.handed"
+                    type="text"
+                    value="{{data.system.handed}}"
+                />
+            </td>
+        </tr>
+    </table>
+</div>
+<div class="basic-mid">
+    <table class="basic-mid-stats">
+        <tr>
+            <td>STR</td>
+            <td>
+                <input
+                    name="system.str"
+                    type="number"
+                    value="{{data.system.str}}"
+                />
+            </td>
+        </tr>
+        <tr>
+            <td>DEX</td>
+            <td>
+                <input
+                    name="system.dex"
+                    type="number"
+                    value="{{data.system.dex}}"
+                />
+            </td>
+        </tr>
+        <tr>
+            <td>CON</td>
+            <td>
+                <input
+                    name="system.con"
+                    type="number"
+                    value="{{data.system.con}}"
+                />
+            </td>
+        </tr>
+        <tr>
+            <td>INT</td>
+            <td>
+                <input
+                    name="system.int"
+                    type="number"
+                    value="{{data.system.int}}"
+                />
+            </td>
+        </tr>
+        <tr>
+            <td>WIS</td>
+            <td>
+                <input
+                    name="system.wis"
+                    type="number"
+                    value="{{data.system.wis}}"
+                />
+            </td>
+        </tr>
+        <tr>
+            <td>CHA</td>
+            <td>
+                <input
+                    name="system.cha"
+                    type="number"
+                    value="{{data.system.cha}}"
+                />
+            </td>
+        </tr>
+        <tr>
+            <td>PER</td>
+            <td>
+                <input
+                    name="system.per"
+                    type="number"
+                    value="{{data.system.per}}"
+                />
+            </td>
+        </tr>
+    </table>
+    <div>
+        <div class="basic-derivedRow basic-derivedRow-altColor">
+            <div>
+                <span class="derived-label">
+                    Melee Attack Adjust
+                </span>
+                <span class="derived-value">
+                    {{data.system.meleeAttackAdjust}}
+                </span>
+            </div>
+            <div>
+                <span class="derived-label">
+                    Melee Damage Adjust
+                </span>
+                <span class="derived-value">
+                    {{data.system.meleeDamageAdjust}}
+                </span>
+            </div>
+            <div>
+                <span class="derived-label">
+                    Weight Allowance
+                </span>
+                <span class="derived-value">
+                    {{data.system.weightAllowance}}
+                </span>
+            </div>
+            <div>
+                <span class="derived-label">
+                    Max Press
+                </span>
+                <span class="derived-value">
+                    {{data.system.maxPress}}
+                </span>
+            </div>
+            <div 
+                class="rollable"
+                data-roll="d20cs<={{data.system.openDoors}}"
+                data-label="Open Doors Check"
+            >
+                <span class="derived-label">
+                    Open Doors
+                </span>
+                <span class="derived-value">
+                    {{data.system.openDoors}}
+                </span>
+            </div>
+            <div
+                class="rollable"
+                data-roll="d100cs<={{data.system.bendBars}}"
+                data-label="Bend Bars Check"
+            >
+                <span class="derived-label">
+                    Bend Bars
+                </span>
+                <span class="derived-value">
+                    {{data.system.bendBars}}
+                </span>
+            </div>
+        </div>
+        <div class="basic-derivedRow" id="derived-dex">
+            <div>
+                <span class="derived-label">
+                    Missile Hit Adjustment
+                </span>
+                <span class="derived-value">
+                    {{data.system.missileHitAdjust}}
+                </span>
+            </div>
+            <div>
+                <span class="derived-label">
+                    Defensive Adjustment
+                </span>
+                <span class="derived-value">
+                    {{data.system.defenseAdjust}}
+                </span>
+            </div>
+        </div>
+        <div class="basic-derivedRow basic-derivedRow-altColor" id="derived-con">
+            <div>
+                <span class="derived-label">
+                    HP Adjust
+                </span>
+                <span class="derived-value">
+                    {{data.system.hitPointAdjust}}
+                </span>
+            </div>
+            <div>
+                <span class="derived-label">
+                    System Shock
+                </span>
+                <span class="derived-value">
+                    {{data.system.systemShock}}
+                </span>
+            </div>
+            <div>
+                <span class="derived-label">
+                    Poison Save
+                </span>
+                <span class="derived-value">
+                    {{data.system.poisonSave}}
+                </span>
+            </div>
+            <div>
+                <span class="derived-label">
+                    Regen
+                </span>
+                <span class="derived-value">
+                    {{data.system.regen}}
+                </span>
+            </div>
+        </div>
+        <div class="basic-derivedRow" id="derived-int">
+            <div>
+                <span class="derived-label">
+                    Languages
+                </span>
+                <span class="derived-value">
+                    {{data.system.numLanguages}}
+                </span>
+            </div>
+            <div>
+                <span class="derived-label">
+                    Max Spell Level
+                </span>
+                <span class="derived-value">
+                    {{data.system.maxSpellLevel}}
+                </span>
+            </div>
+            <div
+                class="rollable"
+                data-roll="d100cs<={{data.system.spellLearnChance}}"
+                data-label="Chance to Learn Spell"
+            >
+                <span class="derived-label">
+                    Chance to Learn Spell
+                </span>
+                <span class="derived-value">
+                    {{data.system.spellLearnChance}}
+                </span>
+            </div>
+            <div>
+                <span class="derived-label">
+                    Max Spells per Level
+                </span>
+                <span class="derived-value">
+                    {{data.system.maxSpellPerLevel}}
+                </span>
+            </div>
+        </div>
+        <div class="basic-derivedRow basic-derivedRow-altColor" id="derived-wis">
+            <div>
+                <span class="derived-label">
+                    Magical Defense Adjust
+                </span>
+                <span class="derived-value">
+                    {{data.system.magicDefenseAdjust}}
+                </span>
+            </div>
+            <div>
+                <span class="derived-label">
+                    Bonus Spells
+                </span>
+                <span class="derived-value">
+                    {{data.system.bonusSpells}}
+                </span>
+            </div>
+            <div
+                class="rollable"
+                data-roll="d100cs<={{data.system.chanceSpellFailure}}"
+                data-label="Spell Failure"
+            >
+                <span class="derived-label">
+                    Spell Failure
+                </span>
+                <span class="derived-value">
+                    {{data.system.chanceSpellFailure}}
+                </span>
+            </div>
+        </div>
+        <div class="basic-derivedRow" id="derived-cha">
+            <div>
+                <span class="derived-label">
+                    Henchmen
+                </span>
+                <span class="derived-value">
+                    {{data.system.maxHenchmen}}
+                </span>
+            </div>
+            <div>
+                <span class="derived-label">
+                    Loyalty Base
+                </span>
+                <span class="derived-value">
+                    {{data.system.loyaltyBase}}
+                </span>
+            </div>
+            <div
+                class="rollable"
+                data-roll="2d10+{{data.system.reactionAdjust}}"
+                data-label="Encounter Reaction"
+            >
+                <span class="derived-label">
+                    Reaction Adjustment
+                </span>
+                <span class="derived-value">
+                    {{data.system.reactionAdjust}}
+                </span>
+            </div>
+        </div>
+        <div class="basic-derivedRow basic-derivedRow-altColor" id="derived-per">
+            <div
+                class="rollable"
+                data-roll="d10cs>(3-{{data.system.surpriseAdjust}})"
+                data-label="Surprise Check"
+            >
+                <span class="derived-label">
+                    Surprise Adjustment
+                </span>
+                <span class="derived-value">
+                    {{data.system.surpriseAdjust}}
+                </span>
+            </div>
+            <div>
+                <span class="derived-label">
+                    Illusion Immunity
+                </span>
+                <span class="derived-value">
+                    {{data.system.illusionImmunity}}
+                </span>
+            </div>
+        </div>
+    </div>
+</div>

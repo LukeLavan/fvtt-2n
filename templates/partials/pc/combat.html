@@ -1,0 +1,758 @@
+<div class="combat-top">
+    <div class="combat-top-hp">
+        <span
+            class="rollable"
+            data-roll="{{data.system.hitDieRoll}}+{{data.system.hitPointAdjust}}"
+            data-label="Hit Die"
+        >Hit Points</span>
+        <hr />
+        <div>
+            <div>
+                <input
+                    name="system.health.value"
+                    type="number"
+                    value="{{data.system.health.value}}"
+                    class="combat-big-text"
+                />
+                <br />
+                <span>Current</span>
+            </div>
+            <div>
+                <input
+                    name="system.health.max"
+                    type="number"
+                    value="{{data.system.health.max}}"
+                    class="combat-big-text"
+                />
+                <br />
+                <span>Maximum</span>
+            </div>
+            <div>
+                <select class="combat-big-text combat-top-select" name="system.hitDieRoll">
+                    {{selectOptions data.system.hitDieChoices selected=data.system.hitDieRoll}}
+                </select>
+                <br />
+                <span>Hit Dice</span>
+            </div>
+        </div>
+        <!--
+        <div 
+            class="combat-top-hp-button rollable"
+            data-roll="{{data.system.hitDieRollAdjusted}}"
+            data-label="Hit Die"
+        ></div>
+        -->
+    </div>
+    <div class="combat-top-ac">
+        <span>Armor Class</span>
+        <hr />
+        <div>
+            <div>
+                <span class="combat-big-text">{{data.system.armorClasses.total}}</span>
+                <span>Total</span>
+            </div>
+            <div>
+                <span class="combat-big-text">{{data.system.armorClasses.back}}</span>
+                <span>Back</span>
+            </div>
+            <div>
+                <span class="combat-big-text">{{data.system.armorClasses.touch}}</span>
+                <span>Touch</span>
+            </div>
+            <div>
+                <span class="combat-big-text">{{data.system.armorClasses.surprise}}</span>
+                <span>Surprise</span>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="combat-weapons">
+    <table class="itemTable">
+        <tr>
+            <th colspan="12">Weapons</th>
+        </tr>
+        <tr>
+            <th></th>
+            <th>Name</th>
+            <th># Atks</th>
+            <th>To Hit</th>
+            <th>Dmg Roll</th>
+            <th>Range</th>
+            <th>Atk Type</th>
+            <th>Dmg Type</th>
+            <th>Speed</th>
+            <th></th>
+            <!--th>Init</th-->
+            <th>Atk</th>
+            <th>Dmg</th>
+        </tr>
+        <tbody class="itemTable-sort">
+            {{#each data.system.weapons}}
+            <tr class="item" data-item-id="{{this.id}}" data-locked="{{this.system.locked}}">
+                <td>
+                    <a
+                        class="itemTable-handle"
+                        data-locked="{{this.system.locked}}"
+                    >
+                        <i class="fas fa-bars"></i>
+                    </a>
+                </td>
+                <td>
+                    <input
+                        type="text"
+                        class="itemTable-inputText item-edit"
+                        id="{{this.id}}.name"
+                        name="{{this.id}}.name"
+                        value="{{this.name}}"
+                        data-target="name"
+                        data-name=true
+                        {{#if this.system.locked}}disabled{{/if}}
+                    >
+                </td>
+                <td>
+                    <input
+                        type="number"
+                        class="itemTable-inputNum item-edit"
+                        id="{{this.id}}.numAttacks"
+                        name="{{this.id}}.numAttacks"
+                        value="{{this.system.numAttacks}}"
+                        data-target="system.numAttacks"
+                        {{#if this.system.locked}}disabled{{/if}}
+                    >
+                </td>
+                <td>
+                    <input
+                        type="number"
+                        class="itemTable-inputNum item-edit"
+                        id="{{this.id}}.toHit"
+                        name="{{this.id}}.toHit"
+                        value="{{this.system.toHit}}"
+                        data-target="system.toHit"
+                        {{#if this.system.locked}}disabled{{/if}}
+                    >
+                </td>
+                <td class="weapon-damage">
+                    <input
+                        type="text"
+                        class="itemTable-inputText item-edit"
+                        id="{{this.id}}.damageRoll"
+                        name="{{this.id}}.damageRoll"
+                        value="{{this.system.damageRoll}}"
+                        data-target="system.damageRoll"
+                        {{#if this.system.locked}}disabled{{/if}}
+                    />
+                </td>
+                <td class="weapon-range">
+                    <input
+                        type="text"
+                        class="itemTable-inputText item-edit"
+                        id="{{this.id}}.range"
+                        name="{{this.id}}.range"
+                        value="{{this.system.range}}"
+                        data-target="system.range"
+                        {{#if this.system.locked}}disabled{{/if}}
+                    >
+                </td>
+                <td>
+                    <select
+                        class="item-edit"
+                        data-target="system.attackType"
+                        {{#if this.system.locked}}disabled{{/if}}
+                    >
+                        {{selectOptions @root.data.system.attackTypeChoices selected=this.system.attackType}}
+                    </select>
+                </td>
+                <td>
+                    <select
+                        class="item-edit"
+                        data-target="system.damageType"
+                        {{#if this.system.locked}}disabled{{/if}}
+                    >
+                        {{selectOptions @root.data.system.damageTypeChoices selected=this.system.damageType}}
+                    </select>
+                </td>
+                <td>
+                    <input
+                        type="number"
+                        class="itemTable-inputNum item-edit"
+                        id="{{this.id}}.speed"
+                        name="{{this.id}}.speed"
+                        value="{{this.system.speed}}"
+                        data-target="system.speed"
+                        {{#if this.system.locked}}disabled{{/if}}
+                    >
+                </td>
+                <td>
+                    <a
+                        class="item-delete"
+                        title="Delete Item"
+                        data-locked={{this.system.locked}}
+                    >
+                        <i class="fas fa-trash {{#if this.system.locked}} disabled-color {{/if}}"></i>
+                    </a>
+                    <a
+                        class="item-toggle"
+                        title="Lock Item"
+                        data-value={{this.system.locked}}
+                        data-target="system.locked"
+                    >
+                        <i class="fas {{#if this.system.locked}} fa-lock {{else}} fa-lock-open {{/if}}"></i>
+                    </a>
+                </td>
+                <!--td class="weapon-roll-td">
+                    <a class="rollable weapon-roll"></a>
+                    TODO: initiative roll
+                </td-->
+                <td class="weapon-roll-td">
+                    <a
+                        class="rollable weapon-roll"
+                        data-roll="
+                            1d20
+                            +{{this.system.toHit}}
+                            {{#if (eq this.system.attackType 'Melee')}}
+                                +{{this.system.hitAdjust.melee}}
+                            {{/if}}
+                            {{#if (eq this.system.attackType 'Missile')}}
+                                +{{this.system.hitAdjust.missile}}
+                            {{/if}}
+                            {{#if (eq this.system.attackType 'Thrown')}}
+                                +{{this.system.hitAdjust.thrown}}
+                            {{/if}}
+                        "
+                        data-label="to hit with {{this.name}}"
+                    ></a>
+                </td>
+                <td class="weapon-roll-td">
+                    <a
+                        class="rollable weapon-roll"
+                        data-roll="{{this.system.damageRoll}}"
+                        data-label="damage with {{this.name}}"
+                    ></a>
+                </td>
+            </tr>
+            {{/each}}
+        </tbody>
+    </table>
+    <div class="itemTable-buttons">
+        <a class="item-create" data-type="weapon"><i class="fas fa-plus"></i> Add weapon</a>
+    </div>
+</div>
+<div class="combat-modTables">
+    <div class="combat-mid">
+        <table class="combat-mid-throws">
+            <tr>
+                <th colspan="2">
+                    Hit Adjust
+                </th>
+            </tr>
+            <tr>
+                <td>Melee</td>
+                <td
+                    class="rollable combat-mid-throws-value combat-big-text"
+                    data-roll="d20+{{data.system.hitAdjust.melee}}"
+                    data-label="Basic Melee Attack"
+                >
+                    {{#if (gte data.system.hitAdjust.melee 0)}}+{{/if}}{{data.system.hitAdjust.melee}}
+                </td>
+            </tr>
+            <tr>
+                <td>Missile</td>
+                <td
+                    class="rollable combat-mid-throws-value combat-big-text"
+                    data-roll="d20+{{data.system.hitAdjust.missile}}"
+                    data-label="Basic Missile Attack"
+                >
+                    {{#if (gte data.system.hitAdjust.missile 0)}}+{{/if}}{{data.system.hitAdjust.missile}}
+                </td>
+            </tr>
+            <tr>
+                <td>Thrown</td>
+                <td
+                    class="rollable combat-mid-throws-value combat-big-text"
+                    data-roll="d20+{{data.system.hitAdjust.thrown}}"
+                    data-label="Basic Thrown Attack"
+                >
+                    {{#if (gte data.system.hitAdjust.thrown 0)}}+{{/if}}{{data.system.hitAdjust.thrown}}
+                </td>
+            </tr>
+        </table>
+        <div class="combat-mid-throwMods">
+            <table class="itemTable">
+                <tr>
+                    <th colspan="8">To-Hit Modifiers</th>
+                </tr>
+                <tr>
+                    <th></th>
+                    <th>Source</th>
+                    <th>Melee</th>
+                    <th>Missile</th>
+                    <th>Thrown</th>
+                    <th></th>
+                    <th></th>
+                    <th>Active?</th>
+                </tr>
+                <tbody class="itemTable-sort">
+                    {{#each data.system.combatMods.hitMods}}
+                    <tr class="item" data-item-id="{{this.id}}" data-locked="{{this.system.locked}}">
+                        <td>
+                            <a
+                                class="itemTable-handle"
+                                data-locked="{{this.system.locked}}"
+                            >
+                                <i class="fas fa-bars"></i>
+                            </a>
+                        </td>
+                        <td>
+                            <input
+                                type="text"
+                                class="itemTable-inputText item-edit"
+                                id="{{this.id}}.name"
+                                name="{{this.id}}.name"
+                                value="{{this.name}}"
+                                data-target="name"
+                                data-name=true
+                                {{#if this.system.locked}}disabled{{/if}}
+                            >
+                        </td>
+                        <td>
+                            <input
+                                type="number"
+                                class="itemTable-inputNum item-edit"
+                                id="{{this.id}}.melee"
+                                name="{{this.id}}.melee"
+                                value="{{this.system.melee}}"
+                                data-target="system.melee"
+                                {{#if this.system.locked}}disabled{{/if}}
+                            >
+                        </td>
+                        <td>
+                            <input
+                                type="number"
+                                class="itemTable-inputNum item-edit"
+                                id="{{this.id}}.missile"
+                                name="{{this.id}}.missile"
+                                value="{{this.system.missile}}"
+                                data-target="system.missile"
+                                {{#if this.system.locked}}disabled{{/if}}
+                            >
+                        </td>
+                        <td>
+                            <input
+                                type="number"
+                                class="itemTable-inputNum item-edit"
+                                id="{{this.id}}.thrown"
+                                name="{{this.id}}.thrown"
+                                value="{{this.system.thrown}}"
+                                data-target="system.thrown"
+                                {{#if this.system.locked}}disabled{{/if}}
+                            >
+                        </td>
+                        <td>
+                            <a
+                                class="item-delete"
+                                title="Delete Item"
+                                data-locked={{this.system.locked}}
+                            >
+                                <i class="fas fa-trash {{#if this.system.locked}} disabled-color {{/if}}"></i>
+                            </a>
+                        </td>
+                        <td>
+                            <a
+                                class="item-toggle"
+                                title="Lock Item"
+                                data-value={{this.system.locked}}
+                                data-target="system.locked"
+                            >
+                                <i class="fas {{#if this.system.locked}} fa-lock {{else}} fa-lock-open {{/if}}"></i>
+                            </a>
+                        </td>
+                        <td>
+                            <input
+                                type="checkbox"
+                                class="item-edit"
+                                name="{{this.id}}.active"
+                                data-target="system.active"
+                                {{checked this.system.active}}
+                            >
+                        </td>
+                    </tr>
+                    {{/each}}
+                </tbody>
+            </table>
+            <div class="itemTable-buttons">
+                <a class="item-create" data-type="hitMod"><i class="fas fa-plus"></i> Add modifier</a>
+            </div>
+        </div>
+    </div>
+    <div class="combat-mid">
+        <table class="combat-mid-throws">
+            <tr>
+                <th colspan="2">
+                    Armor Classes
+                </th>
+            </tr>
+            <tr>
+                <td>Natural</td>
+                <td class="combat-mid-throws-value combat-big-text">{{data.system.armorClasses.natural}}</td>
+            </tr>
+            <tr>
+                <td>Dexterity</td>
+                <td class="combat-mid-throws-value combat-big-text">{{data.system.armorClasses.dexterity}}</td>
+            </tr>
+            <tr>
+                <td>Armor</td>
+                <td class="combat-mid-throws-value combat-big-text">{{data.system.armorClasses.armor}}</td>
+            </tr>
+            <tr>
+                <td>Shield</td>
+                <td class="combat-mid-throws-value combat-big-text">{{data.system.armorClasses.shield}}</td>
+            </tr>
+            <tr>
+                <td>Magic</td>
+                <td class="combat-mid-throws-value combat-big-text">{{data.system.armorClasses.magic}}</td>
+            </tr>
+            <tr>
+                <td>Encumbrance</td>
+                <td class="combat-mid-throws-value combat-big-text">{{data.system.armorClasses.encumbrance}}</td>
+            </tr>
+        </table>
+        <div class="combat-mid-throwMods">
+            <table class="itemTable">
+                <tbody>
+                <tr>
+                    <th colspan="10">AC Modifiers</th>
+                </tr>
+                <tr>
+                    <th></th>
+                    <th>Source</th>
+                    <th>Natural</th>
+                    <th>Dexterity</th>
+                    <th>Armor</th>
+                    <th>Shield</th>
+                    <th>Magic</th>
+                    <th></th>
+                    <th></th>
+                    <th>Active?</th>
+                </tr>
+                <tbody class="itemTable-sort">
+                    {{#each data.system.combatMods.acMods}}
+                    <tr class="item" data-item-id="{{this.id}}" data-locked="{{this.system.locked}}">
+                        <td>
+                            <a
+                                class="itemTable-handle"
+                                data-locked="{{this.system.locked}}"
+                            >
+                                <i class="fas fa-bars"></i>
+                            </a>
+                        </td>
+                        <td>
+                            <input
+                                type="text"
+                                class="itemTable-inputText item-edit"
+                                id="{{this.id}}.name"
+                                name="{{this.id}}.name"
+                                value="{{this.name}}"
+                                data-target="name"
+                                data-name=true
+                                {{#if this.system.locked}}disabled{{/if}}
+                            >
+                        </td>
+                        <td>
+                            <input
+                                type="number"
+                                class="itemTable-inputNum item-edit"
+                                id="{{this.id}}.natural"
+                                name="{{this.id}}.natural"
+                                value="{{this.system.natural}}"
+                                data-target="system.natural"
+                                {{#if this.system.locked}}disabled{{/if}}
+                            >
+                        </td>
+                        <td>
+                            <input
+                                type="number"
+                                class="itemTable-inputNum item-edit"
+                                id="{{this.id}}.dexterity"
+                                name="{{this.id}}.dexterity"
+                                value="{{this.system.dexterity}}"
+                                data-target="system.dexterity"
+                                {{#if this.system.locked}}disabled{{/if}}
+                            >
+                        </td>
+                        <td>
+                            <input
+                                type="number"
+                                class="itemTable-inputNum item-edit"
+                                id="{{this.id}}.armor"
+                                name="{{this.id}}.armor"
+                                value="{{this.system.armor}}"
+                                data-target="system.armor"
+                                {{#if this.system.locked}}disabled{{/if}}
+                            >
+                        </td>
+                        <td>
+                            <input
+                                type="number"
+                                class="itemTable-inputNum item-edit"
+                                id="{{this.id}}.shield"
+                                name="{{this.id}}.shield"
+                                value="{{this.system.shield}}"
+                                data-target="system.shield"
+                                {{#if this.system.locked}}disabled{{/if}}
+                        >
+                    </td>
+                        <td>
+                            <input
+                                type="number"
+                                class="itemTable-inputNum item-edit"
+                                id="{{this.id}}.magic"
+                                name="{{this.id}}.magic"
+                                value="{{this.system.magic}}"
+                                data-target="system.magic"
+                                {{#if this.system.locked}}disabled{{/if}}
+                            >
+                        </td>
+                        <td>
+                            <a
+                                class="item-delete"
+                                title="Delete Item"
+                                data-locked={{this.system.locked}}
+                            >
+                                <i class="fas fa-trash {{#if this.system.locked}} disabled-color {{/if}}"></i>
+                            </a>
+                        </td>
+                        <td>
+                            <a
+                                class="item-toggle"
+                                title="Lock Item"
+                                data-value={{this.system.locked}}
+                                data-target="system.locked"
+                            >
+                                <i class="fas {{#if this.system.locked}} fa-lock {{else}} fa-lock-open {{/if}}"></i>
+                            </a>
+                        </td>
+                        <td>
+                            <input
+                                type="checkbox"
+                                class="item-edit"
+                                name="{{this.id}}.active"
+                                data-target="system.active"
+                                {{checked this.system.active}}
+                            >
+                        </td>
+                    </tr>
+                    {{/each}}
+                </tbody>
+            </table>
+            <div class="itemTable-buttons">
+                <a class="item-create" data-type="acMod"><i class="fas fa-plus"></i> Add modifier</a>
+            </div>
+        </div>
+    </div>
+    <div class="combat-mid">
+        <table class="combat-mid-throws">
+            <tr>
+                <th colspan="2">Saving Throws</th>
+            </tr>
+            <tr>
+                <td>
+                    Paralyzation, Poison, Death
+                </td>
+                <!-- TODO: Constitution modifier for posion -->
+                <td
+                    class="rollable combat-big-text combat-mid-throws-value"
+                    data-roll="d20cs>={{data.system.savingThrows.ppd}}"
+                    data-label="Saving Throw against Paralyzation/Poison/Death"
+                >
+                    {{data.system.savingThrows.ppd}}
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Rods, Staves, Wands
+                </td>
+                <td
+                    class="rollable combat-big-text combat-mid-throws-value"
+                    data-roll="d20cs>={{data.system.savingThrows.rsw}}"
+                    data-label="Saving Throw against Rods/Staves/Wands"
+                >
+                    {{data.system.savingThrows.rsw}}
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Petrification, Polymorph
+                </td>
+                <td
+                    class="rollable combat-big-text combat-mid-throws-value"
+                    data-roll="d20cs>={{data.system.savingThrows.pepo}}"
+                    data-label="Saving Throw against Petrification/Polymorph"
+                >
+                    {{data.system.savingThrows.pepo}}
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Breath Weapon
+                </td>
+                <td
+                    class="rollable combat-big-text combat-mid-throws-value"
+                    data-roll="d20cs>={{data.system.savingThrows.brw}}"
+                    data-label="Saving Throw against Breath Weapon"
+                >
+                    {{data.system.savingThrows.brw}}
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Spell
+                </td>
+                <!-- TODO: Wisdom modifier for "mind"-affecting spells -->
+                <td
+                    class="rollable combat-big-text combat-mid-throws-value"
+                    data-roll="d20cs>={{data.system.savingThrows.spell}}"
+                    data-label="Saving Throw against Spell"
+                >
+                    {{data.system.savingThrows.spell}}
+                </td>
+            </tr>
+        </table>
+        <div class="combat-mid-throwMods">
+            <table class="itemTable">
+                <tr>
+                    <th colspan="11">Saving Throw Modifiers</th>
+                </tr>
+                <tr>
+                    <th></th>
+                    <th>Source</th>
+                    <th>P/P/D</th>
+                    <th>R/S/W</th>
+                    <th>Pe/Po</th>
+                    <th>Br. W</th>
+                    <th>Spell</th>
+                    <th>All</th>
+                    <th></th>
+                    <th></th>
+                    <th>Active?</th>
+                </tr>
+                <tbody class="itemTable-sort">
+                    {{#each data.system.combatMods.throwMods}}
+                    <tr class="item" data-item-id="{{this.id}}" data-locked="{{this.system.locked}}">
+                        <td>
+                            <a
+                                class="itemTable-handle"
+                                data-locked="{{this.[1].tab.system.locked}}"
+                            >
+                                <i class="fas fa-bars"></i>
+                            </a>
+                        </td>
+                        <td>
+                            <input
+                                type="text"
+                                class="itemTable-inputText item-edit"
+                                id="{{this.id}}.name"
+                                name="{{this.id}}.name"
+                                value="{{this.name}}"
+                                data-target="name"
+                                data-name=true
+                                {{#if this.system.locked}}disabled{{/if}}
+                            >
+                        </td>
+                        <td>
+                            <input
+                                type="number"
+                                class="itemTable-inputNum item-edit"
+                                name="{{this.id}}.ppd"
+                                value="{{this.system.ppd}}"
+                                data-target="system.ppd"
+                                {{#if this.system.locked}}disabled{{/if}}
+                            >
+                        </td>
+                        <td>
+                            <input
+                                type="number"
+                                class="itemTable-inputNum item-edit"
+                                name="{{this.id}}.rsw"
+                                value="{{this.system.rsw}}"
+                                data-target="system.rsw"
+                                {{#if this.system.locked}}disabled{{/if}}
+                            >
+                        </td>
+                        <td>
+                            <input
+                                type="number"
+                                class="itemTable-inputNum item-edit"
+                                name="{{this.id}}.pepo"
+                                value="{{this.system.pepo}}"
+                                data-target="system.pepo"
+                                {{#if this.system.locked}}disabled{{/if}}
+                            >
+                        </td>
+                        <td>
+                            <input
+                                type="number"
+                                class="itemTable-inputNum item-edit"
+                                name="{{this.id}}.brw"
+                                value="{{this.system.brw}}"
+                                data-target="system.brw"
+                                {{#if this.system.locked}}disabled{{/if}}
+                            >
+                        </td>
+                        <td>
+                            <input
+                                type="number"
+                                class="itemTable-inputNum item-edit"
+                                name="{{this.id}}.spell"
+                                value="{{this.system.spell}}"
+                                data-target="system.spell"
+                                {{#if this.system.locked}}disabled{{/if}}
+                            >
+                        </td>
+                        <td>
+                            <input
+                                type="number"
+                                class="itemTable-inputNum item-edit"
+                                name="{{this.id}}.all"
+                                value="{{this.system.all}}"
+                                data-target="system.all"
+                                {{#if this.system.locked}}disabled{{/if}}
+                            >
+                        </td>
+                        <td>
+                            <a
+                                class="item-delete"
+                                title="Delete Item"
+                                data-locked={{this.system.locked}}
+                            >
+                                <i class="fas fa-trash {{#if this.system.locked}} disabled-color {{/if}}"></i>
+                            </a>
+                        </td>
+                        <td>
+                            <a
+                                class="item-toggle"
+                                title="Lock Item"
+                                data-value={{this.system.locked}}
+                                data-target="system.locked"
+                            >
+                                <i class="fas {{#if this.system.locked}} fa-lock {{else}} fa-lock-open {{/if}}"></i>
+                            </a>
+                        </td>
+                        <td>
+                            <input
+                                type="checkbox"
+                                class="item-edit"
+                                name="{{this.id}}.active"
+                                data-target="system.active"
+                                {{checked this.system.active}}
+                            >
+                        </td>
+                    </tr>
+                    {{/each}}
+                </tbody>
+            </table>
+            <div class="itemTable-buttons">
+                <a class="item-create" data-type="throwMod"><i class="fas fa-plus"></i> Add modifier</a>
+            </div>
+        </div>
+    </div>
+</div>
