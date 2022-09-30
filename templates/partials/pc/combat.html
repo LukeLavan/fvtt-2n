@@ -347,6 +347,11 @@
                                 {{#if this.system.locked}}disabled{{/if}}
                             >
                         </td>
+                        {{#if this.system.protected}}
+                        <td colspan="2">
+                            <i class="fas fa-shield-xmark"></i>
+                        </td>
+                        {{else}}
                         <td>
                             <a
                                 class="item-delete"
@@ -366,6 +371,7 @@
                                 <i class="fas {{#if this.system.locked}} fa-lock {{else}} fa-lock-open {{/if}}"></i>
                             </a>
                         </td>
+                        {{/if}}
                         <td>
                             <input
                                 type="checkbox"
@@ -410,10 +416,6 @@
             <tr>
                 <td>Magic</td>
                 <td class="combat-mid-throws-value combat-big-text">{{data.system.armorClasses.magic}}</td>
-            </tr>
-            <tr>
-                <td>Encumbrance</td>
-                <td class="combat-mid-throws-value combat-big-text">{{data.system.armorClasses.encumbrance}}</td>
             </tr>
         </table>
         <div class="combat-mid-throwMods">
@@ -512,6 +514,11 @@
                                 {{#if this.system.locked}}disabled{{/if}}
                             >
                         </td>
+                        {{#if this.system.protected}}
+                        <td colspan="2">
+                            <i class="fas fa-shield-xmark"></i>
+                        </td>
+                        {{else}}
                         <td>
                             <a
                                 class="item-delete"
@@ -531,6 +538,7 @@
                                 <i class="fas {{#if this.system.locked}} fa-lock {{else}} fa-lock-open {{/if}}"></i>
                             </a>
                         </td>
+                        {{/if}}
                         <td>
                             <input
                                 type="checkbox"

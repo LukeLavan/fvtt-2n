@@ -2,7 +2,7 @@ export const table_01_str = (data) => {
     const str = data.str;
     switch (str) {
         case 1:
-            data.meleeAttackAdjust = -5;
+            data.meleeHitAdjust = -5;
             data.meleeDamageAdjust = -4;
             data.weightAllowance = 1;
             data.maxPress = 3;
@@ -10,7 +10,7 @@ export const table_01_str = (data) => {
             data.bendBars = 0;
             break;
         case 2:
-            data.meleeAttackAdjust = -3;
+            data.meleeHitAdjust = -3;
             data.meleeDamageAdjust = -2;
             data.weightAllowance = 1;
             data.maxPress = 5;
@@ -25,7 +25,7 @@ export const table_01_str = (data) => {
             };
             break;
         case 3:
-            data.meleeAttackAdjust = -3;
+            data.meleeHitAdjust = -3;
             data.meleeDamageAdjust = -1;
             data.weightAllowance = 5;
             data.maxPress = 10;
@@ -41,7 +41,7 @@ export const table_01_str = (data) => {
             break;
         case 4:
         case 5:
-            data.meleeAttackAdjust = -2;
+            data.meleeHitAdjust = -2;
             data.meleeDamageAdjust = -1;
             data.weightAllowance = 10;
             data.maxPress = 25;
@@ -57,7 +57,7 @@ export const table_01_str = (data) => {
             break;
         case 6:
         case 7:
-            data.meleeAttackAdjust = -1;
+            data.meleeHitAdjust = -1;
             data.meleeDamageAdjust = 0;
             data.weightAllowance = 20;
             data.maxPress = 55;
@@ -73,7 +73,7 @@ export const table_01_str = (data) => {
             break;
         case 8:
         case 9:
-            data.meleeAttackAdjust = 0;
+            data.meleeHitAdjust = 0;
             data.meleeDamageAdjust = 0;
             data.weightAllowance = 35;
             data.maxPress = 90;
@@ -89,7 +89,7 @@ export const table_01_str = (data) => {
             break;
         case 10:
         case 11:
-            data.meleeAttackAdjust = 0;
+            data.meleeHitAdjust = 0;
             data.meleeDamageAdjust = 0;
             data.weightAllowance = 40;
             data.maxPress = 115;
@@ -105,7 +105,7 @@ export const table_01_str = (data) => {
             break;
         case 12:
         case 13:
-            data.meleeAttackAdjust = 0;
+            data.meleeHitAdjust = 0;
             data.meleeDamageAdjust = 0;
             data.weightAllowance = 45;
             data.maxPress = 140;
@@ -121,7 +121,7 @@ export const table_01_str = (data) => {
             break;
         case 14:
         case 15:
-            data.meleeAttackAdjust = 0;
+            data.meleeHitAdjust = 0;
             data.meleeDamageAdjust = 0;
             data.weightAllowance = 55;
             data.maxPress = 170;
@@ -136,7 +136,7 @@ export const table_01_str = (data) => {
             };
             break;
         case 16:
-            data.meleeAttackAdjust = 0;
+            data.meleeHitAdjust = 0;
             data.meleeDamageAdjust = 1;
             data.weightAllowance = 70;
             data.maxPress = 195;
@@ -151,7 +151,7 @@ export const table_01_str = (data) => {
             };
             break;
         case 17:
-            data.meleeAttackAdjust = 1;
+            data.meleeHitAdjust = 1;
             data.meleeDamageAdjust = 1;
             data.weightAllowance = 85;
             data.maxPress = 220;
@@ -167,7 +167,7 @@ export const table_01_str = (data) => {
             break;
         case 18:
             //TODO: percentile strength
-            data.meleeAttackAdjust = 1;
+            data.meleeHitAdjust = 1;
             data.meleeDamageAdjust = 2;
             data.weightAllowance = 110;
             data.maxPress = 255;
@@ -182,7 +182,7 @@ export const table_01_str = (data) => {
             };
             break;
         case 19:
-            data.meleeAttackAdjust = 3;
+            data.meleeHitAdjust = 3;
             data.meleeDamageAdjust = 7;
             data.weightAllowance = 485;
             data.maxPress = 640;
@@ -190,7 +190,7 @@ export const table_01_str = (data) => {
             data.bendBars = 50;
             break;
         case 20:
-            data.meleeAttackAdjust = 3;
+            data.meleeHitAdjust = 3;
             data.meleeDamageAdjust = 8;
             data.weightAllowance = 535;
             data.maxPress = 700;
@@ -198,7 +198,7 @@ export const table_01_str = (data) => {
             data.bendBars = 60;
             break;
         case 21:
-            data.meleeAttackAdjust = 4;
+            data.meleeHitAdjust = 4;
             data.meleeDamageAdjust = 9;
             data.weightAllowance = 635;
             data.maxPress = 810;
@@ -206,7 +206,7 @@ export const table_01_str = (data) => {
             data.bendBars = 70;
             break;
         case 22:
-            data.meleeAttackAdjust = 4;
+            data.meleeHitAdjust = 4;
             data.meleeDamageAdjust = 10;
             data.weightAllowance = 785;
             data.maxPress = 970;
@@ -214,7 +214,7 @@ export const table_01_str = (data) => {
             data.bendBars = 80;
             break;
         case 23:
-            data.meleeAttackAdjust = 5;
+            data.meleeHitAdjust = 5;
             data.meleeDamageAdjust = 11;
             data.weightAllowance = 935;
             data.maxPress = 1130;
@@ -222,7 +222,7 @@ export const table_01_str = (data) => {
             data.bendBars = 90;
             break;
         case 24:
-            data.meleeAttackAdjust = 6;
+            data.meleeHitAdjust = 6;
             data.meleeDamageAdjust = 12;
             data.weightAllowance = 1235;
             data.maxPress = 1440;
@@ -230,7 +230,7 @@ export const table_01_str = (data) => {
             data.bendBars = 95;
             break;
         case 25:
-            data.meleeAttackAdjust = 7;
+            data.meleeHitAdjust = 7;
             data.meleeDamageAdjust = 14;
             data.weightAllowance = 1535;
             data.maxPress = 1750;
@@ -238,7 +238,7 @@ export const table_01_str = (data) => {
             data.bendBars = 99;
             break;
         default:
-            data.meleeAttackAdjust = 0;
+            data.meleeHitAdjust = 0;
             data.meleeDamageAdjust = 0;
             data.weightAllowance = 0;
             data.maxPress = 0;

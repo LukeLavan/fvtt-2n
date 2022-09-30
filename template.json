@@ -124,7 +124,8 @@
     "types": ["throwMod", "acMod", "hitMod", "gearTab", "gear", "nonWeaponProficiency", "weaponProficiency", "weapon", "spell"],
     "templates": {
       "base": {
-        "locked": false
+        "locked": false,
+        "protected": false
       },
       "mod": {
         "active": true,

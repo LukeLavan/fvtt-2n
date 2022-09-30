@@ -6,6 +6,87 @@ import {table_04_int} from './tables/phb/04_int.js';
 import {table_05_wis} from './tables/phb/05_wis.js';
 import {table_06_cha} from './tables/phb/06_cha.js';
 
+export const createActor = async (actor) => {
+    // default 'equipment' gearTab
+    const gearTab = await Item.create(
+        {
+            name: 'Equipment',
+            type: 'gearTab',
+            data: {
+                equipped: true,
+                default: true,
+                locked: true,
+            },
+        },
+        {parent: actor}
+    );
+    actor.update({'data.defaultGearTab': gearTab._id});
+    actor.update({'data.equipmentGearTab': gearTab._id});
+    actor.system.defaultGearTab = gearTab._id;
+    actor.system.equipmentGearTab = gearTab._id;
+
+    // stat-based combat modifiers
+    const statHitMod = await Item.create(
+        {
+            name: 'STR/DEX',
+            type: 'hitMod',
+            data: {
+                melee: '0',
+                missile: '0',
+                locked: true,
+                protected: true,
+            },
+        },
+        {parent: actor}
+    );
+    actor.update({'data.statHitMod': statHitMod._id});
+
+    const statAcMod = await Item.create(
+        {
+            name: 'DEX',
+            type: 'acMod',
+            data: {
+                dexterity: '0',
+                locked: true,
+                protected: true,
+            },
+        },
+        {parent: actor}
+    );
+    actor.update({'data.statAcMod': statAcMod._id});
+
+    // encumbrance-based combat modifiers
+    const encumbranceHitMod = await Item.create(
+        {
+            name: 'Encumbrance',
+            type: 'hitMod',
+            data: {
+                melee: '0',
+                missile: '0',
+                thrown: '0',
+                locked: true,
+                protected: true,
+            },
+        },
+        {parent: actor}
+    );
+    actor.update({'data.encumbranceHitMod': encumbranceHitMod._id});
+
+    const encumbranceAcMod = await Item.create(
+        {
+            name: 'Encumbrance',
+            type: 'acMod',
+            data: {
+                natural: '0',
+                locked: true,
+                protected: true,
+            },
+        },
+        {parent: actor}
+    );
+    actor.update({'data.encumbranceAcMod': encumbranceAcMod._id});
+};
+
 export class TwoNActor extends Actor {
     prepareDerivedData() {
         switch (this.type) {
@@ -18,11 +99,11 @@ export class TwoNActor extends Actor {
     _preparePCDerivedData(data) {
         this._preparePCDerivedDataAbilities(data);
         data.hitDieRollAdjusted = data.hitDieRoll + ' + ' + data.hitPointAdjust;
+        this._preparePCDerivedDataItems(data); // must be before encumbrance
+        this._preparePCDerivedDataEncumbrance(data); // must be before ac/hitAdjust
         this._preparePCDerivedDataSavingThrows(data);
         this._preparePCDerivedDataAC(data);
         this._preparePCDerivedDataHitAdjust(data);
-        this._preparePCDerivedDataItems(data);
-        this._preparePCDerivedDataEncumbrance(data);
     }
 
     _preparePCDerivedDataAbilities(data) {
@@ -61,6 +142,35 @@ export class TwoNActor extends Actor {
     }
 
     _preparePCDerivedDataAC(data) {
+        // recalculate statAcMod
+        if (data.statAcMod) {
+            const item = this.items.get(data.statAcMod);
+            item.system.dexterity = data.defenseAdjust;
+        }
+
+        // recalculate encumbranceAcMod
+        if (data.encumbranceAcMod) {
+            const item = this.items.get(data.encumbranceAcMod);
+            switch (data.currentEncumbrance) {
+                case 'base':
+                    item.system.natural = '0';
+                    break;
+                case 'light':
+                    item.system.natural = '0';
+                    break;
+                case 'medium':
+                    item.system.natural = '-1';
+                    break;
+                case 'heavy':
+                    item.system.natural = '-2';
+                    break;
+                case 'severe':
+                    item.system.natural = '-3';
+                    break;
+            }
+        }
+
+        // calculate total ac
         const ac = data.armorClasses;
         for (let i of this.items) {
             const itemData = i.system;
@@ -77,22 +187,54 @@ export class TwoNActor extends Actor {
                 ac.magic += magic;
             }
         }
-        ac.encumbrance = 0; // TODO: encumbrance affects AC
 
-        ac.total =
-            ac.natural +
-            ac.dexterity +
-            ac.armor +
-            ac.shield +
-            ac.magic +
-            ac.encumbrance;
-        ac.touch =
-            ac.natural + ac.dexterity + ac.shield + ac.magic + ac.encumbrance;
-        ac.back = ac.natural + ac.armor + ac.magic + ac.encumbrance;
+        ac.total = ac.natural + ac.dexterity + ac.armor + ac.shield + ac.magic;
+        ac.touch = ac.natural + ac.dexterity + ac.shield + ac.magic;
+        ac.back = ac.natural + ac.armor + ac.magic;
         ac.surprise = ac.total - 2;
     }
 
     _preparePCDerivedDataHitAdjust(data) {
+        // recalculate statHitMod
+        if (data.statHitMod) {
+            const item = this.items.get(data.statHitMod);
+            item.system.melee = data.meleeHitAdjust;
+            item.system.missile = data.missileHitAdjust;
+        }
+
+        // recalculate encumbranceHitMod
+        if (data.encumbranceHitMod) {
+            const item = this.items.get(data.encumbranceHitMod);
+            switch (data.currentEncumbrance) {
+                case 'base':
+                    item.system.melee = '0';
+                    item.system.missile = '0';
+                    item.system.thrown = '0';
+                    break;
+                case 'light':
+                    item.system.melee = '0';
+                    item.system.missile = '0';
+                    item.system.thrown = '0';
+                    break;
+                case 'medium':
+                    item.system.melee = '-1';
+                    item.system.missile = '-1';
+                    item.system.thrown = '-1';
+                    break;
+                case 'heavy':
+                    item.system.melee = '-2';
+                    item.system.missile = '-2';
+                    item.system.thrown = '-2';
+                    break;
+                case 'severe':
+                    item.system.melee = '-4';
+                    item.system.missile = '-4';
+                    item.system.thrown = '-4';
+                    break;
+            }
+        }
+
+        // calculate total mods
         const hit = data.hitAdjust;
         for (let i of this.items) {
             const itemData = i.system;

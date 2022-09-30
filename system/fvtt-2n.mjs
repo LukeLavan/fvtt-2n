@@ -1,4 +1,4 @@
-import {TwoNActor} from './actor.mjs';
+import {createActor, TwoNActor} from './actor.mjs';
 import {TwoNActorSheet} from './actor-sheet.mjs';
 
 import {TwoNItem} from './item.mjs';
@@ -76,23 +76,4 @@ Hooks.on('renderDialog', function (dialog, html) {
 });
 
 // add items to new actors
-Hooks.on('createActor', async function (actor) {
-    const actorData = actor.data;
-    const gearTab = await Item.create(
-        {
-            name: 'Equipment',
-            type: 'gearTab',
-            data: {
-                equipped: true,
-                default: true,
-                locked: true,
-            },
-        },
-        {parent: actor}
-    );
-
-    actor.update({'data.defaultGearTab': gearTab.data._id});
-    actor.update({'data.equipmentGearTab': gearTab.data._id});
-    actorData.system.defaultGearTab = gearTab.data._id;
-    actorData.system.equipmentGearTab = gearTab.data._id;
-});
+Hooks.on('createActor', createActor);
