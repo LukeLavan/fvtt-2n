@@ -3,7 +3,7 @@
     "title": "2n",
     "description": "@koibu0 's modifications to the second edition of the world's greatest roleplaying game",
     "license": "MPL-2.0",
-    "version": "0.1.5",
+    "version": "0.1.6",
     "authors": [
       {
         "name": "Luke Lavan",
@@ -12,7 +12,7 @@
     ],
     "compatibility": {
       "minimum": "10",
-      "verified": "10.286",
+      "verified": "10.287",
       "maximum": "10"
     },
     "esmodules": ["system/fvtt-2n.mjs"],

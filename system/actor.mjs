@@ -251,6 +251,7 @@ export class TwoNActor extends Actor {
 
     _preparePCDerivedDataItems(data) {
         let gearTabs = new Map();
+        let rollConfigs = new Map();
         const spellTabs = data.spellTabs;
         const weapons = [];
         const combatMods = {
@@ -263,6 +264,10 @@ export class TwoNActor extends Actor {
             weapon: [],
         };
 
+        // TODO: move some of this logic into an abstract function on TwoNItem
+        //       that children classes implement
+        //       Organizing items into collections is fine, but calculating item
+        //       system properties shouldn't go here
         this.items.forEach((item) => {
             if (item.type === 'gearTab') {
                 gearTabs.set(item.id, {
@@ -304,6 +309,8 @@ export class TwoNActor extends Actor {
             else if (item.type === 'throwMod') combatMods.throwMods.push(item);
             else if (item.type === 'weaponProficiency')
                 proficiencies.weapon.push(item);
+            else if (item.type === 'rollConfig')
+                rollConfigs.set(item.system.rollid, item);
         });
 
         // sort gearTabs by their index
@@ -345,7 +352,17 @@ export class TwoNActor extends Actor {
             normalizeIndicies(spellTabs[tab].spells);
         }
 
+        // rollConfig items are removed if linked to an item not present in parent actor
+        for (let [rollid, rollConfig] of rollConfigs) {
+            const linkedid = rollConfig.system.linkedid;
+            if (linkedid && !this.items.has(linkedid)) {
+                rollConfigs.delete(rollid);
+                this.deleteEmbeddedDocuments('Item', [rollConfig.id]);
+            }
+        }
+
         data.gearTabs = gearTabs;
+        data.rollConfigs = rollConfigs;
         data.spellTabs = spellTabs;
         data.weapons = weapons;
         data.combatMods = combatMods;

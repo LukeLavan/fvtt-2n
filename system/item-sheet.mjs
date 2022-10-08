@@ -20,4 +20,8 @@ export class TwoNItemSheet extends ItemSheet {
         );
         return data;
     }
+
+    activateListeners(html) {
+        super.activateListeners(html);
+    }
 }

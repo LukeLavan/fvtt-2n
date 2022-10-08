@@ -8,6 +8,9 @@
 /* item sheets */
 @import url('gear-sheet.css');
 
+/* rollResult */
+@import url('rollResult.css');
+
 /* tools */
 @import url('tools/itemTable.css');
 

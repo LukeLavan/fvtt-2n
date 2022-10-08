@@ -35,6 +35,10 @@
     width: 2em !important;
 }
 
+.itemTable-inputRoll {
+    width: 4em !important;
+}
+
 .itemTable-handle[data-locked="true"] {
     color: darkgray;
     cursor: default;
