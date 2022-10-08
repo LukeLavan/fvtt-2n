@@ -121,7 +121,7 @@
     }
   },
   "Item": {
-    "types": ["throwMod", "acMod", "hitMod", "gearTab", "gear", "nonWeaponProficiency", "weaponProficiency", "weapon", "spell"],
+    "types": ["throwMod", "acMod", "hitMod", "gearTab", "gear", "nonWeaponProficiency", "weaponProficiency", "weapon", "spell", "rollConfig"],
     "templates": {
       "base": {
         "locked": false,
@@ -212,6 +212,15 @@
       "verbal": true,
       "somatic": true,
       "material": false
+    },
+    "rollConfig": {
+      "rollid": "",
+      "mods": [],
+      "linkedid": "",
+      "roll": "",
+      "target": "",
+      "comparison": "",
+      "description": ""
     }
   }
 }

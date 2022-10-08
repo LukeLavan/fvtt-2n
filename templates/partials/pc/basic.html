@@ -282,8 +282,11 @@
             </div>
             <div 
                 class="rollable"
-                data-roll="d20cs<={{data.system.openDoors}}"
                 data-label="Open Doors Check"
+                data-rollid="openDoors"
+                data-roll="d20"
+                data-target="{{data.system.openDoors}}"
+                data-comparison="<="
             >
                 <span class="derived-label">
                     Open Doors
@@ -294,14 +297,17 @@
             </div>
             <div
                 class="rollable"
-                data-roll="d100cs<={{data.system.bendBars}}"
                 data-label="Bend Bars Check"
+                data-rollid="bendBars"
+                data-roll="d100"
+                data-target="{{data.system.bendBars}}"
+                data-comparison="<="
             >
                 <span class="derived-label">
                     Bend Bars
                 </span>
                 <span class="derived-value">
-                    {{data.system.bendBars}}
+                    {{data.system.bendBars}}%
                 </span>
             </div>
         </div>
@@ -376,14 +382,17 @@
             </div>
             <div
                 class="rollable"
-                data-roll="d100cs<={{data.system.spellLearnChance}}"
                 data-label="Chance to Learn Spell"
+                data-rollid="spellLearnChance"
+                data-roll="d100"
+                data-target="{{data.system.spellLearnChance}}"
+                data-comparison="<="
             >
                 <span class="derived-label">
                     Chance to Learn Spell
                 </span>
                 <span class="derived-value">
-                    {{data.system.spellLearnChance}}
+                    {{data.system.spellLearnChance}}%
                 </span>
             </div>
             <div>
@@ -414,14 +423,17 @@
             </div>
             <div
                 class="rollable"
-                data-roll="d100cs<={{data.system.chanceSpellFailure}}"
                 data-label="Spell Failure"
+                data-rollid="chanceSpellFailure"
+                data-roll="d100"
+                data-target="{{data.system.chanceSpellFailure}}"
+                data-comparison="<="
             >
                 <span class="derived-label">
                     Spell Failure
                 </span>
                 <span class="derived-value">
-                    {{data.system.chanceSpellFailure}}
+                    {{data.system.chanceSpellFailure}}%
                 </span>
             </div>
         </div>
@@ -444,8 +456,9 @@
             </div>
             <div
                 class="rollable"
-                data-roll="2d10+{{data.system.reactionAdjust}}"
                 data-label="Encounter Reaction"
+                data-rollid="reactionAdjust"
+                data-roll="2d10+{{data.system.reactionAdjust}}"
             >
                 <span class="derived-label">
                     Reaction Adjustment
@@ -458,8 +471,11 @@
         <div class="basic-derivedRow basic-derivedRow-altColor" id="derived-per">
             <div
                 class="rollable"
-                data-roll="d10cs>(3-{{data.system.surpriseAdjust}})"
                 data-label="Surprise Check"
+                data-rollid="surpriseAdjust"
+                data-roll="d10+{{data.system.surpriseAdjust}}"
+                data-target="3"
+                data-comparison=">"
             >
                 <span class="derived-label">
                     Surprise Adjustment

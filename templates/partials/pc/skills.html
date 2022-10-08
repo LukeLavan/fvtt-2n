@@ -69,8 +69,11 @@
                 <td>
                     <span
                         class="rollable skills-rollSpan"
-                        data-roll="d20cs>=(20-{{this.system.total}})"
                         data-label="{{this.name}} Check"
+                        data-rollid="{{this.id}}.adjust"
+                        data-roll="d20+{{this.system.total}}"
+                        data-comparison=">="
+                        data-target="20"
                     >
                         {{this.system.total}}
                     </span>

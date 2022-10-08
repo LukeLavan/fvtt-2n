@@ -1,0 +1,31 @@
+<button class="rollResult-collapse">collapse</button>
+<div class="rollResult-mods" style="display: none">
+    <table>
+        <tr>
+            <th>Modifier name</th>
+            <th>Roll</th>
+            <th>Val.</th>
+        </tr>
+        {{#each this.rollConfig.mods}}
+            {{#if this.active}}
+                <tr>
+                    <td>{{this.name}}</td>
+                    <td>{{this.mod}}</td>
+                    <td>({{this.roll.total}})</td>
+                </tr>    
+            {{/if}}
+        {{/each}}
+    </table>
+</div>
+<div class="rollResult-result">
+    {{log this.roll}}
+    = {{this.roll.result}}
+</div>
+<div class="rollResult-total">
+    = {{this.roll.total}}
+</div>
+{{#if this.rollConfig.comparison}}
+<div class="rollResult-comparison">
+    {{this.rollConfig.comparison}} {{this.rollConfig.target}} ? {{this.success}}
+</div>
+{{/if}}

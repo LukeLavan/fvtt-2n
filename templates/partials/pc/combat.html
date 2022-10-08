@@ -2,8 +2,9 @@
     <div class="combat-top-hp">
         <span
             class="rollable"
-            data-roll="{{data.system.hitDieRoll}}+{{data.system.hitPointAdjust}}"
             data-label="Hit Die"
+            data-rollid="hitDieRoll"
+            data-roll="{{data.system.hitDieRoll}}+{{data.system.hitPointAdjust}}"
         >Hit Points</span>
         <hr />
         <div>
@@ -206,6 +207,9 @@
                 <td class="weapon-roll-td">
                     <a
                         class="rollable weapon-roll"
+                        data-linkedid="{{this.id}}"
+                        data-label="to hit with {{this.name}}"
+                        data-rollid="{{this.id}}-toHit"
                         data-roll="
                             1d20
                             +{{this.system.toHit}}
@@ -219,14 +223,16 @@
                                 +{{this.system.hitAdjust.thrown}}
                             {{/if}}
                         "
-                        data-label="to hit with {{this.name}}"
+                        
                     ></a>
                 </td>
                 <td class="weapon-roll-td">
                     <a
                         class="rollable weapon-roll"
-                        data-roll="{{this.system.damageRoll}}"
+                        data-linkedid="{{this.id}}"
                         data-label="damage with {{this.name}}"
+                        data-rollid="{{this.id}}-damageRoll"
+                        data-roll="{{this.system.damageRoll}}"
                     ></a>
                 </td>
             </tr>
@@ -249,8 +255,9 @@
                 <td>Melee</td>
                 <td
                     class="rollable combat-mid-throws-value combat-big-text"
-                    data-roll="d20+{{data.system.hitAdjust.melee}}"
                     data-label="Basic Melee Attack"
+                    data-rollid="hitMelee"
+                    data-roll="d20+{{data.system.hitAdjust.melee}}"
                 >
                     {{#if (gte data.system.hitAdjust.melee 0)}}+{{/if}}{{data.system.hitAdjust.melee}}
                 </td>
@@ -259,8 +266,9 @@
                 <td>Missile</td>
                 <td
                     class="rollable combat-mid-throws-value combat-big-text"
-                    data-roll="d20+{{data.system.hitAdjust.missile}}"
                     data-label="Basic Missile Attack"
+                    data-rollid="hitMissile"
+                    data-roll="d20+{{data.system.hitAdjust.missile}}"
                 >
                     {{#if (gte data.system.hitAdjust.missile 0)}}+{{/if}}{{data.system.hitAdjust.missile}}
                 </td>
@@ -269,8 +277,9 @@
                 <td>Thrown</td>
                 <td
                     class="rollable combat-mid-throws-value combat-big-text"
-                    data-roll="d20+{{data.system.hitAdjust.thrown}}"
                     data-label="Basic Thrown Attack"
+                    data-rollid="hitThrown"
+                    data-roll="d20+{{data.system.hitAdjust.thrown}}"
                 >
                     {{#if (gte data.system.hitAdjust.thrown 0)}}+{{/if}}{{data.system.hitAdjust.thrown}}
                 </td>
@@ -569,8 +578,11 @@
                 <!-- TODO: Constitution modifier for posion -->
                 <td
                     class="rollable combat-big-text combat-mid-throws-value"
-                    data-roll="d20cs>={{data.system.savingThrows.ppd}}"
                     data-label="Saving Throw against Paralyzation/Poison/Death"
+                    data-rollid="savePpd"
+                    data-roll="d20"
+                    data-comparison=">="
+                    data-target="{{data.system.savingThrows.ppd}}"
                 >
                     {{data.system.savingThrows.ppd}}
                 </td>
@@ -581,8 +593,11 @@
                 </td>
                 <td
                     class="rollable combat-big-text combat-mid-throws-value"
-                    data-roll="d20cs>={{data.system.savingThrows.rsw}}"
                     data-label="Saving Throw against Rods/Staves/Wands"
+                    data-rollid="saveRsw"
+                    data-roll="d20"
+                    data-comparison=">="
+                    data-target="{{data.system.savingThrows.rsw}}"
                 >
                     {{data.system.savingThrows.rsw}}
                 </td>
@@ -593,8 +608,11 @@
                 </td>
                 <td
                     class="rollable combat-big-text combat-mid-throws-value"
-                    data-roll="d20cs>={{data.system.savingThrows.pepo}}"
                     data-label="Saving Throw against Petrification/Polymorph"
+                    data-rollid="savePepo"
+                    data-roll="d20cs>="
+                    data-comparison=">="
+                    data-target="{{data.system.savingThrows.pepo}}"
                 >
                     {{data.system.savingThrows.pepo}}
                 </td>
@@ -605,8 +623,11 @@
                 </td>
                 <td
                     class="rollable combat-big-text combat-mid-throws-value"
-                    data-roll="d20cs>={{data.system.savingThrows.brw}}"
                     data-label="Saving Throw against Breath Weapon"
+                    data-rollid="saveBrw"
+                    data-roll="d20"
+                    data-comparison=">="
+                    data-target="{{data.system.savingThrows.brw}}"
                 >
                     {{data.system.savingThrows.brw}}
                 </td>
@@ -618,8 +639,11 @@
                 <!-- TODO: Wisdom modifier for "mind"-affecting spells -->
                 <td
                     class="rollable combat-big-text combat-mid-throws-value"
-                    data-roll="d20cs>={{data.system.savingThrows.spell}}"
                     data-label="Saving Throw against Spell"
+                    data-rollid="saveSpell"
+                    data-roll="d20"
+                    data-comparison=">="
+                    data-target="{{data.system.savingThrows.spell}}"
                 >
                     {{data.system.savingThrows.spell}}
                 </td>

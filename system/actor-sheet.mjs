@@ -79,6 +79,8 @@ export class TwoNActorSheet extends ActorSheet {
     activateListeners(html) {
         super.activateListeners(html);
 
+        html.find('input').focus(this._inputFocus);
+
         html.find('.rollable').click(this._rollRollable.bind(this));
 
         // item controls
@@ -114,19 +116,52 @@ export class TwoNActorSheet extends ActorSheet {
             activeEncumbranceRow[0].className = 'encumbranceHighlight';
     }
 
-    //TODO: better success/failure roll
-    _rollRollable(event) {
-        event.preventDefault();
-        const element = event.currentTarget;
-        const dataset = element.dataset;
+    _inputFocus() {
+        const el = $(this);
+        el.one('mouseup.mouseupSelect', () => {
+            el.select();
+            return false;
+        })
+            .one('mousedown', () => {
+                el.off('mouseup.mouseupSelect');
+            })
+            .select();
+    }
 
-        if (dataset.roll) {
-            let roll = new Roll(dataset.roll, this.actor.system);
-            let label = dataset.label ? `Rolling ${dataset.label}` : '';
-            roll.toMessage({
-                speaker: ChatMessage.getSpeaker({actor: this.actor}),
-                flavor: label,
-            });
+    async _rollRollable(event) {
+        event.preventDefault();
+        const dataset = event.currentTarget.dataset;
+        const rollConfigs = this.actor.system.rollConfigs;
+        if (dataset.rollid) {
+            if (!rollConfigs.has(dataset.rollid)) {
+                // never rolled before, add new rollConfig item
+                const item = await Item.create(
+                    {
+                        name: dataset.label,
+                        type: 'rollConfig',
+                        data: dataset,
+                    },
+                    {parent: this.actor}
+                );
+                rollConfigs.set(dataset.rollid, item);
+            } else {
+                // update rolLConfig as needed from dataset
+                // TODO: item not updated, but probably ok?
+                //       should these properties even be stored in the item?
+                const rollConfig = rollConfigs.get(dataset.rollid);
+
+                rollConfig.name = dataset.label;
+                rollConfig.system.target = dataset.target;
+                rollConfig.system.roll = dataset.roll;
+
+                rollConfigs.set(dataset.rollid, rollConfig);
+            }
+            if (event.shiftKey) {
+                // hold shift key to skip rollConfig window and roll using last config
+                rollConfigs.get(dataset.rollid).sheet.roll();
+            } else rollConfigs.get(dataset.rollid).sheet.render(true);
+        } else {
+            console.error('roll had no rollId: ', dataset);
         }
     }
 

@@ -1,0 +1,73 @@
+<form class="{{cssClass}}" autocomplete="off">
+    <div class="rollMods" style="margin:5px;">
+        <table class="itemTable">
+            <tr>
+                <th colspan="5">Roll Modifiers</th>
+            </tr>
+            <tr>
+                <th></th>
+                <th>Name</th>
+                <th>Mod</th>
+                <th>Active?</th>
+                <th></th>
+            </tr>
+            <tbody class="itemTable-sort">
+                {{#each data.system.mods}}
+                <tr data-locked="{{this.locked}}">
+                    <td>
+                        <a class="itemTable-handle">
+                            <i class="fas fa-bars"></i>
+                        </a>
+                    </td>
+                    <td>
+                        <input
+                            type="text"
+                            value="{{this.name}}"
+                            class="itemTable-inputText rollMod-edit"
+                            data-index="{{@index}}"
+                            data-target="name"
+                            {{#if this.locked}}disabled{{/if}}
+                        />
+                    </td>
+                    <td>
+                        <input
+                            type="text"
+                            value="{{this.mod}}"
+                            class="itemTable-inputRoll rollMod-edit"
+                            data-index="{{@index}}"
+                            data-target="mod"
+                            {{#if this.locked}}disabled{{/if}}
+                        />
+                    </td>
+                    <td>
+                        <input
+                            type="checkbox"
+                            {{checked this.active}}
+                            class="rollMod-edit"
+                            data-index="{{@index}}"
+                            data-target="active"
+                        />
+                    </td>
+                    <td>
+                        <a class="rollMod-delete" data-index="{{@index}}"
+                        >
+                            <i class="fas fa-trash"></i>
+                        </a>
+                        <a class="rollMod-lock" data-index="{{@index}}"
+                        >
+                            <i class="fas {{#if this.locked}} fa-lock {{else}} fa-lock-open {{/if}}"></i>
+                        </a>
+                    </td>
+                </tr>
+                {{/each}}
+            </tbody>
+        </table>
+        <div class="itemTable-buttons">
+            <a class="rollMod-create"><i class="fas fa-plus"></i> Add modifier</a>
+        </div>
+    </div>
+    {{#if data.system.comparison}}
+    <h3>Desired roll: {{data.system.comparison}} {{data.system.target}}</h3>
+    {{/if}}
+    <button class="roll">roll me</button>
+</form>

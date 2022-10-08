@@ -3,6 +3,9 @@ import {TwoNActorSheet} from './actor-sheet.mjs';
 
 import {TwoNItem} from './item.mjs';
 import {TwoNItemSheet} from './item-sheet.mjs';
+import {TwoNRollConfigSheet} from './rollConfig-sheet.mjs';
+
+import {rollResultActivateListeners} from './rollResultActivateListeners.mjs';
 
 import {registerAllPartials} from '../templates/partials/registerAllPartials.js';
 
@@ -32,6 +35,11 @@ Hooks.once('init', async function () {
     });
     Items.unregisterSheet('core', ItemSheet);
     Items.registerSheet('fvtt-2n', TwoNItemSheet, {
+        types: ['gear', 'spell', 'weapon'],
+        makeDefault: true,
+    });
+    Items.registerSheet('fvtt-2n', TwoNRollConfigSheet, {
+        types: ['rollConfig'],
         makeDefault: true,
     });
 
@@ -77,3 +85,8 @@ Hooks.on('renderDialog', function (dialog, html) {
 
 // add items to new actors
 Hooks.on('createActor', createActor);
+
+Hooks.on('renderChatMessage', (message, html, data) => {
+    if (message.getFlag('fvtt-2n', 'rollResult'))
+        rollResultActivateListeners(message, html, data);
+});

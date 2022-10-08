@@ -1,0 +1,4 @@
+.rollResult-mods th:not(:first-child),
+.rollResult-mods td:not(:first-child) {
+    text-align: right;
+}
