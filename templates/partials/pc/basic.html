@@ -458,7 +458,14 @@
                 class="rollable"
                 data-label="Encounter Reaction"
                 data-rollid="reactionAdjust"
-                data-roll="2d10+{{data.system.reactionAdjust}}"
+                data-roll="2d10"
+                data-defaultMods='[{
+                    "name":"Reaction Adjust",
+                    "mod":"{{data.system.reactionAdjust}}",
+                    "active":true,
+                    "locked":true,
+                    "protected":true
+                 }]'
             >
                 <span class="derived-label">
                     Reaction Adjustment
@@ -474,6 +481,13 @@
                 data-label="Surprise Check"
                 data-rollid="surpriseAdjust"
                 data-roll="d10+{{data.system.surpriseAdjust}}"
+                data-defaultMods='[{
+                    "name":"Surprise Adjust",
+                    "mod":"{{data.system.surpriseAdjust}}",
+                    "active":true,
+                    "locked":true,
+                    "protected":true
+                 }]'
                 data-target="3"
                 data-comparison=">"
             >

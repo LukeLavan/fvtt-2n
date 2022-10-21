@@ -71,7 +71,14 @@
                         class="rollable skills-rollSpan"
                         data-label="{{this.name}} Check"
                         data-rollid="{{this.id}}.adjust"
-                        data-roll="d20+{{this.system.total}}"
+                        data-roll="d20"
+                        data-defaultMods='[{
+                            "name":"Total Adjust",
+                            "mod":"{{this.system.total}}",
+                            "active":true,
+                            "locked":true,
+                            "protected":true
+                        }]'
                         data-comparison=">="
                         data-target="20"
                     >

@@ -4,7 +4,14 @@
             class="rollable"
             data-label="Hit Die"
             data-rollid="hitDieRoll"
-            data-roll="{{data.system.hitDieRoll}}+{{data.system.hitPointAdjust}}"
+            data-roll="{{data.system.hitDieRoll}}"
+            data-defaultMods='[{
+                "name":"CON Adjustment",
+                "mod":"{{data.system.hitPointAdjust}}",
+                "active":true,
+                "locked":true,
+                "protected":true
+             }]'
         >Hit Points</span>
         <hr />
         <div>
@@ -210,19 +217,30 @@
                         data-linkedid="{{this.id}}"
                         data-label="to hit with {{this.name}}"
                         data-rollid="{{this.id}}-toHit"
-                        data-roll="
-                            1d20
-                            +{{this.system.toHit}}
-                            {{#if (eq this.system.attackType 'Melee')}}
-                                +{{this.system.hitAdjust.melee}}
-                            {{/if}}
-                            {{#if (eq this.system.attackType 'Missile')}}
-                                +{{this.system.hitAdjust.missile}}
-                            {{/if}}
-                            {{#if (eq this.system.attackType 'Thrown')}}
-                                +{{this.system.hitAdjust.thrown}}
-                            {{/if}}
-                        "
+                        data-roll="d20"
+                        data-defaultMods='[
+                            {
+                                "name":"Melee Hit Adjustment",
+                                "mod":"{{@root.data.system.hitAdjust.melee}}",
+                                "active":{{#if (eq this.system.attackType "Melee")}}true{{else}}false{{/if}},
+                                "locked":true,
+                                "protected":true
+                            },
+                            {
+                                "name":"Missile Hit Adjustment",
+                                "mod":"{{@root.data.system.hitAdjust.missile}}",
+                                "active":{{#if (eq this.system.attackType "Missile")}}true{{else}}false{{/if}},
+                                "locked":true,
+                                "protected":true
+                            },
+                            {
+                                "name":"Thrown Hit Adjustment",
+                                "mod":"{{@root.data.system.hitAdjust.thrown}}",
+                                "active":{{#if (eq this.system.attackType "Thrown")}}true{{else}}false{{/if}},
+                                "locked":true,
+                                "protected":true
+                            }
+                        ]'
                         
                     ></a>
                 </td>
@@ -257,7 +275,14 @@
                     class="rollable combat-mid-throws-value combat-big-text"
                     data-label="Basic Melee Attack"
                     data-rollid="hitMelee"
-                    data-roll="d20+{{data.system.hitAdjust.melee}}"
+                    data-roll="d20"
+                    data-defaultMods='[{
+                        "name":"Melee Hit Adjustment",
+                        "mod":"{{data.system.hitAdjust.melee}}",
+                        "active":true,
+                        "locked":true,
+                        "protected":true
+                    }]'
                 >
                     {{#if (gte data.system.hitAdjust.melee 0)}}+{{/if}}{{data.system.hitAdjust.melee}}
                 </td>
@@ -268,7 +293,14 @@
                     class="rollable combat-mid-throws-value combat-big-text"
                     data-label="Basic Missile Attack"
                     data-rollid="hitMissile"
-                    data-roll="d20+{{data.system.hitAdjust.missile}}"
+                    data-roll="d20"
+                    data-defaultMods='[{
+                        "name":"Missile Hit Adjustment",
+                        "mod":"{{data.system.hitAdjust.missile}}",
+                        "active":true,
+                        "locked":true,
+                        "protected":true
+                    }]'
                 >
                     {{#if (gte data.system.hitAdjust.missile 0)}}+{{/if}}{{data.system.hitAdjust.missile}}
                 </td>
@@ -279,7 +311,14 @@
                     class="rollable combat-mid-throws-value combat-big-text"
                     data-label="Basic Thrown Attack"
                     data-rollid="hitThrown"
-                    data-roll="d20+{{data.system.hitAdjust.thrown}}"
+                    data-roll="d20"
+                    data-defaultMods='[{
+                        "name":"Thrown Hit Adjustment",
+                        "mod":"{{data.system.hitAdjust.thrown}}",
+                        "active":true,
+                        "locked":true,
+                        "protected":true
+                    }]'
                 >
                     {{#if (gte data.system.hitAdjust.thrown 0)}}+{{/if}}{{data.system.hitAdjust.thrown}}
                 </td>
@@ -610,7 +649,7 @@
                     class="rollable combat-big-text combat-mid-throws-value"
                     data-label="Saving Throw against Petrification/Polymorph"
                     data-rollid="savePepo"
-                    data-roll="d20cs>="
+                    data-roll="d20"
                     data-comparison=">="
                     data-target="{{data.system.savingThrows.pepo}}"
                 >

@@ -48,6 +48,11 @@
                             data-target="active"
                         />
                     </td>
+                    {{#if this.protected}}
+                        <td>
+                            <i class="fas fa-shield-xmark"></i>
+                        </td>
+                    {{else}}
                     <td>
                         <a class="rollMod-delete" data-index="{{@index}}"
                         >
@@ -58,6 +63,7 @@
                             <i class="fas {{#if this.locked}} fa-lock {{else}} fa-lock-open {{/if}}"></i>
                         </a>
                     </td>
+                    {{/if}}
                 </tr>
                 {{/each}}
             </tbody>

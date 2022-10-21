@@ -216,11 +216,11 @@
     "rollConfig": {
       "rollid": "",
       "mods": [],
+      "defaultMods": [],
       "linkedid": "",
-      "roll": "",
-      "target": "",
       "comparison": "",
-      "description": ""
+      "description": "",
+      "resultTemplate": "default"
     }
   }
 }
