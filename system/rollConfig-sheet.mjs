@@ -4,7 +4,7 @@ export class TwoNRollConfigSheet extends TwoNItemSheet {
     static get defaultOptions() {
         return mergeObject(super.defaultOptions, {
             classes: ['TwoN', 'sheet', 'item'],
-            width: 360,
+            width: 420,
             height: 420,
             tabs: [],
         });

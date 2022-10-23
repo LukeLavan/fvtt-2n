@@ -614,12 +614,18 @@
                 <td>
                     Paralyzation, Poison, Death
                 </td>
-                <!-- TODO: Constitution modifier for posion -->
                 <td
                     class="rollable combat-big-text combat-mid-throws-value"
                     data-label="Saving Throw against Paralyzation/Poison/Death"
                     data-rollid="savePpd"
                     data-roll="d20"
+                    data-defaultMods='[{
+                        "name":"CON Adjustment for Poison",
+                        "mod":"{{data.system.poisonSave}}",
+                        "active":true,
+                        "locked":true,
+                        "protected":true
+                     }]'
                     data-comparison=">="
                     data-target="{{data.system.savingThrows.ppd}}"
                 >
@@ -675,12 +681,18 @@
                 <td>
                     Spell
                 </td>
-                <!-- TODO: Wisdom modifier for "mind"-affecting spells -->
                 <td
                     class="rollable combat-big-text combat-mid-throws-value"
                     data-label="Saving Throw against Spell"
                     data-rollid="saveSpell"
                     data-roll="d20"
+                    data-defaultMods='[{
+                        "name":"WIS Adjust for Mind-Affecting",
+                        "mod":"{{data.system.magicDefenseAdjust}}",
+                        "active":true,
+                        "locked":true,
+                        "protected":true
+                     }]'
                     data-comparison=">="
                     data-target="{{data.system.savingThrows.spell}}"
                 >
