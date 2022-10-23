@@ -4,7 +4,7 @@ export class TwoNRollConfigSheet extends TwoNItemSheet {
     static get defaultOptions() {
         return mergeObject(super.defaultOptions, {
             classes: ['TwoN', 'sheet', 'item'],
-            width: 360,
+            width: 420,
             height: 420,
             tabs: [],
         });
@@ -56,6 +56,26 @@ export class TwoNRollConfigSheet extends TwoNItemSheet {
         });
     }
 
+    /**
+     * calls this.actor.update and updates parent actor's rollConfig item (this)
+     * to use given defaultMods array; also replaces any old protected mods with
+     * new default mods
+     */
+    async _updateDefaultMods(defaultMods) {
+        const mods = this.item.system.mods,
+            nondefaultMods = mods.filter((mod) => !mod.protected);
+
+        await this.actor.update({
+            items: [
+                {
+                    _id: this.item.id,
+                    'system.defaultMods': defaultMods,
+                    'system.mods': defaultMods.concat(nondefaultMods),
+                },
+            ],
+        });
+    }
+
     /** also triggers this.render() */
     async rollModCreate() {
         const mods = this.item.system.mods;
@@ -65,6 +85,7 @@ export class TwoNRollConfigSheet extends TwoNItemSheet {
             roll: undefined,
             active: true,
             locked: false,
+            protected: false,
         });
         await this._updateMods(mods);
         this.render();
@@ -140,6 +161,7 @@ export class TwoNRollConfigSheet extends TwoNItemSheet {
 
     async roll() {
         const mods = this.item.system.mods;
+
         /** the final value to add to the roll, evaluating all sub-rolls */
         let sumMod = 0;
         /** a string representing the sum value of mods, adding flat values and preserving subrolls */
@@ -148,7 +170,7 @@ export class TwoNRollConfigSheet extends TwoNItemSheet {
         let sumModFlat = 0;
 
         for (let i = 0; i < mods.length; ++i) {
-            if (!mods[i].active) continue;
+            if (!mods[i].active || !mods[i].mod) continue;
             // evaluate each mod as a new roll, coercing numbers to strings
             mods[i].roll = new Roll('' + mods[i].mod);
             await mods[i].roll.evaluate({async: true});
@@ -183,8 +205,10 @@ export class TwoNRollConfigSheet extends TwoNItemSheet {
                 this.item.system.target
             );
 
+        const resultTemplate = this.item.system.resultTemplate;
+
         const html = await renderTemplate(
-            'systems/fvtt-2n/templates/rollResult.html',
+            `systems/fvtt-2n/templates/rollResults/${resultTemplate}.html`,
             {
                 roll,
                 rollConfig: this.item.system,

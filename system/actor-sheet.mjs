@@ -132,37 +132,45 @@ export class TwoNActorSheet extends ActorSheet {
         event.preventDefault();
         const dataset = event.currentTarget.dataset;
         const rollConfigs = this.actor.system.rollConfigs;
-        if (dataset.rollid) {
-            if (!rollConfigs.has(dataset.rollid)) {
-                // never rolled before, add new rollConfig item
-                const item = await Item.create(
-                    {
-                        name: dataset.label,
-                        type: 'rollConfig',
-                        data: dataset,
-                    },
-                    {parent: this.actor}
-                );
-                rollConfigs.set(dataset.rollid, item);
-            } else {
-                // update rolLConfig as needed from dataset
-                // TODO: item not updated, but probably ok?
-                //       should these properties even be stored in the item?
-                const rollConfig = rollConfigs.get(dataset.rollid);
-
-                rollConfig.name = dataset.label;
-                rollConfig.system.target = dataset.target;
-                rollConfig.system.roll = dataset.roll;
-
-                rollConfigs.set(dataset.rollid, rollConfig);
-            }
-            if (event.shiftKey) {
-                // hold shift key to skip rollConfig window and roll using last config
-                rollConfigs.get(dataset.rollid).sheet.roll();
-            } else rollConfigs.get(dataset.rollid).sheet.render(true);
-        } else {
+        if (!dataset.rollid) {
             console.error('roll had no rollId: ', dataset);
+            return;
         }
+
+        if (!rollConfigs.has(dataset.rollid)) {
+            // never rolled before, add new rollConfig item
+            const item = await Item.create(
+                {
+                    name: dataset.label,
+                    type: 'rollConfig',
+                    data: dataset,
+                },
+                {parent: this.actor}
+            );
+            rollConfigs.set(dataset.rollid, item);
+        }
+
+        // update rolLConfig as needed from dataset
+        // these properties are grabbed from the HTML every time
+        // so that Handlebars can update the values
+        const rollConfig = rollConfigs.get(dataset.rollid);
+
+        rollConfig.name = dataset.label;
+        rollConfig.system.target = dataset.target;
+        rollConfig.system.roll = dataset.roll;
+        if (dataset.defaultmods)
+            await rollConfig.sheet._updateDefaultMods(
+                JSON.parse(dataset.defaultmods)
+            );
+
+        rollConfigs.set(dataset.rollid, rollConfig);
+
+        if (event.shiftKey) {
+            // hold shift key to skip rollConfig window and roll using last config
+            rollConfigs.get(dataset.rollid).sheet.roll();
+            return;
+        }
+        rollConfigs.get(dataset.rollid).sheet.render(true);
     }
 
     // create item with this ActorSheet's actor as parent
