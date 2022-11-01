@@ -1,0 +1,74 @@
+.spell-header {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    line-height: 24px;
+    font-size: 16px;
+
+    border-bottom: thin solid black;
+
+    margin-left: 8px;
+    margin-right: 8px;
+}
+
+.spell-header-left,
+.spell-header-right {
+    flex: 0 0;
+    white-space: nowrap;
+}
+
+.spell-header-right {
+    text-align: right;
+}
+
+.spell-header-center {
+    flex: 1 1 auto;
+    text-align: center;
+
+    font-weight: bold;
+}
+
+.spell-spec {
+    margin-left: 8px;
+    margin-right: 8px;
+}
+
+.spell-spec > table > tbody > tr > th {
+    width: 128px;
+}
+
+.spell-component-edit {
+    display: flex;
+}
+
+.spell-component-edit > span {
+    flex-grow: 1;
+}
+
+.spell-mats {
+    margin-left: 8px;
+    margin-right: 8px;
+}
+
+.editor {
+    min-height: 32px !important;
+}
+
+.editor-edit {
+    display: block; /* not !important so that it's hidden when editor is active */
+}
+
+.editor-container {
+    flex-shrink: 0 !important;
+}
+
+.editor-content.ProseMirror {
+    height: max-content !important;
+    position: relative !important;
+}
+
+.spell-desc {
+    margin-left: 8px;
+    margin-right: 8px;
+}

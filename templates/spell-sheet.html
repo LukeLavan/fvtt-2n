@@ -1,3 +1,182 @@
 <form class="{{cssClass}}" autocomplete="off">
-    <h3>spell sheet works!</h3>
+    <div class="spell-header">
+        <div class="spell-header-left">
+            {{#if this.data.system.locked}}
+                ( {{this.data.system.level}} )
+            {{else}}
+                <select name="system.level">
+                    {{selectOptions data.levelChoices selected=this.data.system.level}}
+                </select>
+            {{/if}}
+        </div>
+        <div class="spell-header-center">
+            {{#if this.data.system.locked}}
+                {{this.data.name}}
+            {{else}}
+                <input
+                    name="name"
+                    type="text"
+                    value="{{item.name}}"
+                />
+            {{/if}}
+        </div>
+        <div class="spell-header-right"><a class="spell-lock">
+            <i class="fas fa-lock{{#unless this.data.system.locked}}-open{{/unless}}"></i>
+        </a></div>
+
+    </div>
+    <div class="spell-spec">
+        <table>
+            <tr>
+                <th>School</th>
+                <td>
+                    {{#if this.data.system.locked}}
+                        {{this.data.system.school}}
+                    {{else}}
+                        <select name="system.school">
+                            {{selectOptions data.schoolChoices selected=data.system.school}}
+                        </select>
+                    {{/if}}
+                </td>
+            </tr>
+            <tr>
+                <th>Range</th>
+                <td>
+                    {{#if this.data.system.locked}}
+                        {{this.data.system.range}}
+                    {{else}}
+                        <input 
+                            name="system.range"
+                            type="text"
+                            value="{{item.system.range}}"
+                        />
+                    {{/if}}
+                </td>
+            </tr>
+            <tr>
+                <th>AoE</th>
+                <td>
+                    {{#if this.data.system.locked}}
+                        {{this.data.system.aoe}}
+                    {{else}}
+                        <input 
+                            name="system.aoe"
+                            type="text"
+                            value="{{this.data.system.aoe}}"
+                        />
+                    {{/if}}
+                </td>
+            </tr>
+            <tr>
+                <th>Duration</th>
+                <td>
+                    {{#if this.data.system.locked}}
+                        {{this.data.system.duration}}
+                    {{else}}
+                        <input 
+                            name="system.duration"
+                            type="text"
+                            value="{{this.data.system.duration}}"
+                        />
+                    {{/if}}
+                </td>
+            </tr>
+            <tr>
+                <th>Casting Time</th>
+                <td>
+                    {{#if this.data.system.locked}}
+                        {{this.data.system.castingTime}}
+                    {{else}}
+                        <input 
+                            name="system.castingTime"
+                            type="text"
+                            value="{{this.data.system.castingTime}}"
+                        />
+                    {{/if}}
+                </td>
+            </tr>
+            <tr>
+                <th>Save</th>
+                <td>
+                    {{#if this.data.system.locked}}
+                        {{this.data.system.save}}
+                    {{else}}
+                        <input 
+                            name="system.save"
+                            type="text"
+                            value="{{this.data.system.save}}"
+                        />
+                    {{/if}}
+                </td>
+            </tr>
+            <tr>
+                <th>Damage</th>
+                <td>
+                    {{#if this.data.system.locked}}
+                        {{this.data.system.damage}}
+                    {{else}}
+                        <input 
+                            name="system.damage"
+                            type="text"
+                            value="{{this.data.system.damage}}"
+                        />
+                    {{/if}}
+                </td>
+            </tr>
+            <tr>
+                <th>Components</th>
+                <td>
+                    {{#if this.data.system.locked}}
+                        <div>
+                            <span>S</span>
+                            <span>M</span>
+                            <span>V</span>
+                        </div>
+                    {{else}}
+                        <div class="spell-component-edit">
+                            <span>S <input type="checkbox" name="this.data.system.somatic" {{checked this.data.system.somatic}} /></span>
+                            <span>M <input type="checkbox" name="this.data.system.material" {{checked this.data.system.material}} /></span>
+                            <span>V <input type="checkbox" name="this.data.system.verbal" {{checked this.data.system.verbal}} /></span>
+                        </div>
+                    {{/if}}
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div class="spell-mats">
+        <h3>Material Components</h3>
+        {{#if this.data.system.locked}}
+            {{#if (eq this.data.materialsHTML "<p></p>")}}
+                <span>None.</span>
+            {{else}}
+                {{{this.data.materialsHTML}}}
+            {{/if}}
+        {{else}}
+            {{editor
+                this.data.materialsHTML
+                target="system.materials"
+                engine="prosemirror"
+                button=true
+                editable=editable
+            }}
+        {{/if}}
+    </div>
+    <div class="spell-desc">
+        <h3>Description</h3>
+        {{#if this.data.system.locked}}
+            {{#if (eq this.data.descriptionHTML "<p></p>")}}
+                <span>None.</span>
+            {{else}}
+                {{{this.data.descriptionHTML}}}
+            {{/if}}
+        {{else}}
+            {{editor
+                this.data.descriptionHTML
+                target="system.description"
+                engine="prosemirror"
+                button=true
+                editable=editable
+            }}
+        {{/if}}
+    </div>
 </form>

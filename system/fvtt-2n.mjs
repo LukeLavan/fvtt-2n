@@ -1,13 +1,13 @@
 import {createActor, TwoNActor} from './actor.mjs';
-import {TwoNActorSheet} from './actor-sheet.mjs';
+import {TwoNActorSheet} from './sheets/actor-sheet.mjs';
 
 import {TwoNItem} from './item.mjs';
-import {TwoNItemSheet} from './item-sheet.mjs';
-import {TwoNRollConfigSheet} from './rollConfig-sheet.mjs';
-
-import {rollResultActivateListeners} from './rollResultActivateListeners.mjs';
+import {TwoNItemSheet} from './sheets/item-sheet.mjs';
+import {TwoNRollConfigSheet} from './sheets/rollConfig-sheet.mjs';
+import {TwoNSpellSheet} from './sheets/spell-sheet.mjs';
 
 import {registerAllPartials} from '../templates/partials/registerAllPartials.js';
+import {rollResultActivateListeners} from './rollResultActivateListeners.mjs';
 
 /* Handlebars helpers */
 Handlebars.registerHelper('log', (x) => console.log(x));
@@ -35,11 +35,15 @@ Hooks.once('init', async function () {
     });
     Items.unregisterSheet('core', ItemSheet);
     Items.registerSheet('fvtt-2n', TwoNItemSheet, {
-        types: ['gear', 'spell', 'weapon'],
+        types: ['gear', 'weapon'],
         makeDefault: true,
     });
     Items.registerSheet('fvtt-2n', TwoNRollConfigSheet, {
         types: ['rollConfig'],
+        makeDefault: true,
+    });
+    Items.registerSheet('fvtt-2n', TwoNSpellSheet, {
+        types: ['spell'],
         makeDefault: true,
     });
 
