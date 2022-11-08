@@ -1,13 +1,15 @@
 import {createActor, TwoNActor} from './actor.mjs';
-import {TwoNActorSheet} from './sheets/actor-sheet.mjs';
-
 import {TwoNItem} from './item.mjs';
+
+import {TwoNActorSheet} from './sheets/actor-sheet.mjs';
 import {TwoNItemSheet} from './sheets/item-sheet.mjs';
 import {TwoNRollConfigSheet} from './sheets/rollConfig-sheet.mjs';
 import {TwoNSpellSheet} from './sheets/spell-sheet.mjs';
 
-import {registerAllPartials} from '../templates/partials/registerAllPartials.js';
-import {rollResultActivateListeners} from './rollResultActivateListeners.mjs';
+import {registerAllPartials} from './utils/registerAllPartials.js';
+import {rollResultActivateListeners} from './utils/rollResultActivateListeners.mjs';
+
+import {registerSettings} from './settings.mjs';
 
 /* Handlebars helpers */
 Handlebars.registerHelper('log', (x) => console.log(x));
@@ -47,15 +49,7 @@ Hooks.once('init', async function () {
         makeDefault: true,
     });
 
-    game.settings.register('fvtt-2n', 'createItemTypesHidden', {
-        name: 'Hidden Item Types',
-        hint: 'Hides items in create item dialog (comma separated list)',
-        scope: 'client',
-        config: true,
-        type: String,
-        default:
-            'throwMod, acMod, hitMod, gearTab, nonWeaponProficiency, weaponProficiency',
-    });
+    registerSettings();
 
     import('../lib/Sortable.min.js');
 });

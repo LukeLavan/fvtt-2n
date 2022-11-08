@@ -46,7 +46,7 @@
     flex-grow: 1;
 }
 
-.spell-mats {
+.spell-section {
     margin-left: 8px;
     margin-right: 8px;
     position: relative; /* aligning .editor-edit */
@@ -71,10 +71,4 @@
 .editor-content.ProseMirror {
     height: max-content !important;
     position: relative !important;
-}
-
-.spell-desc {
-    margin-left: 8px;
-    margin-right: 8px;
-    position: relative; /* aligning .editor-edit */
 }

@@ -2,7 +2,7 @@ export class TwoNActorSheet extends ActorSheet {
     static get defaultOptions() {
         return mergeObject(super.defaultOptions, {
             classes: ['TwoN', 'sheet', 'actor'],
-            template: 'systems/fvtt-2n/templates/actor-sheet.html',
+            template: 'systems/fvtt-2n/templates/sheets/actor-sheet.html',
             width: 640,
             height: 480,
             tabs: [

@@ -3,24 +3,9 @@ import {TwoNItemSheet} from './item-sheet.mjs';
 export class TwoNRollConfigSheet extends TwoNItemSheet {
     static get defaultOptions() {
         return mergeObject(super.defaultOptions, {
-            classes: ['TwoN', 'sheet', 'item'],
             width: 420,
             height: 420,
-            tabs: [],
         });
-    }
-
-    get template() {
-        return `systems/fvtt-2n/templates/rollConfig-sheet.html`;
-    }
-
-    async getData(options) {
-        const data = await super.getData(options);
-        data.enrichedHTML = await TextEditor.enrichHTML(
-            this.object.system.description,
-            {async: true}
-        );
-        return data;
     }
 
     activateListeners(html) {

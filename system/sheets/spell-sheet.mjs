@@ -3,10 +3,8 @@ import {TwoNItemSheet} from './item-sheet.mjs';
 export class TwoNSpellSheet extends TwoNItemSheet {
     static get defaultOptions() {
         return mergeObject(super.defaultOptions, {
-            classes: ['TwoN', 'sheet', 'item'],
             width: 320,
             height: 480,
-            tabs: [],
         });
     }
 
