@@ -216,8 +216,9 @@
       "castingTime": "",
       "save": "",
       "damage": "",
-      "materials": "No material components",
+      "materials": "No material components.",
       "description": "No description provided.",
+      "residue": "No residue created.",
       "verbal": true,
       "somatic": true,
       "material": false

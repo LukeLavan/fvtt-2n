@@ -143,7 +143,7 @@
             </tr>
         </table>
     </div>
-    <div class="spell-mats">
+    <div class="spell-section">
         <h3>Material Components</h3>
         {{#if this.data.system.locked}}
             {{#if (eq this.data.materialsHTML "<p></p>")}}
@@ -161,7 +161,7 @@
             }}
         {{/if}}
     </div>
-    <div class="spell-desc">
+    <div class="spell-section">
         <h3>Description</h3>
         {{#if this.data.system.locked}}
             {{#if (eq this.data.descriptionHTML "<p></p>")}}
@@ -179,4 +179,24 @@
             }}
         {{/if}}
     </div>
+    {{#if this.data.residueShow}}
+    <div class="spell-section">
+        <h3>Residue</h3>
+        {{#if this.data.system.locked}}
+            {{#if (eq this.data.residueHTML "<p></p>")}}
+                <span>None.</span>
+            {{else}}
+                {{{this.data.residueHTML}}}
+            {{/if}}
+        {{else}}
+            {{editor
+                this.data.residueHTML
+                target="system.residue"
+                engine="prosemirror"
+                button=true
+                editable=editable
+            }}
+        {{/if}}
+    </div>
+    {{/if}}
 </form>

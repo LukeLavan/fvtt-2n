@@ -45,6 +45,16 @@ export class TwoNSpellSheet extends TwoNItemSheet {
             {async: true}
         );
 
+        data.data.residueHTML = await TextEditor.enrichHTML(
+            this.object.system.residue,
+            {async: true}
+        );
+
+        data.data.residueShow = game.settings.get(
+            'fvtt-2n',
+            'spellSheetShowsResidue'
+        );
+
         return data;
     }
 
