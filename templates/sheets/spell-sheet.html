@@ -20,9 +20,16 @@
                 />
             {{/if}}
         </div>
-        <div class="spell-header-right"><a class="spell-lock">
-            <i class="fas fa-lock{{#unless this.data.system.locked}}-open{{/unless}}"></i>
-        </a></div>
+        <div class="spell-header-right">
+            {{#if this.data.system.locked}}
+            <a class="item-chat">
+                <i class="fas fa-message"></i>
+            </a>
+            {{/if}}
+            <a class="spell-lock">
+                <i class="fas fa-lock{{#unless this.data.system.locked}}-open{{/unless}}"></i>
+            </a>
+        </div>
 
     </div>
     <div class="spell-spec">
