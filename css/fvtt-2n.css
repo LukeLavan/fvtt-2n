@@ -67,3 +67,31 @@ input {
 input:disabled {
     background-color: lightgray !important;
 }
+
+/** should contain <h3> and then an {{editor}} */
+div.editor-section {
+    margin-left: 8px;
+    margin-right: 8px;
+    position: relative; /* aligning .editor-edit */
+}
+
+.editor {
+    min-height: 32px !important;
+    position: static !important;
+}
+
+.editor-edit {
+    display: block; /* not !important so that it's hidden when editor is active */
+    position: absolute;
+    top: -6px;
+    right: 0px;
+}
+
+.editor-container {
+    flex-shrink: 0 !important;
+}
+
+.editor-content.ProseMirror {
+    height: max-content !important;
+    position: relative !important;
+}

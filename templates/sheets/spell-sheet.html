@@ -68,20 +68,6 @@
                 </td>
             </tr>
             <tr>
-                <th>Duration</th>
-                <td>
-                    {{#if this.data.system.locked}}
-                        {{this.data.system.duration}}
-                    {{else}}
-                        <input 
-                            name="system.duration"
-                            type="text"
-                            value="{{this.data.system.duration}}"
-                        />
-                    {{/if}}
-                </td>
-            </tr>
-            <tr>
                 <th>Casting Time</th>
                 <td>
                     {{#if this.data.system.locked}}
@@ -91,6 +77,20 @@
                             name="system.castingTime"
                             type="text"
                             value="{{this.data.system.castingTime}}"
+                        />
+                    {{/if}}
+                </td>
+            </tr>
+            <tr>
+                <th>Duration</th>
+                <td>
+                    {{#if this.data.system.locked}}
+                        {{this.data.system.duration}}
+                    {{else}}
+                        <input 
+                            name="system.duration"
+                            type="text"
+                            value="{{this.data.system.duration}}"
                         />
                     {{/if}}
                 </td>
@@ -143,7 +143,7 @@
             </tr>
         </table>
     </div>
-    <div class="spell-section">
+    <div class="editor-section">
         <h3>Material Components</h3>
         {{#if this.data.system.locked}}
             {{#if (eq this.data.materialsHTML "<p></p>")}}
@@ -161,7 +161,7 @@
             }}
         {{/if}}
     </div>
-    <div class="spell-section">
+    <div class="editor-section">
         <h3>Description</h3>
         {{#if this.data.system.locked}}
             {{#if (eq this.data.descriptionHTML "<p></p>")}}
@@ -180,7 +180,7 @@
         {{/if}}
     </div>
     {{#if this.data.residueShow}}
-    <div class="spell-section">
+    <div class="editor-section">
         <h3>Residue</h3>
         {{#if this.data.system.locked}}
             {{#if (eq this.data.residueHTML "<p></p>")}}
