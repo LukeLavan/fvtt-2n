@@ -7,9 +7,10 @@ import {TwoNRollConfigSheet} from './sheets/rollConfig-sheet.mjs';
 import {TwoNSpellSheet} from './sheets/spell-sheet.mjs';
 
 import {registerAllPartials} from './utils/registerAllPartials.js';
-import {rollResultActivateListeners} from './utils/rollResultActivateListeners.mjs';
+import {activateListenersRollResult} from './utils/activateListenersRollResult.mjs';
 
 import {registerSettings} from './settings.mjs';
+import {activateListenersItemSheetChat} from './utils/activateListenersItemSheetChat.mjs';
 
 /* Handlebars helpers */
 Handlebars.registerHelper('log', (x) => console.log(x));
@@ -84,7 +85,10 @@ Hooks.on('renderDialog', function (dialog, html) {
 // add items to new actors
 Hooks.on('createActor', createActor);
 
+// activate listeners for chat templates
 Hooks.on('renderChatMessage', (message, html, data) => {
     if (message.getFlag('fvtt-2n', 'rollResult'))
-        rollResultActivateListeners(message, html, data);
+        activateListenersRollResult(message, html, data);
+    else if (message.getFlag('fvtt-2n', 'itemSheet'))
+        activateListenersItemSheetChat(message, html, data);
 });

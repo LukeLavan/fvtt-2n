@@ -47,8 +47,9 @@ export class TwoNItemSheet extends ItemSheet {
         const html = await renderTemplate(templatePath, this.item);
 
         return ChatMessage.create({
-            flavor: `<h3>${this.item.name}</h3>`,
+            flavor: `<h3>${this.item.name} (${this.item.type})</h3>`,
             content: html,
+            'flags.fvtt-2n.itemSheet': true,
         });
     }
 }
