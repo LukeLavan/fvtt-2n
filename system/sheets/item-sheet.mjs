@@ -43,7 +43,7 @@ export class TwoNItemSheet extends ItemSheet {
      * and rendered template as content.
      */
     async _toChat() {
-        const templatePath = `systems/fvtt-2n/templates/chats/items/${this.item.type}.html`;
+        const templatePath = `systems/fvtt-2n/templates/chats/item-sheet-link.html`;
         const html = await renderTemplate(templatePath, this.item);
 
         return ChatMessage.create({
