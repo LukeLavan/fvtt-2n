@@ -1,0 +1,75 @@
+<form class="{{cssClass}}" autocomplete="off">
+    <div class="item-header">
+        <div class="item-header-center">
+            {{#if this.data.system.locked}}
+            {{this.data.name}}
+            {{else}}
+            <input
+                name="name"
+                type="text"
+                value="{{item.name}}"
+            />
+            {{/if}}
+        </div>
+        <div class="item-header-right">
+            {{#if this.data.system.locked}}
+            <a class="item-chat">
+                <i class="fas fa-message"></i>
+            </a>
+            {{/if}}
+            <a class="item-lock">
+                <i class="fas fa-lock{{#unless this.data.system.locked}}-open{{/unless}}"></i>
+            </a>
+        </div>
+    </div>
+    <div class="item-spec">
+        <table>
+            <tr>
+                <th>Weight</th>
+                <td>
+                    {{#if this.data.system.locked}}
+                    {{this.data.system.weight}}
+                    {{else}}
+                    <input
+                        name="system.weight"
+                        type="number"
+                        value="{{item.system.weight}}"
+                    />
+                    {{/if}}
+                </td>
+            </tr>
+            <tr>
+                <th>Value</th>
+                <td>
+                    {{#if this.data.system.locked}}
+                    {{this.data.system.value}}
+                    {{else}}
+                    <input
+                        name="system.value"
+                        type="number"
+                        value="{{item.system.value}}"
+                    />
+                    {{/if}}
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div class="editor-section">
+        <h3>Description</h3>
+        {{#if this.data.system.locked}}
+            {{#if (eq this.data.descriptionHTML "<p></p>")}}
+                <span>None.</span>
+            {{else}}
+                {{{this.data.descriptionHTML}}}
+            {{/if}}
+        {{else}}
+            {{editor
+                this.data.descriptionHTML
+                target="system.description"
+                engine="prosemirror"
+                button=true
+                editable=editable
+            }}
+        {{/if}}
+    </div>
+</form>

@@ -179,7 +179,7 @@
       "quantity": 1,
       "tab": "",
       "index": 0,
-      "description": "<h1>Description</h1><p>This section is editable</p>"
+      "description": "No description provided."
     },
     "nonWeaponProficiency": {
       "templates": ["base"],
@@ -202,7 +202,7 @@
       "attackType": "",
       "damageType": "",
       "speed": 0,
-      "description": "<h1>Description</h1><p>This section is editable</p>"
+      "description": "No description provided."
     },
     "spell": {
       "templates": ["base"],

@@ -6,8 +6,10 @@
 @import url('actor-sheet/spells.css');
 
 /* item sheets */
-@import url('gear-sheet.css');
-@import url('spell-sheet.css');
+@import url('item-sheets/common.css');
+@import url('item-sheets/gear-sheet.css');
+@import url('item-sheets/spell-sheet.css');
+@import url('item-sheets/weapon-sheet.css');
 
 /* rollResult */
 @import url('rollResult.css');

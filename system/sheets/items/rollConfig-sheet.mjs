@@ -1,4 +1,4 @@
-import {TwoNItemSheet} from './item-sheet.mjs';
+import {TwoNItemSheet} from '../item-sheet.mjs';
 
 export class TwoNRollConfigSheet extends TwoNItemSheet {
     static get defaultOptions() {

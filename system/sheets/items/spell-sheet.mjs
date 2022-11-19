@@ -1,4 +1,4 @@
-import {TwoNItemSheet} from './item-sheet.mjs';
+import {TwoNItemSheet} from '../item-sheet.mjs';
 
 export class TwoNSpellSheet extends TwoNItemSheet {
     static get defaultOptions() {
@@ -58,10 +58,5 @@ export class TwoNSpellSheet extends TwoNItemSheet {
 
     activateListeners(html) {
         super.activateListeners(html);
-        html.find('.spell-lock').click(this._lockToggle.bind(this));
-    }
-
-    _lockToggle() {
-        this.item.update({system: {locked: !this.item.system.locked}});
     }
 }

@@ -1,0 +1,7 @@
+.spell-component-edit {
+    display: flex;
+}
+
+.spell-component-edit > span {
+    flex-grow: 1;
+}

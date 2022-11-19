@@ -1,4 +1,4 @@
-.spell-header {
+.item-header {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -12,36 +12,28 @@
     margin-right: 8px;
 }
 
-.spell-header-left,
-.spell-header-right {
+.item-header-left,
+.item-header-right {
     flex: 0 0;
     white-space: nowrap;
 }
 
-.spell-header-right {
+.item-header-right {
     text-align: right;
 }
 
-.spell-header-center {
+.item-header-center {
     flex: 1 1 auto;
     text-align: center;
 
     font-weight: bold;
 }
 
-.spell-spec {
+.item-spec {
     margin-left: 8px;
     margin-right: 8px;
 }
 
-.spell-spec > table > tbody > tr > th {
+.item-spec > table > tbody > tr > th {
     width: 128px;
-}
-
-.spell-component-edit {
-    display: flex;
-}
-
-.spell-component-edit > span {
-    flex-grow: 1;
 }

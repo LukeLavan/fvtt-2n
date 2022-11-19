@@ -3,8 +3,10 @@ import {TwoNItem} from './item.mjs';
 
 import {TwoNActorSheet} from './sheets/actor-sheet.mjs';
 import {TwoNItemSheet} from './sheets/item-sheet.mjs';
-import {TwoNRollConfigSheet} from './sheets/rollConfig-sheet.mjs';
-import {TwoNSpellSheet} from './sheets/spell-sheet.mjs';
+import {TwoNRollConfigSheet} from './sheets/items/rollConfig-sheet.mjs';
+import {TwoNSpellSheet} from './sheets/items/spell-sheet.mjs';
+import {TwoNGearSheet} from './sheets/items/gear-sheet.mjs';
+import {TwoNWeaponSheet} from './sheets/items/weapon-sheet.mjs';
 
 import {registerAllPartials} from './utils/registerAllPartials.js';
 import {activateListenersRollResult} from './utils/activateListenersRollResult.mjs';
@@ -47,6 +49,14 @@ Hooks.once('init', async function () {
     });
     Items.registerSheet('fvtt-2n', TwoNSpellSheet, {
         types: ['spell'],
+        makeDefault: true,
+    });
+    Items.registerSheet('fvtt-2n', TwoNGearSheet, {
+        types: ['gear'],
+        makeDefault: true,
+    });
+    Items.registerSheet('fvtt-2n', TwoNWeaponSheet, {
+        types: ['weapon'],
         makeDefault: true,
     });
 

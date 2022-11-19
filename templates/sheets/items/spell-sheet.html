@@ -1,6 +1,6 @@
 <form class="{{cssClass}}" autocomplete="off">
-    <div class="spell-header">
-        <div class="spell-header-left">
+    <div class="item-header">
+        <div class="item-header-left">
             {{#if this.data.system.locked}}
                 ( {{this.data.system.level}} )
             {{else}}
@@ -9,7 +9,7 @@
                 </select>
             {{/if}}
         </div>
-        <div class="spell-header-center">
+        <div class="item-header-center">
             {{#if this.data.system.locked}}
                 {{this.data.name}}
             {{else}}
@@ -20,19 +20,19 @@
                 />
             {{/if}}
         </div>
-        <div class="spell-header-right">
+        <div class="item-header-right">
             {{#if this.data.system.locked}}
             <a class="item-chat">
                 <i class="fas fa-message"></i>
             </a>
             {{/if}}
-            <a class="spell-lock">
+            <a class="item-lock">
                 <i class="fas fa-lock{{#unless this.data.system.locked}}-open{{/unless}}"></i>
             </a>
         </div>
 
     </div>
-    <div class="spell-spec">
+    <div class="item-spec">
         <table>
             <tr>
                 <th>School</th>

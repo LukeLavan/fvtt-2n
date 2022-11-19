@@ -8,17 +8,11 @@ export class TwoNItemSheet extends ItemSheet {
     }
 
     get template() {
-        return `systems/fvtt-2n/templates/sheets/${this.item.type}-sheet.html`;
+        return `systems/fvtt-2n/templates/sheets/items/${this.item.type}-sheet.html`;
     }
 
     async getData(options) {
         const data = await super.getData(options);
-
-        // TODO: move to child class
-        data.enrichedHTML = await TextEditor.enrichHTML(
-            this.object.system.description,
-            {async: true}
-        );
 
         return data;
     }
@@ -26,7 +20,15 @@ export class TwoNItemSheet extends ItemSheet {
     activateListeners(html) {
         super.activateListeners(html);
 
-        html.find('.item-chat').click(this._toChat.bind(this, []));
+        html.find('.item-lock').click(this._lockToggle.bind(this));
+        html.find('.item-chat').click(this._toChat.bind(this));
+    }
+
+    /**
+     * Toggles the 'locked' property of `this.item`.
+     */
+    _lockToggle() {
+        this.item.update({system: {locked: !this.item.system.locked}});
     }
 
     /**
