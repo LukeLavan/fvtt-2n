@@ -1,7 +1,9 @@
-import {createActor, TwoNActor} from './actor.mjs';
+import {TwoNActor} from './actor.mjs';
 import {TwoNItem} from './item.mjs';
 
-import {TwoNActorSheet} from './sheets/actor-sheet.mjs';
+import {createActor} from './hooks/createActor.mjs';
+
+import {TwoNPlayerCharacterActorSheet} from './sheets/actors/pc-sheet.mjs';
 import {TwoNItemSheet} from './sheets/item-sheet.mjs';
 import {TwoNRollConfigSheet} from './sheets/items/rollConfig-sheet.mjs';
 import {TwoNSpellSheet} from './sheets/items/spell-sheet.mjs';
@@ -35,7 +37,8 @@ Hooks.once('init', async function () {
     //CONFIG.Token.objectClass = TwoNToken;
 
     Actors.unregisterSheet('core', ActorSheet);
-    Actors.registerSheet('fvtt-2n', TwoNActorSheet, {
+    Actors.registerSheet('fvtt-2n', TwoNPlayerCharacterActorSheet, {
+        types: ['pc'],
         makeDefault: true,
     });
     Items.unregisterSheet('core', ItemSheet);
