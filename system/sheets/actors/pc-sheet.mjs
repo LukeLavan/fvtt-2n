@@ -111,6 +111,7 @@ export class TwoNPlayerCharacterActorSheet extends TwoNActorSheet {
             activeEncumbranceRow[0].className = 'encumbranceHighlight';
     }
 
+    /** select contents of input on focus */
     _inputFocus() {
         const el = $(this);
         el.one('mouseup.mouseupSelect', () => {

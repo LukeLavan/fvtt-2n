@@ -1,4 +1,6 @@
-<button class="rollResult-collapse">collapse</button>
+{{#if (eq this.rollConfig.mods.length 0)}}
+{{else}}
+<button class="rollResult-collapse">Show all modifiers...</button>
 <div class="rollResult-mods" style="display: none">
     <table>
         <tr>
@@ -15,8 +17,14 @@
                 </tr>    
             {{/if}}
         {{/each}}
+        <tr>
+            <th>Total modification</th>
+            <th></th>
+            <th>{{this.modsSum}}</th>
+        </tr>
     </table>
 </div>
+{{/if}}
 <div class="rollResult-result">
     = {{this.roll.result}}
 </div>

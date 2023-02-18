@@ -1,8 +1,20 @@
 <form class="{{cssClass}}" autocomplete="off">
     <div class="rollMods" style="margin:5px;">
+        <table>
+            <tr>
+                <th>Base roll</th>
+                <th>
+                    <input
+                        type="text"
+                        name="system.roll"
+                        value="{{data.system.roll}}"
+                    />
+                </th>
+            </tr>
+        </table>
         <table class="itemTable">
             <tr>
-                <th colspan="5">Roll Modifiers</th>
+                <th colspan="6">Roll Modifiers</th>
             </tr>
             <tr>
                 <th></th>
@@ -10,6 +22,7 @@
                 <th>Mod</th>
                 <th>Active?</th>
                 <th></th>
+                <th>Last val.</th>
             </tr>
             <tbody class="itemTable-sort">
                 {{#each data.system.mods}}
@@ -64,6 +77,7 @@
                         </a>
                     </td>
                     {{/if}}
+                    <td>{{{this.roll.total}}}</td>
                 </tr>
                 {{/each}}
             </tbody>
@@ -73,7 +87,10 @@
         </div>
     </div>
     {{#if data.system.comparison}}
-    <h3>Desired roll: {{data.system.comparison}} {{data.system.target}}</h3>
+    <h3>Desired roll is {{data.system.comparison}} {{data.system.target}}</h3>
     {{/if}}
-    <button class="roll">roll me</button>
+    {{#if data.system.lastRoll}}
+    <h3>Result of last roll: {{data.system.lastRoll.total}}</h3>
+    {{/if}}
+    <button class="roll">Roll {{data.system.rollStr}}</button>
 </form>

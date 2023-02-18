@@ -8,8 +8,27 @@ export class TwoNRollConfigSheet extends TwoNItemSheet {
         });
     }
 
+    async getData() {
+        const data = await super.getData();
+
+        // initial build of rollStr
+        await this.actor.update({
+            items: [
+                {
+                    _id: this.item.id,
+                    'system.rollStr': this._buildRollStr(),
+                },
+            ],
+        });
+
+        return data;
+    }
+
     activateListeners(html) {
         super.activateListeners(html);
+
+        html.find('input').focus(this._inputFocus);
+
         html.find('.rollMod-create').click(this.rollModCreate.bind(this));
         html.find('.rollMod-edit').change(this.rollModEdit.bind(this));
         html.find('.rollMod-delete').click(this.rollModDelete.bind(this));
@@ -26,19 +45,105 @@ export class TwoNRollConfigSheet extends TwoNItemSheet {
         });
     }
 
+    /** select contents of input on focus */
+    _inputFocus() {
+        const el = $(this);
+        el.one('mouseup.mouseupSelect', () => {
+            el.select();
+            return false;
+        })
+            .one('mousedown', () => {
+                el.off('mouseup.mouseupSelect');
+            })
+            .select();
+    }
+
+    _buildRollStr() {
+        const mods = this.item.system.mods;
+        const roll = this.item.system.roll;
+
+        const dice = {};
+        let flatMod = 0;
+
+        // TODO: validate each mod and apply invalid state/style to individual rows
+        for (let mod of mods) {
+            if (!mod.active || !mod.mod) continue;
+
+            const modSplit = mod.mod
+                .replaceAll(' ', '')
+                .replaceAll('-', ' -') // add a space to split on so the '-' is included in split
+                .toLocaleLowerCase()
+                .split(/[+ ]+/);
+
+            for (let subMod of modSplit) {
+                if (subMod === '') continue;
+                if (!subMod.includes('d')) {
+                    // flat modifier, no die roll
+                    flatMod += Number.parseInt(subMod);
+                    continue;
+                } else {
+                    // die modifier (eg, "3d20")
+                    const dIndex = subMod.indexOf('d');
+                    let dieRoll = subMod.substring(dIndex); // (eg, "d20")
+                    let numDice = Number.parseInt(subMod.substring(0, dIndex)); // (eg, "3")
+
+                    // NaN interpreted as 1 (eg, "d6" -> "1d6")
+                    if (isNaN(numDice)) {
+                        if (subMod.charAt(0) === '-') numDice = -1;
+                        else numDice = 1;
+                    }
+
+                    // add sign to dieRoll, transfering negative from numDice to dieRoll
+                    if (numDice < 0) {
+                        numDice *= -1;
+                        dieRoll = '-' + dieRoll;
+                    } else if (numDice >= 0) {
+                        dieRoll = '+' + dieRoll;
+                    }
+
+                    // insert into dice object
+                    if (dieRoll in dice) {
+                        // combine like terms
+                        dice[dieRoll] += numDice;
+                    } else {
+                        // new key in dice object
+                        dice[dieRoll] = numDice;
+                    }
+                }
+            }
+        }
+
+        // unpack dice object to string
+        let modStr = '';
+        for (const [dieRoll, numDice] of Object.entries(dice)) {
+            // dieRoll[0] is always the sign
+            modStr += ' ' + dieRoll.charAt(0) + numDice + dieRoll.substring(1);
+        }
+
+        // add sign to flatMod if needed
+        let flatModStr = flatMod.toString();
+        if (flatModStr.charAt(0) != '-') flatModStr = ' +' + flatModStr;
+
+        return roll + modStr + flatModStr;
+    }
+
     /**
      * calls this.actor.update and updates parent actor's rollConfig item (this)
-     * to use the given mods array
+     * to use the given mods array and a rebuilt rollStr
+     * Optionally calls this.render() - only do this for DOM changes to
+     * lower the risk of focus losses
      */
-    async _updateMods(mods) {
+    async _updateMods(mods, reRender) {
         await this.actor.update({
             items: [
                 {
                     _id: this.item.id,
                     'system.mods': mods,
+                    'system.rollStr': this._buildRollStr(),
                 },
             ],
         });
+        if (reRender) await this.render();
     }
 
     /**
@@ -61,7 +166,6 @@ export class TwoNRollConfigSheet extends TwoNItemSheet {
         });
     }
 
-    /** also triggers this.render() */
     async rollModCreate() {
         const mods = this.item.system.mods;
         mods.push({
@@ -72,11 +176,9 @@ export class TwoNRollConfigSheet extends TwoNItemSheet {
             locked: false,
             protected: false,
         });
-        await this._updateMods(mods);
-        this.render();
+        await this._updateMods(mods, true);
     }
 
-    /** does not trigger this.render() */
     async rollModEdit(event) {
         const currentTarget = $(event.currentTarget);
         const index = currentTarget.data('index');
@@ -92,10 +194,9 @@ export class TwoNRollConfigSheet extends TwoNItemSheet {
         const mods = this.item.system.mods;
         mods[index][target] = value;
 
-        await this._updateMods(mods);
+        await this._updateMods(mods, false);
     }
 
-    /** also triggers this.render() */
     async rollModDelete(event) {
         const currentTarget = $(event.currentTarget);
         const index = currentTarget.data('index');
@@ -104,11 +205,9 @@ export class TwoNRollConfigSheet extends TwoNItemSheet {
         if (mods.length === 1) mods = [];
         else mods.splice(index, index);
 
-        await this._updateMods(mods);
-        this.render();
+        await this._updateMods(mods, true);
     }
 
-    /** also triggers this.render() */
     async rollModLock(event) {
         const currentTarget = $(event.currentTarget);
         const index = currentTarget.data('index');
@@ -116,8 +215,7 @@ export class TwoNRollConfigSheet extends TwoNItemSheet {
         const mods = this.item.system.mods;
         mods[index].locked = !mods[index].locked;
 
-        await this._updateMods(mods);
-        this.render();
+        await this._updateMods(mods, true);
     }
 
     /**
@@ -146,41 +244,26 @@ export class TwoNRollConfigSheet extends TwoNItemSheet {
 
     async roll() {
         const mods = this.item.system.mods;
+        let modsSum = 0;
 
-        /** the final value to add to the roll, evaluating all sub-rolls */
-        let sumMod = 0;
-        /** a string representing the sum value of mods, adding flat values and preserving subrolls */
-        let strMod = '';
-        /** the sum value of all flat mods (ie, only mods such that isNaN(mod)) */
-        let sumModFlat = 0;
+        // compute each mod individually
+        for (const mod of mods) {
+            if (!mod.active || !mod.mod) continue;
 
-        for (let i = 0; i < mods.length; ++i) {
-            if (!mods[i].active || !mods[i].mod) continue;
-            // evaluate each mod as a new roll, coercing numbers to strings
-            mods[i].roll = new Roll('' + mods[i].mod);
-            await mods[i].roll.evaluate({async: true});
-            sumMod += mods[i].roll.total;
+            const modRoll = new Roll(mod.mod);
+            await modRoll.evaluate({async: true});
 
-            // build strMod
-            // TODO: combine like terms of dice ('d6 + 2d6 - 2d6' -> '3d6 - 2d6')
-            //       positive dice and negative dice shouldn't combine
-            if (isNaN(mods[i].mod)) {
-                if (strMod === '') strMod = mods[i].mod;
-                else {
-                    if (mods[i].mod.charAt(0) != '-')
-                        strMod += ' + ' + mods[i].mod;
-                    else strMod += ' - ' + mods[i].mod.substring(1);
-                }
-            } else sumModFlat += +mods[i].mod; // all flat mods are combined
+            mod.roll = modRoll;
+            modsSum += modRoll.total;
         }
 
-        if (sumModFlat != 0)
-            strMod +=
-                (strMod === '' ? '' : sumModFlat > 0 ? ' + ' : ' - ') +
-                Math.abs(sumModFlat);
-
-        let roll = new Roll(this.item.system.roll + '+' + sumMod);
+        // compute base roll and add sum of modifiers
+        const roll = new Roll(this.item.system.roll + '+' + modsSum);
         await roll.evaluate({async: true});
+
+        // re-render so that lastRoll updates
+        this.item.system.lastRoll = roll;
+        this.render();
 
         let success;
         if (this.item.system.comparison)
@@ -196,16 +279,14 @@ export class TwoNRollConfigSheet extends TwoNItemSheet {
             `systems/fvtt-2n/templates/chats/rollResults/${resultTemplate}.html`,
             {
                 roll,
+                modsSum,
                 rollConfig: this.item.system,
-                sumMod,
                 success,
             }
         );
 
         return ChatMessage.create({
-            flavor: `<h3>${this.item.name}: ${
-                this.item.system.roll + (strMod ? ' + ' + strMod : '')
-            }</h3>`,
+            flavor: `<h3>${this.item.name}: ${this.item.system.rollStr}</h3>`,
             content: html,
             'flags.fvtt-2n.rollResult': true,
         });
