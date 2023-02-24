@@ -1,0 +1,11 @@
+<div class="rollResult-result">
+    = {{this.roll.result}}
+</div>
+<div class="rollResult-total">
+    = {{this.roll.total}}
+</div>
+{{#if this.rollConfig.comparison}}
+<div class="rollResult-comparison">
+    {{this.rollConfig.comparison}} {{this.rollConfig.target}} ? {{this.success}}
+</div>
+{{/if}}
