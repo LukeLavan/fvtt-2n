@@ -111,6 +111,7 @@ export class TwoNPlayerCharacterActorSheet extends TwoNActorSheet {
             activeEncumbranceRow[0].className = 'encumbranceHighlight';
     }
 
+    /** select contents of input on focus */
     _inputFocus() {
         const el = $(this);
         el.one('mouseup.mouseupSelect', () => {
@@ -145,27 +146,22 @@ export class TwoNPlayerCharacterActorSheet extends TwoNActorSheet {
             rollConfigs.set(dataset.rollid, item);
         }
 
+        // rollConfig now guaranteed to exist
+        const rollConfig = rollConfigs.get(dataset.rollid);
+
         // update rolLConfig as needed from dataset
         // these properties are grabbed from the HTML every time
         // so that Handlebars can update the values
-        const rollConfig = rollConfigs.get(dataset.rollid);
-
-        rollConfig.name = dataset.label;
-        rollConfig.system.target = dataset.target;
-        rollConfig.system.roll = dataset.roll;
-        if (dataset.defaultmods)
-            await rollConfig.sheet._updateDefaultMods(
-                JSON.parse(dataset.defaultmods)
-            );
+        await rollConfig.sheet._updateDataset(dataset);
 
         rollConfigs.set(dataset.rollid, rollConfig);
 
         if (event.shiftKey) {
             // hold shift key to skip rollConfig window and roll using last config
-            rollConfigs.get(dataset.rollid).sheet.roll();
+            rollConfig.sheet.roll();
             return;
         }
-        rollConfigs.get(dataset.rollid).sheet.render(true);
+        rollConfig.sheet.render(true);
     }
 
     // create item with this ActorSheet's actor as parent
