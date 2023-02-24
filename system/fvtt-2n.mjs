@@ -10,15 +10,15 @@ import {TwoNSpellSheet} from './sheets/items/spell-sheet.mjs';
 import {TwoNGearSheet} from './sheets/items/gear-sheet.mjs';
 import {TwoNWeaponSheet} from './sheets/items/weapon-sheet.mjs';
 
-import {registerAllPartials} from './utils/registerAllPartials.js';
+import {activateListenersItemSheetChat} from './utils/activateListenersItemSheetChat.mjs';
 import {activateListenersRollResult} from './utils/activateListenersRollResult.mjs';
+import {registerAllPartials} from './utils/registerAllPartials.js';
+import {registerHandlebarsHelpers} from './utils/handlebarsHelpers.mjs';
 
 import {registerSettings} from './settings.mjs';
-import {activateListenersItemSheetChat} from './utils/activateListenersItemSheetChat.mjs';
 
 /* Handlebars helpers */
-Handlebars.registerHelper('log', (x) => console.log(x));
-Handlebars.registerHelper('or', (a, b) => a || b);
+registerHandlebarsHelpers();
 
 /* FoundryVTT hooks */
 Hooks.once('init', async function () {

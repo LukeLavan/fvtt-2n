@@ -1,5 +1,4 @@
-{{#if (eq this.rollConfig.mods.length 0)}}
-{{else}}
+{{#if (anyActiveMods this.rollConfig.mods) }}
 <button class="rollResult-collapse">Show all modifiers...</button>
 <div class="rollResult-mods" style="display: none">
     <table>
