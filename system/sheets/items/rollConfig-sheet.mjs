@@ -146,23 +146,33 @@ export class TwoNRollConfigSheet extends TwoNItemSheet {
         if (reRender) await this.render();
     }
 
-    /**
-     * calls this.actor.update and updates parent actor's rollConfig item (this)
-     * to use given defaultMods array; also replaces any old protected mods with
-     * new default mods
+    /** calls this.actor.update and updates parent actor's rollConfig item (this)
+     * to use given data from dataset, pulled from rollable element in DOM.
+     * Updates item name, system.roll, system.target, and modifies
+     * system.mods and system.defaultMods if defaultMods exists in the dataset
      */
-    async _updateDefaultMods(defaultMods) {
-        const mods = this.item.system.mods,
-            nondefaultMods = mods.filter((mod) => !mod.protected);
+    async _updateDataset(dataset) {
+        const updateObject = {
+            _id: this.item.id,
+            name: dataset.label,
+            system: {
+                target: dataset.target,
+                roll: dataset.roll,
+            },
+        };
+
+        // optionally also update mods and defaultMods
+        if (dataset.defaultmods) {
+            const mods = this.item.system.mods,
+                defaultMods = JSON.parse(dataset.defaultmods),
+                nondefaultMods = mods.filter((mod) => !mod.protected);
+
+            updateObject.system.defaultMods = defaultMods;
+            updateObject.system.mods = defaultMods.concat(nondefaultMods);
+        }
 
         await this.actor.update({
-            items: [
-                {
-                    _id: this.item.id,
-                    'system.defaultMods': defaultMods,
-                    'system.mods': defaultMods.concat(nondefaultMods),
-                },
-            ],
+            items: [updateObject],
         });
     }
 
