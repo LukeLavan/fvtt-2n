@@ -190,7 +190,7 @@
                         {{#if this.system.locked}}disabled{{/if}}
                     >
                 </td>
-                <td>
+                <td style="width: 32px">
                     <a
                         class="item-delete"
                         title="Delete Item"
@@ -206,6 +206,12 @@
                     >
                         <i class="fas {{#if this.system.locked}} fa-lock {{else}} fa-lock-open {{/if}}"></i>
                     </a>
+                    <a
+                            class="item-open"
+                            title="View Item Sheet"
+                        >
+                            <i class="fas fa-book"></i>
+                        </a>
                 </td>
                 <!--td class="weapon-roll-td">
                     <a class="rollable weapon-roll"></a>
@@ -218,6 +224,7 @@
                         data-label="to hit with {{this.name}}"
                         data-rollid="{{this.id}}-toHit"
                         data-roll="d20"
+                        data-resulttemplate="attack"
                         data-defaultMods='[
                             {
                                 "name":"Melee Hit Adjustment",

@@ -283,7 +283,7 @@ export class TwoNRollConfigSheet extends TwoNItemSheet {
                 this.item.system.target
             );
 
-        const resultTemplate = this.item.system.resultTemplate;
+        const resultTemplate = this.item.system.resulttemplate;
 
         const html = await renderTemplate(
             `systems/fvtt-2n/templates/chats/rollResults/${resultTemplate}.html`,
