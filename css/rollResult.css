@@ -2,3 +2,8 @@
 .rollResult-mods td:not(:first-child) {
     text-align: right;
 }
+
+.rollResult-actions {
+    display: flex;
+    justify-content: space-evenly;
+}

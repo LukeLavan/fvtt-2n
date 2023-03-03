@@ -230,7 +230,8 @@
       "linkedid": "",
       "comparison": "",
       "description": "",
-      "resulttemplate": "default"
+      "resulttemplate": "default",
+      "parentid" : ""
     }
   }
 }

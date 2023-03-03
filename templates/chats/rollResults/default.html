@@ -1,3 +1,9 @@
 {{> rollResultsModTable}}
 
 {{> rollResultsResult}}
+
+{{#if this.rollConfig.comparison}}
+<div class="rollResult-comparison">
+    {{this.rollConfig.comparison}} {{this.rollConfig.target}} ? {{this.success}}
+</div>
+{{/if}}

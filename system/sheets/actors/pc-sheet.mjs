@@ -139,7 +139,7 @@ export class TwoNPlayerCharacterActorSheet extends TwoNActorSheet {
                 {
                     name: dataset.label,
                     type: 'rollConfig',
-                    data: dataset,
+                    data: {...dataset, parentid: this.actor.id},
                 },
                 {parent: this.actor}
             );

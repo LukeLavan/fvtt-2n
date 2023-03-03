@@ -1,3 +1,14 @@
-<!-- TODO: roll result with buttons for multiple attacks, damage, crits -->
+{{> rollResultsModTable}}
 
-attack
+{{> rollResultsResult}}
+
+<div class="rollResult-actions">
+    <div>
+        <span class="rollable rollResult-attack" data-linkedid="{{this.rollConfig.linkedid}}" data-parentid="{{this.rollConfig.parentid}}">Attack again</span>
+    </div>
+    <div>
+        <span class="rollable rollResult-damage"  data-linkedid="{{this.rollConfig.linkedid}}" data-parentid="{{this.rollConfig.parentid}}">Roll damage</span>
+    </div>
+</div>
+
+{{log this}}
