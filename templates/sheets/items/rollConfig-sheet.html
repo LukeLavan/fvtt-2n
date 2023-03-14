@@ -33,24 +33,30 @@
                         </a>
                     </td>
                     <td>
+                        {{#if this.system.locked}}
+                        <span>{{this.name}}</span>
+                        {{else}}
                         <input
                             type="text"
                             value="{{this.name}}"
                             class="itemTable-inputText rollMod-edit"
                             data-index="{{@index}}"
                             data-target="name"
-                            {{#if this.locked}}disabled{{/if}}
-                        />
+                            />
+                        {{/if}}
                     </td>
                     <td>
+                        {{#if this.system.locked}}
+                        <span>{{this.system.mod}}</span>
+                        {{else}}
                         <input
                             type="text"
                             value="{{this.mod}}"
                             class="itemTable-inputRoll rollMod-edit"
                             data-index="{{@index}}"
                             data-target="mod"
-                            {{#if this.locked}}disabled{{/if}}
-                        />
+                            />
+                        {{/if}}
                     </td>
                     <td>
                         <input
