@@ -41,6 +41,9 @@ This work and I are not affiliated in any way with RegalGoblins.
 ### Configurable Rolls (shift + click to skip config)
 ![rollConfig](https://user-images.githubusercontent.com/20602720/225059968-4d7b46a4-b145-423e-84cb-0857c07e94bb.gif)
 
+### Combat stats
+![combat](https://user-images.githubusercontent.com/20602720/225082181-4d57718b-549c-4584-a3cb-6090a670fdd1.gif)
+
 ### Inventory Management!
 [gear](https://user-images.githubusercontent.com/20602720/225060487-8a7c713a-caf1-47ea-a995-92b61d4c57cb.gif)
 
