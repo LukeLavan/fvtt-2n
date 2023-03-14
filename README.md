@@ -25,7 +25,7 @@ manifest url: https://github.com/LukeLavan/fvtt-2n/releases/latest/download/syst
 
 ## contributing
 
-Please open issues with suggestions, bug reports, etc!
+Please open issues with suggestions, bug reports, etc! Feel free to hit me up at LugeL#2716
 
 ## disclaimer
 
@@ -35,7 +35,15 @@ This work and I are not affiliated in any way with RegalGoblins.
 
 ## PC character sheet
 
-![basic](https://user-images.githubusercontent.com/20602720/168483892-0fc205af-75a1-4f95-8d81-4cbdcb32b90d.png)
-![combat](https://user-images.githubusercontent.com/20602720/168484413-dcb29dce-5738-4338-858d-ae54e3ea99d9.gif)
-![gear](https://user-images.githubusercontent.com/20602720/168484772-1d0da25e-eb14-489f-92b3-a89a99cc98c8.png)
+### Basic stats
+![char_sheet](https://user-images.githubusercontent.com/20602720/225059778-a842dcbb-c2b3-4016-b96a-d91bb171b37d.png)
+
+### Configurable Rolls (shift + click to skip config)
+![rollConfig](https://user-images.githubusercontent.com/20602720/225059968-4d7b46a4-b145-423e-84cb-0857c07e94bb.gif)
+
+### Inventory Management!
+[gear](https://user-images.githubusercontent.com/20602720/225060487-8a7c713a-caf1-47ea-a995-92b61d4c57cb.gif)
+
+![drag](https://user-images.githubusercontent.com/20602720/225064418-0ee2c785-cb84-4990-8ecc-a79ef19f4f9c.gif)
+
 
