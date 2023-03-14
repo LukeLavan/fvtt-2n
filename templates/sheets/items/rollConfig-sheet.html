@@ -28,12 +28,12 @@
                 {{#each data.system.mods}}
                 <tr data-locked="{{this.locked}}">
                     <td>
-                        <a class="itemTable-handle">
+                        <a class="itemTable-handle" data-locked="{{this.locked}}">
                             <i class="fas fa-bars"></i>
                         </a>
                     </td>
                     <td>
-                        {{#if this.system.locked}}
+                        {{#if this.locked}}
                         <span>{{this.name}}</span>
                         {{else}}
                         <input
@@ -46,8 +46,8 @@
                         {{/if}}
                     </td>
                     <td>
-                        {{#if this.system.locked}}
-                        <span>{{this.system.mod}}</span>
+                        {{#if this.locked}}
+                        <span>{{this.mod}}</span>
                         {{else}}
                         <input
                             type="text"

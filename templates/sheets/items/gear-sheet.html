@@ -58,7 +58,7 @@
         <h3>Description</h3>
         {{#if this.data.system.locked}}
             {{#if (eq this.data.descriptionHTML "<p></p>")}}
-                <span>None.</span>
+                <span>No description provided.</span>
             {{else}}
                 {{{this.data.descriptionHTML}}}
             {{/if}}
