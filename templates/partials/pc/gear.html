@@ -183,6 +183,9 @@
                                 </a>
                             </td>
                             <td>
+                                {{#if this.system.locked}}
+                                <span>{{this.system.quantity}}</span>
+                                {{else}}
                                 <input
                                     type="number"
                                     class="itemTable-inputNum item-edit"
@@ -190,10 +193,13 @@
                                     name="{{this.id}}.quantity"
                                     value="{{this.system.quantity}}"
                                     data-target="system.quantity"
-                                    {{#if this.system.locked}}disabled{{/if}}
-                                >
+                                    >
+                                {{/if}}
                             </td>
                             <td>
+                                {{#if this.system.locked}}
+                                <span>{{this.name}}</span>
+                                {{else}}
                                 <input
                                     type="text"
                                     class="itemTable-inputText item-edit"
@@ -202,10 +208,13 @@
                                     value="{{this.name}}"
                                     data-target="name"
                                     data-name=true
-                                    {{#if this.system.locked}}disabled{{/if}}
-                                >
+                                    >
+                                {{/if}}
                             </td>
                             <td>
+                                {{#if this.system.locked}}
+                                <span>{{this.system.weight}}</span>
+                                {{else}}
                                 <input
                                     type="number"
                                     class="itemTable-inputNum item-edit"
@@ -213,10 +222,13 @@
                                     name="{{this.id}}.weight"
                                     value="{{this.system.weight}}"
                                     data-target="system.weight"
-                                    {{#if this.system.locked}}disabled{{/if}}
-                                >
+                                    >
+                                {{/if}}
                             </td>
                             <td>
+                                {{#if this.system.locked}}
+                                <span>{{this.system.value}}</span>
+                                {{else}}
                                 <input
                                     type="text"
                                     class="itemTable-inputText item-edit gear-tab-items-value"
@@ -224,14 +236,13 @@
                                     name="{{this.id}}.value"
                                     value="{{this.system.value}}"
                                     data-target="system.value"
-                                    {{#if this.system.locked}}disabled{{/if}}
-                                >
+                                    >
+                                {{/if}}
                             </td>
                             <td>
                                 <a
                                     class="item-open"
-                                    title="View Item Notes"
-                                    data-locked="{{this.system.locked}}"
+                                    title="View Item Sheet"
                                 >
                                     <i class="fas fa-book"></i>
                                 </a>
