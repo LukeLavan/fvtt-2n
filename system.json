@@ -3,7 +3,7 @@
     "title": "2n",
     "description": "@koibu0 's modifications to the second edition of the world's greatest roleplaying game",
     "license": "MPL-2.0",
-    "version": "0.2.2",
+    "version": "0.2.3",
     "authors": [
       {
         "name": "Luke Lavan",
@@ -24,11 +24,7 @@
     "scripts": [],
     "packs": [],
     "languages": [
-      {
-        "lang": "en",
-        "name": "English",
-        "path": "lang/en.json"
-      }
+
     ],
     "gridDistance": 5,
     "gridUnits": "ft",
