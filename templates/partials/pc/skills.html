@@ -24,6 +24,9 @@
                     </a>
                 </td>
                 <td>
+                    {{#if this.system.locked}}
+                    <span>{{this.name}}</span>
+                    {{else}}
                     <input
                         type="text"
                         class="itemTable-inputText item-edit"
@@ -32,19 +35,25 @@
                         value="{{this.name}}"
                         data-target="name"
                         data-name=true
-                        {{#if this.system.locked}}disabled{{/if}}
-                    >
+                        >
+                    {{/if}}
                 </td>
                 <td>
+                    {{#if this.system.locked}}
+                    <span>{{this.system.stat}}</span>
+                    {{else}}
                     <select
                         class="item-edit"
                         data-target="system.stat"
-                        {{#if this.system.locked}}disabled{{/if}}
-                    >
+                        >
                         {{selectOptions @root.data.system.statChoices selected=this.system.stat}}
                     </select>
+                    {{/if}}
                 </td>
                 <td>
+                    {{#if this.system.locked}}
+                    <span>{{this.system.base}}</span>
+                    {{else}}
                     <input
                         type="number"
                         class="itemTable-inputNum item-edit"
@@ -52,10 +61,13 @@
                         name="{{this.id}}.base"
                         value="{{this.system.base}}"
                         data-target="system.base"
-                        {{#if this.system.locked}}disabled{{/if}}
-                    >
+                        >
+                    {{/if}}
                 </td>
                 <td>
+                    {{#if this.system.locked}}
+                    <span>{{this.system.adjust}}</span>
+                    {{else}}
                     <input
                         type="number"
                         class="itemTable-inputNum item-edit"
@@ -63,8 +75,8 @@
                         name="{{this.id}}.adjust"
                         value="{{this.system.adjust}}"
                         data-target="system.adjust"
-                        {{#if this.system.locked}}disabled{{/if}}
-                    >
+                        >
+                    {{/if}}
                 </td>
                 <td>
                     <span
@@ -133,6 +145,9 @@
                     </a>
                 </td>
                 <td>
+                    {{#if this.system.locked}}
+                    <span>{{this.name}}</span>
+                    {{else}}
                     <input
                         type="text"
                         class="itemTable-inputText item-edit"
@@ -141,18 +156,21 @@
                         value="{{this.name}}"
                         data-target="name"
                         data-name=true
-                        {{#if this.system.locked}}disabled{{/if}}
-                    />
+                        />
+                    {{/if}}
                 </td>
                 <td>
+                    {{#if this.system.locked}}
+                    <span>{{this.system.base}}</span>
+                    {{else}}
                     <input
                         type="number"
                         class="itemTable-inputNum item-edit"
                         name="{{this.id}}.base"
                         value="{{this.system.base}}"
                         data-target="system.base"
-                        {{#if this.system.locked}}disabled{{/if}}
-                    >
+                        >
+                    {{/if}}
                 </td>
                 <td>
                     <a
