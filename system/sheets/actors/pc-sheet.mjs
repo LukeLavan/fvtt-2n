@@ -254,7 +254,7 @@ export class TwoNPlayerCharacterActorSheet extends TwoNActorSheet {
         const itemsToDelete = [id];
         // also delete items in tab
         this.actor.items.forEach((item) => {
-            if (item.type === 'gear' && item.data.system.tab === id)
+            if (item.type === 'gear' && item.system.tab === id)
                 itemsToDelete.push(item.id);
         });
         this.actor.deleteEmbeddedDocuments('Item', itemsToDelete);
