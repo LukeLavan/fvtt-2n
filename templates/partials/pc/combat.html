@@ -106,6 +106,9 @@
                     </a>
                 </td>
                 <td>
+                    {{#if this.system.locked}}
+                    <span>{{this.name}}</span>
+                    {{else}}
                     <input
                         type="text"
                         class="itemTable-inputText item-edit"
@@ -114,10 +117,13 @@
                         value="{{this.name}}"
                         data-target="name"
                         data-name=true
-                        {{#if this.system.locked}}disabled{{/if}}
-                    >
+                        >
+                    {{/if}}
                 </td>
                 <td>
+                    {{#if this.system.locked}}
+                    <span>{{this.system.numAttacks}}</span>
+                    {{else}}
                     <input
                         type="number"
                         class="itemTable-inputNum item-edit"
@@ -125,10 +131,13 @@
                         name="{{this.id}}.numAttacks"
                         value="{{this.system.numAttacks}}"
                         data-target="system.numAttacks"
-                        {{#if this.system.locked}}disabled{{/if}}
-                    >
+                        >
+                    {{/if}}
                 </td>
                 <td>
+                    {{#if this.system.locked}}
+                    <span>{{this.system.toHit}}</span>
+                    {{else}}
                     <input
                         type="number"
                         class="itemTable-inputNum item-edit"
@@ -136,10 +145,13 @@
                         name="{{this.id}}.toHit"
                         value="{{this.system.toHit}}"
                         data-target="system.toHit"
-                        {{#if this.system.locked}}disabled{{/if}}
-                    >
+                        >
+                    {{/if}}
                 </td>
                 <td class="weapon-damage">
+                    {{#if this.system.locked}}
+                    <span>{{this.system.damageRoll}}</span>
+                    {{else}}
                     <input
                         type="text"
                         class="itemTable-inputText item-edit"
@@ -147,10 +159,13 @@
                         name="{{this.id}}.damageRoll"
                         value="{{this.system.damageRoll}}"
                         data-target="system.damageRoll"
-                        {{#if this.system.locked}}disabled{{/if}}
-                    />
+                        />
+                    {{/if}}
                 </td>
                 <td class="weapon-range">
+                    {{#if this.system.locked}}
+                    <span>{{this.system.range}}</span>
+                    {{else}}
                     <input
                         type="text"
                         class="itemTable-inputText item-edit"
@@ -158,28 +173,37 @@
                         name="{{this.id}}.range"
                         value="{{this.system.range}}"
                         data-target="system.range"
-                        {{#if this.system.locked}}disabled{{/if}}
-                    >
+                        >
+                    {{/if}}
                 </td>
                 <td>
+                    {{#if this.system.locked}}
+                    <span>{{this.system.attackType}}</span>
+                    {{else}}
                     <select
                         class="item-edit"
                         data-target="system.attackType"
-                        {{#if this.system.locked}}disabled{{/if}}
-                    >
+                        >
                         {{selectOptions @root.data.system.attackTypeChoices selected=this.system.attackType}}
                     </select>
+                    {{/if}}
                 </td>
                 <td>
+                    {{#if this.system.locked}}
+                    <span>{{this.system.damageType}}</span>
+                    {{else}}
                     <select
                         class="item-edit"
                         data-target="system.damageType"
-                        {{#if this.system.locked}}disabled{{/if}}
-                    >
+                        >
                         {{selectOptions @root.data.system.damageTypeChoices selected=this.system.damageType}}
                     </select>
+                    {{/if}}
                 </td>
                 <td>
+                    {{#if this.system.locked}}
+                    <span>{{this.system.speed}}</span>
+                    {{else}}
                     <input
                         type="number"
                         class="itemTable-inputNum item-edit"
@@ -187,8 +211,8 @@
                         name="{{this.id}}.speed"
                         value="{{this.system.speed}}"
                         data-target="system.speed"
-                        {{#if this.system.locked}}disabled{{/if}}
-                    >
+                        >
+                    {{/if}}
                 </td>
                 <td>
                     <a
@@ -351,6 +375,9 @@
                             </a>
                         </td>
                         <td>
+                            {{#if this.system.locked}}
+                            <span>{{this.name}}</span>
+                            {{else}}
                             <input
                                 type="text"
                                 class="itemTable-inputText item-edit"
@@ -359,10 +386,13 @@
                                 value="{{this.name}}"
                                 data-target="name"
                                 data-name=true
-                                {{#if this.system.locked}}disabled{{/if}}
-                            >
+                                >
+                            {{/if}}
                         </td>
                         <td>
+                            {{#if this.system.locked}}
+                            <span>{{this.system.melee}}</span>
+                            {{else}}
                             <input
                                 type="number"
                                 class="itemTable-inputNum item-edit"
@@ -370,10 +400,13 @@
                                 name="{{this.id}}.melee"
                                 value="{{this.system.melee}}"
                                 data-target="system.melee"
-                                {{#if this.system.locked}}disabled{{/if}}
-                            >
+                                >
+                            {{/if}}
                         </td>
                         <td>
+                            {{#if this.system.locked}}
+                            <span>{{this.system.missile}}</span>
+                            {{else}}
                             <input
                                 type="number"
                                 class="itemTable-inputNum item-edit"
@@ -381,10 +414,13 @@
                                 name="{{this.id}}.missile"
                                 value="{{this.system.missile}}"
                                 data-target="system.missile"
-                                {{#if this.system.locked}}disabled{{/if}}
-                            >
+                                >
+                            {{/if}}
                         </td>
                         <td>
+                            {{#if this.system.locked}}
+                            <span>{{this.system.thrown}}</span>
+                            {{else}}
                             <input
                                 type="number"
                                 class="itemTable-inputNum item-edit"
@@ -392,8 +428,8 @@
                                 name="{{this.id}}.thrown"
                                 value="{{this.system.thrown}}"
                                 data-target="system.thrown"
-                                {{#if this.system.locked}}disabled{{/if}}
-                            >
+                                >
+                            {{/if}}
                         </td>
                         {{#if this.system.protected}}
                         <td colspan="2">
@@ -496,6 +532,9 @@
                             </a>
                         </td>
                         <td>
+                            {{#if this.system.locked}}
+                            <span>{{this.name}}</span>
+                            {{else}}
                             <input
                                 type="text"
                                 class="itemTable-inputText item-edit"
@@ -504,10 +543,13 @@
                                 value="{{this.name}}"
                                 data-target="name"
                                 data-name=true
-                                {{#if this.system.locked}}disabled{{/if}}
-                            >
+                                >
+                            {{/if}}
                         </td>
                         <td>
+                            {{#if this.system.locked}}
+                            <span>{{this.system.natural}}</span>
+                            {{else}}
                             <input
                                 type="number"
                                 class="itemTable-inputNum item-edit"
@@ -515,10 +557,13 @@
                                 name="{{this.id}}.natural"
                                 value="{{this.system.natural}}"
                                 data-target="system.natural"
-                                {{#if this.system.locked}}disabled{{/if}}
-                            >
+                                >
+                            {{/if}}
                         </td>
                         <td>
+                            {{#if this.system.locked}}
+                            <span>{{this.system.dexterity}}</span>
+                            {{else}}
                             <input
                                 type="number"
                                 class="itemTable-inputNum item-edit"
@@ -526,10 +571,13 @@
                                 name="{{this.id}}.dexterity"
                                 value="{{this.system.dexterity}}"
                                 data-target="system.dexterity"
-                                {{#if this.system.locked}}disabled{{/if}}
-                            >
+                                >
+                            {{/if}}
                         </td>
                         <td>
+                            {{#if this.system.locked}}
+                            <span>{{this.system.armor}}</span>
+                            {{else}}
                             <input
                                 type="number"
                                 class="itemTable-inputNum item-edit"
@@ -537,10 +585,13 @@
                                 name="{{this.id}}.armor"
                                 value="{{this.system.armor}}"
                                 data-target="system.armor"
-                                {{#if this.system.locked}}disabled{{/if}}
-                            >
+                                >
+                            {{/if}}
                         </td>
                         <td>
+                            {{#if this.system.locked}}
+                            <span>{{this.system.shield}}</span>
+                            {{else}}
                             <input
                                 type="number"
                                 class="itemTable-inputNum item-edit"
@@ -548,10 +599,13 @@
                                 name="{{this.id}}.shield"
                                 value="{{this.system.shield}}"
                                 data-target="system.shield"
-                                {{#if this.system.locked}}disabled{{/if}}
-                        >
-                    </td>
+                                >
+                            {{/if}}
+                        </td>
                         <td>
+                            {{#if this.system.locked}}
+                            <span>{{this.system.magic}}</span>
+                            {{else}}
                             <input
                                 type="number"
                                 class="itemTable-inputNum item-edit"
@@ -559,8 +613,8 @@
                                 name="{{this.id}}.magic"
                                 value="{{this.system.magic}}"
                                 data-target="system.magic"
-                                {{#if this.system.locked}}disabled{{/if}}
-                            >
+                                >
+                            {{/if}}
                         </td>
                         {{#if this.system.protected}}
                         <td colspan="2">
@@ -730,6 +784,9 @@
                             </a>
                         </td>
                         <td>
+                            {{#if this.system.locked}}
+                            <span>{{this.name}}</span>
+                            {{else}}
                             <input
                                 type="text"
                                 class="itemTable-inputText item-edit"
@@ -738,68 +795,85 @@
                                 value="{{this.name}}"
                                 data-target="name"
                                 data-name=true
-                                {{#if this.system.locked}}disabled{{/if}}
-                            >
+                                >
+                            {{/if}}
                         </td>
                         <td>
+                            {{#if this.system.locked}}
+                            <span>{{this.system.ppd}}</span>
+                            {{else}}
                             <input
                                 type="number"
                                 class="itemTable-inputNum item-edit"
                                 name="{{this.id}}.ppd"
                                 value="{{this.system.ppd}}"
                                 data-target="system.ppd"
-                                {{#if this.system.locked}}disabled{{/if}}
-                            >
+                                >
+                            {{/if}}
                         </td>
                         <td>
+                            {{#if this.system.locked}}
+                            <span>{{this.system.rsw}}</span>
+                            {{else}}
                             <input
                                 type="number"
                                 class="itemTable-inputNum item-edit"
                                 name="{{this.id}}.rsw"
                                 value="{{this.system.rsw}}"
                                 data-target="system.rsw"
-                                {{#if this.system.locked}}disabled{{/if}}
-                            >
+                                >
+                            {{/if}}
                         </td>
-                        <td>
+                        <td>{{#if this.system.locked}}
+                            <span>{{this.system.pepo}}</span>
+                            {{else}}
                             <input
                                 type="number"
                                 class="itemTable-inputNum item-edit"
                                 name="{{this.id}}.pepo"
                                 value="{{this.system.pepo}}"
                                 data-target="system.pepo"
-                                {{#if this.system.locked}}disabled{{/if}}
-                            >
+                                >
+                            {{/if}}
                         </td>
                         <td>
+                            {{#if this.system.locked}}
+                            <span>{{this.system.brw}}</span>
+                            {{else}}
                             <input
                                 type="number"
                                 class="itemTable-inputNum item-edit"
                                 name="{{this.id}}.brw"
                                 value="{{this.system.brw}}"
                                 data-target="system.brw"
-                                {{#if this.system.locked}}disabled{{/if}}
-                            >
+                                >
+                            {{/if}}
                         </td>
                         <td>
+                            {{#if this.system.locked}}
+                            <span>{{this.system.spell}}</span>
+                            {{else}}
                             <input
                                 type="number"
                                 class="itemTable-inputNum item-edit"
                                 name="{{this.id}}.spell"
                                 value="{{this.system.spell}}"
                                 data-target="system.spell"
-                                {{#if this.system.locked}}disabled{{/if}}
-                            >
+                                >
+                            {{/if}}
                         </td>
                         <td>
+                            {{#if this.system.locked}}
+                            <span>{{this.system.all}}</span>
+                            {{else}}
                             <input
                                 type="number"
                                 class="itemTable-inputNum item-edit"
                                 name="{{this.id}}.all"
                                 value="{{this.system.all}}"
                                 data-target="system.all"
-                                {{#if this.system.locked}}disabled{{/if}}
-                            >
+                                >
+                            {{/if}}
                         </td>
                         <td>
                             <a
