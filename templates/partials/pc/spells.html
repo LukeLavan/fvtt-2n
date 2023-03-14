@@ -30,16 +30,22 @@
                         </a>
                     </td>
                     <td>
+                        {{#if this.system.locked}}
+                        <span>{{this.system.casts}}</span>
+                        {{else}}
                         <input
                             type="number"
                             class="itemTable-inputNum item-edit"
                             name="{{this.id}}.casts"
                             value="{{this.system.casts}}"
                             data-target="system.casts"
-                            {{#if this.system.locked}}disabled{{/if}}
-                        >
+                            >
+                        {{/if}}
                     </td>
                     <td>
+                        {{#if this.system.locked}}
+                        <span>{{this.name}}</span>
+                        {{else}}
                         <input
                             type="text"
                             class="itemTable-inputText item-edit"
@@ -48,8 +54,8 @@
                             value="{{this.name}}"
                             data-target="name"
                             data-name=true
-                            {{#if this.system.locked}}disabled{{/if}}
-                        />
+                            />
+                        {{/if}}
                     </td>
                     <td>
                         <i title="Verbal" class="spells-component {{#if this.system.verbal}}enabled{{/if}}">V</i>
