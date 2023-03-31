@@ -13,7 +13,7 @@
       "numAppearing": "",
       "ac": "",
       "movement": "",
-      "hitDice": "",
+      "hitDice": "", 
       "toHit": "",
       "numAttacks": "",
       "damage": "",
@@ -24,6 +24,7 @@
       "morale": "",
       "xp": "",
       "description": "",
+      "imgURL": "",
       "locked": false
     },
     "pc": {

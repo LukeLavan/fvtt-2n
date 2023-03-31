@@ -1,5 +1,6 @@
 <form class="{{cssClass}}" autocomplete="off">
     <div class="npc-header">
+        <div class="npc-header-left"></div>
         <div class="npc-header-center">
             {{#if this.data.system.locked}}
             {{this.data.name}}
@@ -13,322 +14,344 @@
             </a>
         </div>
     </div>
-    <table class="npc-table">
-        <colgroup>
-            <col class="npc-table-left">
-            <col class="npc-table-right">
-        </colgroup>
-        <tr>
-            <th>Climate/Terrain</th>
-            <td>
-                {{#if this.data.system.locked}}
-                {{this.data.system.climate}}
+    <div class="npc-stats-wrapper">
+        <div class="npc-stats-control">
+            <span><b>Stat Block</b> <i class="fas fa-caret-down"></i></span>
+        </div>
+        <div class="npc-stats">
+            <table class="npc-table">
+                <colgroup>
+                    <col class="npc-table-left">
+                    <col class="npc-table-right">
+                </colgroup>
+                <tr>
+                    <th>Climate/Terrain</th>
+                    <td>
+                        {{#if this.data.system.locked}}
+                        {{this.data.system.climate}}
+                        {{else}}
+                        <input
+                            name="system.climate"
+                            type="text"
+                            value="{{this.data.system.climate}}"
+                        />
+                        {{/if}}
+                    </td>
+                </tr>
+                <tr>
+                    <th>Frequency</th>
+                    <td>
+                        {{#if this.data.system.locked}}
+                        {{this.data.system.frequency}}
+                        {{else}}
+                        <input
+                            name="system.frequency"
+                            type="text"
+                            value="{{this.data.system.frequency}}"
+                        />
+                        {{/if}}
+                    </td>
+                </tr>
+                <tr>
+                    <th>Organization</th>
+                    <td>
+                        {{#if this.data.system.locked}}
+                        {{this.data.system.organization}}
+                        {{else}}
+                        <input
+                            name="system.organization"
+                            type="text"
+                            value="{{this.data.system.organization}}"
+                        />
+                        {{/if}}
+                    </td>
+                </tr>
+                <tr>
+                    <th>Activity</th>
+                    <td>
+                        {{#if this.data.system.locked}}
+                        {{this.data.system.activity}}
+                        {{else}}
+                        <input
+                            name="system.activity"
+                            type="text"
+                            value="{{this.data.system.activity}}"
+                        />
+                        {{/if}}
+                    </td>
+                </tr>
+                <tr>
+                    <th>Diet</th>
+                    <td>
+                        {{#if this.data.system.locked}}
+                        {{this.data.system.diet}}
+                        {{else}}
+                        <input
+                            name="system.diet"
+                            type="text"
+                            value="{{this.data.system.diet}}"
+                        />
+                        {{/if}}
+                    </td>
+                </tr>
+                <tr>
+                    <th>Intelligence</th>
+                    <td>
+                        {{#if this.data.system.locked}}
+                        {{this.data.system.intelligence}}
+                        {{else}}
+                        <input
+                            name="system.intelligence"
+                            type="text"
+                            value="{{this.data.system.intelligence}}"
+                        />
+                        {{/if}}
+                    </td>
+                </tr>
+                <tr>
+                    <th>Treasure</th>
+                    <td>
+                        {{#if this.data.system.locked}}
+                        {{this.data.system.treasure}}
+                        {{else}}
+                        <input
+                            name="system.treasure"
+                            type="text"
+                            value="{{this.data.system.treasure}}"
+                        />
+                        {{/if}}
+                    </td>
+                </tr>
+                <tr>
+                    <th>Alignment</th>
+                    <td>
+                        {{#if this.data.system.locked}}
+                        {{this.data.system.alignment}}
+                        {{else}}
+                        <input
+                            name="system.alignment"
+                            type="text"
+                            value="{{this.data.system.alignment}}"
+                        />
+                        {{/if}}
+                    </td>
+                </tr>
+                <tr>
+                    <th>Num. Appearing</th>
+                    <td>
+                        {{#if this.data.system.locked}}
+                        {{{this.data.numAppearingHTML}}}
+                        {{else}}
+                        <input
+                            name="system.numAppearing"
+                            type="text"
+                            value="{{this.data.system.numAppearing}}"
+                        />
+                        {{/if}}
+                    </td>
+                </tr>
+                <tr>
+                    <th>Armor Class</th>
+                    <td>
+                        {{#if this.data.system.locked}}
+                        {{this.data.system.ac}}
+                        {{else}}
+                        <input
+                            name="system.ac"
+                            type="text"
+                            value="{{this.data.system.ac}}"
+                        />
+                        {{/if}}
+                    </td>
+                </tr>
+                <tr>
+                    <th>Movement</th>
+                    <td>
+                        {{#if this.data.system.locked}}
+                        {{this.data.system.movement}}
+                        {{else}}
+                        <input
+                            name="system.movement"
+                            type="text"
+                            value="{{this.data.system.movement}}"
+                        />
+                        {{/if}}
+                    </td>
+                </tr>
+                <tr>
+                    <th>Hit Dice</th>
+                    <td>
+                        {{#if this.data.system.locked}}
+                        {{{this.data.hitDiceHTML}}}
+                        {{else}}
+                        <input
+                            name="system.hitDice"
+                            type="text"
+                            value="{{this.data.system.hitDice}}"
+                        />
+                        {{/if}}
+                    </td>
+                </tr>
+                <tr>
+                    <th>To Hit</th>
+                    <td>
+                        {{#if this.data.system.locked}}
+                        {{{this.data.toHitHTML}}}
+                        {{else}}
+                        <input
+                            name="system.toHit"
+                            type="text"
+                            value="{{this.data.system.toHit}}"
+                        />
+                        {{/if}}
+                    </td>
+                </tr>
+                <tr>
+                    <th>Num. Attacks</th>
+                    <td>
+                        {{#if this.data.system.locked}}
+                        {{{this.data.numAttacksHTML}}}
+                        {{else}}
+                        <input
+                            name="system.numAttacks"
+                            type="text"
+                            value="{{this.data.system.numAttacks}}"
+                        />
+                        {{/if}}
+                    </td>
+                </tr>
+                <tr>
+                    <th>Damage</th>
+                    <td>
+                        {{#if this.data.system.locked}}
+                        {{{this.data.damageHTML}}}
+                        {{else}}
+                        <input
+                            name="system.damage"
+                            type="text"
+                            value="{{this.data.system.damage}}"
+                        />
+                        {{/if}}
+                    </td>
+                </tr>
+                <tr>
+                    <th>Special Attacks</th>
+                    <td>
+                        {{#if this.data.system.locked}}
+                        {{this.data.system.specialAttacks}}
+                        {{else}}
+                        <input
+                            name="system.specialAttacks"
+                            type="text"
+                            value="{{this.data.system.specialAttacks}}"
+                        />
+                        {{/if}}
+                    </td>
+                </tr>
+                <tr>
+                    <th>Special Defenses</th>
+                    <td>
+                        {{#if this.data.system.locked}}
+                        {{this.data.system.specialDefenses}}
+                        {{else}}
+                        <input
+                            name="system.specialDefenses"
+                            type="text"
+                            value="{{this.data.system.specialDefenses}}"
+                        />
+                        {{/if}}
+                    </td>
+                </tr>
+                <tr>
+                    <th>Magic Resist</th>
+                    <td>
+                        {{#if this.data.system.locked}}
+                        {{{this.data.magicResistHTML}}}
+                        {{else}}
+                        <input
+                            name="system.magicResist"
+                            type="text"
+                            value="{{this.data.system.magicResist}}"
+                        />
+                        {{/if}}
+                    </td>
+                </tr>
+                <tr>
+                    <th>Size</th>
+                    <td>
+                        {{#if this.data.system.locked}}
+                        {{this.data.system.size}}
+                        {{else}}
+                        <input
+                            name="system.size"
+                            type="text"
+                            value="{{this.data.system.size}}"
+                        />
+                        {{/if}}
+                    </td>
+                </tr>
+                <tr>
+                    <th>Morale</th>
+                    <td>
+                        {{#if this.data.system.locked}}
+                        {{{this.data.moraleHTML}}}
+                        {{else}}
+                        <input
+                            name="system.morale"
+                            type="text"
+                            value="{{this.data.system.morale}}"
+                        />
+                        {{/if}}
+                    </td>
+                </tr>
+                <tr>
+                    <th>XP</th>
+                    <td>
+                        {{#if this.data.system.locked}}
+                        {{this.data.system.xp}}
+                        {{else}}
+                        <input
+                            name="system.xp"
+                            type="text"
+                            value="{{this.data.system.xp}}"
+                        />
+                        {{/if}}
+                    </td>
+                </tr>
+            </table>
+            <div class="npc-image-wrapper">
+                <div>
+                    <img class="npc-image" src="{{this.data.system.imgURL}}">
+                    {{#unless this.data.system.locked}}
+                    <input
+                    class="npc-imgURL-input"
+                        type="text"
+                        name="system.imgURL"
+                        value="{{this.data.system.imgURL}}"
+                    />
+                    {{/unless}}
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="npc-description">
+        <div class="editor-section">
+            <h3>Description</h3>
+            {{#if this.data.system.locked}}
+            {{#if (eq this.data.descriptionHTML "<p></p>")}}
+                    <span>None.</span>
                 {{else}}
-                <input
-                    name="system.climate"
-                    type="text"
-                    value="{{this.data.system.climate}}"
-                />
+                    {{{this.data.descriptionHTML}}}
                 {{/if}}
-            </td>
-        </tr>
-        <tr>
-            <th>Frequency</th>
-            <td>
-                {{#if this.data.system.locked}}
-                {{this.data.system.frequency}}
-                {{else}}
-                <input
-                    name="system.frequency"
-                    type="text"
-                    value="{{this.data.system.frequency}}"
-                />
-                {{/if}}
-            </td>
-        </tr>
-        <tr>
-            <th>Organization</th>
-            <td>
-                {{#if this.data.system.locked}}
-                {{this.data.system.organization}}
-                {{else}}
-                <input
-                    name="system.organization"
-                    type="text"
-                    value="{{this.data.system.organization}}"
-                />
-                {{/if}}
-            </td>
-        </tr>
-        <tr>
-            <th>Activity</th>
-            <td>
-                {{#if this.data.system.locked}}
-                {{this.data.system.activity}}
-                {{else}}
-                <input
-                    name="system.activity"
-                    type="text"
-                    value="{{this.data.system.activity}}"
-                />
-                {{/if}}
-            </td>
-        </tr>
-        <tr>
-            <th>Diet</th>
-            <td>
-                {{#if this.data.system.locked}}
-                {{this.data.system.diet}}
-                {{else}}
-                <input
-                    name="system.diet"
-                    type="text"
-                    value="{{this.data.system.diet}}"
-                />
-                {{/if}}
-            </td>
-        </tr>
-        <tr>
-            <th>Intelligence</th>
-            <td>
-                {{#if this.data.system.locked}}
-                {{this.data.system.intelligence}}
-                {{else}}
-                <input
-                    name="system.intelligence"
-                    type="text"
-                    value="{{this.data.system.intelligence}}"
-                />
-                {{/if}}
-            </td>
-        </tr>
-        <tr>
-            <th>Treasure</th>
-            <td>
-                {{#if this.data.system.locked}}
-                {{this.data.system.treasure}}
-                {{else}}
-                <input
-                    name="system.treasure"
-                    type="text"
-                    value="{{this.data.system.treasure}}"
-                />
-                {{/if}}
-            </td>
-        </tr>
-        <tr>
-            <th>Alignment</th>
-            <td>
-                {{#if this.data.system.locked}}
-                {{this.data.system.alignment}}
-                {{else}}
-                <input
-                    name="system.alignment"
-                    type="text"
-                    value="{{this.data.system.alignment}}"
-                />
-                {{/if}}
-            </td>
-        </tr>
-        <tr>
-            <th>Num. Appearing</th>
-            <td>
-                {{#if this.data.system.locked}}
-                {{this.data.system.numAppearing}}
-                {{else}}
-                <input
-                    name="system.numAppearing"
-                    type="text"
-                    value="{{this.data.system.numAppearing}}"
-                />
-                {{/if}}
-            </td>
-        </tr>
-        <tr>
-            <th>Armor Class</th>
-            <td>
-                {{#if this.data.system.locked}}
-                {{this.data.system.ac}}
-                {{else}}
-                <input
-                    name="system.ac"
-                    type="text"
-                    value="{{this.data.system.ac}}"
-                />
-                {{/if}}
-            </td>
-        </tr>
-        <tr>
-            <th>Movement</th>
-            <td>
-                {{#if this.data.system.locked}}
-                {{this.data.system.movement}}
-                {{else}}
-                <input
-                    name="system.movement"
-                    type="text"
-                    value="{{this.data.system.movement}}"
-                />
-                {{/if}}
-            </td>
-        </tr>
-        <tr>
-            <th>Hit Dice</th>
-            <td>
-                {{#if this.data.system.locked}}
-                {{this.data.system.hitDice}}
-                {{else}}
-                <input
-                    name="system.hitDice"
-                    type="text"
-                    value="{{this.data.system.hitDice}}"
-                />
-                {{/if}}
-            </td>
-        </tr>
-        <tr>
-            <th>To Hit</th>
-            <td>
-                {{#if this.data.system.locked}}
-                {{this.data.system.toHit}}
-                {{else}}
-                <input
-                    name="system.toHit"
-                    type="text"
-                    value="{{this.data.system.toHit}}"
-                />
-                {{/if}}
-            </td>
-        </tr>
-        <tr>
-            <th>Num. Attacks</th>
-            <td>
-                {{#if this.data.system.locked}}
-                {{this.data.system.numAttacks}}
-                {{else}}
-                <input
-                    name="system.numAttacks"
-                    type="text"
-                    value="{{this.data.system.numAttacks}}"
-                />
-                {{/if}}
-            </td>
-        </tr>
-        <tr>
-            <th>Damage</th>
-            <td>
-                {{#if this.data.system.locked}}
-                {{this.data.system.damage}}
-                {{else}}
-                <input
-                    name="system.damage"
-                    type="text"
-                    value="{{this.data.system.damage}}"
-                />
-                {{/if}}
-            </td>
-        </tr>
-        <tr>
-            <th>Special Attacks</th>
-            <td>
-                {{#if this.data.system.locked}}
-                {{this.data.system.specialAttacks}}
-                {{else}}
-                <input
-                    name="system.specialAttacks"
-                    type="text"
-                    value="{{this.data.system.specialAttacks}}"
-                />
-                {{/if}}
-            </td>
-        </tr>
-        <tr>
-            <th>Special Defenses</th>
-            <td>
-                {{#if this.data.system.locked}}
-                {{this.data.system.specialDefenses}}
-                {{else}}
-                <input
-                    name="system.specialDefenses"
-                    type="text"
-                    value="{{this.data.system.specialDefenses}}"
-                />
-                {{/if}}
-            </td>
-        </tr>
-        <tr>
-            <th>Magic Resist</th>
-            <td>
-                {{#if this.data.system.locked}}
-                {{this.data.system.magicResist}}
-                {{else}}
-                <input
-                    name="system.magicResist"
-                    type="text"
-                    value="{{this.data.system.magicResist}}"
-                />
-                {{/if}}
-            </td>
-        </tr>
-        <tr>
-            <th>Size</th>
-            <td>
-                {{#if this.data.system.locked}}
-                {{this.data.system.size}}
-                {{else}}
-                <input
-                    name="system.size"
-                    type="text"
-                    value="{{this.data.system.size}}"
-                />
-                {{/if}}
-            </td>
-        </tr>
-        <tr>
-            <th>Morale</th>
-            <td>
-                {{#if this.data.system.locked}}
-                {{this.data.system.morale}}
-                {{else}}
-                <input
-                    name="system.morale"
-                    type="text"
-                    value="{{this.data.system.morale}}"
-                />
-                {{/if}}
-            </td>
-        </tr>
-        <tr>
-            <th>XP</th>
-            <td>
-                {{#if this.data.system.locked}}
-                {{this.data.system.xp}}
-                {{else}}
-                <input
-                    name="system.xp"
-                    type="text"
-                    value="{{this.data.system.xp}}"
-                />
-                {{/if}}
-            </td>
-        </tr>
-    </table>
-    <div class="editor-section">
-        <h3>Description</h3>
-        {{#if this.data.system.locked}}
-        {{#if (eq this.data.descriptionHTML "<p></p>")}}
-                <span>None.</span>
             {{else}}
-                {{{this.data.descriptionHTML}}}
+                {{editor
+                    this.data.descriptionHTML
+                    target="system.description"
+                    engine="prosemirror"
+                    button=true
+                    editable=editable
+                }}
             {{/if}}
-        {{else}}
-            {{editor
-                this.data.descriptionHTML
-                target="system.description"
-                engine="prosemirror"
-                button=true
-                editable=editable
-            }}
-        {{/if}}
+        </div>
     </div>
 </form>

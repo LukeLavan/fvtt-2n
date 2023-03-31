@@ -15,6 +15,41 @@ export class TwoNNPCCharacterActorSheet extends TwoNActorSheet {
             {async: true}
         );
 
+        data.data.numAppearingHTML = await TextEditor.enrichHTML(
+            this.object.system.numAppearing,
+            {async: true}
+        );
+
+        data.data.hitDiceHTML = await TextEditor.enrichHTML(
+            this.object.system.hitDice,
+            {async: true}
+        );
+
+        data.data.toHitHTML = await TextEditor.enrichHTML(
+            this.object.system.toHit,
+            {async: true}
+        );
+
+        data.data.numAttacksHTML = await TextEditor.enrichHTML(
+            this.object.system.numAttacks,
+            {async: true}
+        );
+
+        data.data.damageHTML = await TextEditor.enrichHTML(
+            this.object.system.damage,
+            {async: true}
+        );
+
+        data.data.magicResistHTML = await TextEditor.enrichHTML(
+            this.object.system.magicResist,
+            {async: true}
+        );
+
+        data.data.moraleHTML = await TextEditor.enrichHTML(
+            this.object.system.morale,
+            {async: true}
+        );
+
         return data;
     }
 
@@ -22,6 +57,10 @@ export class TwoNNPCCharacterActorSheet extends TwoNActorSheet {
         super.activateListeners(html);
 
         html.find('.npc-lock').click(this._lockToggle.bind(this));
+
+        html.find('.npc-stats-control').click(() => {
+            html.find('.npc-stats').toggle();
+        });
     }
 
     _lockToggle() {
