@@ -4,6 +4,7 @@ export class TwoNNPCCharacterActorSheet extends TwoNActorSheet {
     static get defaultOptions() {
         return mergeObject(super.defaultOptions, {
             template: 'systems/fvtt-2n/templates/sheets/actors/npc-sheet.html',
+            width: 768,
         });
     }
 
