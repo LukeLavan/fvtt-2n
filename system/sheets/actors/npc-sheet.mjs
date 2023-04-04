@@ -59,7 +59,13 @@ export class TwoNNPCCharacterActorSheet extends TwoNActorSheet {
         html.find('.npc-lock').click(this._lockToggle.bind(this));
 
         html.find('.npc-stats-control').click(() => {
-            html.find('.npc-stats').toggle();
+            const stats = html.find('.npc-stats'),
+                icon = html.find('.npc-stats-control i.fas');
+            console.log(icon);
+            stats.toggleClass('npc-stats-hidden');
+            if (stats.is(':hidden'))
+                icon.addClass('fa-caret-up').removeClass('fa-caret-down');
+            else icon.addClass('fa-caret-down').removeClass('fa-caret-up');
         });
     }
 

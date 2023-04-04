@@ -26,8 +26,10 @@
 }
 
 .npc-stats-wrapper {
-    margin: 32px;
+    margin-left: 32px;
+    margin-right: 32px;
     margin-bottom: 16px;
+    margin-top: 16px;
 
     border: thin solid black;
 }
@@ -44,6 +46,13 @@
     display: flex;
     flex-wrap: wrap-reverse;
     justify-content: center;
+    transition: max-height 200ms;
+    max-height: 999px;
+    overflow: hidden;
+}
+
+.npc-stats-hidden {
+    max-height: 0;
 }
 
 .npc-table {
