@@ -81,8 +81,14 @@
     display: block;
 }
 
+.npc-imgURL-label {
+    display: block;
+    text-align: center;
+}
+
 .npc-imgURL-input {
     max-width: 300px;
+    resize: vertical;
 }
 
 .npc-description {

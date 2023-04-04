@@ -323,12 +323,12 @@
                 <div>
                     <img class="npc-image" src="{{this.data.system.imgURL}}">
                     {{#unless this.data.system.locked}}
-                    <input
-                    class="npc-imgURL-input"
+                    <span class="npc-imgURL-label"><b>Image URL</b></span>
+                    <textarea
+                        class="npc-imgURL-input"
                         type="text"
                         name="system.imgURL"
-                        value="{{this.data.system.imgURL}}"
-                    />
+                    >{{this.data.system.imgURL}}</textarea>
                     {{/unless}}
                 </div>
             </div>
