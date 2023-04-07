@@ -3,15 +3,11 @@
     "title": "2n",
     "description": "@koibu0 's modifications to the second edition of the world's greatest roleplaying game",
     "license": "MPL-2.0",
-    "version": "0.2.4",
+    "version": "0.3.0",
     "authors": [
       {
         "name": "Luke Lavan",
         "discord": "LugeL#2716"
-      },
-      {
-        "name": "Lyndsey Toft",
-        "discord": "lulzwlyndz#7019"
       }
     ],
     "compatibility": {
