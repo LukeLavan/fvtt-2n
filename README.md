@@ -6,6 +6,7 @@ This FoundryVTT system is my humble attempt to bring 2n into Foundry. Please see
 ### current
 
 - character sheet
+- NPC character sheet
 - item sheet
   - spell sheet
   - weapon sheet
@@ -14,7 +15,6 @@ This FoundryVTT system is my humble attempt to bring 2n into Foundry. Please see
 
 ### planned
 
-- NPC character sheet
 - initiative tracker changes
 - compendium with 2n items and spells
 - other useful things
@@ -48,5 +48,13 @@ This work and I are not affiliated in any way with RegalGoblins.
 [gear](https://user-images.githubusercontent.com/20602720/225060487-8a7c713a-caf1-47ea-a995-92b61d4c57cb.gif)
 
 ![drag](https://user-images.githubusercontent.com/20602720/225064418-0ee2c785-cb84-4990-8ecc-a79ef19f4f9c.gif)
+
+## NPC character sheet
+
+### Supports inline rolls
+![death_k_stat](https://user-images.githubusercontent.com/20602720/230673161-16b2551d-6736-4dbc-91ea-9f9f0f974b5b.png)
+
+### Stat block is collapsible
+![death_k_desc](https://user-images.githubusercontent.com/20602720/230673172-8f038a7e-f0b5-4752-88a9-e05a46a25b94.png)
 
 
