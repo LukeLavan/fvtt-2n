@@ -5,6 +5,9 @@
 @import url('actor-sheet/skills.css');
 @import url('actor-sheet/spells.css');
 
+/* npc sheet */
+@import url('./npc-sheet.css');
+
 /* item sheets */
 @import url('item-sheets/common.css');
 @import url('item-sheets/gear-sheet.css');

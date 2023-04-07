@@ -4,6 +4,7 @@ import {TwoNItem} from './item.mjs';
 import {createActor} from './hooks/createActor.mjs';
 
 import {TwoNPlayerCharacterActorSheet} from './sheets/actors/pc-sheet.mjs';
+import {TwoNNPCCharacterActorSheet} from './sheets/actors/npc-sheet.mjs';
 import {TwoNItemSheet} from './sheets/item-sheet.mjs';
 import {TwoNRollConfigSheet} from './sheets/items/rollConfig-sheet.mjs';
 import {TwoNSpellSheet} from './sheets/items/spell-sheet.mjs';
@@ -41,6 +42,11 @@ Hooks.once('init', async function () {
         types: ['pc'],
         makeDefault: true,
     });
+    Actors.registerSheet('fvtt-2n', TwoNNPCCharacterActorSheet, {
+        types: ['npc'],
+        makeDefault: true,
+    });
+
     Items.unregisterSheet('core', ItemSheet);
     Items.registerSheet('fvtt-2n', TwoNItemSheet, {
         types: ['gear', 'weapon'],

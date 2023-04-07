@@ -4,7 +4,9 @@ export class TwoNActor extends Actor {
     prepareDerivedData() {
         switch (this.type) {
             case 'pc':
-                playerCharacterPrepareDerivedData(this);
+                return playerCharacterPrepareDerivedData(this);
+            case 'npc':
+                return;
         }
     }
 }
