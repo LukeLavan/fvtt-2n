@@ -47,7 +47,7 @@
     flex-wrap: wrap-reverse;
     justify-content: center;
     transition: max-height 200ms;
-    max-height: 999px;
+    max-height: 9999px;
     overflow: hidden;
 }
 
